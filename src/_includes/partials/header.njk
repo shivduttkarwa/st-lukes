@@ -21,7 +21,7 @@
       {% for item in site.utility_links %}
       <a class="site-header__link" href="{{ item.url }}">{{ item.label }}</a>
       {% endfor %}
-      <button class="site-header__menu" type="button" aria-label="Open menu" aria-expanded="false">
+      <button class="site-header__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu" data-menu-open>
         <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
       </button>
     </div>

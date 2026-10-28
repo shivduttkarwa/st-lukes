@@ -4,7 +4,39 @@
   "description": "An independent Anglican, Pre-K to Year 12 co-educational school across two campuses, Bayview and Dee Why, on Sydney's Northern Beaches.",
   "tagline": "Local Heart. Global Mind.",
   "theme_color": "#001638",
-  "nav": [],
+  "nav": [
+    { "label": "Home", "url": "/" },
+    { "label": "Enrolments", "url": "#" },
+    {
+      "label": "Our School",
+      "url": "#",
+      "children": [
+        { "label": "Principal's Welcome", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Why Choose St Luke's", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Christian Foundation", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Leadership & Staff", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Strategic Plan", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Campus Masterplan 2029–2031", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Round Square Global Network", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "History", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Acknowledgement of Country", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+      ]
+    },
+    { "label": "Learning", "url": "#" },
+    { "label": "Wellbeing", "url": "#" },
+    { "label": "School Life", "url": "#" },
+    { "label": "Campuses", "url": "#" },
+    { "label": "Community", "url": "#" },
+    { "label": "News & Stories", "url": "#" }
+  ],
+  "menu_links": [
+    { "label": "Parent Portal", "url": "#" },
+    { "label": "Work with Us", "url": "#" },
+    { "label": "Visit Us", "url": "#" },
+    { "label": "Transport", "url": "#" },
+    { "label": "Scholarships", "url": "#" },
+    { "label": "Policies", "url": "#" }
+  ],
   "quick_links": [
     { "label": "St Luke's Portal", "url": "#" },
     { "label": "Make an Enquiry", "url": "#" },
@@ -19,7 +51,11 @@
     { "label": "Enquire", "url": "#" },
     { "label": "Enrol", "url": "#" }
   ],
-  "socials": [],
+  "socials": [
+    { "network": "facebook", "label": "Facebook", "url": "#" },
+    { "network": "instagram", "label": "Instagram", "url": "#" },
+    { "network": "linkedin", "label": "LinkedIn", "url": "#" }
+  ],
   "popular_searches": [],
   "footer": {}
 }

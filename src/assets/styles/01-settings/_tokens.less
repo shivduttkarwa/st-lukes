@@ -14,7 +14,10 @@
 @gutter-lg: 40 * @px;
 @gutter-xxl: 100 * @px;
 @container-content: 1240 * @px;
-@tap-size: 44 * @px;
+// accessibility floors stay in real px; everything else scales from the root
+@tap-size: 44px;
+@text-min: 12px;
+@control-font-min: 16px;
 @header-height-sm: 72 * @px;
 @header-height-lg: 160 * @px;
 @control-height: 64 * @px;
@@ -38,6 +41,9 @@
   --color-white-20: rgba(255, 255, 255, 0.2);
   --color-black-75: rgba(0, 0, 0, 0.75);
   --color-black-10: rgba(0, 0, 0, 0.1);
+  --color-black-5: rgba(0, 0, 0, 0.05);
+  --color-navy-75: rgba(0, 22, 56, 0.75);
+  --color-royal-tint-50: rgba(177, 197, 223, 0.5);
 
   --color-primary: var(--color-navy);
   --color-secondary: var(--color-royal);
@@ -47,6 +53,8 @@
   --color-heading: var(--color-navy);
   --color-muted: var(--color-navy-tint);
   --color-line: var(--color-royal-tint);
+  --color-line-soft: var(--color-royal-tint-50);
+  --color-scrim: var(--color-navy-75);
   --color-background: var(--color-white);
   --color-background-tint: var(--color-royal-tint-light);
   --color-background-dark: var(--color-navy);

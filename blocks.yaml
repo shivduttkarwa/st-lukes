@@ -5,12 +5,13 @@
 
 settings:
   site:
-    figma: "20169:15359, 20169:15270"
+    figma: "20169:15359 (menu), 20169:15593 (submenu), 20169:15270 (quick links)"
     fields:
-      nav: ListBlock(StructBlock(label, url, children: ListBlock(StructBlock(label, url, thumbnail: image))))
+      nav: ListBlock(StructBlock(label, url, children: ListBlock(StructBlock(label, url, image))))   # from the page tree: top-level pages and their live children; image = a page's menu thumbnail
+      menu_links: ListBlock(StructBlock(label, url))   # the six small links under the main list
       quick_links: ListBlock(StructBlock(label, url))
       utility_links: ListBlock(StructBlock(label, url))
-      socials: ListBlock(StructBlock(network, url))
+      socials: ListBlock(StructBlock(network, label, url))   # network = icon id: facebook, instagram, linkedin
       popular_searches: ListBlock(CharBlock)
       footer: StructBlock(campuses, quick_links, affiliations, legal_links, acknowledgement)
 

@@ -19,6 +19,16 @@ Living document. Updated as blocks land; the Wagtail build reads this, `blocks.y
 
 Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`, `{% else %}` in a `for` → `{% empty %}`, `{% set %}` → `{% with %}`.
 
+## Site chrome
+
+### Header and menu (`partials/header.njk`, `partials/menu.njk`)
+- `site.nav` is the page tree: top-level pages in menu order; `children` are each page's live children, shown in the submenu when the parent row is clicked. A parent with no children renders as a plain link (arrow ↗); with children it is a `<button aria-expanded>` (arrow turns ↘ when open). The parent page itself is not linked in the design; add it as the first child ("Overview") if the client wants it reachable from the menu.
+- `children[].image` is the submenu thumbnail, swapped on hover/focus of each child row — a page field (e.g. `menu_image`), fall back to the page's hero image. Nunjucks `item.children[0].image` → Django `item.children.0.image`.
+- `site.menu_links` (six small links), `site.utility_links` (Tours / Enquire / Enrol, shown in the header and again inside the panel), `site.socials` (`network` is the sprite icon id) and `site.quick_links` are site settings.
+- The search field posts `GET /search/?q=`. The results view (rows with thumbnail + title + description, "Popular searches" on the right) is described in `docs/design-guidelines.md` but not designed or built yet.
+- Behaviour lives in `ui.js` (`initMenu`): overlay + panel slide in, panel widens to the left when a submenu opens, `inert` on the rest of the page, scroll lock with Lenis stopped, Escape and overlay click close, focus returns to the burger. Copy `main.js` as-is.
+- Below `lg` the panel is full width and submenus open as accordions; the thumbnail is hidden. Phone layout is interpreted until the designer's mobile frames arrive.
+
 ## Blocks
 
 ### hero (`blocks/hero.njk`)

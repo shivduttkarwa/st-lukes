@@ -67,6 +67,7 @@
 
   &__link {
     .type-nav();
+    .tap-area();
     display: none;
     color: var(--color-white);
     text-box: trim-both cap alphabetic;
@@ -77,24 +78,7 @@
   }
 
   &__menu {
-    display: grid;
-    place-items: center;
-    width: var(--tap-size);
-    height: var(--tap-size);
-    border: 0;
-    border-radius: 50%;
-    background: var(--color-gold);
-    color: var(--color-navy);
-    transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
-    @media (min-width: @bp-lg) {
-      width: 65 * @px;
-      height: 65 * @px;
-    }
-    @media (hover: hover) {
-      &:hover {
-        background: var(--color-white);
-      }
-    }
+    .circle-button();
     .icon {
       width: 24 * @px;
       height: 10 * @px;
@@ -154,9 +138,16 @@
     transition: opacity var(--duration-base) ease, transform var(--duration-base) var(--ease-settle), visibility 0s linear var(--duration-base);
     a {
       .type-body-2();
-      display: block;
-      padding: 8 * @px 25 * @px;
+      display: flex;
+      align-items: center;
+      min-height: var(--tap-size);
+      padding: 0 25 * @px;
       color: inherit;
+      @media @fine {
+        display: block;
+        min-height: 0;
+        padding: 8 * @px 25 * @px;
+      }
       @media (hover: hover) {
         &:hover { color: var(--color-royal); }
       }

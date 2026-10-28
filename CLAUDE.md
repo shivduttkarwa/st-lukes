@@ -36,4 +36,4 @@ Stack: Eleventy 3 + Nunjucks · Bootstrap 5.3 themed only through `--bs-*` · LE
 ## Handoff + housekeeping
 - `docs/wagtail-handoff.md` is the one living handoff doc; `CHANGELOG.md` holds dated history. Keep history out of this file.
 - No people's names in the repo: "the designer", "the client". Commits: one short subject line, no trailers.
-- Never: CDNs, Tailwind, editing Bootstrap Sass, hardcoded colours, px anywhere but `@px`, breakpoints and the root.
+- Never: CDNs, Tailwind, editing Bootstrap Sass, hardcoded colours, px anywhere but `@px`, breakpoints, the root and the accessibility floors in `_tokens.less` (44 tap, 16 control text, 12 text).

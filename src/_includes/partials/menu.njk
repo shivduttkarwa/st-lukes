@@ -1,0 +1,68 @@
+<div class="menu" id="site-menu" data-menu>
+  <div class="menu__overlay" data-menu-close></div>
+  <div class="menu__panel" role="dialog" aria-modal="true" aria-label="Menu" tabindex="-1">
+    <div class="menu__top">
+      <form class="menu__search" role="search" action="/search/" method="get">
+        <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+        <input class="menu__search-input" type="search" name="q" placeholder="Search" aria-label="Search the site" autocomplete="off">
+      </form>
+      <div class="menu__utility">
+        {% for item in site.utility_links %}
+        <a class="menu__utility-link" href="{{ item.url }}">{{ item.label }}</a>
+        {% endfor %}
+      </div>
+      <button class="menu__close" type="button" aria-label="Close menu" data-menu-close>
+        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
+      </button>
+    </div>
+
+    <div class="menu__body">
+      <nav class="menu__nav" aria-label="Main">
+        <ul class="menu__list">
+          {% for item in site.nav %}
+          <li class="menu__item">
+            {% if item.children %}
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-{{ loop.index }}">
+              <span>{{ item.label }}</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
+            </button>
+            <div class="menu__sub" id="submenu-{{ loop.index }}">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  {% for child in item.children %}
+                  <li><a class="menu__sub-link" href="{{ child.url }}"{% if child.image %} data-thumb="{{ child.image.src }}"{% endif %}>{{ child.label }}</a></li>
+                  {% endfor %}
+                </ul>
+                {% if item.children[0].image %}
+                <div class="menu__thumb">
+                  {% set img = item.children[0].image %}{% include "snippets/image.njk" %}
+                </div>
+                {% endif %}
+              </div>
+            </div>
+            {% else %}
+            <a class="menu__link" href="{{ item.url }}">
+              <span>{{ item.label }}</span>
+              <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
+            </a>
+            {% endif %}
+          </li>
+          {% endfor %}
+        </ul>
+      </nav>
+
+      <div class="menu__foot">
+        <ul class="menu__secondary">
+          {% for item in site.menu_links %}
+          <li><a class="menu__secondary-link" href="{{ item.url }}">{{ item.label }}</a></li>
+          {% endfor %}
+        </ul>
+        <ul class="menu__social">
+          {% for item in site.socials %}
+          <li><a class="menu__social-link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

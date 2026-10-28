@@ -1,6 +1,7 @@
 // Touch-device audit of the built pages: horizontal overflow, tap targets under 44, small text,
 // inputs under 16px (iOS zoom) and how oversized each downloaded image is for its slot.
-// Usage: node .qa/mobile-audit.mjs <widths comma-separated> [page ...]   (pages default to all ten)
+// Usage: node .qa/mobile-audit.mjs <widths comma-separated> [page ...]   (pages default to index)
+// Pages are read over http (QA_BASE, default http://127.0.0.1:8123/) because asset URLs are root-relative.
 import { spawn, execSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";
@@ -10,8 +11,8 @@ import { fileURLToPath } from "node:url";
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const dist = path.join(root, "dist");
 const widths = (process.argv[2] || "360,390,768,1024").split(",").map(Number);
-const all = ["index", "preparatory-program", "k-6-primary", "welcome", "extra-curricular", "enrolment", "policies", "news", "news-article", "contact-us"];
-const pages = process.argv.length > 3 ? process.argv.slice(3) : all;
+const pages = process.argv.length > 3 ? process.argv.slice(3) : ["index"];
+const base = process.env.QA_BASE || "http://127.0.0.1:8123/";
 
 const port = 9400 + Math.floor(Math.random() * 500);
 const profile = fs.mkdtempSync(path.join(os.tmpdir(), "maudit-"));
@@ -107,10 +108,18 @@ for (const width of widths) {
   const dpr = width < 700 ? 3 : 2;
   await send("Emulation.setDeviceMetricsOverride", { width, height: width < 700 ? 800 : 1100, deviceScaleFactor: dpr, mobile: true }, sessionId);
   for (const page of pages) {
-    await send("Page.navigate", { url: "file:///" + path.join(dist, page + ".html").replace(/\\/g, "/") }, sessionId);
+    await send("Page.navigate", { url: base + page + ".html" }, sessionId);
     await sleep(2200);
     const res = await send("Runtime.evaluate", { expression: `(${probe.toString()})()`, returnByValue: true }, sessionId);
     const d = JSON.parse(res.result.result.value);
+    // second pass with the menu and every submenu open, so their targets are measured too
+    await send("Runtime.evaluate", { expression: `document.querySelector("[data-menu-open]")?.click(); document.querySelectorAll(".menu__link[aria-expanded]").forEach((b) => b.click())` }, sessionId);
+    await sleep(900);
+    const resMenu = await send("Runtime.evaluate", { expression: `(${probe.toString()})()`, returnByValue: true }, sessionId);
+    const m = JSON.parse(resMenu.result.result.value);
+    d.taps.push(...m.taps.filter((t) => t.includes(".menu")));
+    d.inputs.push(...m.inputs.filter((t) => t.includes(".menu")));
+    d.small.push(...m.small.filter(([k]) => k.includes(".menu")));
     let bytes = 0, ideal = 0;
     const heavy = [];
     for (const im of d.images) {

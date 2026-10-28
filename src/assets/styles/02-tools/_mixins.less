@@ -66,3 +66,22 @@
   img,
   video { .img-cover(); }
 }
+
+.circle-button() {
+  display: grid;
+  place-items: center;
+  width: var(--tap-size);
+  height: var(--tap-size);
+  border: 0;
+  border-radius: 50%;
+  background: var(--color-gold);
+  color: var(--color-navy);
+  transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
+  @media (min-width: @bp-lg) {
+    width: 65 * @px;
+    height: 65 * @px;
+  }
+  @media (hover: hover) {
+    &:hover { background: var(--color-gold-deep); }
+  }
+}

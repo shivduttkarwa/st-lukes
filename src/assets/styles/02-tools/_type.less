@@ -171,11 +171,23 @@
   font-size: 14 * @px;
 }
 
+@body-5-size: 12 * @px;
 .type-body-5() {
   .type-myriad();
   line-height: 1.2;
   letter-spacing: 0;
-  font-size: 12 * @px;
+  font-size: ~"max(@{text-min}, @{body-5-size})";
+}
+
+// form controls: Body 2 with the 16px floor that stops iOS zooming into the field
+@control-size-sm: 16 * @px;
+@control-size-lg: 18 * @px;
+.type-control() {
+  .type-myriad();
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-size: ~"max(@{control-font-min}, @{control-size-sm})";
+  @media (min-width: @bp-lg) { font-size: ~"max(@{control-font-min}, @{control-size-lg})"; }
 }
 
 .type-eyebrow() {
