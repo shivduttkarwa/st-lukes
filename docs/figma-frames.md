@@ -20,7 +20,7 @@ File `Ec8NFmOIMTGbBVYbdJcKD9`, page "02 Approved Design Concept" (`20157:4948`).
 |---|---|
 | Main Menu | `20169:15359` (panel `20169:15454`) |
 | Submenu | `20169:15593` (panel `20169:15804`) |
-| Quick Links Drop Down | `20169:15270` |
+| Quick Links Drop Down | `20169:15270` (card `20169:15240`) |
 | Announcement Popup | `20169:15196` (card `20195:15969`) |
 
 ## Preloader and components

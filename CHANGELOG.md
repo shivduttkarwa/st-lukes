@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-28 — quick links dropdown
+- Rebuilt from frame `20169:15240`: the pill itself becomes the white card (radius 26), title and chevron turn navy, the chevron flips up, and the seven links sit 64 below the card's top on a 26 rhythm. The card grows down out of the pill with a clip-path reveal and fades back into it on close; reduced motion drops the transitions.
+- Kept anchored to the closed pill (y 30, 234 wide); the Figma open frame draws the card 1px lower and 1px wider, which would make the title jump on open.
+- The chevron is the Figma Font Awesome glyph outlined into the sprite, replacing the placeholder stroke. "St Luke’s Portal" takes the curly apostrophe.
+- Phone: the card opens wider than the pill when the labels need it, over the logo, with 44px rows; interpreted until the mobile frames arrive.
+
 ## 2026-10-28 — main menu
 - Menu from frames `20169:15359` (panel) and `20169:15593` (panel with submenu): navy scrim, white panel sliding in from the right (534 wide), search field, Tours / Enquire / Enrol, close button in the burger's spot, nine main rows with the corner arrow, six small links, social buttons. Clicking a row with children widens the panel to the left (967) and shows the submenu column with its thumbnail bottom-right; the thumbnail cross-fades on hover of each child row. Positions measured against Figma within 1px.
 - Narrow panel hides the middle utility link, as the design does, so the search pill keeps its 194 width.

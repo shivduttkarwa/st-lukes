@@ -4,7 +4,7 @@ Eleventy + Nunjucks · Bootstrap 5.3 · LESS · `anim`. Output in `dist/` is pla
 
 ```bash
 npm install
-npm run dev      # http://localhost:3000, live reload
+npm run dev      # http://localhost:3000, live reload; also on the Wi-Fi address it prints, for phones on the same network
 npm run build    # production build → dist/
 ```
 

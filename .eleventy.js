@@ -35,7 +35,7 @@ export default function (eleventyConfig) {
     }
   }
 
-  eleventyConfig.setServerOptions({ port: 3000 });
+  eleventyConfig.setServerOptions({ port: 3000, showAllHosts: true });
 
   return {
     dir: { input: "src", includes: "_includes", data: "_data", output: "dist" },
