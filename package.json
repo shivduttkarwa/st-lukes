@@ -1,0 +1,31 @@
+{
+  "name": "st-lukes-cutup",
+  "version": "1.0.0",
+  "private": true,
+  "description": "St Luke's Grammar School static cutup: Eleventy + Nunjucks, Bootstrap 5.3, LESS, anim",
+  "type": "module",
+  "scripts": {
+    "clean": "rimraf dist",
+    "dev": "npm-run-all clean --parallel dev:*",
+    "dev:eleventy": "eleventy --serve --quiet",
+    "dev:js": "esbuild src/assets/scripts/main.js --bundle --sourcemap --outfile=dist/assets/js/main.js --watch",
+    "build": "npm-run-all clean build:js build:eleventy",
+    "build:eleventy": "eleventy",
+    "build:js": "esbuild src/assets/scripts/main.js --bundle --minify --outfile=dist/assets/js/main.js"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.8",
+    "gsap": "^3.13.0",
+    "lenis": "^1.1.18",
+    "swiper": "^11.2.10"
+  },
+  "devDependencies": {
+    "@11ty/eleventy": "^3.0.0",
+    "autoprefixer": "^10.4.20",
+    "esbuild": "^0.24.0",
+    "less": "^4.2.1",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.49",
+    "rimraf": "^6.0.1"
+  }
+}

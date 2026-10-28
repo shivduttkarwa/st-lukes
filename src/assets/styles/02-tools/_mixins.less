@@ -1,0 +1,68 @@
+.cover() {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.img-cover() {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.reset-list() {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.last-mb-0() {
+  > *:last-child { margin-bottom: 0; }
+}
+
+.hide-scrollbar() {
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+.visually-hidden() {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+// Invisible hit area of at least the tap size around a smaller control; layout stays put.
+.tap-area() {
+  position: relative;
+  &::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: ~"max(100%, var(--tap-size))";
+    height: ~"max(100%, var(--tap-size))";
+    transform: translate(-50%, -50%);
+  }
+}
+
+// A photo layer overhanging its frame by @travel above and below, for a centred parallax (data-anim-centered).
+.parallax-layer(@travel: 10%) {
+  @speed: percentage((unit(@travel) / (100 + 2 * unit(@travel))));
+  @back: (-1 * @speed);
+  --parallax-from: @back;
+  --parallax-to: @speed;
+  position: absolute;
+  top: -@travel;
+  left: 0;
+  width: 100%;
+  height: 100% + @travel * 2;
+  will-change: transform;
+  img,
+  video { .img-cover(); }
+}

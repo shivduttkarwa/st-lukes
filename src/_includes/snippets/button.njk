@@ -1,0 +1,1 @@
+{% if btn and btn.text %}<a class="btn btn-{{ btn.style | default('primary') }}" href="{{ btn.url | default('#') }}">{{ btn.text }}</a>{% endif %}

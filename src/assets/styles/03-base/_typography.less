@@ -1,0 +1,22 @@
+h1, h2, h3, h4, h5, h6 {
+  margin: 0 0 0.5em;
+  color: var(--color-heading);
+}
+
+h1 { .type-h1(); }
+h2 { .type-h2(); }
+h3 { .type-h3(); }
+h4, h5, h6 { .type-eyebrow(); }
+
+body { .type-body(); }
+
+p {
+  margin: 0 0 1em;
+  &:last-child { margin-bottom: 0; }
+}
+
+.rich-text {
+  .last-mb-0();
+  h2, h3, h4 { margin-top: 1.5em; }
+  ul, ol { margin: 0 0 1em; padding-left: 1.25em; }
+}

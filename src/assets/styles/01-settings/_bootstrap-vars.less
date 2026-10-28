@@ -1,0 +1,39 @@
+:root {
+  --bs-primary: var(--color-primary);
+  --bs-primary-rgb: 10, 43, 92;
+  --bs-secondary: var(--color-accent);
+  --bs-secondary-rgb: 255, 213, 0;
+  --bs-dark: var(--color-primary-deep);
+  --bs-dark-rgb: 6, 26, 58;
+  --bs-white-rgb: 255, 255, 255;
+
+  --bs-body-color: var(--color-text);
+  --bs-body-color-rgb: 17, 17, 17;
+  --bs-body-bg: var(--color-background);
+  --bs-body-bg-rgb: 255, 255, 255;
+  --bs-body-font-family: var(--font-body);
+  --bs-heading-color: var(--color-heading);
+  --bs-emphasis-color: var(--color-heading);
+  --bs-secondary-color: var(--color-muted);
+
+  --bs-link-color: var(--color-primary);
+  --bs-link-color-rgb: 10, 43, 92;
+  --bs-link-hover-color: var(--color-primary-deep);
+  --bs-link-hover-color-rgb: 6, 26, 58;
+  --bs-link-decoration: none;
+
+  --bs-border-radius: 0;
+  --bs-border-radius-sm: 0;
+  --bs-border-radius-lg: 0;
+  --bs-border-radius-xl: 0;
+
+  --bs-focus-ring-color: rgba(255, 213, 0, 0.5);
+}
+
+.container,
+.container-fluid {
+  --bs-gutter-x: calc(var(--gutter) * 2);
+}
+.container {
+  max-width: calc(var(--container-content) + var(--gutter) * 2);
+}

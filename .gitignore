@@ -1,0 +1,11 @@
+node_modules/
+dist/**/*.map
+.DS_Store
+*.log
+
+fonts-source/
+build-guide-chat-screenshots/
+.qa/figma/
+.qa/renders/
+.qa/m/
+.qa/.figma-token

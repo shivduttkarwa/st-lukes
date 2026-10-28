@@ -1,0 +1,70 @@
+@bp-sm: 576px;
+@bp-md: 768px;
+@bp-lg: 992px;
+@bp-xl: 1200px;
+@bp-xxl: 1400px;
+@design: 1440px;
+
+@px: 0.0625rem;
+@fine: ~"(hover: hover) and (pointer: fine)";
+
+// Maths is not evaluated inside a custom property, so measures are LESS variables first.
+@gutter-sm: 20 * @px;
+@gutter-md: 32 * @px;
+@gutter-lg: 40 * @px;
+@gutter-xxl: 100 * @px;
+@container-content: 1240 * @px;
+@tap-size: 44 * @px;
+@header-height-sm: 72 * @px;
+@header-height-lg: 100 * @px;
+
+// Colour and font values are placeholders until the Figma variables are read.
+:root {
+  --color-navy: #0a2b5c;
+  --color-navy-deep: #061a3a;
+  --color-yellow: #ffd500;
+  --color-white: #ffffff;
+  --color-black: #111111;
+  --color-grey: #8a8f98;
+
+  --color-primary: var(--color-navy);
+  --color-primary-deep: var(--color-navy-deep);
+  --color-accent: var(--color-yellow);
+  --color-text: var(--color-black);
+  --color-text-inverse: var(--color-white);
+  --color-heading: var(--color-navy);
+  --color-muted: var(--color-grey);
+  --color-background: var(--color-white);
+  --color-background-dark: var(--color-navy);
+
+  --font-display: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-body: "Myriad Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-script: "Sanshand", cursive;
+
+  --gutter: @gutter-sm;
+  --container-content: @container-content;
+  --tap-size: @tap-size;
+  --header-height: @header-height-sm;
+
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-settle: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 0.2s;
+  --duration-base: 0.35s;
+  --duration-slow: 0.6s;
+
+  --z-header: 1050;
+  --z-overlay: 1080;
+}
+
+@media (min-width: @bp-md) {
+  :root { --gutter: @gutter-md; }
+}
+@media (min-width: @bp-lg) {
+  :root {
+    --gutter: @gutter-lg;
+    --header-height: @header-height-lg;
+  }
+}
+@media (min-width: @bp-xxl) {
+  :root { --gutter: @gutter-xxl; }
+}

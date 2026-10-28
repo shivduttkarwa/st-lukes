@@ -1,0 +1,26 @@
+.site-header {
+  position: relative;
+  z-index: var(--z-header);
+  min-height: var(--header-height);
+
+  &__bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gutter);
+    min-height: var(--header-height);
+  }
+
+  &__logo {
+    color: var(--color-heading);
+  }
+
+  &__nav {
+    display: flex;
+    gap: 24 * @px;
+  }
+
+  &__link {
+    color: var(--color-text);
+  }
+}

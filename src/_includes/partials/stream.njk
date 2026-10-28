@@ -1,0 +1,4 @@
+{% for block in p.body %}
+{% set value = block.value %}
+{% include "blocks/" + block.type + ".njk" %}
+{% endfor %}

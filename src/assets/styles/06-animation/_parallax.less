@@ -1,0 +1,26 @@
+@keyframes parallax-y {
+  from { transform: translate3d(0, var(--parallax-from, 0%), 0); }
+  to { transform: translate3d(0, var(--parallax-to, 0%), 0); }
+}
+
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    [data-anim-parallax-trigger] { view-timeline: --parallax block; }
+
+    [data-anim="parallax"] {
+      animation: parallax-y linear both;
+      animation-timeline: --parallax;
+      animation-range: cover;
+      &[data-anim-start="top top"] { animation-range: exit; }
+    }
+
+    [data-anim="parallax"][data-anim-disable-mobile] {
+      animation: none;
+      @media (min-width: @bp-lg) {
+        animation: parallax-y linear both;
+        animation-timeline: --parallax;
+        animation-range: cover;
+      }
+    }
+  }
+}

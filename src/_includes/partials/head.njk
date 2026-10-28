@@ -1,0 +1,17 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>{{ p.seo.title if p and p.seo else site.title }}</title>
+<meta name="description" content="{{ p.seo.description if p and p.seo else site.description }}">
+<meta name="theme-color" content="{{ site.theme_color }}">
+<meta name="format-detection" content="telephone=no">
+<link rel="stylesheet" href="/assets/css/main.css">
+<script>
+  (function (d) {
+    d.classList.add("anim-ready");
+    if (matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("anim-reduced");
+    addEventListener("load", function () {
+      setTimeout(function () { if (!d.hasAttribute("data-anim-live")) d.classList.remove("anim-ready"); }, 800);
+    });
+  })(document.documentElement);
+</script>
+<noscript><style>[data-anim]{visibility:visible !important}</style></noscript>

@@ -1,0 +1,17 @@
+# Field contract for the Wagtail build.
+# Each block: template src/_includes/blocks/<name>.njk reads value.<field>; data shape in src/_data/pages/*.json.
+# Types are Wagtail block classes. figma = node id on page 20157:4948 of Ec8NFmOIMTGbBVYbdJcKD9.
+# image = { src, alt, width, height } → ImageChooserBlock. video = { src, poster } → a document or URL block.
+
+settings:
+  site:
+    figma: "20169:15359, 20169:15270"
+    fields:
+      nav: ListBlock(StructBlock(label, url, children: ListBlock(StructBlock(label, url, thumbnail: image))))
+      quick_links: ListBlock(StructBlock(label, url))
+      utility_links: ListBlock(StructBlock(label, url))
+      socials: ListBlock(StructBlock(network, url))
+      popular_searches: ListBlock(CharBlock)
+      footer: StructBlock(campuses, quick_links, affiliations, legal_links, acknowledgement)
+
+blocks: {}
