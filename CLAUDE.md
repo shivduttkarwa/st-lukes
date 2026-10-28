@@ -21,7 +21,7 @@ Stack: Eleventy 3 + Nunjucks · Bootstrap 5.3 themed only through `--bs-*` · LE
 - Mobile-first `min-width` only; each property set once per breakpoint. No `max-width` redraw blocks.
 - Figma numbers as `60 * @px` (`@px` = 0.0625rem); round fractions to whole px. Tokens live in `_tokens.less` as `:root` custom properties; components use `var(--…)`. LESS does not evaluate maths inside a custom property: a measure that goes into `:root` is a LESS variable first (`@gutter-sm: 20 * @px; --gutter: @gutter-sm;`).
 - Type styles are mixins in `02-tools/_type.less`, one per Figma text style; `h1`–`h6` and blocks call them. Never hand-write font-size or line-height in a block.
-- One scaling rule: the fluid root in `_base.less`. No per-value `clamp()`.
+- One scaling rule: the fluid root in `_base.less` (viewport width and height). No per-value `clamp()`.
 - One file per block in `05-components/`, BEM. Bootstrap grid and utilities first; LESS for what they cannot do.
 - No comments unless a real gotcha, one line.
 

@@ -1,60 +1,186 @@
-// One mixin per Figma text style. Sizes are placeholders until the text styles are read.
-.type-display() {
+// One mixin per Figma text style. Desktop values are Figma's; phone sizes are interpreted until the mobile frames arrive.
+
+// Poppins ExtraBold: "Display 1–4", "H1–H5 Poppins"
+.type-poppins() {
   font-family: var(--font-display);
   font-weight: 800;
   text-transform: uppercase;
-  line-height: 0.95;
-  letter-spacing: -0.01em;
+}
+
+.type-display-1() {
+  .type-poppins();
+  line-height: 0.6;
+  letter-spacing: -0.03em;
   font-size: 48 * @px;
-  @media (min-width: @bp-lg) { font-size: 106 * @px; }
+  @media (min-width: @bp-md) { font-size: 80 * @px; }
+  @media (min-width: @bp-lg) { font-size: 150 * @px; }
+}
+
+.type-display-2() {
+  .type-poppins();
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-size: 48 * @px;
+  @media (min-width: @bp-lg) { font-size: 100 * @px; }
+}
+
+.type-display-3() {
+  .type-poppins();
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-size: 44 * @px;
+  @media (min-width: @bp-lg) { font-size: 90 * @px; }
+}
+
+.type-display-4() {
+  .type-poppins();
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-size: 40 * @px;
+  @media (min-width: @bp-lg) { font-size: 75 * @px; }
 }
 
 .type-h1() {
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1;
-  font-size: 40 * @px;
-  @media (min-width: @bp-lg) { font-size: 72 * @px; }
+  .type-poppins();
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: 36 * @px;
+  @media (min-width: @bp-lg) { font-size: 60 * @px; }
 }
 
 .type-h2() {
-  font-family: var(--font-display);
-  font-weight: 800;
-  text-transform: uppercase;
-  line-height: 1;
-  font-size: 32 * @px;
-  @media (min-width: @bp-lg) { font-size: 48 * @px; }
+  .type-poppins();
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
 }
 
 .type-h3() {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  line-height: 1.1;
-  font-size: 20 * @px;
-  @media (min-width: @bp-lg) { font-size: 24 * @px; }
+  .type-poppins();
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-size: 26 * @px;
+  @media (min-width: @bp-lg) { font-size: 35 * @px; }
 }
 
-.type-eyebrow() {
-  font-family: var(--font-display);
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
+.type-h4() {
+  .type-poppins();
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-size: 24 * @px;
+  @media (min-width: @bp-lg) { font-size: 30 * @px; }
+}
+
+.type-h5() {
+  .type-poppins();
   line-height: 1.2;
-  font-size: 12 * @px;
+  letter-spacing: 0;
+  font-size: 20 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
 }
 
-.type-body() {
+// Sanshand Filled: "Heading 2–6" and the nav labels
+.type-sans() {
+  font-family: var(--font-sans);
+  font-weight: 400;
+}
+
+.type-heading-2() {
+  .type-sans();
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
+}
+
+.type-heading-3() {
+  .type-sans();
+  line-height: 1;
+  letter-spacing: -0.01em;
+  font-size: 26 * @px;
+  @media (min-width: @bp-lg) { font-size: 35 * @px; }
+}
+
+.type-heading-4() {
+  .type-sans();
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-size: 24 * @px;
+  @media (min-width: @bp-lg) { font-size: 30 * @px; }
+}
+
+.type-heading-5() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-size: 20 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+.type-heading-6() {
+  .type-sans();
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+.type-nav() {
+  .type-sans();
+  line-height: 0.9;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+  font-size: 20 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+// Myriad Pro: "Body 1–5"
+.type-myriad() {
   font-family: var(--font-body);
   font-weight: 400;
-  line-height: 1.5;
+}
+
+.type-body-1() {
+  .type-myriad();
+  line-height: 1.4;
+  letter-spacing: 0;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+.type-body-2() {
+  .type-myriad();
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-size: 16 * @px;
+  @media (min-width: @bp-lg) { font-size: 18 * @px; }
+}
+
+.type-body-3() {
+  .type-myriad();
+  line-height: 1.4;
+  letter-spacing: -0.01em;
   font-size: 16 * @px;
 }
 
-.type-small() {
-  font-family: var(--font-body);
-  font-weight: 400;
-  line-height: 1.4;
+.type-body-4() {
+  .type-myriad();
+  line-height: 1.3;
+  letter-spacing: 0;
   font-size: 14 * @px;
+}
+
+.type-body-5() {
+  .type-myriad();
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-size: 12 * @px;
+}
+
+.type-eyebrow() {
+  .type-body-5();
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
 }

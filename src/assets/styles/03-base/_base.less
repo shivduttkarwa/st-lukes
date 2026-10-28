@@ -1,5 +1,6 @@
 html {
-  font-size: ~"clamp(0.875rem, 0.5rem + 0.5556vw, 1.1667rem)";
+  // 16px at the design's 1440 × 813 first view; a short laptop viewport scales down by height
+  font-size: ~"clamp(0.875rem, min(0.5rem + 0.5556vw, 0.4rem + 1.2svh), 1.1667rem)";
   scroll-behavior: smooth;
   overflow-x: clip;
   -webkit-text-size-adjust: 100%;
@@ -46,4 +47,11 @@ textarea {
 ::selection {
   background: var(--color-accent);
   color: var(--color-primary);
+}
+
+.icon {
+  display: inline-block;
+  flex: none;
+  width: 1em;
+  height: 1em;
 }

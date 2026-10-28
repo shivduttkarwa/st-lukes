@@ -1,0 +1,17 @@
+.coming-soon {
+  display: flex;
+  align-items: flex-end;
+  min-height: 60svh;
+  padding: 160 * @px 0 60 * @px;
+  background: var(--color-navy);
+  color: var(--color-white-40);
+  @media (min-width: @bp-lg) {
+    min-height: 589 * @px;
+    padding-top: 200 * @px;
+  }
+
+  &__label {
+    .type-heading-6();
+    margin: 0;
+  }
+}

@@ -1,26 +1,172 @@
+@header-pad-x: 50 * @px;
+
 .site-header {
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
   z-index: var(--z-header);
-  min-height: var(--header-height);
+  color: var(--color-white);
 
   &__bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--gutter);
-    min-height: var(--header-height);
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: start;
+    padding-inline: var(--gutter);
+    @media (min-width: @bp-lg) { padding-inline: @header-pad-x; }
+  }
+
+  &__quick {
+    padding-top: 14 * @px;
+    @media (min-width: @bp-lg) { padding-top: 30 * @px; }
   }
 
   &__logo {
-    color: var(--color-heading);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4 * @px;
+    width: 96 * @px;
+    height: 112 * @px;
+    padding: 12 * @px;
+    background: var(--color-royal);
+    @media (min-width: @bp-lg) {
+      width: 136 * @px;
+      height: var(--header-height);
+      padding: 18 * @px;
+    }
   }
 
-  &__nav {
+  &__crest {
+    width: 70 * @px;
+    height: 70 * @px;
+    @media (min-width: @bp-lg) {
+      width: 100 * @px;
+      height: 100 * @px;
+    }
+  }
+
+  &__wordmark {
+    width: 53 * @px;
+    height: 14 * @px;
+    @media (min-width: @bp-lg) {
+      width: 75 * @px;
+      height: 20 * @px;
+    }
+  }
+
+  &__tools {
     display: flex;
-    gap: 24 * @px;
+    align-items: center;
+    justify-self: end;
+    gap: 27 * @px;
+    padding-top: 14 * @px;
+    @media (min-width: @bp-lg) { padding-top: 30 * @px; }
   }
 
   &__link {
-    color: var(--color-text);
+    .type-nav();
+    display: none;
+    color: var(--color-white);
+    text-box: trim-both cap alphabetic;
+    @media (min-width: @bp-lg) { display: block; }
+    @media (hover: hover) {
+      &:hover { color: var(--color-gold); }
+    }
+  }
+
+  &__menu {
+    display: grid;
+    place-items: center;
+    width: var(--tap-size);
+    height: var(--tap-size);
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
+    @media (min-width: @bp-lg) {
+      width: 65 * @px;
+      height: 65 * @px;
+    }
+    @media (hover: hover) {
+      &:hover {
+        background: var(--color-white);
+      }
+    }
+    .icon {
+      width: 24 * @px;
+      height: 10 * @px;
+      @media (min-width: @bp-lg) {
+        width: 30 * @px;
+        height: 12 * @px;
+      }
+    }
+  }
+}
+
+.quick-links {
+  position: relative;
+
+  &__toggle {
+    .type-heading-6();
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16 * @px;
+    min-height: var(--tap-size);
+    padding: 0 20 * @px;
+    border: 0;
+    border-radius: var(--radius-pill);
+    background: var(--color-white-20);
+    color: var(--color-white);
+    transition: background-color var(--duration-base) ease;
+    @media (min-width: @bp-lg) {
+      width: 234 * @px;
+      padding: 15 * @px 25 * @px;
+    }
+    @media (hover: hover) {
+      &:hover { background: var(--color-white-40); }
+    }
+    .icon {
+      width: 15 * @px;
+      height: 15 * @px;
+      transition: transform var(--duration-base) var(--ease-settle);
+    }
+    &[aria-expanded="true"] .icon { transform: rotate(180deg); }
+  }
+
+  &__panel {
+    .reset-list();
+    position: absolute;
+    top: calc(100% + 8 * @px);
+    left: 0;
+    z-index: 1;
+    min-width: 100%;
+    padding: 16 * @px 0;
+    border-radius: 16 * @px;
+    background: var(--color-white);
+    color: var(--color-navy);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-8 * @px);
+    transition: opacity var(--duration-base) ease, transform var(--duration-base) var(--ease-settle), visibility 0s linear var(--duration-base);
+    a {
+      .type-body-2();
+      display: block;
+      padding: 8 * @px 25 * @px;
+      color: inherit;
+      @media (hover: hover) {
+        &:hover { color: var(--color-royal); }
+      }
+    }
+  }
+
+  &.is-open &__panel {
+    opacity: 1;
+    visibility: visible;
+    transform: none;
+    transition-delay: 0s;
   }
 }

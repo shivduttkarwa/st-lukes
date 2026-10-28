@@ -6,14 +6,18 @@ h1, h2, h3, h4, h5, h6 {
 h1 { .type-h1(); }
 h2 { .type-h2(); }
 h3 { .type-h3(); }
-h4, h5, h6 { .type-eyebrow(); }
+h4 { .type-h4(); }
+h5 { .type-h5(); }
+h6 { .type-heading-6(); }
 
-body { .type-body(); }
+body { .type-body-3(); }
 
 p {
   margin: 0 0 1em;
   &:last-child { margin-bottom: 0; }
 }
+
+strong, b { font-weight: 700; }
 
 .rich-text {
   .last-mb-0();

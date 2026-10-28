@@ -1,0 +1,74 @@
+@btn-font-sm: 16 * @px;
+@btn-font-lg: 18 * @px;
+@btn-padding-sm: 24 * @px;
+@btn-padding-lg: 30 * @px;
+
+.btn {
+  --bs-btn-font-family: var(--font-body);
+  --bs-btn-font-size: @btn-font-sm;
+  --bs-btn-font-weight: 400;
+  --bs-btn-line-height: 1.4;
+  --bs-btn-padding-x: @btn-padding-sm;
+  --bs-btn-padding-y: 0;
+  --bs-btn-border-width: 1px;
+  --bs-btn-border-radius: var(--radius-pill);
+  --bs-btn-focus-box-shadow: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8 * @px;
+  min-height: 52 * @px;
+  transition: color var(--duration-base) ease, background-color var(--duration-base) ease, border-color var(--duration-base) ease;
+
+  @media (min-width: @bp-lg) {
+    --bs-btn-font-size: @btn-font-lg;
+    --bs-btn-padding-x: @btn-padding-lg;
+    min-height: var(--control-height);
+  }
+
+  .icon {
+    width: 24 * @px;
+    height: 24 * @px;
+    flex: none;
+    transition: transform var(--duration-base) var(--ease-out);
+  }
+  @media (hover: hover) {
+    &:hover .icon { transform: translate(2 * @px, -2 * @px); }
+  }
+}
+
+.btn-primary {
+  --bs-btn-color: var(--color-navy);
+  --bs-btn-bg: var(--color-gold);
+  --bs-btn-border-color: var(--color-gold);
+  --bs-btn-hover-color: var(--color-navy);
+  --bs-btn-hover-bg: var(--color-gold-deep);
+  --bs-btn-hover-border-color: var(--color-gold-deep);
+  --bs-btn-active-color: var(--color-navy);
+  --bs-btn-active-bg: var(--color-gold-deep);
+  --bs-btn-active-border-color: var(--color-gold-deep);
+}
+
+.btn-outline {
+  --bs-btn-color: var(--color-white);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--color-gold);
+  --bs-btn-hover-color: var(--color-navy);
+  --bs-btn-hover-bg: var(--color-gold);
+  --bs-btn-hover-border-color: var(--color-gold);
+  --bs-btn-active-color: var(--color-navy);
+  --bs-btn-active-bg: var(--color-gold);
+  --bs-btn-active-border-color: var(--color-gold);
+}
+
+.btn-outline-dark {
+  --bs-btn-color: var(--color-navy);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--color-navy);
+  --bs-btn-hover-color: var(--color-white);
+  --bs-btn-hover-bg: var(--color-navy);
+  --bs-btn-hover-border-color: var(--color-navy);
+  --bs-btn-active-color: var(--color-white);
+  --bs-btn-active-bg: var(--color-navy);
+  --bs-btn-active-border-color: var(--color-navy);
+}

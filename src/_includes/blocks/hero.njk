@@ -1,0 +1,42 @@
+<section class="hero" data-anim-parallax-trigger>
+  <div class="hero__media" aria-hidden="true">
+    {% if value.video %}
+    <video class="hero__video" src="{{ value.video.src }}" poster="{{ value.image.src }}" autoplay muted loop playsinline data-anim="parallax" data-anim-start="top top"></video>
+    {% else %}
+    <img class="hero__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" fetchpriority="high" decoding="async" data-anim="parallax" data-anim-start="top top">
+    {% endif %}
+    <div class="hero__shade"></div>
+  </div>
+
+  <div class="hero__inner">
+    <p class="hero__statement" data-anim="reveal" data-anim-type="fade-up" data-anim-tier="hero" data-anim-order="2">{{ value.statement }}</p>
+
+    <h1 data-anim="sequence" data-anim-tier="hero" data-anim-order="1" data-anim-stagger="0.15">
+      <span class="hero__line" data-anim-item="enter-left">{{ value.title_line_1 }}</span>
+      <span class="hero__line hero__line--alt" data-anim-item="enter-right">{{ value.title_line_2 }}</span>
+    </h1>
+
+    {% if value.notice %}
+    <div class="hero__notice" data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="3">
+      <div class="notice" data-disclosure>
+        <button class="notice__teaser" type="button" aria-expanded="false" aria-controls="hero-notice">
+          <span class="notice__teaser-text">
+            <span class="notice__teaser-title">{{ value.notice.title }}</span>
+            <span class="notice__teaser-copy">{{ value.notice.text }}</span>
+          </span>
+          <svg class="icon" aria-hidden="true"><use href="#icon-arrow-box"></use></svg>
+        </button>
+        <div class="notice__card" id="hero-notice">
+          {% set img = value.notice.image %}{% set cls = "notice__image" %}{% include "snippets/image.njk" %}
+          <div>
+            <p class="notice__eyebrow">{{ value.notice.eyebrow }}</p>
+            <h2>{{ value.notice.title }}</h2>
+            <p class="notice__text">{{ value.notice.text }}</p>
+          </div>
+          {% set btn = value.notice.button %}{% include "snippets/button.njk" %}
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</section>

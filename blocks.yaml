@@ -14,4 +14,25 @@ settings:
       popular_searches: ListBlock(CharBlock)
       footer: StructBlock(campuses, quick_links, affiliations, legal_links, acknowledgement)
 
-blocks: {}
+blocks:
+  hero:
+    figma: "20169:5668 (background), 20169:15196 (header, titles, announcement card)"
+    template: blocks/hero.njk
+    fields:
+      image: ImageChooserBlock(required)
+      video: DocumentChooserBlock(optional)   # mp4, autoplay muted loop; the image is its poster
+      statement: CharBlock
+      title_line_1: CharBlock(required)
+      title_line_2: CharBlock(required)
+      notice: StructBlock(optional)   # could become a site setting so it changes without editing the page
+        eyebrow: CharBlock
+        title: CharBlock(required)
+        text: CharBlock
+        image: ImageChooserBlock
+        button: StructBlock(text: CharBlock, url: URLBlock)
+
+  placeholder:
+    template: blocks/placeholder.njk
+    note: dev-only stand-in for sections not built yet; not a Wagtail block
+    fields:
+      label: CharBlock

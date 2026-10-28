@@ -16,35 +16,54 @@
 @container-content: 1240 * @px;
 @tap-size: 44 * @px;
 @header-height-sm: 72 * @px;
-@header-height-lg: 100 * @px;
+@header-height-lg: 160 * @px;
+@control-height: 64 * @px;
+@radius-pill: 360 * @px;
 
-// Colour and font values are placeholders until the Figma variables are read.
 :root {
-  --color-navy: #0a2b5c;
-  --color-navy-deep: #061a3a;
-  --color-yellow: #ffd500;
+  --color-navy: #001638;
+  --color-navy-tint: #9dafc2;
+  --color-royal: #004a8d;
+  --color-royal-tint: #b1c5df;
+  --color-royal-tint-light: #eff6ff;
+  --color-gold: #ffd400;
+  --color-gold-deep: color-mix(in srgb, var(--color-gold) 90%, var(--color-black));
+  --color-moss: #a6d222;
+  --color-dark-grey: #231f20;
+  --color-coal: #2c2c2c;
   --color-white: #ffffff;
-  --color-black: #111111;
-  --color-grey: #8a8f98;
+  --color-black: #000000;
+  --color-white-75: rgba(255, 255, 255, 0.75);
+  --color-white-40: rgba(255, 255, 255, 0.4);
+  --color-white-20: rgba(255, 255, 255, 0.2);
+  --color-black-75: rgba(0, 0, 0, 0.75);
+  --color-black-10: rgba(0, 0, 0, 0.1);
 
   --color-primary: var(--color-navy);
-  --color-primary-deep: var(--color-navy-deep);
-  --color-accent: var(--color-yellow);
-  --color-text: var(--color-black);
+  --color-secondary: var(--color-royal);
+  --color-accent: var(--color-gold);
+  --color-text: var(--color-dark-grey);
   --color-text-inverse: var(--color-white);
   --color-heading: var(--color-navy);
-  --color-muted: var(--color-grey);
+  --color-muted: var(--color-navy-tint);
+  --color-line: var(--color-royal-tint);
   --color-background: var(--color-white);
+  --color-background-tint: var(--color-royal-tint-light);
   --color-background-dark: var(--color-navy);
+
+  --gradient-hero-top: linear-gradient(180deg, rgba(0, 22, 56, 0.4) 0%, rgba(0, 22, 56, 0) 16.5%);
+  --gradient-hero-bottom: linear-gradient(180deg, rgba(0, 22, 56, 0) 56%, rgba(0, 22, 56, 0.575) 76%, var(--color-navy) 100%);
 
   --font-display: "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   --font-body: "Myriad Pro", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-script: "Sanshand", cursive;
+  --font-sans: "Sanshand", "Arial Narrow", system-ui, sans-serif;
 
   --gutter: @gutter-sm;
   --container-content: @container-content;
   --tap-size: @tap-size;
   --header-height: @header-height-sm;
+  --control-height: @control-height;
+  --radius-pill: @radius-pill;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
   --ease-settle: cubic-bezier(0.4, 0, 0.2, 1);

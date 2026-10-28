@@ -3,10 +3,22 @@
   "title": "St Luke's Grammar School | Local Heart. Global Mind.",
   "description": "An independent Anglican, Pre-K to Year 12 co-educational school across two campuses, Bayview and Dee Why, on Sydney's Northern Beaches.",
   "tagline": "Local Heart. Global Mind.",
-  "theme_color": "#0a2b5c",
+  "theme_color": "#001638",
   "nav": [],
-  "quick_links": [],
-  "utility_links": [],
+  "quick_links": [
+    { "label": "St Luke's Portal", "url": "#" },
+    { "label": "Make an Enquiry", "url": "#" },
+    { "label": "Employment", "url": "#" },
+    { "label": "Alumni", "url": "#" },
+    { "label": "Term Dates", "url": "#" },
+    { "label": "Fees and Charges", "url": "#" },
+    { "label": "News and Stories", "url": "#" }
+  ],
+  "utility_links": [
+    { "label": "Tours", "url": "#" },
+    { "label": "Enquire", "url": "#" },
+    { "label": "Enrol", "url": "#" }
+  ],
   "socials": [],
   "popular_searches": [],
   "footer": {}

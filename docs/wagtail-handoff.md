@@ -21,7 +21,14 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ## Blocks
 
-_None yet._
+### hero (`blocks/hero.njk`)
+- Fields in `blocks.yaml`. The background is `image` or `video` (mp4, autoplay muted loop, the image as poster). The image needs renditions at 768, 1280 and 1920 wide for the `srcset`.
+- The title is two CharBlocks so the designer's two-line layout (first line flush left, second flush right) holds whatever the words are.
+- `notice` is the announcement card: a teaser strip at rest, the full card on hover, focus or tap. It is a hero field for now; move it to a site setting if the client wants to change it without editing the page.
+- The header is site chrome (`partials/header.njk`): `site.quick_links` and `site.utility_links` from `site.json`; the logo files are `assets/icons/crest.svg` and `wordmark.svg`.
+
+### placeholder (`blocks/placeholder.njk`)
+- Dev-only stand-in for sections not built yet. Not a Wagtail block; drop it from the body when every section exists.
 
 ## Content to enter in the admin
 
