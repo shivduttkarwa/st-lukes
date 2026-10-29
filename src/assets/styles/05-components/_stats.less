@@ -1,0 +1,86 @@
+@stats-ring-sm: 72 * @px;
+@stats-ring: 100 * @px;
+@stats-gap: 24 * @px;
+
+.stats {
+  padding: 40 * @px 0;
+  background: var(--color-navy);
+  color: var(--color-white);
+
+  &__inner {
+    @media (min-width: @bp-xl) {
+      max-width: 1032 * @px;
+      margin-left: 104 * @px;
+    }
+  }
+
+  &__list {
+    .reset-list();
+    display: grid;
+    gap: 40 * @px;
+    @media (min-width: @bp-md) { gap: 56 * @px; }
+    @media (min-width: @bp-xl) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 98 * @px 123 * @px;
+    }
+  }
+
+  &__item {
+    display: grid;
+    grid-template-columns: @stats-ring-sm minmax(0, 1fr);
+    align-items: center;
+    gap: 8 * @px 16 * @px;
+    @media (min-width: @bp-md) {
+      display: flex;
+      gap: @stats-gap;
+    }
+  }
+
+  &__ring {
+    grid-row: span 2;
+    flex: none;
+    width: @stats-ring-sm;
+    height: @stats-ring-sm;
+    @media (min-width: @bp-md) {
+      width: @stats-ring;
+      height: @stats-ring;
+    }
+    circle {
+      fill: none;
+      stroke-width: 12.88;
+    }
+  }
+
+  &__track { stroke: var(--color-white-40); }
+
+  &__arc {
+    stroke: var(--color-white);
+    transform: rotate(-90deg);
+    transform-box: view-box;
+    transform-origin: 50% 50%;
+  }
+
+  &__value {
+    .type-stat();
+    margin: 0;
+    // CSS tracks after the last glyph too; Figma does not, so the label would sit 3px left
+    margin-right: 0.03em;
+    color: var(--color-gold);
+    white-space: nowrap;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__label {
+    .type-body-1();
+    margin: 0;
+    @media (min-width: @bp-md) {
+      flex: none;
+      width: 176 * @px;
+    }
+  }
+
+  &__action {
+    margin-top: 40 * @px;
+    @media (min-width: @bp-lg) { margin-top: 45 * @px; }
+  }
+}

@@ -610,6 +610,61 @@ function setupProgress(root) {
   });
 }
 
+// data-anim="counter": the first number in [data-anim-count] counts up from 0 and each [data-anim-ring] arc
+// draws from 0 to its own stroke-dasharray, together, as the element comes into view
+const COUNTER = { duration: 2, ease: "power2.out" };
+const counters = new WeakMap(); // element -> puts its markup back
+
+function setupCounters(root, entrance, scroll) {
+  scoped(root, '[data-anim="counter"]').forEach((el) => {
+    bind(el);
+    const num = el.querySelector("[data-anim-count]");
+    const text = num ? num.textContent : "";
+    const match = text.match(/\d[\d,]*(\.\d+)?/);
+    const rings = Array.from(el.querySelectorAll("[data-anim-ring]")).map((arc) => ({
+      arc,
+      length: parseFloat(arc.getAttribute("stroke-dasharray")) || 0,
+    }));
+    if (!match && !rings.length) return;
+    const target = match ? parseFloat(match[0].replace(/,/g, "")) : 0;
+    const decimals = match && match[1] ? match[1].length - 1 : 0;
+    const grouped = match ? match[0].includes(",") : false;
+    const before = match ? text.slice(0, match.index) : "";
+    const after = match ? text.slice(match.index + match[0].length) : "";
+    const format = (n) =>
+      grouped ? n.toLocaleString("en-AU", { minimumFractionDigits: decimals, maximumFractionDigits: decimals }) : n.toFixed(decimals);
+    const render = (p) => {
+      if (match) num.textContent = before + format(target * p) + after;
+      rings.forEach(({ arc, length }) => { arc.style.strokeDasharray = `${length * p} 100`; });
+    };
+    const restore = () => {
+      if (num) {
+        num.textContent = text;
+        num.style.minWidth = "";
+      }
+      rings.forEach(({ arc }) => { arc.style.strokeDasharray = ""; });
+    };
+    counters.set(el, restore);
+    // the final width is held while the digits grow, so whatever sits beside the number stays put
+    if (match) num.style.minWidth = `${num.getBoundingClientRect().width}px`;
+    render(0);
+    play(el, {
+      animation: () => {
+        const state = { p: 0 };
+        return gsap.to(state, {
+          p: 1,
+          ...COUNTER,
+          onUpdate: () => render(state.p),
+          onComplete: () => {
+            restore();
+            el.classList.add("is-revealed");
+          },
+        });
+      },
+    }, entrance, scroll);
+  });
+}
+
 // Binds, start states and entrance splits; the returned function plays them
 function prepareAll(root, opts = {}) {
   const entrance = [];
@@ -620,6 +675,7 @@ function prepareAll(root, opts = {}) {
     setupSequences(root, entrance, scroll); // first: on a phone it may hand its items to setupReveals
     setupSplits(root, entrance, scroll); // before the reveals, so a title's trigger fires ahead of its copy's
     setupReveals(root, entrance, scroll);
+    setupCounters(root, entrance, scroll);
     setupParallax(root);
     setupProgress(root);
   } finally {
@@ -652,6 +708,8 @@ function resetAll(root) {
     splits.delete(el);
     el.style.whiteSpace = "";
     gsap.set([el, ...pieces], { clearProps: "all" });
+    counters.get(el)?.();
+    counters.delete(el);
     el.removeAttribute(BOUND);
     el.classList.remove("is-revealed");
   });
@@ -661,6 +719,7 @@ function revealEverything() {
   gsap.utils
     .toArray('[data-anim="reveal"], [data-anim="split"], [data-anim="sequence"] [data-anim-item]')
     .forEach((el) => gsap.set(el, { clearProps: "all" }));
+  document.querySelectorAll('[data-anim="counter"]').forEach((el) => counters.get(el)?.());
   document.documentElement.classList.add("anim-reduced");
 }
 

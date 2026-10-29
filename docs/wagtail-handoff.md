@@ -44,9 +44,23 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - `promo.video` (mp4) plays inline with native controls when the pill is pressed, and returns to the poster when it ends. Without a video the pill is a disabled button.
 - Renditions: photo `fill-1016x818` (shown 508 × 409), poster `fill-821x514` or larger.
 
+### pillars (`blocks/pillars.njk`, card markup in `snippets/pillar-card.njk`)
+- "Who we are": eyebrow, Heading 2 title, and a collage of four cards (Local heart, Academic excellence, Student wellbeing, Global mind). The collage is drawn for exactly four, so `cards` is `min_num=4, max_num=4`.
+- The template renders two columns from the one list: cards 1 and 3 on the left, 2 and 4 on the right (`loop.index0 % 2` → `forloop.counter0|divisibleby:2`). Each card carries `pillars__card--{{ loop.index }}` (`forloop.counter`), which sets its image shape and width. Below 768 the columns dissolve and the cards return to 1–4 order.
+- Each image sits in a parallax layer 10% taller than its frame (it drifts ±5% as the card passes), so renditions are the layer's shape: `fill-1232x902`, `fill-818x1199`, `fill-818x1131`, `fill-1234x895` for cards 1–4. Add a `srcset` with half-width renditions; the 768 audit flags card 1 as 1.8× wider than its slot.
+- `video` (optional mp4) plays muted over the image while the pointer is on the card, fading in over 0.6s, and resets once it has faded out. Mouse and trackpad only, never on touch, never under reduced motion.
+- `logo` (optional) sits beside the text at 70 × 70: the Round Square mark on Global mind (`assets/images/home/round-square.svg`).
+- A line break typed in `text` applies from 1200 up, where the card measure matches the design; below that it reads as a space.
+
+### stats (`blocks/stats.njk`)
+- A list of statistics and an outline button. Each item: `value` as displayed ("1200+", "99%", ">35"), `label`, and `ring`, the share of the circle the white arc draws (0–100). Two per row from 1200 up, one per row below.
+- Motion lives in `anim.js` (`data-anim="counter"`): as each item scrolls in, the first number in its value counts up from 0 (prefix and suffix kept, commas kept if typed) while its ring draws clockwise from 12 o'clock to `ring`. It takes 2s, 0.1s apart in list order (`data-anim-order="{{ loop.index0 }}"` → `{{ forloop.counter0 }}`). The ring's final value is the circle's `stroke-dasharray` attribute, so without JS or under reduced motion the finished state shows.
+- The ring is inline SVG from the Figma geometry: outer 100, stroke 12.88, white track at 40%.
+
 ### placeholder (`blocks/placeholder.njk`)
 - Dev-only stand-in for sections not built yet. Not a Wagtail block; drop it from the body when every section exists.
 
 ## Content to enter in the admin
 
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
+- Homepage "Who we are": the Student wellbeing hover video. In Figma that card is a video fill; no file yet, so the card shows its poster only.

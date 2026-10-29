@@ -1,0 +1,21 @@
+<section class="stats">
+  <div class="container">
+    <div class="stats__inner">
+      <ul class="stats__list">
+        {% for stat in value.items %}
+        <li class="stats__item" data-anim="counter" data-anim-scroll="timed" data-anim-order="{{ loop.index0 }}">
+          <svg class="stats__ring" viewBox="0 0 100 100" aria-hidden="true">
+            <circle class="stats__track" cx="50" cy="50" r="43.56"></circle>
+            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="{{ stat.ring }} 100" data-anim-ring></circle>
+          </svg>
+          <p class="stats__value" data-anim-count>{{ stat.value }}</p>
+          <p class="stats__label">{{ stat.label }}</p>
+        </li>
+        {% endfor %}
+      </ul>
+      {% if value.button %}
+      <div class="stats__action" data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>

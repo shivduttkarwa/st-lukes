@@ -42,6 +42,28 @@ export function initPromos() {
   });
 }
 
+export function initHoverVideos() {
+  const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll("[data-hover-video]").forEach((card) => {
+    const video = card.querySelector("video");
+    if (!video) return;
+    card.addEventListener("pointerenter", () => {
+      if (!pointer.matches || still.matches) return;
+      if (!video.getAttribute("src")) video.src = video.dataset.src;
+      card.classList.add("is-playing");
+      video.play().catch(() => card.classList.remove("is-playing"));
+    });
+    card.addEventListener("pointerleave", () => {
+      card.classList.remove("is-playing");
+      video.pause();
+    });
+    video.addEventListener("transitionend", () => {
+      if (!card.classList.contains("is-playing")) video.currentTime = 0;
+    });
+  });
+}
+
 export function initScrollState() {
   const root = document.documentElement;
   const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);

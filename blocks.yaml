@@ -45,6 +45,30 @@ blocks:
         image: ImageChooserBlock(required)   # the poster, shown 821 × 514, fill crop
         video: DocumentChooserBlock(optional)   # mp4, plays inline with controls when the pill is pressed; the pill is disabled without one
 
+  pillars:
+    figma: "20169:5693"
+    template: blocks/pillars.njk   # card markup in snippets/pillar-card.njk
+    fields:
+      eyebrow: CharBlock
+      title: CharBlock(required)   # Heading 2
+      cards: ListBlock(StructBlock, min_num=4, max_num=4)   # the collage is drawn for four: cards 1 and 3 in the left column, 2 and 4 in the right
+        title: CharBlock(required)
+        text: TextBlock   # a line break in the text applies from 992 up (white-space: pre-line); below that it reads as a space
+        image: ImageChooserBlock(required)
+        video: DocumentChooserBlock(optional)   # mp4, plays muted over the image on hover (mouse only, not under reduced motion)
+        logo: ImageChooserBlock(optional)   # beside the text, 70 × 70 (Round Square)
+        button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
+
+  stats:
+    figma: "20169:5726"
+    template: blocks/stats.njk
+    fields:
+      items: ListBlock(StructBlock, min_num=1)   # two per row from 1200 up
+        value: CharBlock(required)   # as shown, e.g. "1200+", "99%", ">35"; its first number counts up from 0
+        label: CharBlock(required)
+        ring: IntegerBlock(min_value=0, max_value=100, default=100)   # how much of the circle the white arc draws, in %
+      button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
+
   placeholder:
     template: blocks/placeholder.njk
     note: dev-only stand-in for sections not built yet; not a Wagtail block

@@ -1,5 +1,5 @@
 import { Anim } from "./anim.js";
-import { initDisclosures, initMenu, initPromos, initScrollState } from "./ui.js";
+import { initDisclosures, initHoverVideos, initMenu, initPromos, initScrollState } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initScrollState();
@@ -7,4 +7,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initDisclosures();
   initMenu();
   initPromos();
+  initHoverVideos();
 });

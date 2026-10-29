@@ -145,6 +145,16 @@
   @media (min-width: @bp-lg) { font-size: 35 * @px; }
 }
 
+// the stat numbers have no named style in Figma: Sanshand at the Display 2 size, 100 / 90, −3%, caps
+.type-stat() {
+  .type-sans();
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  font-size: 60 * @px;
+  @media (min-width: @bp-md) { font-size: 100 * @px; }
+}
+
 // Myriad Pro: "Body 1–5"
 .type-myriad() {
   font-family: var(--font-body);
