@@ -24,6 +24,8 @@
 @menu-leave: 300ms;
 @menu-leave-step: 28ms;
 @menu-sub-hide: 700ms;
+@menu-swap: 900ms;
+@menu-swap-scale: 1.1;
 @menu-close-in: 450ms;
 
 html.is-locked {
@@ -42,6 +44,8 @@ html.is-locked {
 @keyframes menu-rise { from { opacity: 0; translate: 0 @menu-lift; } }
 @keyframes menu-fade { from { opacity: 0; } }
 @keyframes menu-settle { from { scale: 1.05; } }
+@keyframes menu-swap-in { from { opacity: 0; scale: @menu-swap-scale; } }
+@keyframes menu-swap-out { to { opacity: 0; scale: @menu-swap-scale; } }
 
 // risen items keep their layer while open (no snap when the rise ends); the panel keeps one too so they never go stale
 .menu-rise() {
@@ -371,14 +375,23 @@ html.is-locked {
 
   &__secondary-link { color: var(--color-text); }
 
+  &.is-wide &__thumb {
+    visibility: visible;
+    transition-delay: 0s;
+  }
+
   &__thumb {
     display: none;
     @media (min-width: @bp-lg) {
-      position: relative;
+      position: absolute;
+      bottom: 0;
+      left: @menu-nav-width + @menu-sub-gap;
       display: block;
-      width: 100%;
+      width: @menu-sub-width;
       aspect-ratio: 324 / 201;
       overflow: hidden;
+      visibility: hidden;
+      transition: visibility 0s linear @menu-leave;
     }
     img {
       position: absolute;
@@ -386,8 +399,6 @@ html.is-locked {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      transition: opacity var(--duration-base) ease;
-      &.is-entering { opacity: 0; }
     }
   }
 
@@ -457,20 +468,23 @@ html.is-locked {
     }
     .menu__thumb {
       opacity: 0;
-      transition: opacity @menu-leave ease;
+      transition: opacity @menu-leave ease, visibility 0s linear @menu-leave;
     }
+    .menu__thumb .is-swap { animation: menu-swap-in @menu-swap var(--ease-in-out-soft) both; }
 
-    &__item.is-open {
-      .menu__sub-list > li {
-        opacity: 1;
-        animation: menu-fade @menu-sub-fade ease backwards;
-        animation-delay: calc(@menu-sub + var(--i) * @menu-enter-step);
-      }
+    &.is-wide {
       .menu__thumb {
         opacity: 1;
         animation: menu-fade 800ms ease backwards @menu-sub + 100ms;
       }
-      .menu__thumb img { animation: menu-settle 1200ms var(--ease-settle) backwards; }
+      .menu__thumb img:not(.is-swap) { animation: menu-settle 1200ms var(--ease-settle) backwards; }
+      .menu__thumb img.is-leaving { animation: menu-swap-out @menu-swap var(--ease-in-out-soft) both; }
+    }
+
+    &__item.is-open .menu__sub-list > li {
+      opacity: 1;
+      animation: menu-fade @menu-sub-fade ease backwards;
+      animation-delay: calc(@menu-sub + var(--i) * @menu-enter-step);
     }
   }
 }

@@ -82,19 +82,6 @@ export function initMenu() {
     }
   };
 
-  const swapThumb = (thumb, src) => {
-    const current = thumb.querySelector("img");
-    if (!src || !current || current.getAttribute("src") === src) return;
-    const next = current.cloneNode();
-    next.src = src;
-    next.classList.add("is-entering");
-    thumb.append(next);
-    requestAnimationFrame(() => requestAnimationFrame(() => next.classList.remove("is-entering")));
-    const done = () => current.remove();
-    next.addEventListener("transitionend", done, { once: true });
-    setTimeout(done, 700);
-  };
-
   openers.forEach((b) => b.addEventListener("click", () => setOpen(true, b)));
   menu.querySelectorAll("[data-menu-close]").forEach((el) => el.addEventListener("click", () => setOpen(false)));
   document.addEventListener("keydown", (e) => {
@@ -102,25 +89,67 @@ export function initMenu() {
   });
   window.addEventListener("resize", fit);
 
+  const thumb = menu.querySelector(".menu__thumb");
+  const base = thumb?.appendChild(Object.assign(document.createElement("img"), { alt: "", decoding: "async" }));
+  let shown = null;
+
+  const showThumb = (src, instant) => {
+    if (!base || !src) return;
+    if (instant) {
+      thumb.querySelectorAll(".is-swap").forEach((img) => img.remove());
+      base.classList.remove("is-leaving");
+      base.src = shown = src;
+      return;
+    }
+    if (src === shown) return;
+    shown = src;
+    const next = base.cloneNode();
+    next.classList.remove("is-leaving");
+    next.classList.add("is-swap");
+    next.src = src;
+    next.decode().catch(() => {}).then(() => {
+      if (shown !== src) return;
+      const prev = thumb.lastElementChild;
+      prev.getAnimations().forEach((a) => a.finish());
+      while (prev.previousElementSibling && prev.previousElementSibling !== base) prev.previousElementSibling.remove();
+      prev.classList.add("is-leaving");
+      thumb.append(next);
+      const prune = () => {
+        if (!next.isConnected) return;
+        while (next.previousElementSibling !== base) next.previousElementSibling.remove();
+      };
+      if (next.getAnimations().length) next.addEventListener("animationend", prune, { once: true });
+      else prune();
+    });
+  };
+
   items.forEach((item) => {
     const toggle = item.querySelector("button[aria-expanded]");
     if (!toggle) return;
+    const links = [...item.querySelectorAll("[data-thumb]")];
+    const show = (link) => {
+      links.forEach((other) => other.classList.toggle("is-current", other === link));
+      showThumb(link.dataset.thumb);
+    };
+
     toggle.addEventListener("click", () => {
       const open = !item.classList.contains("is-open");
+      if (open && links.length) {
+        const switching = items.some((other) => other !== item && other.classList.contains("is-open"));
+        links.forEach((link, i) => {
+          link.classList.toggle("is-current", i === 0);
+          new Image().src = link.dataset.thumb;
+        });
+        showThumb(links[0].dataset.thumb, !switching);
+      }
       closeItems(item);
       setItem(item, open);
       syncWide();
     });
-    const thumb = item.querySelector(".menu__thumb");
-    if (!thumb) return;
-    const links = item.querySelectorAll("[data-thumb]");
+
     links.forEach((link) => {
-      const show = () => {
-        swapThumb(thumb, link.dataset.thumb);
-        links.forEach((other) => other.classList.toggle("is-current", other === link));
-      };
-      link.addEventListener("pointerenter", () => canHover.matches && show());
-      link.addEventListener("focus", show);
+      link.addEventListener("pointerenter", () => canHover.matches && show(link));
+      link.addEventListener("focus", () => show(link));
     });
   });
 }

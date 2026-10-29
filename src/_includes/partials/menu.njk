@@ -31,11 +31,6 @@
                   <li><a class="menu__sub-link{% if loop.first %} is-current{% endif %}" href="{{ child.url }}"{% if child.image %} data-thumb="{{ child.image.src }}"{% endif %}>{{ child.label }}</a></li>
                   {% endfor %}
                 </ul>
-                {% if item.children[0].image %}
-                <div class="menu__thumb">
-                  {% set img = item.children[0].image %}{% include "snippets/image.njk" %}
-                </div>
-                {% endif %}
               </div>
             </div>
             {% else %}
@@ -48,6 +43,7 @@
           {% endfor %}
         </ul>
       </nav>
+      <div class="menu__thumb" aria-hidden="true"></div>
 
       <div class="menu__foot">
         <ul class="menu__secondary">
