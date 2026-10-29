@@ -99,6 +99,21 @@ blocks:
         image: ImageChooserBlock(required)   # fill-1234x820, decorative (the name is the link text)
         video: DocumentChooserBlock(optional)   # mp4, plays muted on hover as in the prototype
 
+  learning:
+    figma: "20169:5779 (cards: Entry Points, Normal / Active)"
+    template: blocks/learning.njk
+    fields:
+      title_line_1: CharBlock(required)   # gold
+      title_line_2: CharBlock(required)   # gold outline
+      cards: ListBlock(StructBlock, min_num=1)   # Swiper slider, 400 × 618 (300 wide below 768), 6 apart
+        title: CharBlock(required)   # a line break applies from 768 up
+        meta: CharBlock   # the gold line under the title
+        text: TextBlock   # the short description revealed on hover
+        url: PageChooserBlock or URLBlock   # the whole card links here
+        image: ImageChooserBlock(required)   # fill-800x1236, decorative (the title is the link text)
+        video: DocumentChooserBlock(optional)   # mp4, plays muted on hover
+      button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
+
   placeholder:
     template: blocks/placeholder.njk
     note: dev-only stand-in for sections not built yet; not a Wagtail block

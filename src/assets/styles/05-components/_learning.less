@@ -1,0 +1,196 @@
+@learning-arrow: 50 * @px;
+@entry-card-sm: 300 * @px;
+@entry-card: 400 * @px;
+@entry-shade: 36.83%;
+
+.learning {
+  padding: 72 * @px 0;
+  background: var(--gradient-navy-to-blue);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 97 * @px 0 102 * @px; }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24 * @px;
+  }
+
+  h2 {
+    .type-h1();
+    margin: 0;
+    color: var(--color-gold);
+    span { display: block; }
+    span:first-child { margin-bottom: -0.1833em; }
+  }
+
+  &__outline { .outline-text-clear(); }
+
+  &__nav {
+    display: flex;
+    gap: 10 * @px;
+  }
+
+  &__arrow {
+    display: grid;
+    place-items: center;
+    width: ~"max(var(--tap-size), @{learning-arrow})";
+    height: ~"max(var(--tap-size), @{learning-arrow})";
+    padding: 0;
+    border: 1 * @px solid var(--color-white);
+    border-radius: 50%;
+    background: none;
+    color: var(--color-white);
+    transition: background-color var(--duration-base) ease, color var(--duration-base) ease, opacity var(--duration-base) ease;
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+      transform: rotate(45deg);
+    }
+    &--prev .icon { transform: rotate(-135deg); }
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    @media (hover: hover) {
+      &:enabled:hover {
+        background: var(--color-white);
+        color: var(--color-navy);
+      }
+    }
+  }
+
+  &__slider {
+    --swiper-wrapper-transition-timing-function: var(--ease-out);
+    overflow: visible;
+    margin-top: 25 * @px;
+  }
+
+  &__action { margin-top: 25 * @px; }
+}
+
+.entry {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  width: @entry-card-sm;
+  height: auto;
+  aspect-ratio: 400 / 618;
+  padding: 24 * @px;
+  overflow: hidden;
+  color: var(--color-white);
+  @media (min-width: @bp-md) { width: @entry-card; }
+  @media (min-width: @bp-lg) { padding: 30 * @px; }
+
+  &__img,
+  &__video {
+    .cover();
+    object-fit: cover;
+  }
+
+  &__video {
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  &.is-playing &__video { opacity: 1; }
+
+  &__shade {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: @entry-shade;
+    background: linear-gradient(180deg, transparent, var(--color-navy-75));
+  }
+
+  &__body {
+    position: relative;
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 5 * @px;
+    min-width: 0;
+  }
+
+  // Chrome sets Poppins 2px, Sanshand 4px and the description 2.7px lower than Figma in the same line boxes; the nudges keep the boxes
+  h3 {
+    .type-h3();
+    position: relative;
+    top: -0.057em;
+    margin: 0;
+    color: var(--color-white);
+    @media (min-width: @bp-md) { white-space: pre-line; }
+  }
+
+  &__meta {
+    .type-heading-6();
+    position: relative;
+    top: -0.2em;
+    color: var(--color-gold);
+  }
+
+  &__more {
+    display: grid;
+    grid-template-rows: 0fr;
+    margin-top: -5 * @px;
+    opacity: 0;
+    transition: grid-template-rows var(--duration-slow) var(--ease-out), opacity var(--duration-slow) ease;
+  }
+
+  &__text {
+    .type-body-3-150();
+    position: relative;
+    top: -0.17em;
+    max-width: 270 * @px;
+    overflow: hidden;
+    // the gap lives inside the clip, so the collapsed row is truly 0 tall
+    &::before {
+      content: "";
+      display: block;
+      height: 5 * @px;
+    }
+  }
+
+  &__arrow {
+    position: absolute;
+    right: 24 * @px;
+    bottom: 24 * @px;
+    display: grid;
+    place-items: center;
+    width: ~"max(var(--tap-size), @{learning-arrow})";
+    height: ~"max(var(--tap-size), @{learning-arrow})";
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    transition: opacity var(--duration-base) ease;
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+    }
+    @media (min-width: @bp-lg) {
+      right: 30 * @px;
+      bottom: 30 * @px;
+    }
+  }
+
+  @media (hover: hover) {
+    &__arrow { opacity: 0; }
+
+    &:hover,
+    &:focus-visible {
+      .entry__more {
+        grid-template-rows: 1fr;
+        opacity: 1;
+      }
+      .entry__arrow { opacity: 1; }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .entry__video,
+  .entry__more,
+  .entry__arrow { transition: none; }
+}

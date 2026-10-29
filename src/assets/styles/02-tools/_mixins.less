@@ -67,6 +67,20 @@
   video { .img-cover(); }
 }
 
+// Figma's outline titles stroke outside the glyph; a fill in the background colour painted over a centred
+// stroke leaves only the outer half
+.outline-text(@stroke: var(--color-gold), @ground: var(--color-navy)) {
+  color: @ground;
+  -webkit-text-stroke: 2 * @px @stroke;
+  paint-order: stroke fill;
+}
+
+// over a gradient no fill can match the ground, so the 1px stroke is centred on the glyph instead
+.outline-text-clear(@stroke: var(--color-gold)) {
+  color: transparent;
+  -webkit-text-stroke: 1 * @px @stroke;
+}
+
 @circle-size: 65 * @px;
 
 .circle-button() {

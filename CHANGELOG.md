@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-29 — homepage learning slider
+- New `learning` block from `20169:5779`. At 1440, relative to the section top: title lines at 97 and 149 (H1 Poppins, the second pulled up 11 as in Figma); arrows 50 round at 1230 / 1290, y 162; cards 400 × 618 at x 100 + 406n, y 237; titles at 761 and meta at 801 on resting cards; button at 880; section 1034 tall. The background is Figma's "Navy to Blue Vertical" gradient (`--gradient-navy-to-blue`).
+- Cards follow the Entry Points component. At rest: title and meta over Figma's shade (navy 0 → 75% over the bottom 37%). On hover or focus (the Active variant, as Figma draws the first card): the description opens under the meta and lifts the title, and the gold arrow fades in. The shade stays the same, as in Figma's Active variant. A first build grew the shade 2.2× on hover; measured against Figma's Active card it darkened the photo from halfway down, so it was taken out. The hovered card now matches Figma's to within a few levels on every photo row.
+- Text ink matched to Figma's render: Chrome sets Poppins 2px, Sanshand 4px and Body 3 at 1.5 2.7px lower than Figma in the same line boxes. The card title, meta and description carry em-based nudges (`top`), leaving the boxes on Figma's numbers. Every line now lands within 0.3px of Figma's ink, hovered and at rest.
+- Photos are Figma's exact crop rectangles (Cottage, Junior School, HSC) or centred cover crops, at 2×. Senior School is a video fill; its still is used, and hover video is wired for any card given one. The outline title sits on a gradient, so it uses the new `.outline-text-clear()` (centred 1px stroke). Campuses now uses the shared `.outline-text()` mixin.
+- Slider as the USPs: starts on the container edge, cards run off the left while moving, stops with the last card on the right edge (1340), no sideways scroll. Phone checked at 375.
+
 ## 2026-10-29 — homepage campuses
 - New `campuses` block from `20169:5760`. At 1440, relative to the section top: title lines at 100, 104 and 157 (H1 Poppins, the second line pulled up 10 as in Figma); buttons at 276 (338 and 166 wide, Figma 337 / 164); lead 827, 104, 513 × 224; cards 617 × 410 at 100 and 723, y 428; names at 728.5 (Figma rounds their 49.5 box to 50), details at 784; arrows 60 round at 627 / 1250, y 748; section 942 tall.
 - "One school" is Figma's outline text: no fill, a 1px gold stroke outside. Drawn as a 2px centred `-webkit-text-stroke` under a navy fill (`paint-order: stroke fill`); at 1:1 it matches the Figma render.

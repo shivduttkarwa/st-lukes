@@ -67,11 +67,17 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Each card is one link: image (`fill-1234x820`, decorative), shade, name, detail, and a gold arrow. From the prototype's hover state (`Bayview / Dee Why Campus Animation`): on hover the video plays over the image and the arrow fades in. On touch the arrow is always shown, and the video never plays.
 - The outline title uses `-webkit-text-stroke` with a navy fill painted over it (`paint-order: stroke fill`), which leaves Figma's 1px outside stroke. It assumes the navy background.
 
+### learning (`blocks/learning.njk`)
+- "Learning at St Luke's": two title lines (the second a gold outline), prev / next arrows, a slider of Entry Points cards (the same `slider.js` as the USPs) and an outline button.
+- Each card is one link: image (`fill-800x1236`, decorative), Figma's shade over the bottom 37%, title, gold meta line, and an optional short `text`. On hover or keyboard focus the text opens under the meta, lifting the title, and the gold arrow fades in (Figma's Normal → Active). The shade stays as it is, as in Figma's Active variant. On touch the arrow is always shown and the text stays closed.
+- The outline title here sits on a gradient, so it uses `.outline-text-clear()` (a centred 1px stroke, no fill).
+
 ### placeholder (`blocks/placeholder.njk`)
 - Dev-only stand-in for sections not built yet. Not a Wagtail block; drop it from the body when every section exists.
 
 ## Content to enter in the admin
 
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
+- Homepage learning: short descriptions for Junior School, Senior School, HSC and NAPLAN Results, School Services and Support, and Our Facilities (Figma only has Cottage's). The Senior School card is a video fill in Figma (its still is used; no file yet). The last two cards' meta lines repeat "Pre-K (Ages 3-5)" in Figma, which looks like a placeholder.
 - Homepage campuses: the Bayview hover video (a video fill in Figma, no file yet). Dee Why's hover video is the promo clip (`intro-promo.mp4`), the same Figma video. The Bayview detail line reads "210 Headland Road, Dee Why" in Figma: check the address with the client.
 - Homepage "Who we are": the Student wellbeing hover video. In Figma that card is a video fill; no file yet, so the card shows its poster only.

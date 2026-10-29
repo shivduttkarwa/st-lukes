@@ -35,12 +35,7 @@
     span:first-child { margin-bottom: -0.1667em; }
   }
 
-  // Figma strokes outside the glyph; a navy fill painted over a centred stroke leaves only the outer half
-  &__outline {
-    color: var(--color-navy);
-    -webkit-text-stroke: 2 * @px var(--color-gold);
-    paint-order: stroke fill;
-  }
+  &__outline { .outline-text(); }
 
   &__actions {
     display: flex;
