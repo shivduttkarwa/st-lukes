@@ -2,6 +2,7 @@
 @btn-font-lg: 18 * @px;
 @btn-padding-sm: 24 * @px;
 @btn-padding-lg: 30 * @px;
+@btn-padding-y: 10 * @px;
 
 .btn {
   --bs-btn-font-family: var(--font-body);
@@ -9,7 +10,7 @@
   --bs-btn-font-weight: 400;
   --bs-btn-line-height: 1.4;
   --bs-btn-padding-x: @btn-padding-sm;
-  --bs-btn-padding-y: 0;
+  --bs-btn-padding-y: @btn-padding-y;
   --bs-btn-border-width: 1px;
   --bs-btn-border-radius: var(--radius-pill);
   --bs-btn-focus-box-shadow: none;
@@ -17,13 +18,14 @@
   align-items: center;
   justify-content: center;
   gap: 8 * @px;
+  letter-spacing: 0;
   min-height: 52 * @px;
   transition: color var(--duration-base) ease, background-color var(--duration-base) ease, border-color var(--duration-base) ease;
 
   @media (min-width: @bp-lg) {
     --bs-btn-font-size: @btn-font-lg;
     --bs-btn-padding-x: @btn-padding-lg;
-    min-height: var(--control-height);
+    &:has(.icon) { min-height: var(--control-height); }
   }
 
   .icon {

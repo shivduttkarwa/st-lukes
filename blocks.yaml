@@ -32,6 +32,19 @@ blocks:
         image: ImageChooserBlock
         button: StructBlock(text: CharBlock, url: URLBlock)
 
+  intro:
+    figma: "20169:5686 (statement, button), 20169:5689 (photo, button), 20169:5684 (promo video)"
+    template: blocks/intro.njk
+    fields:
+      statement: RichTextBlock(features=[])   # one paragraph; a line break (with a space before it) applies from 992 up, as the design breaks before the last line
+      button: StructBlock(text: CharBlock, url: URLBlock)
+      image: ImageChooserBlock(required)   # shown 508 × 409, fill crop
+      image_button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
+      promo: StructBlock(required)
+        title: CharBlock(required)
+        image: ImageChooserBlock(required)   # the poster, shown 821 × 514, fill crop
+        video: DocumentChooserBlock(optional)   # mp4, plays inline with controls when the pill is pressed; the pill is disabled without one
+
   placeholder:
     template: blocks/placeholder.njk
     note: dev-only stand-in for sections not built yet; not a Wagtail block

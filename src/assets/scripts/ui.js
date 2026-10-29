@@ -21,6 +21,27 @@ export function initDisclosures() {
   });
 }
 
+export function initPromos() {
+  document.querySelectorAll("[data-promo]").forEach((promo) => {
+    const video = promo.querySelector("video");
+    const play = promo.querySelector("button");
+    if (!video || !play) return;
+    const stop = () => {
+      promo.classList.remove("is-playing");
+      video.hidden = true;
+      play.focus();
+    };
+    play.addEventListener("click", () => {
+      if (!video.getAttribute("src")) video.src = video.dataset.src;
+      video.hidden = false;
+      promo.classList.add("is-playing");
+      video.focus();
+      video.play().catch(stop);
+    });
+    video.addEventListener("ended", stop);
+  });
+}
+
 export function initScrollState() {
   const root = document.documentElement;
   const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);

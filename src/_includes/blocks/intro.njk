@@ -1,0 +1,24 @@
+<section class="intro">
+  <div class="intro__text">
+    <div class="intro__statement" data-anim="split" data-anim-type="lines">{{ value.statement | safe }}</div>
+    {% if value.button %}
+    <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+    {% endif %}
+  </div>
+
+  <div class="intro__promo" data-promo data-anim="reveal" data-anim-type="fade-up">
+    {% set img = value.promo.image %}{% set cls = "intro__poster" %}{% include "snippets/image.njk" %}
+    {% if value.promo.video %}
+    <video class="intro__video" data-src="{{ value.promo.video.src }}" poster="{{ value.promo.image.src }}" controls playsinline preload="none" hidden></video>
+    {% endif %}
+    <button class="intro__play" type="button"{% if not value.promo.video %} disabled{% endif %}>
+      <span class="intro__play-icon"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg></span>
+      <span class="intro__play-title"><span class="visually-hidden">Play video: </span>{{ value.promo.title }}</span>
+    </button>
+  </div>
+
+  <div class="intro__feature" data-anim="reveal" data-anim-type="fade-up">
+    {% set img = value.image %}{% set cls = "intro__photo" %}{% include "snippets/image.njk" %}
+    {% set btn = value.image_button %}{% set plain = true %}{% include "snippets/button.njk" %}
+  </div>
+</section>

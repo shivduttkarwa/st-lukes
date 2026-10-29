@@ -33,6 +33,30 @@
       }
     },
     {
+      "type": "intro",
+      "value": {
+        "statement": "<p>St Luke’s is an independent Anglican, Pre K-12 co-educational school across two campuses, Bayview and Dee Why, <br>on Sydney’s Northern Beaches.</p>",
+        "button": { "text": "Welcome from our Principal, Mr Geoff Lancaster", "url": "#" },
+        "image": {
+          "src": "/assets/images/home/intro-portrait.webp",
+          "alt": "Junior students in school uniform raising their hands and singing in class",
+          "width": 1016,
+          "height": 818
+        },
+        "image_button": { "text": "Explore Our School", "url": "#", "style": "outline" },
+        "promo": {
+          "title": "Where everyone is known",
+          "image": {
+            "src": "/assets/images/home/intro-promo.webp",
+            "alt": "Aerial view of the campus and the Northern Beaches coastline",
+            "width": 872,
+            "height": 546
+          },
+          "video": { "src": "/assets/video/intro-promo.mp4" }
+        }
+      }
+    },
+    {
       "type": "placeholder",
       "value": { "label": "More sections coming soon" }
     }
