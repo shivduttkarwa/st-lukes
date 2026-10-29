@@ -1,0 +1,17 @@
+<section class="cta">
+  <div class="cta__media" aria-hidden="true">
+    {% if value.video %}
+    <video class="cta__video" src="{{ value.video.src }}" poster="{{ value.image.src }}" autoplay muted loop playsinline data-ambient></video>
+    {% else %}
+    {% set img = value.image %}{% set cls = "cta__img" %}{% include "snippets/image.njk" %}
+    {% endif %}
+  </div>
+  <div class="container">
+    <div class="cta__content">
+      <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="cta__outline">{{ value.title_line_2 }}</span></h2>
+      <div class="cta__actions" data-anim-group="fade-up">
+        {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

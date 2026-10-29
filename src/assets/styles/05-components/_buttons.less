@@ -63,6 +63,49 @@
   --bs-btn-active-border-color: var(--color-gold);
 }
 
+// gold outline with a navy label, for light sections
+.btn-outline-navy {
+  --bs-btn-color: var(--color-navy);
+  --bs-btn-bg: transparent;
+  --bs-btn-border-color: var(--color-gold);
+  --bs-btn-hover-color: var(--color-navy);
+  --bs-btn-hover-bg: var(--color-gold);
+  --bs-btn-hover-border-color: var(--color-gold);
+  --bs-btn-active-color: var(--color-navy);
+  --bs-btn-active-bg: var(--color-gold);
+  --bs-btn-active-border-color: var(--color-gold);
+}
+
+// Figma's small solid button: Myriad Semibold 16, 41 tall, compact only under a fine pointer
+@btn-small-height: 41 * @px;
+@btn-small-padding: 20 * @px;
+.btn-small {
+  --bs-btn-font-size: @btn-font-sm;
+  --bs-btn-font-weight: 600;
+  --bs-btn-padding-x: @btn-small-padding;
+  --bs-btn-padding-y: 0;
+  min-height: var(--tap-size);
+  @media (min-width: @bp-lg) {
+    --bs-btn-font-size: @btn-font-sm;
+    --bs-btn-padding-x: @btn-small-padding;
+  }
+  @media @fine { min-height: @btn-small-height; }
+}
+
+.btn-glass {
+  --bs-btn-color: var(--color-white);
+  --bs-btn-bg: var(--color-white-20);
+  --bs-btn-border-color: transparent;
+  --bs-btn-hover-color: var(--color-white);
+  --bs-btn-hover-bg: var(--color-white-40);
+  --bs-btn-hover-border-color: transparent;
+  --bs-btn-active-color: var(--color-white);
+  --bs-btn-active-bg: var(--color-white-40);
+  --bs-btn-active-border-color: transparent;
+  -webkit-backdrop-filter: blur(20 * @px);
+  backdrop-filter: blur(20 * @px);
+}
+
 .btn-outline-dark {
   --bs-btn-color: var(--color-navy);
   --bs-btn-bg: transparent;

@@ -29,6 +29,18 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Behaviour lives in `ui.js` (`initMenu`): overlay + panel slide in, panel widens to the left when a submenu opens, `inert` on the rest of the page, scroll lock with Lenis stopped, Escape and overlay click close, focus returns to the burger. The dialog role sits on the `.menu` root. The burger and close icons are a CSS `.menu-icon` (no sprite icon). On desktop it sets `--menu-zoom` so the panel fits the window height, and it numbers each list's children (`--i`) for the entrance stagger. Copy `main.js` as-is.
 - Below `lg` the panel is full width and submenus open as accordions; the thumbnail is hidden. Phone layout is interpreted until the designer's mobile frames arrive.
 
+### Footer (`partials/footer.njk`)
+- Site chrome from `site.footer` and `site.socials` (fields in `blocks.yaml` under settings). It has:
+  - the portrait logo (the header's `crest.svg` and `wordmark.svg` at 181 wide), and the statement;
+  - the intro and Enrol button;
+  - the Dee Why and Bayview campus columns (years, address with its line break, Directions, phone numbers as `tel:` links) and the Quick Links;
+  - the "Local heart. Global mind." marquee;
+  - the white social buttons and affiliation logos;
+  - the legal row and the 16px gold strip.
+- The marquee is the same `initMarquees()` as the pathways logos (`data-marquee="left"`, right to left at 35 design px/s). Odd phrases are a 2px gold outline, even ones solid gold. It's `aria-hidden` and stands still under reduced motion.
+- Figma sets Dee Why's years line in Semibold 16 / 1.4 and Bayview's in Bold 16 / 1.5. The template uses Dee Why's for both (one field), so Bayview's column sits 2px higher than Figma.
+- Footer links are plain text links in the inherited white. Quick links are 28px rows under a fine pointer and 44px on touch, and the phone numbers carry an invisible 44px hit area.
+
 ## Blocks
 
 ### hero (`blocks/hero.njk`)
@@ -72,12 +84,39 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Each card is one link: image (`fill-800x1236`, decorative), Figma's shade over the bottom 37%, title, gold meta line, and an optional short `text`. On hover or keyboard focus the text opens under the meta, lifting the title, and the gold arrow fades in (Figma's Normal → Active). The shade stays as it is, as in Figma's Active variant. On touch the arrow is always shown and the text stays closed.
 - The outline title here sits on a gradient, so it uses `.outline-text-clear()` (a centred 1px stroke, no fill).
 
+### pathways (`blocks/pathways.njk`)
+- "Diverse pathways for every student": two title lines (the second a navy outline on white), a lead, a solid button, and up to two rows of linked logos. Row 1 runs right to left and row 2 left to right (by position, `forloop.counter0|divisibleby:2`), as the brief asks.
+- The marquee is `initMarquees()` in `ui.js`. It sizes each logo from its `width` attribute (the design size) on the fluid root, copies the row until the lane can loop seamlessly, and gives every row the same speed (35 design px/s). It pauses on hover and keyboard focus. The copies are `aria-hidden` and out of the tab order. Under reduced motion the rows stand still and wrap.
+- Each logo is an image with its name as alt text, linking to the institution's site (`url`). The ADF Careers logo is a Figma SVG export with its 7px caption outlined, so no live text falls under the 12px floor.
+
+### discover (`blocks/discover.njk`)
+- The full-width promo ("Discover new ways to thrive"): two title lines (the second a gold outline, centred 1px since it sits on a photo), a lead and up to two buttons, bottom left over a full-bleed image or video with Figma's diagonal navy shade. Below 992 the shade turns vertical and the crop shifts right, so the copy stays readable and the subject stays in frame.
+- `video` (optional, the brief's "video or image background"): autoplay muted loop with the image as poster. Background videos carry `data-ambient`; `initAmbientVideos()` holds them on the first frame under reduced motion. The hero's video uses the same attribute.
+- New button style `glass` (`.btn-glass`): white at 20% with a 20px background blur, as Figma's frosted button.
+
+### news (`blocks/news.njk`)
+- "Latest news and stories": the title on one line (the second half a navy outline) and a "View All News" button (`outline-navy`: gold outline, navy label), then a crossfading feature. Each story is one slide: a royal panel (tags, title, excerpt, "Read Full Story") beside its photo, stacked photo-first below 992. The dots are the slider's pagination, bottom right of the panel.
+- Stories should be the newest news pages, not editor-entered (see `blocks.yaml`). Figma shows one story with four dots, so the static build repeats it four times.
+- Rotation per the brief: `data-slider-mode="fade" data-slider-autoplay="4000"`. The next story crossfades in (0.9s) 4s after the last one settles. It waits while the feature is off screen, hovered or holding keyboard focus, and doesn't run under reduced motion. The timer is our own in `slider.js`: Swiper's autoplay got stuck when paused from outside mid-fade. The fade needs `swiper/modules/effect-fade.css`, which `main.less` now imports.
+- New button styles: `outline-navy`, and `.btn-small` (Myriad Semibold 16, 41 tall under a fine pointer, 44 on touch). Myriad Pro Semibold is now loaded (`myriad-pro-semibold.woff2`, subset like the other weights).
+
+### social (`blocks/social.njk`)
+- "Join the conversation": title (second half a navy outline), navy prev / next arrows, a slider of Instagram tiles (352 × 469, the same `slider.js` behaviour as the USPs), and a gold band with the follow line and the site's social buttons (`site.socials`, the same `.social-button()` as the menu).
+- The tiles should come from the school's Instagram feed (latest posts, each linking to its post). The static build uses Figma's eight post screenshots, which carry their captions in the image; a live feed would show the post image and caption separately.
+- The band runs 38 past the container on the right from 1400 up, as in Figma.
+
+### cta (`blocks/cta.njk`)
+- The "Start your St Luke's journey" banner (Figma's CTA Banner component, so likely reused on other pages): two centred Poppins 90 title lines (the second a 2px white outline, centred on the glyph because it sits on moving video), and up to two buttons (Book a Tour gold, Apply to Enrol glass).
+- Background: `video` (Figma's is a video fill) as an ambient loop with `data-ambient`, or the `image` alone. Over it are Figma's navy 30% wash and a navy gradient from 56% down, which ends solid navy into the footer.
+
 ### placeholder (`blocks/placeholder.njk`)
 - Dev-only stand-in for sections not built yet. Not a Wagtail block; drop it from the body when every section exists.
 
 ## Content to enter in the admin
 
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
+- Homepage CTA banner: its background video (a video fill in Figma; only a 720 × 720 preview still could be exported, which is now the poster).
+- Homepage pathways: the website address for each of the 16 logos (all `#` for now).
 - Homepage learning: short descriptions for Junior School, Senior School, HSC and NAPLAN Results, School Services and Support, and Our Facilities (Figma only has Cottage's). The Senior School card is a video fill in Figma (its still is used; no file yet). The last two cards' meta lines repeat "Pre-K (Ages 3-5)" in Figma, which looks like a placeholder.
 - Homepage campuses: the Bayview hover video (a video fill in Figma, no file yet). Dee Why's hover video is the promo clip (`intro-promo.mp4`), the same Figma video. The Bayview detail line reads "210 Headland Road, Dee Why" in Figma: check the address with the client.
 - Homepage "Who we are": the Student wellbeing hover video. In Figma that card is a video fill; no file yet, so the card shows its poster only.

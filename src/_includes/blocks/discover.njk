@@ -1,0 +1,18 @@
+<section class="discover">
+  <div class="discover__media" aria-hidden="true">
+    {% if value.video %}
+    <video class="discover__video" src="{{ value.video.src }}" poster="{{ value.image.src }}" autoplay muted loop playsinline data-ambient></video>
+    {% else %}
+    <img class="discover__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" loading="lazy" decoding="async">
+    {% endif %}
+  </div>
+  <div class="container">
+    <div class="discover__content">
+      <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="discover__outline">{{ value.title_line_2 }}</span></h2>
+      <p class="discover__lead" data-anim="reveal" data-anim-type="fade-up">{{ value.lead }}</p>
+      <div class="discover__actions" data-anim-group="fade-up">
+        {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

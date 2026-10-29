@@ -1,0 +1,24 @@
+<section class="pathways">
+  <div class="container">
+    <div class="pathways__head">
+      <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="pathways__outline">{{ value.title_line_2 }}</span></h2>
+      <div class="pathways__intro">
+        <p class="pathways__lead" data-anim="reveal" data-anim-type="fade-up">{{ value.lead }}</p>
+        {% if value.button %}<div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>{% endif %}
+      </div>
+    </div>
+  </div>
+  <div class="pathways__logos" data-anim-group="fade">
+    {% for row in value.rows %}
+    <div class="pathways__lane">
+      <div class="pathways__track" data-marquee="{% if loop.index0 % 2 %}right{% else %}left{% endif %}">
+        <ul class="pathways__list">
+          {% for logo in row.logos %}
+          <li><a href="{{ logo.url | default('#') }}"><img src="{{ logo.image.src }}" alt="{{ logo.name }}" width="{{ logo.image.width }}" height="{{ logo.image.height }}" loading="lazy" decoding="async"></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</section>

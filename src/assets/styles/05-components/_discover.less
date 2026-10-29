@@ -1,0 +1,70 @@
+.discover {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  min-height: 600 * @px;
+  padding: 120 * @px 0 40 * @px;
+  overflow: hidden;
+  background: var(--color-navy);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) {
+    min-height: 720 * @px;
+    padding: 0 0 50 * @px;
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-discover-sm);
+      @media (min-width: @bp-lg) { background: var(--gradient-discover); }
+    }
+  }
+
+  &__img,
+  &__video {
+    .cover();
+    object-fit: cover;
+    object-position: 62% 50%;
+    @media (min-width: @bp-lg) { object-position: 50% 50%; }
+  }
+
+  .container { position: relative; }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 604 * @px;
+  }
+
+  h2 {
+    .type-h1();
+    margin: 0;
+    color: var(--color-gold);
+    span { display: block; }
+    span:first-child { margin-bottom: -0.1833em; }
+  }
+
+  &__outline { .outline-text-clear(); }
+
+  // Chrome sets Myriad 1.8px lower than Figma in the same line box
+  &__lead {
+    .type-body-1();
+    position: relative;
+    top: -0.09em;
+    margin: 10 * @px 0 0;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin-top: 25 * @px;
+    @media (min-width: @bp-lg) { flex-wrap: nowrap; }
+    .btn { flex: none; }
+  }
+}

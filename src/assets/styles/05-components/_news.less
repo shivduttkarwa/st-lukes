@@ -1,0 +1,129 @@
+@news-dot: 15 * @px;
+@news-pad-sm: 24 * @px;
+@news-pad: 40 * @px;
+
+.news {
+  padding: 72 * @px 0;
+  background: var(--color-white);
+  color: var(--color-navy);
+  @media (min-width: @bp-lg) { padding: 57 * @px 0 107 * @px; }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24 * @px;
+    @media (min-width: @bp-lg) {
+      position: relative;
+      left: -1 * @px;
+    }
+  }
+
+  h2 {
+    .type-section-title();
+    margin: 0;
+    color: var(--color-navy);
+  }
+
+  &__outline { .outline-text(var(--color-navy), var(--color-white)); }
+
+  &__feature {
+    position: relative;
+    margin-top: 25 * @px;
+    @media (min-width: @bp-lg) { left: -1 * @px; }
+  }
+
+  &__slider .swiper-slide { transition-timing-function: var(--ease-in-out-soft); }
+
+  &__dots {
+    position: absolute;
+    right: @news-pad-sm;
+    bottom: @news-pad-sm;
+    z-index: 2;
+    display: flex;
+    gap: 10 * @px;
+    @media (min-width: @bp-lg) {
+      right: calc(50% + 3 * @px + @news-pad);
+      bottom: @news-pad;
+    }
+
+    .swiper-pagination-bullet {
+      .tap-area();
+      width: @news-dot;
+      height: @news-dot;
+      margin: 0;
+      border: 1 * @px solid var(--color-gold);
+      border-radius: 50%;
+      background: transparent;
+      opacity: 1;
+      cursor: pointer;
+      transition: background-color var(--duration-base) ease;
+    }
+
+    .swiper-pagination-bullet-active { background: var(--color-gold); }
+  }
+}
+
+.story {
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 6 * @px;
+  height: auto;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    min-height: 513 * @px;
+  }
+
+  &__panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 40 * @px;
+    padding: @news-pad-sm;
+    background: var(--color-royal);
+    color: var(--color-white);
+    @media (min-width: @bp-lg) { padding: @news-pad; }
+  }
+
+  &__copy {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__tags {
+    .reset-list();
+    .type-tag();
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin-bottom: 28 * @px;
+    li { text-box: trim-both cap alphabetic; }
+    span { color: var(--color-gold); }
+  }
+
+  h3 {
+    .type-h4();
+    margin: 0 0 25 * @px;
+    color: var(--color-white);
+  }
+
+  // Chrome sets Myriad about 1.4px lower than Figma in the same line box
+  p {
+    .type-news-text();
+    position: relative;
+    top: -0.09em;
+    margin: 0;
+  }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 617 / 513;
+    @media (min-width: @bp-lg) { aspect-ratio: auto; }
+  }
+
+  &__img { .cover(); object-fit: cover; }
+}

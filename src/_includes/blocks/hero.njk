@@ -1,7 +1,7 @@
 <section class="hero" data-anim-parallax-trigger>
   <div class="hero__media" aria-hidden="true">
     {% if value.video %}
-    <video class="hero__video" src="{{ value.video.src }}" poster="{{ value.image.src }}" autoplay muted loop playsinline data-anim="parallax" data-anim-start="top top"></video>
+    <video class="hero__video" src="{{ value.video.src }}" poster="{{ value.image.src }}" autoplay muted loop playsinline data-ambient data-anim="parallax" data-anim-start="top top"></video>
     {% else %}
     <img class="hero__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" fetchpriority="high" decoding="async" data-anim="parallax" data-anim-start="top top">
     {% endif %}

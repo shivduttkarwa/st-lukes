@@ -1,0 +1,26 @@
+<section class="social" data-slider-scope>
+  <div class="container">
+    <div class="social__head">
+      <h2 data-anim="split" data-anim-type="lines">{{ value.title_line_1 }} <span class="social__outline">{{ value.title_line_2 }}</span></h2>
+      <div class="social__nav" data-anim="reveal" data-anim-type="fade">
+        <button class="social__arrow" type="button" aria-label="Previous" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
+        <button class="social__arrow" type="button" aria-label="Next" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
+      </div>
+    </div>
+    <div class="social__slider swiper" data-slider data-slider-gap="6">
+      <div class="swiper-wrapper" data-anim-group="fade-up">
+        {% for post in value.posts %}
+        <a class="social__tile swiper-slide" href="{{ post.url | default('#') }}">{% set img = post.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}</a>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="social__band" data-anim="reveal" data-anim-type="fade-up">
+      <p class="social__follow">{{ value.follow_text }}</p>
+      <ul class="social__links">
+        {% for item in site.socials %}
+        <li><a class="social__link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

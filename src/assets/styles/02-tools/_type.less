@@ -56,6 +56,15 @@
   @media (min-width: @bp-lg) { font-size: 45 * @px; }
 }
 
+// the news title row has no named style: Poppins ExtraBold 45 / 1.05, −3%
+.type-section-title() {
+  .type-poppins();
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
+}
+
 .type-h3() {
   .type-poppins();
   line-height: 1;
@@ -85,6 +94,15 @@
   .type-poppins();
   line-height: 1.1;
   letter-spacing: 0;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
+}
+
+// the footer statement has no named style: Heading 2 at 1.05
+.type-footer-statement() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.01em;
   font-size: 30 * @px;
   @media (min-width: @bp-lg) { font-size: 45 * @px; }
 }
@@ -164,6 +182,15 @@
   @media (min-width: @bp-md) { font-size: 100 * @px; }
 }
 
+// news tags have no named style: Sanshand 14 / 1.4, caps
+.type-tag() {
+  .type-sans();
+  line-height: 1.4;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 14 * @px;
+}
+
 // Myriad Pro: "Body 1–5"
 .type-myriad() {
   font-family: var(--font-body);
@@ -206,6 +233,22 @@
   line-height: 1.2;
   letter-spacing: 0;
   font-size: ~"max(@{text-min}, @{body-5-size})";
+}
+
+// footer campus lines (years, Directions): Myriad 16 / 1.4, which Figma renders on a 22 pitch
+.type-footer-line() {
+  .type-myriad();
+  line-height: 1.375;
+  letter-spacing: -0.01em;
+  font-size: 16 * @px;
+}
+
+// the news excerpt has no named style: Myriad 16 / 1.4, no tracking; Figma renders the 22.4 pitch as 22
+.type-news-text() {
+  .type-myriad();
+  line-height: 1.375;
+  letter-spacing: 0;
+  font-size: 16 * @px;
 }
 
 // Figma has a second "Body 3" at 150%: the card links

@@ -28,6 +28,21 @@ html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: clip; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
+// data-marquee: initMarquees() in ui.js fills the track and sets --marquee-shift / --marquee-time
+@keyframes marquee-left {
+  to { transform: translate3d(calc(-1 * var(--marquee-shift)), 0, 0); }
+}
+
+@keyframes marquee-right {
+  from { transform: translate3d(calc(-1 * var(--marquee-shift)), 0, 0); }
+  to { transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-marquee="left"].is-running { animation: marquee-left var(--marquee-time) linear infinite; }
+  [data-marquee="right"].is-running { animation: marquee-right var(--marquee-time) linear infinite; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   [data-anim],
   [data-anim-item] { visibility: visible !important; }

@@ -13,7 +13,18 @@ settings:
       utility_links: ListBlock(StructBlock(label, url))
       socials: ListBlock(StructBlock(network, label, url))   # network = icon id: facebook, instagram, linkedin
       popular_searches: ListBlock(CharBlock)
-      footer: StructBlock(campuses, quick_links, affiliations, legal_links, acknowledgement)
+      footer: StructBlock   # figma 20169:5888 (Footer); template partials/footer.njk
+        statement: CharBlock   # top right, Heading 2 at 1.05
+        intro: TextBlock
+        button: StructBlock(text: CharBlock, url: URLBlock)   # solid
+        campuses: ListBlock(StructBlock(name: CharBlock, years: CharBlock, address: TextBlock, directions: URLBlock, phones: ListBlock(StructBlock(label: CharBlock, number: CharBlock, tel: CharBlock))))   # address keeps its line break
+        quick_links_title: CharBlock
+        quick_links: ListBlock(StructBlock(label: CharBlock, url: URLBlock))
+        marquee: ListBlock(CharBlock)   # phrases that loop right to left; odd ones gold outline, even ones solid gold
+        affiliations: ListBlock(StructBlock(name: CharBlock, image: ImageChooserBlock))   # white logos; width / height are the design size
+        copyright: CharBlock
+        abn: CharBlock
+        legal_links: ListBlock(StructBlock(label: CharBlock, url: URLBlock))
 
 blocks:
   hero:
@@ -113,6 +124,64 @@ blocks:
         image: ImageChooserBlock(required)   # fill-800x1236, decorative (the title is the link text)
         video: DocumentChooserBlock(optional)   # mp4, plays muted on hover
       button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
+
+  pathways:
+    figma: "20169:5850"
+    template: blocks/pathways.njk
+    fields:
+      title_line_1: CharBlock(required)   # navy
+      title_line_2: CharBlock(required)   # navy outline
+      lead: TextBlock
+      button: StructBlock(text: CharBlock, url: URLBlock)   # solid
+      rows: ListBlock(StructBlock, min_num=1, max_num=2)   # row 1 runs right to left, row 2 left to right
+        logos: ListBlock(StructBlock)
+          name: CharBlock(required)   # the image's alt text
+          url: URLBlock   # the university or company website
+          image: ImageChooserBlock(required)   # width / height are the logo's design size; the script scales it with the root
+
+  discover:
+    figma: "20169:5794"
+    template: blocks/discover.njk
+    fields:
+      title_line_1: CharBlock(required)   # gold
+      title_line_2: CharBlock(required)   # gold outline
+      lead: TextBlock
+      buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(glass, primary, outline)), max_num=2)
+      image: ImageChooserBlock(required)   # full-bleed, 2:1; renditions 768 / 1280 / 1920 wide for the srcset
+      video: DocumentChooserBlock(optional)   # mp4, autoplay muted loop in place of the image (the image is its poster); held still under reduced motion
+
+  news:
+    figma: "20169:5802"
+    template: blocks/news.njk
+    fields:
+      title_line_1: CharBlock(required)   # navy
+      title_line_2: CharBlock(required)   # navy outline, same line
+      button: StructBlock(text: CharBlock, url: URLBlock)   # outline-navy style
+      stories: the latest news pages (NewsPage queryset, newest 4), not editor-entered   # Figma shows one story and 4 dots; the static build repeats it 4 times
+        tags: page tags   # shown as "#Tag"
+        title: page title
+        excerpt: the page's search description or intro
+        url: page url
+        image: the page's listing image, fill-1234x1026
+
+  social:
+    figma: "20169:5831 (content 20169:5832)"
+    template: blocks/social.njk
+    fields:
+      title_line_1: CharBlock(required)   # navy
+      title_line_2: CharBlock(required)   # navy outline, same line
+      follow_text: CharBlock   # the gold band; its buttons are site.socials
+      posts: the school's Instagram feed (latest posts via the Instagram API), not editor-entered   # static build: 8 screenshots from Figma, 352 × 469, each linking to its post
+
+  cta:
+    figma: "20169:5887 (CTA Banner component)"
+    template: blocks/cta.njk
+    fields:
+      title_line_1: CharBlock(required)   # white
+      title_line_2: CharBlock(required)   # white outline
+      buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(primary, glass, outline)), max_num=2)
+      image: ImageChooserBlock(required)   # full-bleed background, and the video's poster
+      video: DocumentChooserBlock(optional)   # mp4, autoplay muted loop (Figma has a video fill here); held still under reduced motion
 
   placeholder:
     template: blocks/placeholder.njk

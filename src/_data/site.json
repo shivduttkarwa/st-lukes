@@ -127,5 +127,33 @@
     { "network": "linkedin", "label": "LinkedIn", "url": "#" }
   ],
   "popular_searches": [],
-  "footer": {}
+  "footer": {
+    "statement": "St Luke's Grammar School welcomes enrolment enquiries and applications, for both girls and boys, from Pre-Kindergarten to Year 12.",
+    "intro": "St Luke’s is an independent Anglican, Pre-K to Year 12 co-educational school with two campuses Bayview and Dee Why, on Sydney’s Northern Beaches.",
+    "button": {"text": "Enrol Now", "url": "#"},
+    "campuses": [
+      { "name": "Dee Why Campus", "years": "Cottage – Year 12", "address": "210 Headland Road,\nDee Why NSW 2099", "directions": "#", "phones": [{"label": "Senior School", "number": "+61 2 9438 6200", "tel": "+61294386200"}, {"label": "Junior School", "number": "+61 2 9438 6250", "tel": "+61294386250"}] },
+      { "name": "Bayview Campus", "years": "Cottage – Year 6", "address": "1977 Pittwater Road,\nBayview NSW 2104", "directions": "#", "phones": [{"label": "Junior School", "number": "+61 2 9979 5755", "tel": "+61299795755"}] }
+    ],
+    "quick_links_title": "Quick Links",
+    "quick_links": [
+      {"label": "How to Enrol", "url": "#"},
+      {"label": "Portal Login", "url": "#"},
+      {"label": "Prospectus", "url": "#"},
+      {"label": "Term Dates", "url": "#"},
+      {"label": "Fee Schedule", "url": "#"},
+      {"label": "Alumni", "url": "#"},
+      {"label": "Giving", "url": "#"}
+    ],
+    "marquee": ["Local heart.", "Global Mind."],
+    "affiliations": [
+      {"name": "The Anglican Schools Corporation", "image": {"src": "/assets/images/logos/tasc.svg", "width": 120, "height": 59}},
+      {"name": "Independent Schools NSW", "image": {"src": "/assets/images/logos/independent-schools-nsw.svg", "width": 151, "height": 51}},
+      {"name": "NSW Education Standards Authority", "image": {"src": "/assets/images/logos/nesa.svg", "width": 146, "height": 49}},
+      {"name": "Round Square", "image": {"src": "/assets/images/home/round-square.svg", "width": 70, "height": 70}}
+    ],
+    "copyright": "© 2026 St Luke's Grammar School",
+    "abn": "ABN 63 544 529 806",
+    "legal_links": [{"label": "Policies", "url": "#"}, {"label": "Design", "url": "#"}]
+  }
 }

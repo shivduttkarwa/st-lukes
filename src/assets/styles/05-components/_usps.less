@@ -1,6 +1,5 @@
 @usps-band: 345 * @px;
 @usps-media-lead: 146 * @px;
-@usps-arrow: 50 * @px;
 @usps-card-sm: 300 * @px;
 @usps-card: 400 * @px;
 
@@ -51,34 +50,7 @@
     gap: 10 * @px;
   }
 
-  &__arrow {
-    display: grid;
-    place-items: center;
-    width: ~"max(var(--tap-size), @{usps-arrow})";
-    height: ~"max(var(--tap-size), @{usps-arrow})";
-    padding: 0;
-    border: 1 * @px solid var(--color-white);
-    border-radius: 50%;
-    background: none;
-    color: var(--color-white);
-    transition: background-color var(--duration-base) ease, color var(--duration-base) ease, opacity var(--duration-base) ease;
-    .icon {
-      width: 24 * @px;
-      height: 24 * @px;
-      transform: rotate(45deg);
-    }
-    &--prev .icon { transform: rotate(-135deg); }
-    &:disabled {
-      opacity: 0.4;
-      cursor: default;
-    }
-    @media (hover: hover) {
-      &:enabled:hover {
-        background: var(--color-white);
-        color: var(--color-navy);
-      }
-    }
-  }
+  &__arrow { .slider-arrow(); }
 
   &__body {
     position: relative;

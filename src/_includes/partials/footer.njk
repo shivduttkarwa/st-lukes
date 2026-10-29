@@ -1,5 +1,69 @@
+{% set f = site.footer %}
 <footer class="site-footer">
   <div class="container">
-    <p class="site-footer__legal">&copy; {{ site.name }}</p>
+    <div class="site-footer__top">
+      <a class="site-footer__logo" href="/" aria-label="{{ site.name }} home">
+        <img class="site-footer__crest" src="/assets/icons/crest.svg" alt="" width="181" height="181" loading="lazy">
+        <img class="site-footer__wordmark" src="/assets/icons/wordmark.svg" alt="" width="136" height="36" loading="lazy">
+      </a>
+      <p class="site-footer__statement">{{ f.statement }}</p>
+    </div>
+
+    <div class="site-footer__main">
+      <div class="site-footer__intro">
+        <p>{{ f.intro }}</p>
+        {% set btn = f.button %}{% set plain = true %}{% include "snippets/button.njk" %}
+      </div>
+      <div class="site-footer__cols">
+        {% for campus in f.campuses %}
+        <div class="site-footer__col">
+          <h2>{{ campus.name }}</h2>
+          <div class="site-footer__campus">
+            <p class="site-footer__years">{{ campus.years }}</p>
+            <address>{{ campus.address }}</address>
+            <a class="site-footer__directions" href="{{ campus.directions }}">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
+          </div>
+          {% for phone in campus.phones %}
+          <p class="site-footer__phone"><strong>{{ phone.label }}</strong><a href="tel:{{ phone.tel }}">{{ phone.number }}</a></p>
+          {% endfor %}
+        </div>
+        {% endfor %}
+        <nav class="site-footer__col" aria-label="{{ f.quick_links_title }}">
+          <h2>{{ f.quick_links_title }}</h2>
+          <ul class="site-footer__links">
+            {% for link in f.quick_links %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endfor %}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </div>
+
+  <div class="site-footer__lane" aria-hidden="true">
+    <div class="site-footer__track" data-marquee="left">
+      <ul class="site-footer__phrase">
+        {% for words in f.marquee %}<li{% if loop.index0 % 2 == 0 %} class="site-footer__outline"{% endif %}>{{ words }}</li>{% endfor %}
+      </ul>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="site-footer__bar">
+      <ul class="site-footer__social">
+        {% for item in site.socials %}
+        <li><a class="site-footer__social-link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+        {% endfor %}
+      </ul>
+      <ul class="site-footer__affiliations">
+        {% for logo in f.affiliations %}
+        <li><img src="{{ logo.image.src }}" alt="{{ logo.name }}" width="{{ logo.image.width }}" height="{{ logo.image.height }}" loading="lazy"></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="site-footer__legal">
+      <p><span>{{ f.copyright }}</span><span aria-hidden="true">·</span><span>{{ f.abn }}</span></p>
+      <ul>
+        {% for link in f.legal_links %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endfor %}
+      </ul>
+    </div>
   </div>
 </footer>

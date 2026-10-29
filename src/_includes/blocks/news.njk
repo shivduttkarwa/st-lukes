@@ -1,0 +1,34 @@
+<section class="news">
+  <div class="container">
+    <div class="news__head">
+      <h2 data-anim="split" data-anim-type="lines">{{ value.title_line_1 }} <span class="news__outline">{{ value.title_line_2 }}</span></h2>
+      {% if value.button %}<div data-anim="reveal" data-anim-type="fade">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>{% endif %}
+    </div>
+    <div class="news__feature" data-slider-scope data-anim="reveal" data-anim-type="fade-up">
+      <div class="news__slider swiper" data-slider data-slider-mode="fade" data-slider-autoplay="4000">
+        <div class="swiper-wrapper">
+          {% for story in value.stories %}
+          <article class="story swiper-slide">
+            <div class="story__panel">
+              <div class="story__copy">
+                {% if story.tags %}
+                <ul class="story__tags">
+                  {% for tag in story.tags %}<li><span aria-hidden="true">#</span>{{ tag }}</li>{% endfor %}
+                </ul>
+                {% endif %}
+                <h3>{{ story.title }}</h3>
+                <p>{{ story.excerpt }}</p>
+              </div>
+              <a class="btn btn-primary btn-small" href="{{ story.url | default('#') }}">Read Full Story</a>
+            </div>
+            <div class="story__media">
+              {% set img = story.image %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}
+            </div>
+          </article>
+          {% endfor %}
+        </div>
+      </div>
+      <div class="news__dots" data-slider-pagination></div>
+    </div>
+  </div>
+</section>

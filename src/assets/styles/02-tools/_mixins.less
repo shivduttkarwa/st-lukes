@@ -76,9 +76,64 @@
 }
 
 // over a gradient no fill can match the ground, so the 1px stroke is centred on the glyph instead
-.outline-text-clear(@stroke: var(--color-gold)) {
+.outline-text-clear(@stroke: var(--color-gold), @weight: 1 * @px) {
   color: transparent;
-  -webkit-text-stroke: 1 * @px @stroke;
+  -webkit-text-stroke: @weight @stroke;
+}
+
+@slider-arrow-size: 50 * @px;
+
+// the outline prev / next circles of the sliders; the prev arrow is found by its data-slider-prev hook
+.slider-arrow(@ink: var(--color-white), @ground: var(--color-navy)) {
+  display: grid;
+  place-items: center;
+  width: ~"max(var(--tap-size), @{slider-arrow-size})";
+  height: ~"max(var(--tap-size), @{slider-arrow-size})";
+  padding: 0;
+  border: 1 * @px solid @ink;
+  border-radius: 50%;
+  background: none;
+  color: @ink;
+  transition: background-color var(--duration-base) ease, color var(--duration-base) ease, opacity var(--duration-base) ease;
+  .icon {
+    width: 24 * @px;
+    height: 24 * @px;
+    transform: rotate(45deg);
+  }
+  &[data-slider-prev] .icon { transform: rotate(-135deg); }
+  &:disabled {
+    opacity: 0.4;
+    cursor: default;
+  }
+  @media (hover: hover) {
+    &:enabled:hover {
+      background: @ink;
+      color: @ground;
+    }
+  }
+}
+
+@social-button-size: 48 * @px;
+
+.social-button(@ground: var(--color-navy), @ink: var(--color-white), @hover: var(--color-royal), @hover-ink: @ink) {
+  display: grid;
+  place-items: center;
+  width: ~"max(var(--tap-size), @{social-button-size})";
+  height: ~"max(var(--tap-size), @{social-button-size})";
+  border-radius: 50%;
+  background: @ground;
+  color: @ink;
+  transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
+  .icon {
+    width: 24 * @px;
+    height: 24 * @px;
+  }
+  @media (hover: hover) {
+    &:hover {
+      background: @hover;
+      color: @hover-ink;
+    }
+  }
 }
 
 @circle-size: 65 * @px;

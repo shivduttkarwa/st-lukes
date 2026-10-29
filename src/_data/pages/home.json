@@ -182,8 +182,107 @@
       }
     },
     {
+      "type": "pathways",
+      "value": {
+        "title_line_1": "Diverse pathways",
+        "title_line_2": "for every student",
+        "lead": "St Luke’s students go on to outstanding local, national and international universities as well as incredible futures in trades, sports, building and defence.",
+        "button": { "text": "Where St Luke’s graduates go", "url": "#" },
+        "rows": [
+          {
+            "logos": [
+              { "name": "University of Wollongong Australia", "url": "#", "image": { "src": "/assets/images/logos/wollongong.svg", "width": 141, "height": 46 } },
+              { "name": "The University of Sydney", "url": "#", "image": { "src": "/assets/images/logos/sydney.png", "width": 117, "height": 41 } },
+              { "name": "UNSW Sydney", "url": "#", "image": { "src": "/assets/images/logos/unsw.png", "width": 104, "height": 45 } },
+              { "name": "University of Technology Sydney", "url": "#", "image": { "src": "/assets/images/logos/uts.png", "width": 132, "height": 58 } },
+              { "name": "Macquarie University", "url": "#", "image": { "src": "/assets/images/logos/macquarie.png", "width": 116, "height": 35 } },
+              { "name": "Australian Catholic University", "url": "#", "image": { "src": "/assets/images/logos/acu.png", "width": 103, "height": 28 } },
+              { "name": "ICMS", "url": "#", "image": { "src": "/assets/images/logos/icms.png", "width": 121, "height": 39 } },
+              { "name": "Torrens University Australia", "url": "#", "image": { "src": "/assets/images/logos/torrens.png", "width": 111, "height": 43 } },
+              { "name": "The University of Newcastle", "url": "#", "image": { "src": "/assets/images/logos/newcastle.png", "width": 130, "height": 46 } }
+            ]
+          },
+          {
+            "logos": [
+              { "name": "ADF Careers", "url": "#", "image": { "src": "/assets/images/logos/adf-careers.svg", "width": 92, "height": 47 } },
+              { "name": "MEGT", "url": "#", "image": { "src": "/assets/images/logos/megt.png", "width": 109, "height": 83 } },
+              { "name": "UTS Sport", "url": "#", "image": { "src": "/assets/images/logos/uts-sport.png", "width": 64, "height": 41 } },
+              { "name": "American Summers", "url": "#", "image": { "src": "/assets/images/logos/american-summers.png", "width": 116, "height": 56 } },
+              { "name": "Multiplex", "url": "#", "image": { "src": "/assets/images/logos/multiplex.png", "width": 146, "height": 28 } },
+              { "name": "Master Builders Australia", "url": "#", "image": { "src": "/assets/images/logos/master-builders.png", "width": 164, "height": 41 } },
+              { "name": "WiseTech Global", "url": "#", "image": { "src": "/assets/images/logos/wisetech.png", "width": 108, "height": 44 } }
+            ]
+          }
+        ]
+      }
+    },
+    {
+      "type": "discover",
+      "value": {
+        "title_line_1": "Discover new",
+        "title_line_2": "ways to thrive",
+        "lead": "From championship sport and performing arts to outdoor adventures, student-led service and global experiences, students discover their passions, build confidence and find new ways to contribute.",
+        "buttons": [
+          { "text": "Explore Co-Curricular", "url": "#", "style": "glass" },
+          { "text": "Explore our Talented Athlete Program (TAP)", "url": "#", "style": "outline" }
+        ],
+        "image": {
+          "src": "/assets/images/home/discover-1920.webp",
+          "srcset": "/assets/images/home/discover-768.webp 768w, /assets/images/home/discover-1280.webp 1280w, /assets/images/home/discover-1920.webp 1920w",
+          "width": 1920,
+          "height": 960
+        },
+        "video": null
+      }
+    },
+    {
       "type": "placeholder",
-      "value": { "label": "More sections coming soon" }
+      "value": { "label": "Hear from our community: coming soon" }
+    },
+    {
+      "type": "news",
+      "value": {
+        "title_line_1": "Latest News",
+        "title_line_2": "and stories",
+        "button": { "text": "View All News", "url": "#", "style": "outline-navy" },
+        "stories": [
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } },
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } },
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } },
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } }
+        ]
+      }
+    },
+    {
+      "type": "social",
+      "value": {
+        "title_line_1": "Join the",
+        "title_line_2": "Conversation",
+        "follow_text": "Follow life at St Luke’s on social media",
+        "posts": [
+          { "url": "#", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 } },
+          { "url": "#", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 } }
+        ]
+      }
+    },
+    {
+      "type": "cta",
+      "value": {
+        "title_line_1": "Start your",
+        "title_line_2": "St Luke’s journey",
+        "buttons": [
+          { "text": "Book a Tour", "url": "#" },
+          { "text": "Apply to Enrol", "url": "#", "style": "glass" }
+        ],
+        "image": { "src": "/assets/images/home/cta-poster.webp", "alt": "", "width": 720, "height": 412 },
+        "video": null
+      }
     }
   ]
 }

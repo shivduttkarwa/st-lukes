@@ -64,6 +64,67 @@ export function initHoverVideos() {
   });
 }
 
+// background videos autoplay muted; under reduced motion they hold on their first frame
+export function initAmbientVideos() {
+  const videos = document.querySelectorAll("video[data-ambient]");
+  if (!videos.length) return;
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const sync = () => videos.forEach((video) => {
+    if (still.matches) {
+      video.pause();
+      video.currentTime = 0;
+    } else {
+      video.play().catch(() => {});
+    }
+  });
+  sync();
+  still.addEventListener("change", sync);
+}
+
+const MARQUEE_SPEED = 35; // design px per second, the same for every row whatever its length
+
+export function initMarquees() {
+  const tracks = Array.from(document.querySelectorAll("[data-marquee]"));
+  if (!tracks.length) return;
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const build = () => {
+    const scale = parseFloat(getComputedStyle(document.documentElement).fontSize) / 16;
+    tracks.forEach((track) => {
+      const list = track.querySelector("ul");
+      if (!list) return;
+      track.classList.remove("is-running");
+      track.querySelectorAll("[data-marquee-copy]").forEach((copy) => copy.remove());
+      list.querySelectorAll("img").forEach((img) => {
+        img.style.width = `${parseFloat(img.getAttribute("width")) * scale}px`;
+      });
+      if (still.matches) return;
+      const width = list.getBoundingClientRect().width;
+      const lane = track.parentElement.clientWidth;
+      if (!width) return;
+      for (let i = 0, n = Math.ceil(lane / width) + 1; i < n; i++) {
+        const copy = list.cloneNode(true);
+        copy.setAttribute("aria-hidden", "true");
+        copy.setAttribute("data-marquee-copy", "");
+        copy.querySelectorAll("a").forEach((a) => a.setAttribute("tabindex", "-1"));
+        track.append(copy);
+      }
+      track.style.setProperty("--marquee-shift", `${width}px`);
+      track.style.setProperty("--marquee-time", `${width / (MARQUEE_SPEED * scale)}s`);
+      track.classList.add("is-running");
+    });
+  };
+  build();
+  let width = window.innerWidth;
+  let timer = 0;
+  window.addEventListener("resize", () => {
+    if (window.innerWidth === width) return; // a phone's toolbar showing or hiding changes only the height
+    width = window.innerWidth;
+    clearTimeout(timer);
+    timer = setTimeout(build, 200);
+  });
+  still.addEventListener("change", build);
+}
+
 export function initScrollState() {
   const root = document.documentElement;
   const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);

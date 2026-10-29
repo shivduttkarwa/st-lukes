@@ -6,7 +6,6 @@
 @menu-sub-width: 324 * @px;
 @menu-top-gap: 20 * @px;
 @menu-utility-gap: 27 * @px;
-@menu-social-size: 48 * @px;
 @menu-row: 60 * @px;
 @menu-small-row: 28 * @px;
 
@@ -448,23 +447,7 @@ html.is-locked {
     gap: 12 * @px;
   }
 
-  &__social-link {
-    display: grid;
-    place-items: center;
-    width: ~"max(var(--tap-size), @{menu-social-size})";
-    height: ~"max(var(--tap-size), @{menu-social-size})";
-    border-radius: 50%;
-    background: var(--color-navy);
-    color: var(--color-white);
-    transition: background-color var(--duration-base) ease;
-    .icon {
-      width: 24 * @px;
-      height: 24 * @px;
-    }
-    @media (hover: hover) {
-      &:hover { background: var(--color-royal); }
-    }
-  }
+  &__social-link { .social-button(); }
 
   @media (prefers-reduced-motion: no-preference) {
     // layers held through the rise so it lands without a snap; dropped on the first widen, where held layers wobble
