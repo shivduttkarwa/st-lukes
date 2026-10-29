@@ -1,0 +1,146 @@
+@campus-arrow: 60 * @px;
+
+.campuses {
+  padding: 72 * @px 0;
+  background: var(--color-navy);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 104 * @px 0; }
+
+  &__head {
+    display: flex;
+    flex-direction: column;
+    gap: 32 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      gap: 133 * @px;
+    }
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 32 * @px;
+    @media (min-width: @bp-lg) {
+      flex: none;
+      width: 594 * @px;
+    }
+  }
+
+  h2 {
+    .type-h1();
+    margin: 0;
+    color: var(--color-gold);
+    span { display: block; }
+    span:first-child { margin-bottom: -0.1667em; }
+  }
+
+  // Figma strokes outside the glyph; a navy fill painted over a centred stroke leaves only the outer half
+  &__outline {
+    color: var(--color-navy);
+    -webkit-text-stroke: 2 * @px var(--color-gold);
+    paint-order: stroke fill;
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+  }
+
+  &__lead {
+    .type-body-1();
+    flex: 1;
+    p { margin: 0; }
+    p + p { margin-top: 1.4em; }
+  }
+
+  &__grid {
+    display: grid;
+    gap: 6 * @px;
+    margin-top: 48 * @px;
+    @media (min-width: @bp-lg) {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      margin-top: 100 * @px;
+    }
+  }
+}
+
+.campus {
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16 * @px;
+  aspect-ratio: 617 / 410;
+  padding: 20 * @px;
+  overflow: hidden;
+  color: var(--color-white);
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gradient-promo);
+  }
+  @media (min-width: @bp-lg) { padding: 30 * @px; }
+
+  &__img,
+  &__video {
+    .cover();
+    object-fit: cover;
+  }
+
+  &__video {
+    opacity: 0;
+    transition: opacity var(--duration-base) ease;
+  }
+
+  &.is-playing &__video { opacity: 1; }
+
+  &__info,
+  &__arrow {
+    position: relative;
+    z-index: 1;
+  }
+
+  &__info {
+    display: flex;
+    flex-direction: column;
+    gap: 6 * @px;
+  }
+
+  &__name { .type-campus-title(); }
+
+  &__detail {
+    .type-heading-6();
+    color: var(--color-gold);
+    white-space: pre-wrap;
+  }
+
+  &__arrow {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: ~"max(var(--tap-size), @{campus-arrow})";
+    height: ~"max(var(--tap-size), @{campus-arrow})";
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    transition: opacity var(--duration-base) ease;
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+    }
+  }
+
+  @media (hover: hover) {
+    &__arrow { opacity: 0; }
+    &:hover &__arrow,
+    &:focus-visible &__arrow { opacity: 1; }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .campus__video,
+  .campus__arrow { transition: none; }
+}

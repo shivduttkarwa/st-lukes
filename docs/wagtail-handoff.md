@@ -57,10 +57,21 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Motion lives in `anim.js` (`data-anim="counter"`): as each item scrolls in, the first number in its value counts up from 0 (prefix and suffix kept, commas kept if typed) while its ring draws clockwise from 12 o'clock to `ring`. It takes 2s, 0.1s apart in list order (`data-anim-order="{{ loop.index0 }}"` → `{{ forloop.counter0 }}`). The ring's final value is the circle's `stroke-dasharray` attribute, so without JS or under reduced motion the finished state shows.
 - The ring is inline SVG from the Figma geometry: outer 100, stroke 12.88, white track at 40%.
 
+### usps (`blocks/usps.njk`, card markup in `snippets/usp-card.njk`)
+- "Why choose St Luke's Grammar": eyebrow, Heading 2 title, up to two buttons (`style` primary or outline, no arrow), prev / next arrows, and the USP cards in a Swiper slider. Behind them a navy-to-royal band, then the `background` image full-bleed with the Figma shade over it. The image starts 146 above the cards, so it holds its place whatever the heading's length.
+- Slider: `slider.js` (`initSliders()`) turns any `[data-slider]` into a Swiper with `slidesPerView: "auto"`, keyboard and a11y on, 900ms slides on `--ease-out` (0 under reduced motion). The arrows are found inside the nearest `[data-slider-scope]`. `data-slider-gap` is the gap in design px, scaled with the fluid root. The track starts on the container edge and stays `overflow: visible`, so cards run off the left of the window as it moves, as the brief asks. The last card stops on the container's right edge.
+- Each card: square image (`fill-800x800`), title, text (a typed line break applies from 768 up), the gold link bar. An optional `video` plays muted on hover, as on the "Who we are" cards. The bodies are at least 176 tall, so the gold bars line up.
+
+### campuses (`blocks/campuses.njk`)
+- "Two campuses / one school": two title lines (the second drawn as a gold outline), up to two outline buttons, a rich-text lead, and two campus cards side by side from 992 (stacked below).
+- Each card is one link: image (`fill-1234x820`, decorative), shade, name, detail, and a gold arrow. From the prototype's hover state (`Bayview / Dee Why Campus Animation`): on hover the video plays over the image and the arrow fades in. On touch the arrow is always shown, and the video never plays.
+- The outline title uses `-webkit-text-stroke` with a navy fill painted over it (`paint-order: stroke fill`), which leaves Figma's 1px outside stroke. It assumes the navy background.
+
 ### placeholder (`blocks/placeholder.njk`)
 - Dev-only stand-in for sections not built yet. Not a Wagtail block; drop it from the body when every section exists.
 
 ## Content to enter in the admin
 
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
+- Homepage campuses: the Bayview hover video (a video fill in Figma, no file yet). Dee Why's hover video is the promo clip (`intro-promo.mp4`), the same Figma video. The Bayview detail line reads "210 Headland Road, Dee Why" in Figma: check the address with the client.
 - Homepage "Who we are": the Student wellbeing hover video. In Figma that card is a video fill; no file yet, so the card shows its poster only.

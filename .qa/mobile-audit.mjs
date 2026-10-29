@@ -59,6 +59,7 @@ const probe = () => {
     return cs.display === "none" || cs.visibility === "hidden" || r.width === 0 || r.height === 0;
   };
   const inScroller = (el) => {
+    if (el.closest("[data-slider]")) return true; // slider tracks run off the canvas by design
     for (let p = el.parentElement; p && p !== document.body; p = p.parentElement) {
       const o = getComputedStyle(p);
       if (o.overflowX !== "visible") return true;

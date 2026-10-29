@@ -80,6 +80,15 @@
   @media (min-width: @bp-lg) { font-size: 25 * @px; }
 }
 
+// the campus names have no named style: Poppins ExtraBold 45 / 1.1, no tracking
+.type-campus-title() {
+  .type-poppins();
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
+}
+
 // Sanshand Filled: "Heading 2–6" and the nav labels
 .type-sans() {
   font-family: var(--font-sans);
@@ -197,6 +206,31 @@
   line-height: 1.2;
   letter-spacing: 0;
   font-size: ~"max(@{text-min}, @{body-5-size})";
+}
+
+// Figma has a second "Body 3" at 150%: the card links
+.type-body-3-150() {
+  .type-myriad();
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+  font-size: 16 * @px;
+}
+
+// the USP card title and copy have no named style: Sanshand 25 / 1; Myriad 18 / 1.2, −2%
+.type-usp-title() {
+  .type-sans();
+  line-height: 1;
+  letter-spacing: 0;
+  font-size: 22 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+.type-usp-text() {
+  .type-myriad();
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+  font-size: 16 * @px;
+  @media (min-width: @bp-lg) { font-size: 18 * @px; }
 }
 
 // form controls: Body 2 with the 16px floor that stops iOS zooming into the field

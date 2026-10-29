@@ -110,6 +110,62 @@
       }
     },
     {
+      "type": "usps",
+      "value": {
+        "eyebrow": "Why choose St Luke’s Grammar",
+        "title": "Everything families love about the Northern Beaches. Everything they expect from a leading school.",
+        "buttons": [
+          { "text": "Apply to Enrol Today", "url": "#" },
+          { "text": "View Application Process", "url": "#", "style": "outline" }
+        ],
+        "background": {
+          "src": "/assets/images/home/usps-bg-1920.webp",
+          "srcset": "/assets/images/home/usps-bg-768.webp 768w, /assets/images/home/usps-bg-1280.webp 1280w, /assets/images/home/usps-bg-1920.webp 1920w",
+          "width": 1920,
+          "height": 1280
+        },
+        "cards": [
+          { "title": "Everyone is known here", "text": "We’re a genuine community where students are not a number.", "image": { "src": "/assets/images/home/usp-1.webp", "alt": "A teacher and two junior students working on a coding robot activity", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Community", "url": "#" } },
+          { "title": "the spirit of the Northern Beaches", "text": "We work hard, we play hard,\nwe achieve well.", "image": { "src": "/assets/images/home/usp-2.webp", "alt": "Students in wetsuits with surfboards on the beach", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our 2025 HSC Results", "url": "#" } },
+          { "title": "Top-ranked co-ed school in NSW", "text": "We’re consistently top-ranked non-selective co-educational school in NSW north of the harbour.", "image": { "src": "/assets/images/home/usp-3.webp", "alt": "Two senior students writing equations on a glass board", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our Graduate Profile", "url": "#" } },
+          { "title": "Strong pastoral care with\nPERMA Framework", "text": "Our wellbeing framework is grounded in positive psychology (PERMA).", "image": { "src": "/assets/images/home/usp-4.webp", "alt": "A teacher sitting outdoors with four students in uniform", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Wellbeing Framework", "url": "#" } },
+          { "title": "Authentic Christian faith", "text": "Authentic Christian faith that is welcoming and inclusive, not exclusive.", "image": { "src": "/assets/images/home/usp-5.webp", "alt": "Students and young children smiling together on a grassy hill", "width": 800, "height": 800 }, "video": null, "link": { "text": "How we live out our Faith", "url": "#" } },
+          { "title": "Personal attention, Huge co-curricular range", "text": "Small-school individualised learning combined with large-school co-curricular opportunities.", "image": { "src": "/assets/images/home/usp-6.webp", "alt": "A smiling student playing the cello in a school orchestra", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore Co-Curricular Opportunities", "url": "#" } },
+          { "title": "~99% of Families are local Northern Beaches residents", "text": "We’ve got everything you would travel to the North Shore for without the commute.", "image": { "src": "/assets/images/home/usp-7.webp", "alt": "Students boarding a St Luke’s school bus", "width": 800, "height": 800 }, "video": null, "link": { "text": "View Transport and Bus Routes", "url": "#" } },
+          { "title": "Exceptional sport and Athlete program", "text": "State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": null, "link": { "text": "See our Sporting Programs", "url": "#" } },
+          { "title": "A growing modern campus", "text": "Plans for a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031)", "image": { "src": "/assets/images/home/usp-9.webp", "alt": "Students gathered on the lawn in front of the campus buildings", "width": 381, "height": 381 }, "video": null, "link": { "text": "Browse the College Masterplan", "url": "#" } }
+        ]
+      }
+    },
+    {
+      "type": "campuses",
+      "value": {
+        "title_line_1": "Two campuses",
+        "title_line_2": "One school",
+        "buttons": [
+          { "text": "View Campus Masterplan 2029–2031", "url": "#", "style": "outline" },
+          { "text": "View Facilities", "url": "#", "style": "outline" }
+        ],
+        "lead": "<p>Situated on Sydney’s beautiful Northern Beaches, St Luke’s Grammar School combines a blend of landscaped grounds, cutting-edge architecture and modern classroom spaces.</p><p>In addition to onsite facilities, students at St Luke’s make frequent use of local sporting fields, the beach and swim centres. Choose a campus below to see transport and before and after school care options.</p>",
+        "campuses": [
+          {
+            "name": "Bayview",
+            "detail": "Pre-K to Year 6  |  210 Headland Road, Dee Why",
+            "url": "#",
+            "image": { "src": "/assets/images/home/campus-bayview.webp", "alt": "", "width": 1234, "height": 820 },
+            "video": null
+          },
+          {
+            "name": "Dee Why",
+            "detail": "Pre-K to Year 12 campus",
+            "url": "#",
+            "image": { "src": "/assets/images/home/campus-dee-why.webp", "alt": "", "width": 1234, "height": 820 },
+            "video": { "src": "/assets/video/intro-promo.mp4" }
+          }
+        ]
+      }
+    },
+    {
       "type": "placeholder",
       "value": { "label": "More sections coming soon" }
     }

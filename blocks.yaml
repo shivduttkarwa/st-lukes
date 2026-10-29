@@ -69,6 +69,36 @@ blocks:
         ring: IntegerBlock(min_value=0, max_value=100, default=100)   # how much of the circle the white arc draws, in %
       button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
 
+  usps:
+    figma: "20169:5734 (cards: USPs Slider 20169:13242)"
+    template: blocks/usps.njk   # card markup in snippets/usp-card.njk
+    fields:
+      eyebrow: CharBlock
+      title: CharBlock(required)   # Heading 2
+      buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(primary, outline)), max_num=2)
+      background: ImageChooserBlock(required)   # full-bleed behind the cards, shaded navy and royal; renditions 768 / 1280 / 1920 wide for the srcset
+      cards: ListBlock(StructBlock, min_num=1)   # Swiper slider, 400 wide (300 below 768), 6 apart
+        title: CharBlock(required)   # a line break applies from 768 up
+        text: TextBlock   # a line break applies from 768 up
+        image: ImageChooserBlock(required)   # square, fill-800x800
+        video: DocumentChooserBlock(optional)   # mp4, plays muted over the image on hover (mouse only, not under reduced motion)
+        link: StructBlock(text: CharBlock, url: URLBlock)   # the gold bar along the bottom
+
+  campuses:
+    figma: "20169:5760 (hover states: Bayview / Dee Why Campus Animation, 20239:19490 / 20262:19527)"
+    template: blocks/campuses.njk
+    fields:
+      title_line_1: CharBlock(required)   # gold
+      title_line_2: CharBlock(required)   # gold outline
+      buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(primary, outline)), max_num=2)
+      lead: RichTextBlock(features=[])   # paragraphs
+      campuses: ListBlock(StructBlock, min_num=2, max_num=2)
+        name: CharBlock(required)
+        detail: CharBlock   # double spaces around "|" are kept
+        url: PageChooserBlock or URLBlock   # the whole card links here
+        image: ImageChooserBlock(required)   # fill-1234x820, decorative (the name is the link text)
+        video: DocumentChooserBlock(optional)   # mp4, plays muted on hover as in the prototype
+
   placeholder:
     template: blocks/placeholder.njk
     note: dev-only stand-in for sections not built yet; not a Wagtail block

@@ -1,0 +1,26 @@
+<section class="campuses">
+  <div class="container">
+    <div class="campuses__head">
+      <div class="campuses__intro">
+        <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="campuses__outline">{{ value.title_line_2 }}</span></h2>
+        <div class="campuses__actions" data-anim-group="fade-up">
+          {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
+        </div>
+      </div>
+      <div class="campuses__lead" data-anim="reveal" data-anim-type="fade-up">{{ value.lead | safe }}</div>
+    </div>
+    <div class="campuses__grid" data-anim-group="fade-up">
+      {% for campus in value.campuses %}
+      <a class="campus" href="{{ campus.url | default('#') }}"{% if campus.video %} data-hover-video{% endif %}>
+        {% set img = campus.image %}{% set cls = "campus__img" %}{% include "snippets/image.njk" %}
+        {% if campus.video %}<video class="campus__video" data-src="{{ campus.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
+        <span class="campus__info">
+          <span class="campus__name">{{ campus.name }}</span>
+          <span class="campus__detail">{{ campus.detail }}</span>
+        </span>
+        <span class="campus__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-corner"></use></svg></span>
+      </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>

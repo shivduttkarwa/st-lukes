@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-29 — homepage campuses
+- New `campuses` block from `20169:5760`. At 1440, relative to the section top: title lines at 100, 104 and 157 (H1 Poppins, the second line pulled up 10 as in Figma); buttons at 276 (338 and 166 wide, Figma 337 / 164); lead 827, 104, 513 × 224; cards 617 × 410 at 100 and 723, y 428; names at 728.5 (Figma rounds their 49.5 box to 50), details at 784; arrows 60 round at 627 / 1250, y 748; section 942 tall.
+- "One school" is Figma's outline text: no fill, a 1px gold stroke outside. Drawn as a 2px centred `-webkit-text-stroke` under a navy fill (`paint-order: stroke fill`); at 1:1 it matches the Figma render.
+- Cards follow the prototype's hover variant: the image gives way to the video (0.35s fade) and the gold arrow fades in; leaving pauses and resets the video. Dee Why's video is the promo clip already in the project (the same Figma video). Bayview's is a separate video fill, not supplied yet. Its rest image is the marina still from the Normal variant (the homepage frame shows Bayview in its hover state). The shade is the promo gradient (Figma's stops match).
+- Campus names are Poppins ExtraBold 45 / 1.1 with no tracking (`.type-campus-title()`, not a named style); details are Heading 6 and keep Figma's double spaces round "|".
+- Cards sit side by side from 992 and stack below (at 768 two columns broke the Bayview detail line). Checked at 375, 667 × 375, 768, 1024, 1440 and 1920; the touch audit shows nothing new.
+
+## 2026-10-29 — homepage USP slider
+- New `usps` block from `20169:5734`. At 1440, relative to the section top: eyebrow 112, 232; title 266, 884 × 90; buttons at 387 (216 and 249 wide, Figma 215 / 247); arrows 50 round at 1215 and 1275, y 389; background from 343, 936 tall; cards 400 × 640 at x 112 + 406n, y 489 (image 400, body 176, link bar 64 at 1065); section 1279 tall. Side by side with the Figma render it matches.
+- The section keeps Figma's 112 / 115 inset from 1400 up (the container plus 12 and 15). The band is Figma's navy-to-royal gradient over 345. The background is the visible top fill of the frame (students on the boardwalk; the hero photo under it is hidden in Figma), shaded with Figma's two gradients (`--gradient-usps-shade`), at 768 / 1280 / 1920 for the `srcset`. No parallax on it: the cards sit over it, and their text would soften on a moving layer.
+- Card type: titles Sanshand 25 / 1 in royal, copy Myriad 18 / 1.2, −2% at 75% black (neither is a named style: `.type-usp-title()`, `.type-usp-text()`). Link bars use Figma's second "Body 3" (16 / 1.5; the file has two styles of that name, and the existing mixin is the 1.4 one): `.type-body-3-150()`. The corner arrow is the existing `icon-arrow-corner` (Figma's is the same path at 1 / 1.2); the slider arrows rotate it to → and ←.
+- Slider per the brief (`slider.js`, Swiper): starts aligned to the container; on a slide the cards run off the left edge of the window, and the page never scrolls sideways (checked at 375, 768, 1024, 1440). 900ms on `--ease-out`, keyboard and drag; "previous" is dimmed at the start and "next" at the end. Hover video is wired for any card given one.
+- Phone: cards 300 wide, the buttons and arrows stack under the heading. Checked at 375, 667 × 375, 768, 1024, 1440 and 1920. The touch audit now skips `[data-slider]` tracks, whose off-canvas cards are intended.
+
 ## 2026-10-29 — homepage stats
 - New `stats` block from `20169:5726`: four statistics in two columns and the "View our HSC and NAPLAN Results" outline button. At 1440, relative to the section top: items at 204 / 781.5 and 40 / 238, rings 100, button at 204, 395, section 487 tall. Number and label ink match Figma's render to within 1px.
 - Numbers are Sanshand at 100 / 90, −3% (no named style in Figma; `.type-stat()`). CSS tracks after the last glyph and Figma does not, so the number carries a 0.03em right margin; without it every label sat 3px left.

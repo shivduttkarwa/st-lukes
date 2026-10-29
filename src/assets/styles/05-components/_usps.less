@@ -1,0 +1,193 @@
+@usps-band: 345 * @px;
+@usps-media-lead: 146 * @px;
+@usps-arrow: 50 * @px;
+@usps-card-sm: 300 * @px;
+@usps-card: 400 * @px;
+
+.usps {
+  position: relative;
+  padding-top: 72 * @px;
+  background: linear-gradient(180deg, var(--color-navy) 0, var(--color-royal) @usps-band);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) { padding-top: 232 * @px; }
+
+  &__inner {
+    position: relative;
+    z-index: 1;
+    @media (min-width: @bp-xxl) { margin: 0 15 * @px 0 12 * @px; }
+  }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24 * @px;
+  }
+
+  &__intro { max-width: 884 * @px; }
+
+  &__eyebrow {
+    .type-heading-6();
+    margin: 0 0 10 * @px;
+    color: var(--color-gold);
+  }
+
+  h2 {
+    .type-heading-2();
+    margin: 0;
+    color: var(--color-white);
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin-top: 31 * @px;
+  }
+
+  &__nav {
+    display: flex;
+    gap: 10 * @px;
+  }
+
+  &__arrow {
+    display: grid;
+    place-items: center;
+    width: ~"max(var(--tap-size), @{usps-arrow})";
+    height: ~"max(var(--tap-size), @{usps-arrow})";
+    padding: 0;
+    border: 1 * @px solid var(--color-white);
+    border-radius: 50%;
+    background: none;
+    color: var(--color-white);
+    transition: background-color var(--duration-base) ease, color var(--duration-base) ease, opacity var(--duration-base) ease;
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+      transform: rotate(45deg);
+    }
+    &--prev .icon { transform: rotate(-135deg); }
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
+    @media (hover: hover) {
+      &:enabled:hover {
+        background: var(--color-white);
+        color: var(--color-navy);
+      }
+    }
+  }
+
+  &__body {
+    position: relative;
+    margin-top: 40 * @px;
+    padding-bottom: 72 * @px;
+    @media (min-width: @bp-lg) {
+      margin-top: 50 * @px;
+      padding-bottom: 150 * @px;
+    }
+  }
+
+  &__media {
+    position: absolute;
+    top: -@usps-media-lead;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    overflow: hidden;
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-usps-shade);
+    }
+  }
+
+  &__bg { .img-cover(); }
+
+  &__slider {
+    --swiper-wrapper-transition-timing-function: var(--ease-out);
+    overflow: visible;
+  }
+}
+
+.usp {
+  display: flex;
+  flex-direction: column;
+  width: @usps-card-sm;
+  height: auto;
+  background: var(--color-white);
+  @media (min-width: @bp-md) { width: @usps-card; }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+  }
+
+  &__img { .img-cover(); }
+
+  &__video {
+    .cover();
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+  }
+
+  &.is-playing &__video { opacity: 1; }
+
+  &__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 10 * @px;
+    min-height: 176 * @px;
+    padding: 24 * @px;
+    @media (min-width: @bp-lg) { padding: 30 * @px; }
+  }
+
+  h3 {
+    .type-usp-title();
+    margin: 0;
+    color: var(--color-royal);
+    @media (min-width: @bp-md) { white-space: pre-line; }
+  }
+
+  p {
+    .type-usp-text();
+    margin: 0;
+    color: var(--color-black-75);
+    text-box: trim-both cap alphabetic;
+    @media (min-width: @bp-md) { white-space: pre-line; }
+  }
+
+  &__link {
+    .type-body-3-150();
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16 * @px;
+    padding: 20 * @px 20 * @px 20 * @px 30 * @px;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    transition: background-color var(--duration-base) ease;
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+      transition: transform var(--duration-base) var(--ease-out);
+    }
+    @media (hover: hover) {
+      &:hover {
+        background: var(--color-gold-deep);
+        color: var(--color-navy);
+        .icon { transform: translate(2 * @px, -2 * @px); }
+      }
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .usp__video { transition: none; }
+}

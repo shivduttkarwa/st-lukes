@@ -1,0 +1,34 @@
+<section class="usps" data-slider-scope>
+  <div class="container">
+    <div class="usps__inner">
+      <div class="usps__head">
+        <div class="usps__intro">
+          <p class="usps__eyebrow" data-anim="reveal" data-anim-type="fade-up">{{ value.eyebrow }}</p>
+          <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
+          <div class="usps__actions" data-anim-group="fade-up">
+            {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
+          </div>
+        </div>
+        <div class="usps__nav" data-anim="reveal" data-anim-type="fade">
+          <button class="usps__arrow usps__arrow--prev" type="button" aria-label="Previous" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
+          <button class="usps__arrow" type="button" aria-label="Next" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="usps__body">
+    <div class="usps__media" aria-hidden="true">
+      <img class="usps__bg" src="{{ value.background.src }}"{% if value.background.srcset %} srcset="{{ value.background.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.background.width }}" height="{{ value.background.height }}" loading="lazy" decoding="async">
+    </div>
+    <div class="container">
+      <div class="usps__inner">
+        <div class="usps__slider swiper" data-slider data-slider-gap="6">
+          <div class="swiper-wrapper" data-anim-group="fade-up">
+            {% for card in value.cards %}{% include "snippets/usp-card.njk" %}{% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
