@@ -34,24 +34,24 @@ html.is-locked {
   padding-right: var(--scrollbar-gutter, 0);
 }
 
-// a registered angle animates on the main thread, so the arrow never snaps off a GPU layer
+// registered properties animate on the main thread, so the arrow and the submenu fade never snap off a GPU layer
 @property --menu-turn {
   syntax: "<angle>";
   inherits: false;
   initial-value: 0deg;
 }
+@property --menu-alpha {
+  syntax: "<number>";
+  inherits: false;
+  initial-value: 1;
+}
 
 @keyframes menu-rise { from { opacity: 0; translate: 0 @menu-lift; } }
 @keyframes menu-fade { from { opacity: 0; } }
+@keyframes menu-appear { from { --menu-alpha: 0; } }
 @keyframes menu-settle { from { scale: 1.05; } }
 @keyframes menu-swap-in { from { opacity: 0; scale: @menu-swap-scale; } }
 @keyframes menu-swap-out { to { opacity: 0; scale: @menu-swap-scale; } }
-
-// risen items keep their layer while open (no snap when the rise ends); the panel keeps one too so they never go stale
-.menu-rise() {
-  animation: menu-rise @menu-rise var(--ease-settle) backwards;
-  will-change: translate;
-}
 
 .menu {
   position: fixed;
@@ -191,18 +191,38 @@ html.is-locked {
     color: var(--color-navy);
     transition: color var(--duration-base) ease;
     @media (min-width: @bp-lg) {
-      display: block;
+      display: grid;
+      grid-template-columns: 1fr;
       min-height: 0;
-      text-box: trim-both cap alphabetic;
+      transition:
+        color var(--duration-base) ease,
+        grid-template-columns @menu-widen var(--ease-in-out),
+        margin-left @menu-widen var(--ease-in-out),
+        opacity @menu-widen var(--ease-in-out),
+        visibility 0s;
+    }
+    > span {
+      @media (min-width: @bp-lg) {
+        min-width: 0;
+        overflow-x: clip;
+        white-space: nowrap;
+        text-box: trim-both cap alphabetic;
+      }
     }
     @media (hover: hover) {
       &:hover { color: var(--color-royal); }
     }
   }
 
-  // the narrow panel has no room for all three links beside the search field
+  // the narrow panel has no room for all three links beside the search field: the middle ones fold away with it
   @media (min-width: @bp-lg) {
-    &:not(.is-wide) &__utility-link:not(:first-child):not(:last-child) { display: none; }
+    &:not(.is-wide) &__utility-link:not(:first-child):not(:last-child) {
+      grid-template-columns: 0fr;
+      margin-left: -@menu-utility-gap;
+      opacity: 0;
+      visibility: hidden;
+      transition-delay: 0s, 0s, 0s, 0s, @menu-widen;
+    }
   }
 
   &__close {
@@ -447,13 +467,22 @@ html.is-locked {
   }
 
   @media (prefers-reduced-motion: no-preference) {
-    &.is-open {
+    // layers held through the rise so it lands without a snap; dropped on the first widen, where held layers wobble
+    &.is-open:not(.has-widened) {
       .menu__panel { will-change: transform; }
       .menu__search,
       .menu__utility,
       .menu__link,
       .menu__secondary > li,
-      .menu__social > li { .menu-rise(); }
+      .menu__social > li { will-change: translate; }
+    }
+
+    &.is-open {
+      .menu__search,
+      .menu__utility,
+      .menu__link,
+      .menu__secondary > li,
+      .menu__social > li { animation: menu-rise @menu-rise var(--ease-settle) backwards; }
       .menu__search,
       .menu__utility { animation-delay: calc(@menu-content + var(--i) * 60ms); }
       .menu__link { animation-delay: calc(@menu-content + 100ms + var(--i) * @menu-step); }
@@ -482,8 +511,9 @@ html.is-locked {
     }
 
     &__item.is-open .menu__sub-list > li {
-      opacity: 1;
-      animation: menu-fade @menu-sub-fade ease backwards;
+      opacity: var(--menu-alpha);
+      transition: none;
+      animation: menu-appear @menu-sub-fade ease backwards;
       animation-delay: calc(@menu-sub + var(--i) * @menu-enter-step);
     }
   }

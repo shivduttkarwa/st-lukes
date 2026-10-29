@@ -43,7 +43,11 @@ export function initMenu() {
   const closeItems = (except) => items.forEach((item) => {
     if (item !== except && item.classList.contains("is-open")) setItem(item, false);
   });
-  const syncWide = () => menu.classList.toggle("is-wide", items.some((item) => item.classList.contains("is-open")));
+  const syncWide = () => {
+    const wide = items.some((item) => item.classList.contains("is-open"));
+    menu.classList.toggle("is-wide", wide);
+    if (wide) menu.classList.add("has-widened");
+  };
 
   // the 1024px design frame is 64rem; never shrink its 18px links below 12px
   const fit = () => {
@@ -61,6 +65,7 @@ export function initMenu() {
         root.style.setProperty("--scrollbar-gutter", `${window.innerWidth - root.clientWidth}px`);
       }
       root.classList.add("is-locked");
+      menu.classList.remove("has-widened");
       fit();
     }
     menu.classList.toggle("is-open", open);
