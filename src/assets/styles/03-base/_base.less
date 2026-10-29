@@ -1,12 +1,24 @@
+// registered so the thumb colour can fade when the scroll lock lifts
+@property --scrollbar-thumb {
+  syntax: "<color>";
+  inherits: true;
+  initial-value: transparent;
+}
+
 html {
+  --scrollbar-thumb: var(--color-navy-tint);
   // 16px at the design's 1440 × 813 first view; a short laptop viewport scales down by height
   font-size: ~"clamp(0.875rem, min(0.5rem + 0.5556vw, 0.4rem + 1.2svh), 1.1667rem)";
   scroll-behavior: smooth;
   overflow-x: clip;
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) transparent;
+  transition: --scrollbar-thumb var(--duration-slow) ease;
   -webkit-text-size-adjust: 100%;
 }
 
 body {
+  position: relative;
   background: var(--color-background);
   color: var(--color-text);
   font-family: var(--font-body);

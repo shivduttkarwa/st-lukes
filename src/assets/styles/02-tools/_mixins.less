@@ -67,6 +67,8 @@
   video { .img-cover(); }
 }
 
+@circle-size: 65 * @px;
+
 .circle-button() {
   display: grid;
   place-items: center;
@@ -78,8 +80,8 @@
   color: var(--color-navy);
   transition: background-color var(--duration-base) ease, color var(--duration-base) ease;
   @media (min-width: @bp-lg) {
-    width: 65 * @px;
-    height: 65 * @px;
+    width: @circle-size;
+    height: @circle-size;
   }
   @media (hover: hover) {
     &:hover { background: var(--color-gold-deep); }

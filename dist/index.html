@@ -22,8 +22,6 @@
 </head>
 <body>
   <svg xmlns="http://www.w3.org/2000/svg" hidden>
-  <symbol id="icon-menu" viewBox="0 0 30 12" fill="none" stroke="currentColor" stroke-width="2"><path d="M0 1H30"/><path d="M0 11H30"/></symbol>
-  <symbol id="icon-close" viewBox="0 0 30 23" fill="none" stroke="currentColor" stroke-width="2"><path d="M3.79 21.92L25.01 0.71"/><path d="M5.21 0.92L26.42 22.13"/></symbol>
   <symbol id="icon-search" viewBox="0 0 20 20"><path fill="currentColor" d="M15 8.5C15 9.9375 14.5312 11.25 13.75 12.3438L17.7188 16.2812C18.0938 16.6875 18.0938 17.3125 17.7188 17.7188C17.3125 18.0938 16.6875 18.0938 16.2812 17.7188L12.3438 13.75C11.25 14.5312 9.9375 15 8.5 15C4.90625 15 2 12.0938 2 8.5C2 4.90625 4.90625 2 8.5 2C12.0938 2 15 4.90625 15 8.5ZM8.5 13C11 13 13 11 13 8.5C13 6 11 4 8.5 4C6 4 4 6 4 8.5C4 11 6 13 8.5 13Z"/></symbol>
   <symbol id="icon-arrow" viewBox="0 0 24 24"><path fill="currentColor" transform="rotate(-45 12 12) translate(3.645 3.6)" d="M16.5283 7.79395C16.7699 8.03565 16.77 8.42727 16.5283 8.66895L8.39844 16.7988L7.52344 15.9238L14.585 8.8623H0V7.625H14.6094L7.86035 0.875L8.73535 0L16.5283 7.79395Z"/></symbol>
   <symbol id="icon-arrow-corner" viewBox="0 0 28.3582 28.5075"><path fill="currentColor" d="M20.5844 6.78434C20.9931 6.78473 21.3246 7.11778 21.3248 7.52862L21.3241 21.3624H19.8434L19.8427 9.3481L7.50015 21.7556L6.4526 20.7025L18.8165 8.27358L7.39271 8.27427V6.78434H20.5844Z"/></symbol>
@@ -75,7 +73,7 @@
       <a class="site-header__link" href="#">Enrol</a>
       
       <button class="site-header__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu" data-menu-open>
-        <svg class="icon" aria-hidden="true"><use href="#icon-menu"></use></svg>
+        <span class="menu-icon" aria-hidden="true"></span>
       </button>
     </div>
   </div>
@@ -145,9 +143,9 @@
   </div>
 </footer>
 
-  <div class="menu" id="site-menu" data-menu>
+  <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
   <div class="menu__overlay" data-menu-close></div>
-  <div class="menu__panel" role="dialog" aria-modal="true" aria-label="Menu" tabindex="-1">
+  <div class="menu__panel" tabindex="-1">
     <div class="menu__top">
       <form class="menu__search" role="search" action="/search/" method="get">
         <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
@@ -162,9 +160,7 @@
         <a class="menu__utility-link" href="#">Enrol</a>
         
       </div>
-      <button class="menu__close" type="button" aria-label="Close menu" data-menu-close>
-        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
-      </button>
+      <button class="menu__close" type="button" aria-label="Close menu" data-menu-close><span class="menu-icon" aria-hidden="true"></span></button>
     </div>
 
     <div class="menu__body">
@@ -173,19 +169,61 @@
           
           <li class="menu__item">
             
-            <a class="menu__link" href="/">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-1">
               <span>Home</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-1">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="/" data-thumb="/assets/images/home/hero-768.webp">Welcome</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Our Story</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Visit Us</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Contact</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/home/hero-768.webp" alt="" width="768" height="512" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-2">
               <span>Enrolments</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-2">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/home/notice.webp">How to Apply</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Fees &amp; Charges</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Scholarships</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Book a Tour</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/home/notice.webp" alt="" width="800" height="533" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
@@ -199,7 +237,7 @@
               <div class="menu__sub-inner">
                 <ul class="menu__sub-list">
                   
-                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Principal&#39;s Welcome</a></li>
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/menu/our-school.webp">Principal&#39;s Welcome</a></li>
                   
                   <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Why Choose St Luke&#39;s</a></li>
                   
@@ -231,55 +269,177 @@
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-4">
               <span>Learning</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-4">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/menu/our-school.webp">Early Learning</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Junior School</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Senior School</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Co-curricular</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/menu/our-school.webp" alt="" width="648" height="402" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-5">
               <span>Wellbeing</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-5">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/home/hero-768.webp">Pastoral Care</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Counselling</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Learning Support</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/home/hero-768.webp" alt="" width="768" height="512" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-6">
               <span>School Life</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-6">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/home/notice.webp">Sport</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Music &amp; Arts</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Outdoor Education</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Service Learning</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/home/notice.webp" alt="" width="800" height="533" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-7">
               <span>Campuses</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-7">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/home/hero-768.webp">Senior Campus</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Junior Campus</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Early Learning Centre</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Maps &amp; Transport</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/home/hero-768.webp" alt="" width="768" height="512" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-8">
               <span>Community</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-8">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/menu/our-school.webp">Parents &amp; Friends</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/notice.webp">Alumni</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Events</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Giving</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/menu/our-school.webp" alt="" width="648" height="402" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           
           <li class="menu__item">
             
-            <a class="menu__link" href="#">
+            <button class="menu__link" type="button" aria-expanded="false" aria-controls="submenu-9">
               <span>News &amp; Stories</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
-            </a>
+            </button>
+            <div class="menu__sub" id="submenu-9">
+              <div class="menu__sub-inner">
+                <ul class="menu__sub-list">
+                  
+                  <li><a class="menu__sub-link is-current" href="#" data-thumb="/assets/images/home/notice.webp">Latest News</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/home/hero-768.webp">Newsletters</a></li>
+                  
+                  <li><a class="menu__sub-link" href="#" data-thumb="/assets/images/menu/our-school.webp">Media</a></li>
+                  
+                </ul>
+                
+                <div class="menu__thumb">
+                  <img class="" src="/assets/images/home/notice.webp" alt="" width="800" height="533" loading="lazy" decoding="async">
+
+                </div>
+                
+              </div>
+            </div>
             
           </li>
           

@@ -5,8 +5,26 @@
   "tagline": "Local Heart. Global Mind.",
   "theme_color": "#001638",
   "nav": [
-    { "label": "Home", "url": "/" },
-    { "label": "Enrolments", "url": "#" },
+    {
+      "label": "Home",
+      "url": "/",
+      "children": [
+        { "label": "Welcome", "url": "/", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Our Story", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Visit Us", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Contact", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } }
+      ]
+    },
+    {
+      "label": "Enrolments",
+      "url": "#",
+      "children": [
+        { "label": "How to Apply", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Fees & Charges", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Scholarships", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Book a Tour", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
+      ]
+    },
     {
       "label": "Our School",
       "url": "#",
@@ -22,12 +40,64 @@
         { "label": "Acknowledgement of Country", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     },
-    { "label": "Learning", "url": "#" },
-    { "label": "Wellbeing", "url": "#" },
-    { "label": "School Life", "url": "#" },
-    { "label": "Campuses", "url": "#" },
-    { "label": "Community", "url": "#" },
-    { "label": "News & Stories", "url": "#" }
+    {
+      "label": "Learning",
+      "url": "#",
+      "children": [
+        { "label": "Early Learning", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Junior School", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Senior School", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Co-curricular", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+      ]
+    },
+    {
+      "label": "Wellbeing",
+      "url": "#",
+      "children": [
+        { "label": "Pastoral Care", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Counselling", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Learning Support", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+      ]
+    },
+    {
+      "label": "School Life",
+      "url": "#",
+      "children": [
+        { "label": "Sport", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Music & Arts", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Outdoor Education", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Service Learning", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
+      ]
+    },
+    {
+      "label": "Campuses",
+      "url": "#",
+      "children": [
+        { "label": "Senior Campus", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Junior Campus", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Early Learning Centre", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Maps & Transport", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } }
+      ]
+    },
+    {
+      "label": "Community",
+      "url": "#",
+      "children": [
+        { "label": "Parents & Friends", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Alumni", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Events", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Giving", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+      ]
+    },
+    {
+      "label": "News & Stories",
+      "url": "#",
+      "children": [
+        { "label": "Latest News", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Newsletters", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Media", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+      ]
+    }
   ],
   "menu_links": [
     { "label": "Parent Portal", "url": "#" },

@@ -1,6 +1,6 @@
-<div class="menu" id="site-menu" data-menu>
+<div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
   <div class="menu__overlay" data-menu-close></div>
-  <div class="menu__panel" role="dialog" aria-modal="true" aria-label="Menu" tabindex="-1">
+  <div class="menu__panel" tabindex="-1">
     <div class="menu__top">
       <form class="menu__search" role="search" action="/search/" method="get">
         <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
@@ -11,9 +11,7 @@
         <a class="menu__utility-link" href="{{ item.url }}">{{ item.label }}</a>
         {% endfor %}
       </div>
-      <button class="menu__close" type="button" aria-label="Close menu" data-menu-close>
-        <svg class="icon" aria-hidden="true"><use href="#icon-close"></use></svg>
-      </button>
+      <button class="menu__close" type="button" aria-label="Close menu" data-menu-close><span class="menu-icon" aria-hidden="true"></span></button>
     </div>
 
     <div class="menu__body">
@@ -30,7 +28,7 @@
               <div class="menu__sub-inner">
                 <ul class="menu__sub-list">
                   {% for child in item.children %}
-                  <li><a class="menu__sub-link" href="{{ child.url }}"{% if child.image %} data-thumb="{{ child.image.src }}"{% endif %}>{{ child.label }}</a></li>
+                  <li><a class="menu__sub-link{% if loop.first %} is-current{% endif %}" href="{{ child.url }}"{% if child.image %} data-thumb="{{ child.image.src }}"{% endif %}>{{ child.label }}</a></li>
                   {% endfor %}
                 </ul>
                 {% if item.children[0].image %}

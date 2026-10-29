@@ -32,6 +32,10 @@ export function initMenu() {
   const canHover = window.matchMedia("(hover: hover)");
   let opener = null;
 
+  menu.querySelectorAll(".menu__top, .menu__list, .menu__secondary, .menu__social, .menu__sub-list").forEach((list) => {
+    [...list.children].forEach((el, i) => el.style.setProperty("--i", i));
+  });
+
   const setItem = (item, open) => {
     item.classList.toggle("is-open", open);
     item.querySelector("[aria-expanded]").setAttribute("aria-expanded", String(open));
@@ -41,11 +45,25 @@ export function initMenu() {
   });
   const syncWide = () => menu.classList.toggle("is-wide", items.some((item) => item.classList.contains("is-open")));
 
+  // the 1024px design frame is 64rem; never shrink its 18px links below 12px
+  const fit = () => {
+    const rem = parseFloat(getComputedStyle(root).fontSize);
+    const zoom = Math.min(1, Math.max(12 / (1.125 * rem), window.innerHeight / (64 * rem)));
+    menu.style.setProperty("--menu-zoom", zoom.toFixed(4));
+  };
+
+  let unlock = 0;
   const setOpen = (open, trigger) => {
     if (open === menu.classList.contains("is-open")) return;
-    if (open) root.style.setProperty("--scrollbar-gutter", `${window.innerWidth - root.clientWidth}px`);
+    clearTimeout(unlock);
+    if (open) {
+      if (!root.classList.contains("is-locked")) {
+        root.style.setProperty("--scrollbar-gutter", `${window.innerWidth - root.clientWidth}px`);
+      }
+      root.classList.add("is-locked");
+      fit();
+    }
     menu.classList.toggle("is-open", open);
-    root.classList.toggle("is-locked", open);
     openers.forEach((b) => b.setAttribute("aria-expanded", String(open)));
     outside.forEach((el) => { el.inert = open; });
     if (open) {
@@ -53,10 +71,14 @@ export function initMenu() {
       Anim.stop();
       panel.focus({ preventScroll: true });
     } else {
-      Anim.start();
       closeItems();
       syncWide();
-      if (opener) opener.focus();
+      if (opener) opener.focus({ preventScroll: true });
+      // keep the scrollbar away until the panel has left, or the fixed menu narrows mid-slide
+      unlock = setTimeout(() => {
+        root.classList.remove("is-locked");
+        Anim.start();
+      }, parseFloat(getComputedStyle(menu).transitionDelay) * 1000);
     }
   };
 
@@ -78,6 +100,7 @@ export function initMenu() {
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && menu.classList.contains("is-open")) setOpen(false);
   });
+  window.addEventListener("resize", fit);
 
   items.forEach((item) => {
     const toggle = item.querySelector("button[aria-expanded]");
@@ -90,9 +113,14 @@ export function initMenu() {
     });
     const thumb = item.querySelector(".menu__thumb");
     if (!thumb) return;
-    item.querySelectorAll("[data-thumb]").forEach((link) => {
-      link.addEventListener("pointerenter", () => canHover.matches && swapThumb(thumb, link.dataset.thumb));
-      link.addEventListener("focus", () => swapThumb(thumb, link.dataset.thumb));
+    const links = item.querySelectorAll("[data-thumb]");
+    links.forEach((link) => {
+      const show = () => {
+        swapThumb(thumb, link.dataset.thumb);
+        links.forEach((other) => other.classList.toggle("is-current", other === link));
+      };
+      link.addEventListener("pointerenter", () => canHover.matches && show());
+      link.addEventListener("focus", show);
     });
   });
 }

@@ -1,5 +1,31 @@
 # Changelog
 
+## 2026-10-29 — menu rise settle
+- Main menu row divider is a 1px `::after` line instead of an inset `box-shadow`. With GPU raster at fractional scales (panel zoom × 125% Windows scaling) the shadow left a faint sliver down the row's right edge, which read as a frame round the open (royal) row; Figma has only the bottom line (`20169:15818`). Geometry unchanged.
+- Opening a row turns its corner arrow 90° clockwise over 0.6s (↗ to ↘) instead of flipping it with `scaleY(-1)`; the open frame's arrow is a rotated instance too. Closing turns it back.
+- The turn is a registered `--menu-turn` angle driving `rotate()` on the SVG's `<use>`. A `transform` transition ran on a GPU layer: the arrow wobbled ±1px while turning and jumped ~0.75px when it landed (most visible on the previous row's arrow turning back). Now it repaints crisp each frame and settles without a jump.
+- Submenu items fade in place, no movement: in over 0.5s, 42ms apart; out over 0.3s, 28ms apart. On a row switch the old column fades out before the new one fades in. The fade moved from the column onto the items and thumbnail, and the column only hides once they have gone. Same on the phone accordion. Reduced motion swaps columns instantly.
+- Every main menu row now has 3–4 placeholder children (labels and thumbnails are dummy, pending the client's sitemap), so each submenu can be reviewed.
+- Risen menu items keep `will-change: translate` while the menu (or submenu) is open, and the panel keeps `will-change: transform`. Chrome draws an animating layer at a whole-pixel offset, and every position here is fractional (fluid rem, panel zoom), so each row sat ~0.35px high during the rise and dropped when its animation ended. Holding the rows' layers alone left them stale once the panel's slide ended or it widened (text soft, and shifting ~0.3px on first hover); with the panel held too they sit at a fixed offset inside it. A main-thread rise was tried and dropped: text then moves in whole-pixel steps and visibly shivers.
+- Checked by frame capture at 1440 × 900 (1× and 1.25×) and 390 × 844 (2×, 3×): rise and submenu rise glide to rest with no drop, no first-hover shift, phone rows below an opened accordion unchanged when repainted. Cost: at 100% Windows scaling the open menu's text is greyscale-smoothed instead of ClearType (no difference at 125% and up).
+
+## 2026-10-28 — menu motion
+- Panel glides in over 0.8s on one in-out curve (`--ease-in-out`) as the scrim fades; it leaves in 0.6s. Contents fade up 14px in order once it is moving: search / utility links / close, then each nav row 40ms apart, then the small links and social buttons. Opening a submenu staggers its children the same way and fades the thumbnail in with a slow 5% settle. Short moves on a gentle curve only; no masks, no colour layers.
+- Keyframes use `backwards` fill and animate the row link, not the `<li>`, so nothing keeps a transform afterwards; a lingering transform on the `<li>` had made it the containing block for the submenu column.
+- Opening or closing the menu no longer shifts the header by the scrollbar width: `body` is now the header's containing block, so the lock's scrollbar padding applies to it too.
+- Closing keeps the scroll lock (and Lenis stopped) until the panel has left, timed from the menu's own CSS delay; before, the scrollbar came back at once and the fixed panel jumped 15px mid-slide.
+- Burger and close (`20169:15273`, `20169:15464`) checked: both 65 gold circles at x 1325, y 30 (50 from the right), 27 after Enrol. Both icons are now one CSS `.menu-icon` (two 2px bars, 30 wide, 10 apart, the pair 1px above centre as in Figma; the build's burger had been 1px low). The close is always the X; it stays invisible while the panel slides in, fades in from 450ms, and fades out in 200ms as the panel leaves. The sprite's `icon-menu` and `icon-close` are gone.
+- Thin scrollbar site-wide (`scrollbar-width: thin`, navy-tint thumb on a clear track; 10px on Windows instead of 15), the menu panel's too. The thumb colour is a registered `--scrollbar-thumb`, transparent while locked, so it fades back in over 0.6s when the lock lifts instead of snapping.
+
+## 2026-10-28 — hero title check
+- Title lines `20169:5681` / `20169:5682` compared by rendered ink at 1440 × 1024: widths, tracking and left/right bleed already matched; both lines sat 1px high. Overhang is now 82 (0.5467em), so the ink lands on Figma's exact box (gold 0–992 × 679–786, white 436–1439 × 795–902).
+
+## 2026-10-28 — menu fit and pitch
+- Re-measured against `20169:15805` at 1440 × 1024: nav rows are an exact 60 (were 60.5, drifting 4.5px by the last row), small links and submenu rows an exact 28 (were 28.1). Every measured box now lands on Figma's numbers; the only remainder is Tours / Enquire / Enrol sitting 1–3px right, because Figma rounds their text boxes up to whole pixels.
+- The child whose thumbnail is showing is royal, as in the frame: the first child on open, then whichever was last hovered or focused.
+- Horizontal scroll inside the panel removed: the hidden submenu column was counted in the panel's scroll width.
+- On desktop (fine pointer, lg up) the panel scales as one piece to fit the window height, keeping the 1024-tall frame's proportions (e.g. 0.84 at 1920 × 955), never so far that the 18px links drop under 12px. Touch screens keep full size and scroll.
+
 ## 2026-10-28 — quick links dropdown
 - Rebuilt from frame `20169:15240`: the pill itself becomes the white card (radius 26), title and chevron turn navy, the chevron flips up, and the seven links sit 64 below the card's top on a 26 rhythm. The card grows down out of the pill with a clip-path reveal and fades back into it on close; reduced motion drops the transitions.
 - Kept anchored to the closed pill (y 30, 234 wide); the Figma open frame draws the card 1px lower and 1px wider, which would make the title jump on open.

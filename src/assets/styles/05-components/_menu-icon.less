@@ -1,0 +1,26 @@
+@menu-icon-shift-sm: 4 * @px;
+@menu-icon-shift-lg: 5 * @px;
+
+.menu-icon {
+  --menu-icon-shift: @menu-icon-shift-sm;
+  position: relative;
+  width: 24 * @px;
+  height: 10 * @px;
+  @media (min-width: @bp-lg) {
+    --menu-icon-shift: @menu-icon-shift-lg;
+    width: 30 * @px;
+    height: 12 * @px;
+    margin-bottom: 2 * @px;
+  }
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 2 * @px;
+    background: currentColor;
+  }
+  &::before { top: 0; }
+  &::after { bottom: 0; }
+}
