@@ -21,6 +21,13 @@ export function initDisclosures() {
   });
 }
 
+export function initScrollState() {
+  const root = document.documentElement;
+  const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);
+  sync();
+  window.addEventListener("scroll", sync, { passive: true });
+}
+
 export function initMenu() {
   const menu = document.querySelector("[data-menu]");
   if (!menu) return;

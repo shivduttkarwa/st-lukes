@@ -14,6 +14,9 @@
       &[data-anim-start="top top"] { animation-range: exit; }
     }
 
+    // at the very top a pinned layer has not moved yet; leaving it unanimated keeps it off the GPU, so text over it stays crisp
+    html:not(.is-scrolled) [data-anim="parallax"][data-anim-start="top top"] { animation: none; }
+
     [data-anim="parallax"][data-anim-disable-mobile] {
       animation: none;
       @media (min-width: @bp-lg) {

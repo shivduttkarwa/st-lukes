@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-10-29 — header text crispness
+- Header checked against Figma `20169:5670`: layout, sizes and type already matched (Quick Links pill 234 × 54 at y 30, Sanshand 20 / 1.2; Tours / Enquire / Enrol Sanshand 25 / 0.9, −0.5 tracking, cap-trimmed, 27 apart; 65 gold burger). The Tours row still sits ~3px right of Figma because Figma rounds each text box up; left as is so labels stay editable.
+- The soft look was compositing, not CSS: the hero image's scroll-driven parallax keeps it on a GPU layer, and the header (drawn over it) was promoted with it, which blurs its text. At the very top the pinned parallax now has no animation (`html:not(.is-scrolled)`), so nothing is layered and the header paints crisp; it switches on with the first pixel of scroll (0.18px moved at 1px, so no jump) and off again at the top. `will-change: transform` is gone from the hero media, `is-scrolled` comes from `initScrollState()` in `ui.js`, and `anim.js` now leaves parallax to CSS by feature test rather than by reading the element's running animation.
+- Edge sharpness of the header text at 1440, Figma 141 / 78 (links / Quick Links): was 115 / 59, now 134 / 71 (1× and 1.25×). The remainder is Figma's renderer against Chrome's with this unhinted font (the source OTF ships with no hints).
+
 ## 2026-10-29 — menu rise settle
 - Main menu row divider is a 1px `::after` line instead of an inset `box-shadow`. With GPU raster at fractional scales (panel zoom × 125% Windows scaling) the shadow left a faint sliver down the row's right edge, which read as a frame round the open (royal) row; Figma has only the bottom line (`20169:15818`). Geometry unchanged.
 - Opening a row turns its corner arrow 90° clockwise over 0.6s (↗ to ↘) instead of flipping it with `scaleY(-1)`; the open frame's arrow is a rotated instance too. Closing turns it back.
