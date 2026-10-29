@@ -39,6 +39,7 @@ const SWING = { x: 20, y: -25, rotation: 18, ease: "power3.out" };
 // still, and stacked paragraphs take them at different moments. The lift therefore lands early, under the fade, and
 // moves in whole pixels so every line steps on the same frame
 const LIFT = 15;
+const DROP = 24;
 const whole = (ease, distance) => {
   const curve = gsap.parseEase(ease);
   return (progress) => Math.round(curve(progress) * distance) / distance;
@@ -52,9 +53,10 @@ const REVEAL = {
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
-  "enter-right": { from: { x: "110%", autoAlpha: 0 },           to: { x: "0%", autoAlpha: 1, duration: 0.9, ease: "expo.out" } },
-  "enter-left":  { from: { x: "-110%", autoAlpha: 0 },          to: { x: "0%", autoAlpha: 1, duration: 0.9, ease: "expo.out" } },
-  "drop-soft":   { from: { y: -24, autoAlpha: 0 },              to: { y: 0, autoAlpha: 1, duration: 0.7, ease: "power2.out" } },
+  "enter-right": { from: { x: "110%", autoAlpha: 0 },           to: { x: "0%", autoAlpha: 1, duration: 1.4, ease: "power2.out" } },
+  "enter-left":  { from: { x: "-110%", autoAlpha: 0 },          to: { x: "0%", autoAlpha: 1, duration: 1.4, ease: "power2.out" } },
+  // 2D only: a GPU layer would shift the header text and change its sharpness as the drop ends
+  "drop-soft":   { from: { y: -DROP, autoAlpha: 0, force3D: false }, to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power2.out", DROP) }, ease: "none" } } },
   "nudge-right": { from: { x: 40, autoAlpha: 0 },               to: { x: 0, autoAlpha: 1 } },
   "swing-in":   { from: { xPercent: SWING.x, yPercent: SWING.y, rotation: SWING.rotation, autoAlpha: 0 }, to: { xPercent: 0, yPercent: 0, rotation: 0, autoAlpha: 1, duration: 1.2, ease: SWING.ease } },
   "drop":       { from: { y: -48, autoAlpha: 0 },               to: { y: 0, autoAlpha: 1, duration: 0.6, ease: "back.out(1.4)" } },
@@ -545,7 +547,9 @@ function setupSequences(root, entrance, scroll) {
             gsap.set(items, { clearProps: "all" });
           },
         });
-        items.forEach((item, i) => tl.to(item, toVars(presetFor(item), item), i * stagger));
+        // an item settles as it lands so its text turns crisp; visibility waits for is-revealed or the CSS guard hides it
+        const settle = (item) => gsap.set(item, { clearProps: "transform,opacity,transition" });
+        items.forEach((item, i) => tl.to(item, { ...toVars(presetFor(item), item), onComplete: () => settle(item) }, i * stagger));
         return tl;
       },
     }, entrance, scroll);
