@@ -235,10 +235,7 @@
         "video": null
       }
     },
-    {
-      "type": "placeholder",
-      "value": { "label": "Hear from our community: coming soon" }
-    },
+    
     {
       "type": "news",
       "value": {
