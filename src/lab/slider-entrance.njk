@@ -1,0 +1,342 @@
+---
+permalink: /lab/slider-entrance/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Slider entrance lab</title>
+<link rel="stylesheet" href="/assets/css/main.css">
+<style>
+  .demo { padding: 120px 0 60vh; overflow: hidden; }
+  .demo__intro { max-width: 640px; margin-bottom: 40px; }
+  .demo__intro h1 { font-size: 40px; line-height: 1.1; color: var(--color-navy); }
+  .demo__section { padding: 90px 0; }
+  .demo__section--navy { background: var(--color-navy); color: var(--color-white); }
+  .demo__label { margin: 0 0 24px; font: 600 13px/1 system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+  .track { display: flex; gap: 6px; }
+  .slide { position: relative; flex: none; margin: 0; }
+  .slide__frame { position: relative; overflow: hidden; }
+  .slide__frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .slide--entry { width: 25rem; }
+  .slide--entry .slide__frame { aspect-ratio: 400 / 618; }
+  .slide--usp { width: 25rem; }
+  .slide--usp .slide__frame { aspect-ratio: 1; }
+  .slide--tile { width: 22rem; }
+  .slide--tile .slide__frame { aspect-ratio: 352 / 469; }
+  .slide__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 22, 56, 0) 50%, var(--color-navy) 100%); }
+  .slide__title { position: absolute; left: 24px; right: 24px; bottom: 24px; color: var(--color-white); font: 800 26px/1.05 var(--font-display); text-transform: uppercase; }
+  .slide__caption { margin-top: 18px; font: 800 22px/1.1 var(--font-display); color: var(--color-gold); text-transform: uppercase; }
+
+  .lab {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1100;
+    width: min(320px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    border-radius: 12px;
+    background: var(--color-white);
+    color: var(--color-navy);
+    font: 15px/1.4 system-ui, sans-serif;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+  .lab summary { padding: 14px 16px; font-weight: 700; cursor: pointer; }
+  .lab__body { display: grid; gap: 12px; padding: 0 16px 16px; }
+  .lab label { display: grid; gap: 4px; }
+  .lab__row { display: flex; justify-content: space-between; gap: 8px; }
+  .lab__check { display: flex !important; align-items: center; gap: 8px !important; }
+  .lab select { width: 100%; padding: 6px 8px; border: 1px solid var(--color-line); border-radius: 6px; font: inherit; font-size: 16px; }
+  .lab input[type="range"] { width: 100%; accent-color: var(--color-royal); }
+  .lab__options { display: grid; gap: 6px; }
+  .lab button { min-height: 36px; padding: 6px 12px; border: 0; border-radius: 999px; background: var(--color-royal-tint-light); color: var(--color-navy); font: inherit; font-weight: 600; text-align: left; cursor: pointer; }
+  .lab button:hover { background: var(--color-royal-tint); }
+  .lab button.is-active { background: var(--color-navy); color: var(--color-white); }
+  .lab button.is-primary { background: var(--color-gold); text-align: center; }
+  .lab textarea { width: 100%; height: 150px; padding: 8px; border: 1px solid var(--color-line); border-radius: 6px; font: 12px/1.45 ui-monospace, monospace; resize: vertical; }
+  .lab__hint { margin: 0; color: var(--color-muted); font-size: 13px; }
+  .lab [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<main class="demo">
+  <div class="container demo__intro">
+    <h1>Slider entrance lab</h1>
+    <p>Each slider row brings its slides in as it scrolls into view. Pick an option on the right, tweak it, and scroll or press Replay.</p>
+  </div>
+
+  <section class="demo__section" data-group>
+    <div class="container">
+      <p class="demo__label">Learning at St Luke's</p>
+      <div class="track">
+        {% for n in [1, 2, 3, 4, 5, 6] %}
+        <div class="slide slide--entry"><div class="slide__frame"><img src="/assets/images/home/learn-{{ n }}.webp" alt=""><span class="slide__shade"></span><span class="slide__title">Learning {{ n }}</span></div></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="demo__section demo__section--navy" data-group>
+    <div class="container">
+      <p class="demo__label">USPs on navy</p>
+      <div class="track">
+        {% for n in [1, 2, 3, 4, 5, 6] %}
+        <div class="slide slide--usp"><div class="slide__frame"><img src="/assets/images/home/usp-{{ n }}.webp" alt=""></div><p class="slide__caption">Reason {{ n }}</p></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="demo__section" data-group>
+    <div class="container">
+      <p class="demo__label">Join the conversation</p>
+      <div class="track">
+        {% for n in [1, 2, 3, 4, 5, 6] %}
+        <div class="slide slide--tile"><div class="slide__frame"><img src="/assets/images/home/social-{{ n }}.webp" alt=""></div></div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+</main>
+
+<details class="lab" open>
+  <summary>Slider entrance lab</summary>
+  <form class="lab__body" id="lab">
+    <input type="hidden" name="option">
+    <div class="lab__options">
+      <button type="button" data-preset="current">0 · Current (fade-up)</button>
+      <button type="button" data-preset="slidein">1 · Slide in</button>
+      <button type="button" data-preset="glide">2 · Glide</button>
+      <button type="button" data-preset="deal">3 · Deal</button>
+      <button type="button" data-preset="wipe">4 · Wipe up</button>
+      <button type="button" data-preset="settle">5 · Settle</button>
+    </div>
+
+    <label><span class="lab__row">Duration <output data-out="duration"></output></span>
+      <input type="range" name="duration" min="0.3" max="3" step="0.1">
+    </label>
+
+    <label>Easing
+      <select name="ease"></select>
+    </label>
+
+    <label><span class="lab__row">Stagger <output data-out="stagger"></output></span>
+      <input type="range" name="stagger" min="0" max="0.4" step="0.02">
+    </label>
+
+    <label data-for="current slidein"><span class="lab__row">Distance <output data-out="distance"></output></span>
+      <input type="range" name="distance" min="0" max="400" step="5">
+    </label>
+
+    <label data-for="glide"><span class="lab__row">Photo travel <output data-out="travel"></output></span>
+      <input type="range" name="travel" min="0" max="40" step="2">
+    </label>
+
+    <label data-for="settle"><span class="lab__row">Starting size <output data-out="scale"></output></span>
+      <input type="range" name="scale" min="70" max="100" step="1">
+    </label>
+
+    <label data-for="slidein glide deal wipe settle"><span class="lab__row">Photo zoom <output data-out="zoom"></output></span>
+      <input type="range" name="zoom" min="0" max="20" step="1">
+    </label>
+
+    <label class="lab__check" data-for="slidein glide deal wipe"><input type="checkbox" name="fade" value="1"> Fade in as well</label>
+
+    <button type="button" class="is-primary" data-play>Replay</button>
+
+    <textarea readonly id="lab-spec" aria-label="Settings to port"></textarea>
+    <button type="button" data-copy>Copy settings</button>
+    <p class="lab__hint">The address bar keeps the settings, so the link reopens this exact version.</p>
+  </form>
+</details>
+
+<script>
+  (function () {
+    var EASES = [
+      ["power1.out", "cubic-bezier(0.5, 1, 0.89, 1)"],
+      ["power2.out", "cubic-bezier(0.33, 1, 0.68, 1)"],
+      ["power3.out", "cubic-bezier(0.25, 1, 0.5, 1)"],
+      ["power4.out", "cubic-bezier(0.22, 1, 0.36, 1)"],
+      ["expo.out", "cubic-bezier(0.16, 1, 0.3, 1)"],
+      ["sine.inOut", "cubic-bezier(0.37, 0, 0.63, 1)"],
+      ["power1.inOut", "cubic-bezier(0.45, 0, 0.55, 1)"],
+      ["power2.inOut", "cubic-bezier(0.65, 0, 0.35, 1)"],
+      ["power3.inOut", "cubic-bezier(0.76, 0, 0.24, 1)"]
+    ];
+    var NAMES = { current: "0 · Current (fade-up)", slidein: "1 · Slide in", glide: "2 · Glide", deal: "3 · Deal", wipe: "4 · Wipe up", settle: "5 · Settle" };
+    var BASE = { distance: 160, travel: 24, scale: 92, zoom: 0, fade: "" };
+    var PRESETS = {
+      current: { option: "current", duration: 0.7, ease: "power1.out", stagger: 0.1, distance: 15, fade: "1" },
+      slidein: { option: "slidein", duration: 1.3, ease: "power3.out", stagger: 0.08, distance: 160, fade: "1" },
+      glide: { option: "glide", duration: 1.5, ease: "power2.out", stagger: 0.12, travel: 24, zoom: 6 },
+      deal: { option: "deal", duration: 1.5, ease: "power3.inOut", stagger: 0.03, fade: "1" },
+      wipe: { option: "wipe", duration: 1.2, ease: "power3.out", stagger: 0.1, zoom: 8 },
+      settle: { option: "settle", duration: 1.1, ease: "power2.out", stagger: 0.08, scale: 92, fade: "1" }
+    };
+    var NUMBERS = ["duration", "stagger", "distance", "travel", "scale", "zoom"];
+    var FADE_SHARE = 0.6;
+
+    var form = document.getElementById("lab");
+    var spec = document.getElementById("lab-spec");
+    var groups = Array.prototype.slice.call(document.querySelectorAll("[data-group]"));
+    var pending = new WeakMap();
+    var anims = [];
+    var timer = 0;
+
+    EASES.forEach(function (e) { form.ease.add(new Option(e[0], e[0])); });
+    var css = function (name) { return (EASES.filter(function (e) { return e[0] === name; })[0] || EASES[1])[1]; };
+
+    function state() {
+      var data = new FormData(form);
+      var s = { option: data.get("option"), ease: data.get("ease"), fade: data.get("fade") ? "1" : "" };
+      NUMBERS.forEach(function (k) { s[k] = +data.get(k); });
+      return s;
+    }
+
+    function fill(s) {
+      Object.keys(s).forEach(function (k) {
+        var field = form.elements[k];
+        if (!field) return;
+        if (field.type === "checkbox") field.checked = !!s[k] && s[k] !== "0";
+        else field.value = s[k];
+      });
+    }
+
+    function slideAnims(slide, s, i, first) {
+      var frame = slide.querySelector(".slide__frame");
+      var img = frame.querySelector("img");
+      var delay = i * s.stagger * 1000;
+      var opts = { duration: s.duration * 1000, delay: delay, easing: css(s.ease), fill: "both" };
+      var fadeOpts = { duration: s.duration * FADE_SHARE * 1000, delay: delay, easing: css("power1.out"), fill: "both" };
+      var list = [];
+      var photo = [];
+      var fades = s.fade;
+      slide.style.zIndex = "";
+
+      if (s.option === "current") {
+        list.push(slide.animate([{ transform: "translateY(" + s.distance + "px)" }, { transform: "none" }], Object.assign({}, opts, { duration: s.duration * 570 })));
+        list.push(slide.animate([{ opacity: 0 }, { opacity: 1 }], opts));
+        fades = "";
+      } else if (s.option === "slidein") {
+        list.push(slide.animate([{ transform: "translateX(" + s.distance + "px)" }, { transform: "none" }], opts));
+      } else if (s.option === "glide") {
+        list.push(frame.animate([{ clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)" }], opts));
+        photo.push("translateX(-" + s.travel + "%)");
+      } else if (s.option === "deal") {
+        var offset = first.offsetLeft - slide.offsetLeft;
+        slide.style.zIndex = String(100 - i);
+        list.push(slide.animate([{ transform: "translateX(" + offset + "px)" }, { transform: "none" }], opts));
+        if (i && s.fade) list.push(slide.animate([{ opacity: 0 }, { opacity: 1 }], Object.assign({}, fadeOpts, { duration: s.duration * 250 })));
+        if (!i && s.fade) list.push(slide.animate([{ opacity: 0 }, { opacity: 1 }], fadeOpts));
+        fades = "";
+      } else if (s.option === "wipe") {
+        list.push(frame.animate([{ clipPath: "inset(100% 0% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)" }], opts));
+      } else if (s.option === "settle") {
+        list.push(slide.animate([{ transform: "scale(" + s.scale / 100 + ")", opacity: 0 }, { transform: "none", opacity: 1 }], opts));
+        fades = "";
+      }
+
+      if (s.zoom && s.option !== "current") photo.push("scale(" + (1 + s.zoom / 100) + ")");
+      if (photo.length) list.push(img.animate([{ transform: photo.join(" ") }, { transform: "none" }], opts));
+      if (fades) list.push(slide.animate([{ opacity: 0 }, { opacity: 1 }], fadeOpts));
+      return list;
+    }
+
+    function arm() {
+      anims.forEach(function (a) { a.cancel(); });
+      anims = [];
+      var s = state();
+      groups.forEach(function (group) {
+        var slides = Array.prototype.slice.call(group.querySelectorAll(".slide"));
+        var list = [];
+        slides.forEach(function (slide, i) { list = list.concat(slideAnims(slide, s, i, slides[0])); });
+        list.forEach(function (a) { a.pause(); a.currentTime = 0; });
+        pending.set(group, list);
+        anims = anims.concat(list);
+      });
+      return s;
+    }
+
+    function inView(el) {
+      var r = el.getBoundingClientRect();
+      return r.top < innerHeight * 0.85 && r.bottom > 0;
+    }
+
+    function reveal(group) {
+      var list = pending.get(group);
+      if (!list) return;
+      pending.delete(group);
+      list.forEach(function (a) { a.play(); });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) reveal(e.target); });
+    }, { rootMargin: "0px 0px -15% 0px" });
+
+    function run() {
+      var s = arm();
+      sync(s);
+      groups.forEach(function (g) { if (inView(g)) reveal(g); });
+    }
+
+    function sync(s) {
+      form.querySelectorAll("[data-for]").forEach(function (el) {
+        el.hidden = el.getAttribute("data-for").split(" ").indexOf(s.option) < 0;
+      });
+      form.querySelectorAll("[data-preset]").forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-preset") === s.option); });
+      var out = function (k, v) { form.querySelector('[data-out="' + k + '"]').textContent = v; };
+      out("duration", s.duration.toFixed(1) + "s");
+      out("stagger", s.stagger.toFixed(2) + "s");
+      out("distance", s.distance + "px");
+      out("travel", s.travel + "%");
+      out("scale", s.scale + "%");
+      out("zoom", s.zoom ? "from " + (100 + s.zoom) + "%" : "off");
+      history.replaceState(null, "", "#" + new URLSearchParams(s));
+      write(s);
+    }
+
+    function write(s) {
+      var t = s.duration + "s " + s.ease;
+      var out = ["/* lab " + location.hash + " */", "Option: " + NAMES[s.option]];
+      if (s.option === "current") out.push("slide: rises " + s.distance + "px (landing at 57%) and fades in, " + t);
+      if (s.option === "slidein") out.push("slide: travels in " + s.distance + "px from the right, " + t);
+      if (s.option === "glide") out.push("slide frame: clip-path inset(0 100% 0 0) → inset(0), " + t, "photo: travels " + s.travel + "% with the wipe");
+      if (s.option === "deal") out.push("slides: start stacked under the first slide (first on top) and spread to their places, " + t);
+      if (s.option === "wipe") out.push("slide frame: clip-path inset(100% 0 0 0) → inset(0), " + t);
+      if (s.option === "settle") out.push("slide: scale " + s.scale / 100 + " → 1 and fades in, " + t);
+      if (s.zoom && s.option !== "current") out.push("photo: scale " + (1 + s.zoom / 100) + " → 1, " + t);
+      if (s.fade && ["slidein", "glide", "wipe", "deal"].indexOf(s.option) > -1) out.push("fade: opacity 0 → 1 over " + +(s.duration * FADE_SHARE).toFixed(2) + "s power1.out");
+      out.push("stagger: " + s.stagger + "s between slides");
+      spec.value = out.join("\n");
+    }
+
+    form.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(run, 150); });
+    form.querySelector("[data-play]").addEventListener("click", run);
+    form.querySelectorAll("[data-preset]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        fill(Object.assign({}, BASE, PRESETS[b.getAttribute("data-preset")]));
+        run();
+      });
+    });
+    form.querySelector("[data-copy]").addEventListener("click", function (e) {
+      navigator.clipboard.writeText(location.href + "\n\n" + spec.value).then(function () {
+        e.target.textContent = "Copied";
+        setTimeout(function () { e.target.textContent = "Copy settings"; }, 1500);
+      });
+    });
+
+    var start = Object.assign({}, BASE, PRESETS.slidein);
+    new URLSearchParams(location.hash.slice(1)).forEach(function (v, k) { if (k in start) start[k] = v; });
+    if (!PRESETS[start.option]) start = Object.assign({}, BASE, PRESETS.slidein);
+    fill(start);
+    run();
+    groups.forEach(function (g) { observer.observe(g); });
+  })();
+</script>
+</body>
+</html>

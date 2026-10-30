@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-10-30 — slider entrance
+- The homepage sliders (USPs, Learning, Join the conversation) bring their slides in with a plain staggered fade and no rise (`data-anim-group="fade"`, was `fade-up`). Glide was tried from the slider entrance lab (`/lab/slider-entrance/`, `src/lab/slider-entrance.njk`, noindex) and dropped.
+
 ## 2026-10-30 — intro media glide
 - The section under the hero reveals its media with the "Glide" option picked in the image reveal lab (`/lab/image-reveal/`, `src/lab/image-reveal.njk`, noindex). The promo video glides in from the left, the portrait photo from the right: the frame wipes open (`clip-path` inset) while the photo slides 24% with it and settles from 106%, over 1.5s `power2.out`. They play on the clock once scrolled in, not scrubbed.
 - `anim.js`: new `glide-right` / `glide-left` reveal presets. A preset's `inner` part animates the first `img` / `video` inside the element alongside it, then clears its transform.

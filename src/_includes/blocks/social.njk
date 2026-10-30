@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="social__slider swiper" data-slider data-slider-gap="6">
-      <div class="swiper-wrapper" data-anim-group="fade-up">
+      <div class="swiper-wrapper" data-anim-group="fade">
         {% for post in value.posts %}
         <a class="social__tile swiper-slide" href="{{ post.url | default('#') }}">{% set img = post.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}</a>
         {% endfor %}
