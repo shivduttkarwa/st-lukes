@@ -4,7 +4,7 @@ import { lockScroll } from "./ui.js";
 // each title row's centre from the screen centre, in em of the title (Preloader Step 02: 648 and 845.5 of 1440 at 150)
 const ROWS = [-0.48, 0.837];
 const ENTER = { duration: 2.4, ease: "power2.out", stagger: 0.3 };
-const RINGS_LEAD = 1.2;
+const RINGS_LEAD = 0.7;
 const PLAYED = "preloader-played";
 
 const briefly = (promise, ms) => Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
@@ -45,7 +45,7 @@ function play(root, loader, title, media) {
       gsap.set(rows, { y, transition: "none" });
       gsap.set(title, { visibility: "visible" });
       gsap.fromTo(rows, { x: (i) => (i ? width - boxes[i].left : -boxes[i].right) }, { x: (i) => x[i], ...ENTER, delay });
-      Promise.all([after(delay + 1.5), media]).then(() => {
+      Promise.all([after(delay + 1), media]).then(() => {
         gsap.timeline({
           onComplete: () => {
             gsap.set([title, ...rows], { clearProps: "all" });
@@ -54,8 +54,8 @@ function play(root, loader, title, media) {
         })
           .fromTo(loader, { "--preloader-hole": "0px" }, { "--preloader-hole": `${Math.hypot(width, height) / 2 + 2}px`, duration: 2.4, ease: "power2.inOut" })
           .to(loader.firstElementChild, { opacity: 0.58, duration: 1.2, ease: "power1.out" }, 0)
-          .call(resolve, [], 2)
-          .to(rows, { x: 0, y: 0, duration: 1.6, ease: "power2.inOut" }, 2)
+          .to(rows, { x: 0, y: 0, duration: 1.6, ease: "power2.inOut" }, 1.4)
+          .call(resolve, [], 2.7)
           .call(finish, [], 2.4);
       });
     } catch (err) {
@@ -68,7 +68,7 @@ function play(root, loader, title, media) {
   });
 }
 
-// Resolves as the circle opens, so Anim's hero entrance (its `after`) comes in with the title's move down
+// Resolves just before the title lands in the hero, so Anim's hero entrance (its `after`) follows it
 export function initPreloader() {
   const root = document.documentElement;
   const loader = document.querySelector("[data-preloader]");
