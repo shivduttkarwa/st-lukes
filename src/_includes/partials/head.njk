@@ -10,7 +10,7 @@
     d.classList.add("anim-ready");
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("anim-reduced");
     {% if p and p.preloader %}
-    if (!d.classList.contains("anim-reduced")) {
+    if (!d.classList.contains("anim-reduced") && /[?&]preloader\b/.test(location.search)) {
       d.classList.add("is-preloading");
       setTimeout(function () { if (!d.hasAttribute("data-preloader-live")) d.classList.remove("is-preloading"); }, 5000);
     }

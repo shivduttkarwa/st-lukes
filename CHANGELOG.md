@@ -1,9 +1,15 @@
 # Changelog
 
+## 2026-10-30 — intro media glide
+- The section under the hero reveals its media with the "Glide" option picked in the image reveal lab (`/lab/image-reveal/`, `src/lab/image-reveal.njk`, noindex). The promo video glides in from the left, the portrait photo from the right: the frame wipes open (`clip-path` inset) while the photo slides 24% with it and settles from 106%, over 1.5s `power2.out`. They play on the clock once scrolled in, not scrubbed.
+- `anim.js`: new `glide-right` / `glide-left` reveal presets. A preset's `inner` part animates the first `img` / `video` inside the element alongside it, then clears its transform.
+- The photo now sits in an `.intro__frame` wrapper, and its outline button fades up on its own below it.
+- "Who we are" (pillars) uses the same glide on its four photos: Local heart and Student wellbeing from the left, Academic excellence and Global Mind from the right. The glide runs inside the existing parallax layer. Each card's heading, copy and button still fade up, now per card instead of per column.
+
 ## 2026-10-30 — homepage preloader
 - Preloader from Preloader Step 01–04 (`20169:6962`, `20169:6952`, `20169:6972`, `20225:17119`). Six royal 2px rings (50 to 750) on navy grow out of the centre point from first paint (scale from 0 with a fade, 2s, `--ease-out`), inner first, 0.14s apart, and then hold still with no pulse. Picked in the ring lab (`/lab/rings/`, `src/lab/rings.njk`, noindex), which also offers radius-grow, ripple and draw-on styles. The hero title rows follow the rings by 0.7s, timed from the rings' own start. They slide in solid from the canvas edges (2.4s, `power2.out`, 0.3s apart) to Step 02's places: row centres at −0.48em and +0.837em from the screen centre, 116 apart. A circle mask starts opening 1s after the rows set off (or once the hero media has decoded, capped at 4s), over 2.4s, and the rings dim to 58%. 1.4s into the mask the rows move down into the hero over 1.6s. 0.3s before they land, the header starts coming in, then the statement and notice follow, through `Anim.init({ after })` (`afterMax` raises its 2s cap to 10s). The rows land on Step 04 (`LOCAL HEART.` top at 680 in the 1440 × 1024 frame) and don't move afterwards.
 - The mask opens on the real page, so Step 03's grass at the frame foot shows as the hero's navy fade. In Figma the photo is a fill that scales with the circle; here it is the hero image at its final crop, so nothing cuts at Step 04.
-- Plays on every load for review (once per session is a one-line check in `head.njk`, noted in the handoff), never under reduced motion. The scroll is locked with the menu's `lockScroll()` (moved to `ui.js` and shared), so the scrollbar's gutter doesn't shift the layout.
+- During review it plays only with `?preloader` in the address (once per session for launch is a one-line check in `head.njk`, noted in the handoff), and never under reduced motion. The scroll is locked with the menu's `lockScroll()` (moved to `ui.js` and shared), so the scrollbar's gutter doesn't shift the layout.
 - Without the preloader (a repeat visit, other pages), `enter-left` / `enter-right` now slide the title in solid with no fade, at the preloader's 2.4s and 0.3s stagger.
 
 ## 2026-10-29 — footer

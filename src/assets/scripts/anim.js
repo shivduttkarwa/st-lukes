@@ -64,6 +64,9 @@ const REVEAL = {
   "pop":        { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.6, ease: "power2.out" } },
   // a crisp wipe from the bottom edge up, no fade: visibility flips as the tween starts
   "wipe-up":    { from: { clipPath: "inset(100% 0% 0% 0%)", visibility: "hidden" }, to: { clipPath: "inset(0% 0% 0% 0%)", visibility: "inherit", duration: 1.1, ease: "power3.out" } },
+  // the frame wipes open from one side while its photo or video glides in with it (`inner`: the first img / video inside)
+  "glide-right": { from: { clipPath: "inset(0% 100% 0% 0%)", visibility: "hidden" }, to: { clipPath: "inset(0% 0% 0% 0%)", visibility: "inherit", duration: 1.5, ease: "power2.out" }, inner: { from: { xPercent: -24, scale: 1.06 }, to: { xPercent: 0, scale: 1 } } },
+  "glide-left":  { from: { clipPath: "inset(0% 0% 0% 100%)", visibility: "hidden" }, to: { clipPath: "inset(0% 0% 0% 0%)", visibility: "inherit", duration: 1.5, ease: "power2.out" }, inner: { from: { xPercent: 24, scale: 1.06 }, to: { xPercent: 0, scale: 1 } } },
   "scale":      { from: { scale: 1.12, autoAlpha: 0 },          to: { scale: 1, autoAlpha: 1, duration: 1.1, ease: "power4.out" } },
   "scale-x":    { from: { scaleX: 0, autoAlpha: 0 },            to: { scaleX: 1, autoAlpha: 1, duration: 1.2, ease: "power4.inOut" } },
   "scale-y":    { from: { scaleY: 0, autoAlpha: 0 },            to: { scaleY: 1, autoAlpha: 1, duration: 1.2, ease: "power4.inOut" } },
@@ -321,8 +324,18 @@ function expandGroups(root) {
   });
 }
 
+const innerOf = (el, preset) => (preset.inner ? el.querySelector("img, video") : null);
+
 const revealStep = (el) => ({
-  animation: () => gsap.to(el, { ...toVars(presetOf(el), el), onComplete: () => el.classList.add("is-revealed") }),
+  animation: () => {
+    const preset = presetOf(el);
+    const vars = toVars(preset, el);
+    const tween = gsap.to(el, { ...vars, onComplete: () => el.classList.add("is-revealed") });
+    const inner = innerOf(el, preset);
+    if (!inner) return tween;
+    const { duration, ease, delay } = vars;
+    return gsap.timeline().add(tween, 0).to(inner, { ...preset.inner.to, duration, ease, delay, clearProps: "transform" }, 0);
+  },
 });
 
 // A group's auto order is only a stagger index, so it restarts on each row; a hand-written one stays absolute.
@@ -346,6 +359,8 @@ function setupReveals(root, entrance, scroll) {
     bind(el);
     const preset = presetOf(el);
     gsap.set(el, preset.from);
+    const inner = innerOf(el, preset);
+    if (inner) gsap.set(inner, preset.inner.from);
 
     // data-anim-scrub hands the reveal to the scroll position. The trigger is an untransformed
     // ancestor, because the preset's start state has already moved the element's own box.
@@ -718,7 +733,7 @@ function resetAll(root) {
 
 function revealEverything() {
   gsap.utils
-    .toArray('[data-anim="reveal"], [data-anim="split"], [data-anim="sequence"] [data-anim-item]')
+    .toArray('[data-anim="reveal"], [data-anim="reveal"][data-anim-type^="glide"] :is(img, video), [data-anim="split"], [data-anim="sequence"] [data-anim-item]')
     .forEach((el) => gsap.set(el, { clearProps: "all" }));
   document.querySelectorAll('[data-anim="counter"]').forEach((el) => counters.get(el)?.());
   document.documentElement.classList.add("anim-reduced");

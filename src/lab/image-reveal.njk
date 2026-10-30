@@ -1,0 +1,425 @@
+---
+permalink: /lab/image-reveal/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Image reveal lab</title>
+<link rel="stylesheet" href="/assets/css/main.css">
+<style>
+  .demo { padding: 120px 0 60vh; }
+  .demo__intro { max-width: 640px; margin-bottom: 80px; }
+  .demo__intro h1 { font-size: 40px; line-height: 1.1; color: var(--color-navy); }
+  .demo__section { padding: 100px 0; }
+  .demo__section--navy { background: var(--color-navy); color: var(--color-white); }
+  .demo__label { margin: 0 0 24px; font: 600 13px/1 system-ui, sans-serif; letter-spacing: 0.08em; text-transform: uppercase; opacity: 0.6; }
+  .demo__collage { display: grid; grid-template-columns: 1.1fr 1fr 0.9fr; gap: 24px; align-items: end; }
+  .demo__pair { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .demo__row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  @media (max-width: 767px) {
+    .demo__collage, .demo__pair { grid-template-columns: 1fr; }
+    .demo__row { grid-template-columns: 1fr 1fr; }
+  }
+  .reveal { position: relative; margin: 0; overflow: hidden; }
+  .reveal__frame { position: relative; overflow: hidden; aspect-ratio: 4 / 3; }
+  .reveal--portrait .reveal__frame { aspect-ratio: 4 / 5; }
+  .reveal--square .reveal__frame { aspect-ratio: 1; }
+  .reveal--wide .reveal__frame { aspect-ratio: 16 / 7; }
+  .reveal--card .reveal__frame { aspect-ratio: 3 / 4; }
+  .reveal__frame img { display: block; width: 100%; height: 100%; object-fit: cover; }
+  .reveal__bar { position: absolute; top: 0; left: 0; pointer-events: none; }
+  .reveal__slat { position: absolute; }
+
+  .lab {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1100;
+    width: min(320px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    border-radius: 12px;
+    background: var(--color-white);
+    color: var(--color-navy);
+    font: 15px/1.4 system-ui, sans-serif;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+  .lab summary { padding: 14px 16px; font-weight: 700; cursor: pointer; }
+  .lab__body { display: grid; gap: 12px; padding: 0 16px 16px; }
+  .lab label { display: grid; gap: 4px; }
+  .lab__row { display: flex; justify-content: space-between; gap: 8px; }
+  .lab__check { display: flex !important; align-items: center; gap: 8px !important; }
+  .lab select { width: 100%; padding: 6px 8px; border: 1px solid var(--color-line); border-radius: 6px; font: inherit; font-size: 16px; }
+  .lab input[type="range"] { width: 100%; accent-color: var(--color-royal); }
+  .lab__options { display: grid; gap: 6px; }
+  .lab button { min-height: 36px; padding: 6px 12px; border: 0; border-radius: 999px; background: var(--color-royal-tint-light); color: var(--color-navy); font: inherit; font-weight: 600; text-align: left; cursor: pointer; }
+  .lab button:hover { background: var(--color-royal-tint); }
+  .lab button.is-active { background: var(--color-navy); color: var(--color-white); }
+  .lab button.is-primary { background: var(--color-gold); text-align: center; }
+  .lab textarea { width: 100%; height: 150px; padding: 8px; border: 1px solid var(--color-line); border-radius: 6px; font: 12px/1.45 ui-monospace, monospace; resize: vertical; }
+  .lab__hint { margin: 0; color: var(--color-muted); font-size: 13px; }
+  .lab [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+
+<main class="demo">
+  <div class="container demo__intro">
+    <h1>Image reveal lab</h1>
+    <p>Each block reveals as it scrolls into view, with its images staggered. Pick an option on the right, tweak it, and scroll or press Replay.</p>
+  </div>
+
+  <section class="demo__section" data-group>
+    <div class="container">
+      <p class="demo__label">Collage</p>
+      <div class="demo__collage">
+        <figure class="reveal reveal--portrait"><div class="reveal__frame"><img src="/assets/images/home/pillars-local-heart.webp" alt=""></div></figure>
+        <figure class="reveal"><div class="reveal__frame"><img src="/assets/images/home/pillars-academic.webp" alt=""></div></figure>
+        <figure class="reveal reveal--square"><div class="reveal__frame"><img src="/assets/images/home/pillars-wellbeing.webp" alt=""></div></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo__section demo__section--navy" data-group>
+    <div class="container">
+      <p class="demo__label">Wide image on navy</p>
+      <figure class="reveal reveal--wide"><div class="reveal__frame"><img src="/assets/images/home/discover-1280.webp" alt=""></div></figure>
+    </div>
+  </section>
+
+  <section class="demo__section" data-group>
+    <div class="container">
+      <p class="demo__label">Pair</p>
+      <div class="demo__pair">
+        <figure class="reveal"><div class="reveal__frame"><img src="/assets/images/home/campus-bayview.webp" alt=""></div></figure>
+        <figure class="reveal"><div class="reveal__frame"><img src="/assets/images/home/campus-dee-why.webp" alt=""></div></figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="demo__section" data-group>
+    <div class="container">
+      <p class="demo__label">Card row</p>
+      <div class="demo__row">
+        <figure class="reveal reveal--card"><div class="reveal__frame"><img src="/assets/images/home/learn-1.webp" alt=""></div></figure>
+        <figure class="reveal reveal--card"><div class="reveal__frame"><img src="/assets/images/home/learn-2.webp" alt=""></div></figure>
+        <figure class="reveal reveal--card"><div class="reveal__frame"><img src="/assets/images/home/learn-3.webp" alt=""></div></figure>
+        <figure class="reveal reveal--card"><div class="reveal__frame"><img src="/assets/images/home/learn-4.webp" alt=""></div></figure>
+      </div>
+    </div>
+  </section>
+</main>
+
+<details class="lab" open>
+  <summary>Image reveal lab</summary>
+  <form class="lab__body" id="lab">
+    <input type="hidden" name="option">
+    <div class="lab__options">
+      <button type="button" data-preset="morph">1 · Circle morph</button>
+      <button type="button" data-preset="sweep">2 · Gold sweep</button>
+      <button type="button" data-preset="blinds">3 · Blinds</button>
+      <button type="button" data-preset="split">4 · Split open</button>
+      <button type="button" data-preset="glide">5 · Glide</button>
+    </div>
+
+    <label><span class="lab__row">Duration <output data-out="duration"></output></span>
+      <input type="range" name="duration" min="0.4" max="3" step="0.1">
+    </label>
+
+    <label>Easing
+      <select name="ease"></select>
+    </label>
+
+    <label><span class="lab__row">Photo zoom <output data-out="zoom"></output></span>
+      <input type="range" name="zoom" min="0" max="20" step="1">
+    </label>
+
+    <label data-for="morph"><span class="lab__row">Starting circle <output data-out="start"></output></span>
+      <input type="range" name="start" min="0" max="80" step="5">
+    </label>
+
+    <label data-for="sweep glide">Direction
+      <select name="dir">
+        <option value="right">From the left</option>
+        <option value="left">From the right</option>
+        <option value="up">From the bottom</option>
+        <option value="down">From the top</option>
+      </select>
+    </label>
+
+    <label data-for="sweep"><span class="lab__row">Bar thickness <output data-out="bar"></output></span>
+      <input type="range" name="bar" min="2" max="48" step="2">
+    </label>
+
+    <label data-for="sweep">Bar colour
+      <select name="barColour">
+        <option value="gold">Gold</option>
+        <option value="royal">Royal</option>
+        <option value="white">White</option>
+      </select>
+    </label>
+
+    <label data-for="blinds"><span class="lab__row">Slats <output data-out="slats"></output></span>
+      <input type="range" name="slats" min="3" max="12" step="1">
+    </label>
+
+    <label data-for="blinds"><span class="lab__row">Slat stagger <output data-out="slatStagger"></output></span>
+      <input type="range" name="slatStagger" min="0" max="0.2" step="0.01">
+    </label>
+
+    <label data-for="blinds split">Orientation
+      <select name="orient">
+        <option value="vertical">Vertical</option>
+        <option value="horizontal">Horizontal</option>
+      </select>
+    </label>
+
+    <label data-for="blinds">Slat colour
+      <select name="slatColour">
+        <option value="ground">Background of the section</option>
+        <option value="navy">Navy</option>
+        <option value="gold">Gold</option>
+      </select>
+    </label>
+
+    <label data-for="glide"><span class="lab__row">Photo travel <output data-out="travel"></output></span>
+      <input type="range" name="travel" min="0" max="40" step="2">
+    </label>
+
+    <label class="lab__check"><input type="checkbox" name="fade" value="1"> Fade in as well</label>
+
+    <label><span class="lab__row">Stagger <output data-out="stagger"></output></span>
+      <input type="range" name="stagger" min="0" max="0.4" step="0.02">
+    </label>
+
+    <button type="button" class="is-primary" data-play>Replay</button>
+
+    <textarea readonly id="lab-spec" aria-label="Settings to port"></textarea>
+    <button type="button" data-copy>Copy settings</button>
+    <p class="lab__hint">The address bar keeps the settings, so the link reopens this exact version.</p>
+  </form>
+</details>
+
+<script>
+  (function () {
+    var EASES = [
+      ["power1.out", "cubic-bezier(0.5, 1, 0.89, 1)"],
+      ["power2.out", "cubic-bezier(0.33, 1, 0.68, 1)"],
+      ["power3.out", "cubic-bezier(0.25, 1, 0.5, 1)"],
+      ["power4.out", "cubic-bezier(0.22, 1, 0.36, 1)"],
+      ["expo.out", "cubic-bezier(0.16, 1, 0.3, 1)"],
+      ["sine.inOut", "cubic-bezier(0.37, 0, 0.63, 1)"],
+      ["power1.inOut", "cubic-bezier(0.45, 0, 0.55, 1)"],
+      ["power2.inOut", "cubic-bezier(0.65, 0, 0.35, 1)"],
+      ["power3.inOut", "cubic-bezier(0.76, 0, 0.24, 1)"]
+    ];
+    var NAMES = { morph: "1 · Circle morph", sweep: "2 · Gold sweep", blinds: "3 · Blinds", split: "4 · Split open", glide: "5 · Glide" };
+    var BASE = { zoom: 8, start: 30, dir: "right", bar: 10, barColour: "gold", slats: 6, slatStagger: 0.06, orient: "vertical", slatColour: "ground", travel: 24, fade: "", stagger: 0.14 };
+    var PRESETS = {
+      morph: { option: "morph", duration: 1.6, ease: "power2.inOut", zoom: 10, start: 30 },
+      sweep: { option: "sweep", duration: 1.4, ease: "power2.inOut", zoom: 8, dir: "right", bar: 10, barColour: "gold" },
+      blinds: { option: "blinds", duration: 1.1, ease: "power2.inOut", zoom: 8, slats: 6, slatStagger: 0.06, orient: "vertical", slatColour: "ground" },
+      split: { option: "split", duration: 1.4, ease: "power2.inOut", zoom: 10, orient: "vertical" },
+      glide: { option: "glide", duration: 1.5, ease: "power3.out", zoom: 6, dir: "right", travel: 24 }
+    };
+    var COLOURS = { gold: "var(--color-gold)", royal: "var(--color-royal)", white: "var(--color-white)", navy: "var(--color-navy)" };
+    var CLIP = { right: "inset(0% 100% 0% 0%)", left: "inset(0% 0% 0% 100%)", up: "inset(100% 0% 0% 0%)", down: "inset(0% 0% 100% 0%)" };
+    var OPEN = "inset(0% 0% 0% 0%)";
+    var FADE_SHARE = 0.6;
+    var NUMBERS = ["duration", "zoom", "start", "bar", "slats", "slatStagger", "travel", "stagger"];
+
+    var form = document.getElementById("lab");
+    var spec = document.getElementById("lab-spec");
+    var groups = Array.prototype.slice.call(document.querySelectorAll("[data-group]"));
+    var pending = new WeakMap();
+    var anims = [];
+    var timer = 0;
+
+    EASES.forEach(function (e) { form.ease.add(new Option(e[0], e[0])); });
+    var css = function (name) { return (EASES.filter(function (e) { return e[0] === name; })[0] || EASES[1])[1]; };
+
+    function state() {
+      var data = new FormData(form);
+      var s = {};
+      ["option", "ease", "dir", "barColour", "orient", "slatColour"].concat(NUMBERS).forEach(function (k) { s[k] = data.get(k); });
+      NUMBERS.forEach(function (k) { s[k] = +s[k]; });
+      s.fade = data.get("fade") ? "1" : "";
+      return s;
+    }
+
+    function fill(s) {
+      Object.keys(s).forEach(function (k) {
+        var field = form.elements[k];
+        if (!field) return;
+        if (field.type === "checkbox") field.checked = !!s[k] && s[k] !== "0";
+        else field.value = s[k];
+      });
+    }
+
+    function ground(fig) {
+      var own = getComputedStyle(fig.closest(".demo__section")).backgroundColor;
+      return own === "rgba(0, 0, 0, 0)" ? getComputedStyle(document.body).backgroundColor : own;
+    }
+
+    function clean(fig) {
+      fig.querySelectorAll(".reveal__bar, .reveal__slat").forEach(function (el) { el.remove(); });
+    }
+
+    function add(parent, cls, styles) {
+      var el = document.createElement("span");
+      el.className = cls;
+      Object.assign(el.style, styles);
+      parent.appendChild(el);
+      return el;
+    }
+
+    function figureAnims(fig, s, delay) {
+      var frame = fig.querySelector(".reveal__frame");
+      var img = frame.querySelector("img");
+      var w = frame.offsetWidth;
+      var h = frame.offsetHeight;
+      var opts = { duration: s.duration * 1000, delay: delay * 1000, easing: css(s.ease), fill: "both" };
+      var list = [];
+      var photoFrom = [];
+      clean(fig);
+
+      if (s.option === "morph") {
+        var d = s.start / 100 * Math.min(w, h);
+        var y = (h - d) / 2 + "px";
+        var x = (w - d) / 2 + "px";
+        list.push(frame.animate([{ clipPath: "inset(" + [y, x, y, x].join(" ") + " round " + d / 2 + "px)" }, { clipPath: "inset(0px 0px 0px 0px round 0px)" }], opts));
+      } else if (s.option === "sweep") {
+        var across = s.dir === "right" || s.dir === "left";
+        var bar = add(fig, "reveal__bar", across ? { width: s.bar + "px", height: "100%" } : { width: "100%", height: s.bar + "px" });
+        bar.style.background = COLOURS[s.barColour];
+        var axis = across ? "translateX(" : "translateY(";
+        var span = across ? w : h;
+        var path = { right: [-s.bar, span], left: [span, -s.bar], down: [-s.bar, span], up: [span, -s.bar] }[s.dir];
+        list.push(frame.animate([{ clipPath: CLIP[s.dir] }, { clipPath: OPEN }], opts));
+        list.push(bar.animate([{ transform: axis + path[0] + "px)" }, { transform: axis + path[1] + "px)" }], opts));
+      } else if (s.option === "blinds") {
+        var vertical = s.orient === "vertical";
+        var colour = s.slatColour === "ground" ? ground(fig) : COLOURS[s.slatColour];
+        for (var i = 0; i < s.slats; i++) {
+          var at = (i * 100 / s.slats) + "%";
+          var size = "calc(" + 100 / s.slats + "% + 1px)";
+          var slat = add(frame, "reveal__slat", vertical
+            ? { top: 0, bottom: 0, left: at, width: size, transformOrigin: "0 50%" }
+            : { left: 0, right: 0, top: at, height: size, transformOrigin: "50% 0" });
+          slat.style.background = colour;
+          list.push(slat.animate([{ transform: vertical ? "scaleX(1)" : "scaleY(1)" }, { transform: vertical ? "scaleX(0)" : "scaleY(0)" }],
+            Object.assign({}, opts, { delay: (delay + i * s.slatStagger) * 1000 })));
+        }
+      } else if (s.option === "split") {
+        list.push(frame.animate([{ clipPath: s.orient === "vertical" ? "inset(0% 50% 0% 50%)" : "inset(50% 0% 50% 0%)" }, { clipPath: OPEN }], opts));
+      } else if (s.option === "glide") {
+        list.push(frame.animate([{ clipPath: CLIP[s.dir] }, { clipPath: OPEN }], opts));
+        var t = s.travel + "%";
+        photoFrom.push({ right: "translateX(-" + t + ")", left: "translateX(" + t + ")", up: "translateY(" + t + ")", down: "translateY(-" + t + ")" }[s.dir]);
+      }
+
+      if (s.zoom) photoFrom.push("scale(" + (1 + s.zoom / 100) + ")");
+      if (photoFrom.length) list.push(img.animate([{ transform: photoFrom.join(" ") }, { transform: "none" }], opts));
+      if (s.fade) list.push(frame.animate([{ opacity: 0 }, { opacity: 1 }], Object.assign({}, opts, { duration: s.duration * FADE_SHARE * 1000, easing: css("power1.out") })));
+      return list;
+    }
+
+    function arm() {
+      anims.forEach(function (a) { a.cancel(); });
+      anims = [];
+      var s = state();
+      groups.forEach(function (group) {
+        var list = [];
+        group.querySelectorAll(".reveal").forEach(function (fig, n) {
+          list = list.concat(figureAnims(fig, s, n * s.stagger));
+        });
+        list.forEach(function (a) { a.pause(); a.currentTime = 0; });
+        pending.set(group, list);
+        anims = anims.concat(list);
+      });
+      return s;
+    }
+
+    function inView(el) {
+      var r = el.getBoundingClientRect();
+      return r.top < innerHeight * 0.85 && r.bottom > 0;
+    }
+
+    function reveal(group) {
+      var list = pending.get(group);
+      if (!list) return;
+      pending.delete(group);
+      list.forEach(function (a) { a.play(); });
+    }
+
+    var observer = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) { if (e.isIntersecting) reveal(e.target); });
+    }, { rootMargin: "0px 0px -15% 0px" });
+
+    function run() {
+      var s = arm();
+      sync(s);
+      groups.forEach(function (g) { if (inView(g)) reveal(g); });
+    }
+
+    function sync(s) {
+      form.querySelectorAll("[data-for]").forEach(function (el) {
+        el.hidden = el.getAttribute("data-for").split(" ").indexOf(s.option) < 0;
+      });
+      form.querySelectorAll("[data-preset]").forEach(function (b) { b.classList.toggle("is-active", b.getAttribute("data-preset") === s.option); });
+      var out = function (k, v) { form.querySelector('[data-out="' + k + '"]').textContent = v; };
+      out("duration", s.duration.toFixed(1) + "s");
+      out("zoom", s.zoom ? "from " + (100 + s.zoom) + "%" : "off");
+      out("start", s.start + "% of the short side");
+      out("bar", s.bar + "px");
+      out("slats", s.slats);
+      out("slatStagger", s.slatStagger.toFixed(2) + "s");
+      out("travel", s.travel + "%");
+      out("stagger", s.stagger.toFixed(2) + "s");
+      history.replaceState(null, "", "#" + new URLSearchParams(s));
+      write(s);
+    }
+
+    function write(s) {
+      var t = s.duration + "s " + s.ease;
+      var out = ["/* lab " + location.hash + " */", "Option: " + NAMES[s.option]];
+      if (s.option === "morph") out.push("frame: clip-path from a centred circle " + s.start + "% of the short side to the full frame, " + t);
+      if (s.option === "sweep") out.push("frame: clip-path " + CLIP[s.dir] + " → inset(0%), " + t, "bar: " + s.bar + "px " + s.barColour + ", centred on the reveal edge, same timing");
+      if (s.option === "blinds") out.push(s.slats + " " + s.orient + " slats (" + s.slatColour + ") scale away, " + t + ", " + s.slatStagger + "s apart");
+      if (s.option === "split") out.push("frame: clip-path " + (s.orient === "vertical" ? "inset(0 50%)" : "inset(50% 0)") + " → inset(0%), " + t);
+      if (s.option === "glide") out.push("frame: clip-path " + CLIP[s.dir] + " → inset(0%), " + t, "photo: travels " + s.travel + "% with the wipe");
+      out.push(s.zoom ? "photo: scale " + (1 + s.zoom / 100) + " → 1, " + t : "photo: no zoom");
+      if (s.fade) out.push("fade: opacity 0 → 1 over " + +(s.duration * FADE_SHARE).toFixed(2) + "s power1.out");
+      out.push("stagger: " + s.stagger + "s between images in a group");
+      spec.value = out.join("\n");
+    }
+
+    form.addEventListener("input", function () { clearTimeout(timer); timer = setTimeout(run, 150); });
+    form.querySelector("[data-play]").addEventListener("click", run);
+    form.querySelectorAll("[data-preset]").forEach(function (b) {
+      b.addEventListener("click", function () {
+        fill(Object.assign({}, BASE, PRESETS[b.getAttribute("data-preset")]));
+        run();
+      });
+    });
+    form.querySelector("[data-copy]").addEventListener("click", function (e) {
+      navigator.clipboard.writeText(location.href + "\n\n" + spec.value).then(function () {
+        e.target.textContent = "Copied";
+        setTimeout(function () { e.target.textContent = "Copy settings"; }, 1500);
+      });
+    });
+
+    var start = Object.assign({}, BASE, PRESETS.morph);
+    new URLSearchParams(location.hash.slice(1)).forEach(function (v, k) { if (k in start) start[k] = v; });
+    if (!PRESETS[start.option]) start = Object.assign({}, BASE, PRESETS.morph);
+    fill(start);
+    run();
+    groups.forEach(function (g) { observer.observe(g); });
+  })();
+</script>
+</body>
+</html>

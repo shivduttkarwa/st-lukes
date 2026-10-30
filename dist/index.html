@@ -13,7 +13,7 @@
     d.classList.add("anim-ready");
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("anim-reduced");
     
-    if (!d.classList.contains("anim-reduced")) {
+    if (!d.classList.contains("anim-reduced") && /[?&]preloader\b/.test(location.search)) {
       d.classList.add("is-preloading");
       setTimeout(function () { if (!d.hasAttribute("data-preloader-live")) d.classList.remove("is-preloading"); }, 5000);
     }
@@ -154,7 +154,7 @@
     
   </div>
 
-  <div class="intro__promo" data-promo data-anim="reveal" data-anim-type="fade-up">
+  <div class="intro__promo" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
     <img class="intro__poster" src="/assets/images/home/intro-promo.webp" alt="Aerial view of the campus and the Northern Beaches coastline" width="872" height="546" loading="lazy" decoding="async">
 
     
@@ -166,11 +166,13 @@
     </button>
   </div>
 
-  <div class="intro__feature" data-anim="reveal" data-anim-type="fade-up">
-    <img class="intro__photo" src="/assets/images/home/intro-portrait.webp" alt="Junior students in school uniform raising their hands and singing in class" width="1016" height="818" loading="lazy" decoding="async">
+  <div class="intro__feature">
+    <div class="intro__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+      <img class="intro__photo" src="/assets/images/home/intro-portrait.webp" alt="Junior students in school uniform raising their hands and singing in class" width="1016" height="818" loading="lazy" decoding="async">
 
-    <a class="btn btn-outline" href="#">Explore Our School</a>
-
+    </div>
+    <div data-anim="reveal" data-anim-type="fade-up"><a class="btn btn-outline" href="#">Explore Our School</a>
+</div>
   </div>
 </section>
 
@@ -183,9 +185,9 @@
       <h2 data-anim="split" data-anim-type="lines">A community where everyone is known, where academic rigour, Christian character and genuine care meet the distinctive spirit of the Northern Beaches.</h2>
     </div>
     <div class="pillars__grid">
-      <div class="pillars__col" data-anim-group="fade-up">
-        <article class="pillars__card pillars__card--1">
-  <div class="pillars__media" data-anim-parallax-trigger>
+      <div class="pillars__col">
+        <article class="pillars__card pillars__card--1" data-anim-group="fade-up">
+  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
     <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
       <img class="pillars__img" src="/assets/images/home/pillars-local-heart.webp" alt="Three students in wetsuits on a grassy headland above the ocean" width="1232" height="902" loading="lazy" decoding="async">
 
@@ -202,8 +204,8 @@
   <a class="btn btn-outline" href="#">View our Values and Christian Foundation</a>
 
 </article>
-<article class="pillars__card pillars__card--3">
-  <div class="pillars__media" data-anim-parallax-trigger>
+<article class="pillars__card pillars__card--3" data-anim-group="fade-up">
+  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
     <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
       <img class="pillars__img" src="/assets/images/home/pillars-wellbeing.webp" alt="A Wellbeing Week banner on the school campus" width="782" height="1080" loading="lazy" decoding="async">
 
@@ -222,9 +224,9 @@
 </article>
 
       </div>
-      <div class="pillars__col" data-anim-group="fade-up">
-        <article class="pillars__card pillars__card--2">
-  <div class="pillars__media" data-anim-parallax-trigger>
+      <div class="pillars__col">
+        <article class="pillars__card pillars__card--2" data-anim-group="fade-up">
+  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
     <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
       <img class="pillars__img" src="/assets/images/home/pillars-academic.webp" alt="A teacher shaking hands with a student in a blue blazer at a school exhibition" width="818" height="1199" loading="lazy" decoding="async">
 
@@ -242,8 +244,8 @@ help students master knowledge, learn from challenges, collaborate and grow in c
   <a class="btn btn-outline" href="#">Explore our Learning Framework</a>
 
 </article>
-<article class="pillars__card pillars__card--4">
-  <div class="pillars__media" data-anim-parallax-trigger>
+<article class="pillars__card pillars__card--4" data-anim-group="fade-up">
+  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
     <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
       <img class="pillars__img" src="/assets/images/home/pillars-global-mind.webp" alt="Four junior students in blue blazers sitting together outdoors" width="1234" height="895" loading="lazy" decoding="async">
 

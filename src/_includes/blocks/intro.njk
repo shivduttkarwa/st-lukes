@@ -6,7 +6,7 @@
     {% endif %}
   </div>
 
-  <div class="intro__promo" data-promo data-anim="reveal" data-anim-type="fade-up">
+  <div class="intro__promo" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
     {% set img = value.promo.image %}{% set cls = "intro__poster" %}{% include "snippets/image.njk" %}
     {% if value.promo.video %}
     <video class="intro__video" data-src="{{ value.promo.video.src }}" poster="{{ value.promo.image.src }}" controls playsinline preload="none" hidden></video>
@@ -17,8 +17,10 @@
     </button>
   </div>
 
-  <div class="intro__feature" data-anim="reveal" data-anim-type="fade-up">
-    {% set img = value.image %}{% set cls = "intro__photo" %}{% include "snippets/image.njk" %}
-    {% set btn = value.image_button %}{% set plain = true %}{% include "snippets/button.njk" %}
+  <div class="intro__feature">
+    <div class="intro__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+      {% set img = value.image %}{% set cls = "intro__photo" %}{% include "snippets/image.njk" %}
+    </div>
+    <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.image_button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
   </div>
 </section>
