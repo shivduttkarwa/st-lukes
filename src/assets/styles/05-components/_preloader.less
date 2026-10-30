@@ -1,0 +1,56 @@
+@preloader-rings: 750 * @px;
+
+.preloader {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-preloader);
+  display: none;
+  place-items: center;
+  // the screen's full width, so the rings and the hole hold still when the scroll lock takes the scrollbar away
+  width: 100vw;
+  overflow: hidden;
+  background: var(--color-navy);
+  mask-image: radial-gradient(circle, transparent var(--preloader-hole, 0rem), var(--color-black) calc(var(--preloader-hole, 0rem) + @px));
+
+  .is-preloading & { display: grid; }
+
+  &__rings {
+    width: @preloader-rings;
+    height: @preloader-rings;
+    max-width: none;
+    overflow: visible;
+    fill: none;
+    stroke: var(--color-royal);
+    stroke-width: 2;
+  }
+
+  circle {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: preloader-ring-grow 2s var(--ease-out) both;
+  }
+
+  each(range(2, 6), {
+    circle:nth-child(@{value}) { animation-delay: ((@value - 1) * 0.14s); }
+  });
+}
+
+html.is-preloading {
+  --scrollbar-thumb: transparent;
+
+  .hero { z-index: auto; }
+
+  .hero h1 {
+    z-index: var(--z-preloader-title);
+    visibility: hidden;
+  }
+}
+
+@keyframes preloader-ring-grow {
+  from {
+    opacity: 0;
+    transform: scale(0);
+  }
+}

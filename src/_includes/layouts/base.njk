@@ -5,6 +5,7 @@
 </head>
 <body>
   {% include "partials/icons.njk" %}
+  {% if p and p.preloader %}{% include "partials/preloader.njk" %}{% endif %}
   <a class="visually-hidden-focusable" href="#main">Skip to content</a>
   {% include "partials/header.njk" %}
   <main id="main">

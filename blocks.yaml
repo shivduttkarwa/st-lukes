@@ -26,6 +26,11 @@ settings:
         abn: CharBlock
         legal_links: ListBlock(StructBlock(label: CharBlock, url: URLBlock))
 
+pages:
+  home:
+    fields:
+      preloader: BooleanField(default=True)   # figma 20169:6962, 20169:6952, 20169:6972, 20225:17119 (Preloader Step 01–04); needs a hero block, plays once per session
+
 blocks:
   hero:
     figma: "20169:5668 (background), 20169:15196 (header, titles, announcement card)"

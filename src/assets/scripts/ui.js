@@ -1,5 +1,23 @@
 import { Anim } from "./anim.js";
 
+export function lockScroll(lock) {
+  const root = document.documentElement;
+  if (lock && !root.classList.contains("is-locked")) {
+    root.style.setProperty("--scrollbar-gutter", `${window.innerWidth - root.clientWidth}px`);
+  }
+  root.classList.toggle("is-locked", lock);
+  if (lock) Anim.stop();
+  else Anim.start();
+}
+
+export function initDevicePixel() {
+  const set = () => {
+    document.documentElement.style.setProperty("--device-px", `${1 / devicePixelRatio}px`);
+    matchMedia(`(resolution: ${devicePixelRatio}dppx)`).addEventListener("change", set, { once: true });
+  };
+  set();
+}
+
 export function initDisclosures() {
   document.querySelectorAll("[data-disclosure]").forEach((root) => {
     const toggle = root.querySelector("[aria-expanded]");
@@ -172,10 +190,7 @@ export function initMenu() {
     if (open === menu.classList.contains("is-open")) return;
     clearTimeout(unlock);
     if (open) {
-      if (!root.classList.contains("is-locked")) {
-        root.style.setProperty("--scrollbar-gutter", `${window.innerWidth - root.clientWidth}px`);
-      }
-      root.classList.add("is-locked");
+      lockScroll(true);
       menu.classList.remove("has-widened");
       fit();
     }
@@ -184,17 +199,13 @@ export function initMenu() {
     outside.forEach((el) => { el.inert = open; });
     if (open) {
       opener = trigger || document.activeElement;
-      Anim.stop();
       panel.focus({ preventScroll: true });
     } else {
       closeItems();
       syncWide();
       if (opener) opener.focus({ preventScroll: true });
       // keep the scrollbar away until the panel has left, or the fixed menu narrows mid-slide
-      unlock = setTimeout(() => {
-        root.classList.remove("is-locked");
-        Anim.start();
-      }, parseFloat(getComputedStyle(menu).transitionDelay) * 1000);
+      unlock = setTimeout(() => lockScroll(false), parseFloat(getComputedStyle(menu).transitionDelay) * 1000);
     }
   };
 

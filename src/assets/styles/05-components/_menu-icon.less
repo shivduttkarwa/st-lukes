@@ -1,15 +1,14 @@
-@menu-icon-shift-sm: 4 * @px;
-@menu-icon-shift-lg: 5 * @px;
-
 .menu-icon {
-  --menu-icon-shift: @menu-icon-shift-sm;
+  // snapped to whole device pixels so both lines match at 125% scaling; 2.01px tips that 2.5px tie up to the Figma weight
+  --menu-icon-line: ~"round(2.01px, var(--device-px, 1px))";
+  --menu-icon-height: ~"round(10px, var(--device-px, 1px))";
+  --menu-icon-shift: calc((var(--menu-icon-height) - var(--menu-icon-line)) / 2);
   position: relative;
-  width: 24 * @px;
-  height: 10 * @px;
+  width: 24px;
+  height: var(--menu-icon-height);
   @media (min-width: @bp-lg) {
-    --menu-icon-shift: @menu-icon-shift-lg;
-    width: 30 * @px;
-    height: 12 * @px;
+    --menu-icon-height: ~"round(12px, var(--device-px, 1px))";
+    width: 30px;
     margin-bottom: 2 * @px;
   }
   &::before,
@@ -18,7 +17,7 @@
     position: absolute;
     left: 0;
     width: 100%;
-    height: 2 * @px;
+    height: var(--menu-icon-line);
     background: currentColor;
   }
   &::before { top: 0; }

@@ -53,8 +53,9 @@ const REVEAL = {
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
-  "enter-right": { from: { x: "110%", autoAlpha: 0 },           to: { x: "0%", autoAlpha: 1, duration: 1.4, ease: "power2.out" } },
-  "enter-left":  { from: { x: "-110%", autoAlpha: 0 },          to: { x: "0%", autoAlpha: 1, duration: 1.4, ease: "power2.out" } },
+  // solid from off the canvas, as the preloader title: visibility flips as the tween starts
+  "enter-right": { from: { x: "110%", visibility: "hidden" },   to: { x: "0%", visibility: "inherit", duration: 2.4, ease: "power2.out" } },
+  "enter-left":  { from: { x: "-110%", visibility: "hidden" },  to: { x: "0%", visibility: "inherit", duration: 2.4, ease: "power2.out" } },
   // 2D only: a GPU layer would shift the header text and change its sharpness as the drop ends
   "drop-soft":   { from: { y: -DROP, autoAlpha: 0, force3D: false }, to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power2.out", DROP) }, ease: "none" } } },
   "nudge-right": { from: { x: 40, autoAlpha: 0 },               to: { x: 0, autoAlpha: 1 } },
@@ -777,7 +778,7 @@ const Anim = {
     briefly(fonts, 800)
       .then(nextFrame, nextFrame) // pagereveal has fired by the first frame, so a page arrival is known
       .then(prepare, prepare)
-      .then(() => briefly(Promise.resolve(opts.after), 2000))
+      .then(() => briefly(Promise.resolve(opts.after), opts.afterMax ?? 2000))
       .then(settle, settle)
       .then(start, start);
     return this;

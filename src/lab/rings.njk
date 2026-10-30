@@ -1,0 +1,272 @@
+---
+permalink: /lab/rings/
+eleventyExcludeFromCollections: true
+---
+<!doctype html>
+<html lang="en" class="is-preloading">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Ring lab</title>
+<link rel="stylesheet" href="/assets/css/main.css">
+<style>
+  .preloader circle { animation: none; }
+  .lab {
+    position: fixed;
+    top: 16px;
+    right: 16px;
+    z-index: 1100;
+    width: min(320px, calc(100vw - 32px));
+    max-height: calc(100vh - 32px);
+    overflow: auto;
+    border-radius: 12px;
+    background: var(--color-white);
+    color: var(--color-navy);
+    font: 15px/1.4 system-ui, sans-serif;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.35);
+  }
+  .lab summary { padding: 14px 16px; font-weight: 700; cursor: pointer; }
+  .lab__body { display: grid; gap: 12px; padding: 0 16px 16px; }
+  .lab label { display: grid; gap: 4px; }
+  .lab__row { display: flex; justify-content: space-between; gap: 8px; }
+  .lab__check { display: flex !important; align-items: center; gap: 8px !important; }
+  .lab select, .lab input[type="text"] { width: 100%; padding: 6px 8px; border: 1px solid var(--color-line); border-radius: 6px; font: inherit; font-size: 16px; }
+  .lab input[type="range"] { width: 100%; accent-color: var(--color-royal); }
+  .lab__presets { display: flex; flex-wrap: wrap; gap: 6px; }
+  .lab button { min-height: 36px; padding: 6px 12px; border: 0; border-radius: 999px; background: var(--color-royal-tint-light); color: var(--color-navy); font: inherit; font-weight: 600; cursor: pointer; }
+  .lab button.is-primary { background: var(--color-gold); }
+  .lab button:hover { background: var(--color-royal-tint); }
+  .lab textarea { width: 100%; height: 190px; padding: 8px; border: 1px solid var(--color-line); border-radius: 6px; font: 12px/1.45 ui-monospace, monospace; resize: vertical; }
+  .lab__hint { margin: 0; color: var(--color-muted); font-size: 13px; }
+  .lab [hidden] { display: none !important; }
+</style>
+</head>
+<body>
+{% include "partials/preloader.njk" %}
+
+<details class="lab" open>
+  <summary>Ring lab</summary>
+  <form class="lab__body" id="lab">
+    <div class="lab__presets">
+      <button type="button" data-preset="live">Live now</button>
+      <button type="button" data-preset="radius">Radius grow</button>
+      <button type="button" data-preset="ripple">Ripple</button>
+      <button type="button" data-preset="draw">Draw on</button>
+      <button type="button" data-preset="scale">Scale, 2px stroke</button>
+    </div>
+
+    <label>Style
+      <select name="style">
+        <option value="scale">Scale from the centre</option>
+        <option value="radius">Radius grows (stroke stays 2px)</option>
+        <option value="ripple">Ripple: same speed, each ring stops at its size</option>
+        <option value="draw">Draw on clockwise</option>
+      </select>
+    </label>
+
+    <label class="lab__check" data-for="scale"><input type="checkbox" name="fixed" value="1"> Keep the stroke 2px while scaling</label>
+
+    <label data-for="scale"><span class="lab__row">Start size <output data-out="from"></output></span>
+      <input type="range" name="from" min="0" max="95" step="5">
+    </label>
+
+    <label><span class="lab__row"><span data-label="duration">Duration</span> <output data-out="duration"></output></span>
+      <input type="range" name="duration" min="0.3" max="8" step="0.1">
+    </label>
+
+    <label><span class="lab__row">Stagger <output data-out="stagger"></output></span>
+      <input type="range" name="stagger" min="0" max="1" step="0.02">
+    </label>
+
+    <label>Order
+      <select name="order">
+        <option value="in">Inner ring first</option>
+        <option value="out">Outer ring first</option>
+        <option value="together">All together</option>
+      </select>
+    </label>
+
+    <label>Easing
+      <select name="ease"></select>
+    </label>
+    <label data-for-ease="custom">Custom easing
+      <input type="text" name="custom" placeholder="cubic-bezier(0.22, 1, 0.36, 1)">
+    </label>
+
+    <label>Fade in
+      <select name="fade">
+        <option value="none">None</option>
+        <option value="with">With the growth</option>
+        <option value="quick">Quick (first 30%)</option>
+      </select>
+    </label>
+
+    <label class="lab__check"><input type="checkbox" name="loop" value="1"> Replay on a loop</label>
+
+    <button type="button" class="is-primary" data-play>Replay</button>
+
+    <textarea readonly id="lab-css" aria-label="CSS for this setting"></textarea>
+    <button type="button" data-copy>Copy settings and CSS</button>
+    <p class="lab__hint">The address bar keeps the settings, so the link reopens this exact version.</p>
+  </form>
+</details>
+
+<script>
+  (function () {
+    var EASES = {
+      "site ease-out": "cubic-bezier(0.22, 1, 0.36, 1)",
+      "expo out": "cubic-bezier(0.16, 1, 0.3, 1)",
+      "quart out": "cubic-bezier(0.25, 1, 0.5, 1)",
+      "cubic out": "cubic-bezier(0.33, 1, 0.68, 1)",
+      "quad out": "cubic-bezier(0.5, 1, 0.89, 1)",
+      "settle": "cubic-bezier(0.4, 0, 0.2, 1)",
+      "soft in-out": "cubic-bezier(0.45, 0, 0.55, 1)",
+      "in-out": "cubic-bezier(0.65, 0, 0.35, 1)",
+      "linear": "linear",
+      "custom": ""
+    };
+    var PRESETS = {
+      live: { style: "scale", fixed: "", from: 0, duration: 6, stagger: 0.4, order: "in", ease: "site ease-out", fade: "with" },
+      radius: { style: "radius", fixed: "1", from: 0, duration: 2.4, stagger: 0.18, order: "in", ease: "quart out", fade: "quick" },
+      ripple: { style: "ripple", fixed: "1", from: 0, duration: 3.2, stagger: 0, order: "in", ease: "cubic out", fade: "quick" },
+      draw: { style: "draw", fixed: "1", from: 0, duration: 1.8, stagger: 0.15, order: "in", ease: "soft in-out", fade: "none" },
+      scale: { style: "scale", fixed: "1", from: 0, duration: 2.4, stagger: 0.18, order: "in", ease: "quart out", fade: "quick" }
+    };
+
+    var form = document.getElementById("lab");
+    var css = document.getElementById("lab-css");
+    var circles = Array.prototype.slice.call(document.querySelectorAll(".preloader circle"));
+    var radii = circles.map(function (c) { return +c.getAttribute("r"); });
+    var max = Math.max.apply(null, radii);
+    var running = [];
+    var loop = 0;
+
+    Object.keys(EASES).forEach(function (name) {
+      form.ease.add(new Option(name === "custom" ? "Custom…" : name + (EASES[name] && EASES[name] !== "linear" ? "  " + EASES[name].replace("cubic-bezier", "") : ""), name));
+    });
+
+    function state() {
+      var data = new FormData(form);
+      var s = {};
+      ["style", "from", "duration", "stagger", "order", "ease", "custom", "fade"].forEach(function (k) { s[k] = data.get(k) || ""; });
+      s.fixed = data.get("fixed") || "";
+      s.loop = data.get("loop") || "";
+      s.from = +s.from; s.duration = +s.duration; s.stagger = +s.stagger;
+      return s;
+    }
+
+    function fill(s) {
+      Object.keys(s).forEach(function (k) {
+        var field = form.elements[k];
+        if (!field) return;
+        if (field.type === "checkbox") field.checked = !!s[k] && s[k] !== "0";
+        else field.value = s[k];
+      });
+    }
+
+    function timing(s, i) {
+      var n = circles.length;
+      var k = s.order === "out" ? n - 1 - i : s.order === "together" ? 0 : i;
+      return { delay: k * s.stagger, duration: s.style === "ripple" ? s.duration * radii[i] / max : s.duration };
+    }
+
+    function sync(s) {
+      form.querySelectorAll("[data-for]").forEach(function (el) { el.hidden = el.getAttribute("data-for") !== s.style; });
+      form.querySelector("[data-for-ease]").hidden = s.ease !== "custom";
+      form.querySelector('[data-label="duration"]').textContent = s.style === "ripple" ? "Duration (outer ring)" : "Duration";
+      form.querySelector('[data-out="from"]').textContent = s.from + "%";
+      form.querySelector('[data-out="duration"]').textContent = s.duration.toFixed(1) + "s";
+      form.querySelector('[data-out="stagger"]').textContent = s.stagger.toFixed(2) + "s";
+      var keep = {};
+      Object.keys(s).forEach(function (k) { if (s[k] !== "" && !(k === "custom" && s.ease !== "custom")) keep[k] = s[k]; });
+      history.replaceState(null, "", "#" + new URLSearchParams(keep));
+    }
+
+    function play() {
+      running.forEach(function (a) { a.cancel(); });
+      running = [];
+      clearTimeout(loop);
+      var s = state();
+      var easing = s.ease === "custom" ? (s.custom || "linear") : EASES[s.ease];
+      var end = 0;
+      sync(s);
+      circles.forEach(function (c, i) {
+        c.removeAttribute("pathLength");
+        c.removeAttribute("style");
+        var t = timing(s, i);
+        var opts = { duration: t.duration * 1000, delay: t.delay * 1000, easing: easing, fill: "both" };
+        var frames;
+        if (s.style === "scale") {
+          if (s.fixed) c.style.vectorEffect = "non-scaling-stroke";
+          frames = [{ transform: "scale(" + s.from / 100 + ")" }, { transform: "scale(1)" }];
+        } else if (s.style === "draw") {
+          c.setAttribute("pathLength", "1");
+          c.style.strokeDasharray = "1";
+          c.style.transform = "rotate(-90deg)";
+          frames = [{ strokeDashoffset: 1 }, { strokeDashoffset: 0 }];
+        } else {
+          frames = [{ r: "0px" }, { r: radii[i] + "px" }];
+        }
+        try {
+          running.push(c.animate(frames, opts));
+        } catch (err) {
+          css.value = "That easing isn't valid CSS: " + easing;
+          return;
+        }
+        if (s.fade !== "none") {
+          var share = s.fade === "quick" ? 0.3 : 1;
+          running.push(c.animate([{ opacity: 0 }, { opacity: 1 }], { duration: t.duration * 1000 * share, delay: t.delay * 1000, easing: s.fade === "quick" ? "linear" : easing, fill: "both" }));
+        }
+        end = Math.max(end, t.delay + t.duration);
+      });
+      if (s.loop) loop = setTimeout(play, (end + 1.2) * 1000);
+      write(s, easing);
+    }
+
+    function write(s, easing) {
+      var from = [];
+      if (s.fade === "with") from.push("opacity: 0;");
+      if (s.style === "scale") from.push("transform: scale(" + s.from / 100 + ");");
+      if (s.style === "radius" || s.style === "ripple") from.push("r: 0;");
+      if (s.style === "draw") from.push("stroke-dashoffset: 1;");
+      var animations = ["preloader-ring-grow " + s.duration + "s " + easing + " both"];
+      if (s.fade === "quick") animations.push("preloader-ring-fade " + (s.duration * 0.3).toFixed(2) + "s linear both");
+      var out = ["/* lab " + location.hash + " */", ".preloader circle {"];
+      if (s.style === "scale" && s.fixed) out.push("  vector-effect: non-scaling-stroke;");
+      if (s.style === "draw") out.push('  stroke-dasharray: 1; /* pathLength="1" on each circle */', "  transform: rotate(-90deg);");
+      out.push("  animation: " + animations.join(", ") + ";", "}");
+      circles.forEach(function (c, i) {
+        var t = timing(s, i);
+        var rules = [];
+        if (t.delay) rules.push("animation-delay: " + +t.delay.toFixed(2) + "s;");
+        if (s.style === "ripple") rules.push("animation-duration: " + +t.duration.toFixed(2) + "s" + (s.fade === "quick" ? ", " + +(t.duration * 0.3).toFixed(2) + "s" : "") + ";");
+        if (rules.length) out.push(".preloader circle:nth-child(" + (i + 1) + ") { " + rules.join(" ") + " }");
+      });
+      out.push("@keyframes preloader-ring-grow { from { " + from.join(" ") + " } }");
+      if (s.fade === "quick") out.push("@keyframes preloader-ring-fade { from { opacity: 0; } }");
+      css.value = out.join("\n");
+    }
+
+    form.addEventListener("input", play);
+    form.addEventListener("change", play);
+    form.querySelector("[data-play]").addEventListener("click", play);
+    form.querySelectorAll("[data-preset]").forEach(function (b) {
+      b.addEventListener("click", function () { fill(PRESETS[b.getAttribute("data-preset")]); play(); });
+    });
+    form.querySelector("[data-copy]").addEventListener("click", function (e) {
+      navigator.clipboard.writeText(location.href + "\n\n" + css.value).then(function () {
+        e.target.textContent = "Copied";
+        setTimeout(function () { e.target.textContent = "Copy settings and CSS"; }, 1500);
+      });
+    });
+
+    var saved = new URLSearchParams(location.hash.slice(1));
+    var start = Object.assign({}, PRESETS.live);
+    saved.forEach(function (v, k) { start[k] = v; });
+    fill(start);
+    play();
+  })();
+</script>
+</body>
+</html>
