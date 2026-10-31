@@ -1,0 +1,10 @@
+<section class="author-card">
+  <div class="author-card__box" data-anim="reveal" data-anim-type="fade-up">
+    {% set img = value.image %}{% set cls = "author-card__img" %}{% include "snippets/image.njk" %}
+    <div class="author-card__text">
+      <p class="author-card__eyebrow">{{ value.eyebrow }}</p>
+      <h2>{{ value.name }}</h2>
+      <p class="author-card__bio">{{ value.bio }}</p>
+    </div>
+  </div>
+</section>

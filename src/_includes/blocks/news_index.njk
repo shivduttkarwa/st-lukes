@@ -1,0 +1,24 @@
+<section class="news-index" data-news-filter>
+  <div class="container">
+    <form class="news-index__bar" action="" method="get" data-anim="reveal" data-anim-type="fade">
+      <div class="news-index__filters">
+        {% for filter in value.filters %}
+        <div class="news-index__filter">
+          <select name="{{ filter.name }}" aria-label="{{ filter.label }}"{% if filter.name == "category" %} data-news-category{% endif %}>
+            <option value="">{{ filter.label }}</option>
+            {% for option in filter.options %}<option>{{ option }}</option>{% endfor %}
+          </select>
+          <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+        </div>
+        {% endfor %}
+      </div>
+      <div class="news-index__search">
+        <input type="search" name="q" placeholder="{{ value.search_label }}" aria-label="{{ value.search_label }}" data-news-search>
+        <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
+      </div>
+    </form>
+    <div class="news-grid" data-anim-group="fade">
+      {% for card in value.stories %}{% include "snippets/news-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>

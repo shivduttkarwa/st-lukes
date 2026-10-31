@@ -1,0 +1,398 @@
+{
+  "seo": {
+    "title": "News & Stories | St Luke's Grammar School",
+    "description": "Stay up to date with the latest news and stories of student life at St Luke’s."
+  },
+  "body": [
+    {
+      "type": "news_hero",
+      "value": {
+        "title_line_1": "News &",
+        "title_line_2": "Stories",
+        "lead": "Stay up to date with the latest news and stories of student life at St luke’s.",
+        "stories": [
+          {
+            "tag": "student leadeers",
+            "title": "new student leadership team enjoy\ntwo day Retreat at North Curl Curl",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/feature-1.webp",
+              "alt": "Staff and students smiling around a table on a retreat",
+              "width": 1334,
+              "height": 820
+            }
+          },
+          {
+            "tag": "Service",
+            "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/feature-2.webp",
+              "alt": "Students with shovels working together on a building site",
+              "width": 1080,
+              "height": 664
+            }
+          },
+          {
+            "tag": "Talented Athlete Program",
+            "title": "Congratulations Mila G, Under 18 Girls winner at Hurley Bells Beach Juniors",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/feature-3.webp",
+              "alt": "A young surfer lifted by her friends on the beach, holding her board",
+              "width": 1080,
+              "height": 664
+            }
+          }
+        ],
+        "image": {
+          "src": "/assets/images/pages/news-side.webp",
+          "alt": "Students in academic dress on the steps of Scott Hall",
+          "width": 1226,
+          "height": 820
+        },
+        "connect": {
+          "title": "Connect With US",
+          "text": "Follow us on Social Media"
+        }
+      }
+    },
+    {
+      "type": "news_index",
+      "value": {
+        "filters": [
+          {
+            "name": "age",
+            "label": "Age",
+            "options": []
+          },
+          {
+            "name": "category",
+            "label": "category",
+            "options": [
+              "Community",
+              "Service",
+              "Talented Athlete Program",
+              "Whole School",
+              "GlobalCitizen",
+              "Junior School",
+              "Performing Arts",
+              "HSC Music"
+            ]
+          },
+          {
+            "name": "year",
+            "label": "Year group",
+            "options": []
+          }
+        ],
+        "search_label": "Search",
+        "stories": [
+          {
+            "tag": "Community",
+            "title": "Thank to our amazing volunteers for our ‘An Evening for Our Stars’ event",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-1.webp",
+              "alt": "Three staff members smiling together at an evening event",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Service",
+            "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-2.webp",
+              "alt": "Students with shovels working together on a building site",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Talented Athlete Program",
+            "title": "Congratulations Mila G, Under 18 Girls winner at Hurley Bells Beach Juniors",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-3.webp",
+              "alt": "A young surfer lifted by her friends on the beach, holding her board",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Whole School",
+            "title": "celebrating ST LUKE'S DAY and Mrs Donnan’s remarkable 30 years",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-4.webp",
+              "alt": "Staff holding bouquets on a stage",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "GlobalCitizen",
+            "title": "Stephanie Sinclair, recognised at the NSW HALT ceremony",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-5.webp",
+              "alt": "Two women smiling at an awards ceremony, one holding a medal",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Junior School",
+            "title": "students represent at the SchoolAid Kids Ambassador Team (KAT) Program",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-6.webp",
+              "alt": "A student in a blue blazer presenting beside a SchoolAid poster",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Performing Arts",
+            "title": "Stage Band takes the stage at the annual Manly Jazz Festival on Sunday",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-7.webp",
+              "alt": "A school stage band performing in a dark hall",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Service",
+            "title": "Year 10 Ambassadors host raise money for Indigenous Literacy Foundation (ILF)",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-8.webp",
+              "alt": "Older and younger students looking at picture books on a table",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "HSC Music",
+            "title": "Year 12 Students perform for the 2026 HSC Music Soiree",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-9.webp",
+              "alt": "Students playing saxophones on a dark stage",
+              "width": 818,
+              "height": 568
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "social",
+      "value": {
+        "title_line_1": "Join the",
+        "title_line_2": "Conversation",
+        "follow_text": "Follow life at St Luke’s on social media",
+        "posts": [
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-1.webp",
+              "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-2.webp",
+              "alt": "Instagram post: Australian Snowsports Championships",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-3.webp",
+              "alt": "Instagram post: HALT recognition",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-4.webp",
+              "alt": "Instagram post: student leadership retreat",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-4.webp",
+              "alt": "Instagram post: student leadership retreat",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-4.webp",
+              "alt": "Instagram post: student leadership retreat",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-5.webp",
+              "alt": "Instagram post from St Luke’s",
+              "width": 352,
+              "height": 469
+            }
+          },
+          {
+            "url": "#",
+            "image": {
+              "src": "/assets/images/home/social-6.webp",
+              "alt": "Instagram post from St Luke’s",
+              "width": 352,
+              "height": 469
+            }
+          }
+        ],
+        "spaced": true
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "tight": true,
+        "title_line_1": "Where",
+        "title_line_2": "to Next?",
+        "cards": [
+          {
+            "title": "Why Choose St Luke's",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-1.webp",
+              "alt": "",
+              "width": 1298,
+              "height": 925
+            }
+          },
+          {
+            "title": "Christian Foundation",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-2.webp",
+              "alt": "",
+              "width": 1026,
+              "height": 612
+            }
+          },
+          {
+            "title": "Leadership & Staff",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-3.webp",
+              "alt": "",
+              "width": 1026,
+              "height": 612
+            }
+          }
+        ],
+        "menu": {
+          "title_line_1": "Explore",
+          "title_line_2": "Our School",
+          "links": [
+            {
+              "label": "Principal's Welcome",
+              "url": "#"
+            },
+            {
+              "label": "Why Choose St Luke's",
+              "url": "#"
+            },
+            {
+              "label": "Christian Foundation",
+              "url": "#"
+            },
+            {
+              "label": "Leadership & Staff",
+              "url": "#",
+              "current": true
+            },
+            {
+              "label": "Strategic Plan",
+              "url": "#"
+            },
+            {
+              "label": "Campus Masterplan 2029–2031",
+              "url": "#"
+            },
+            {
+              "label": "Round Square",
+              "url": "#"
+            },
+            {
+              "label": "History",
+              "url": "#"
+            },
+            {
+              "label": "Acknowledgement of Country",
+              "url": "#"
+            }
+          ],
+          "buttons": [
+            {
+              "text": "Make an Enquiry",
+              "url": "#",
+              "style": "outline-dark"
+            },
+            {
+              "text": "Apply Today to Enrol",
+              "url": "#",
+              "style": "outline-dark"
+            }
+          ]
+        },
+        "flush": true
+      }
+    },
+    {
+      "type": "cta",
+      "value": {
+        "title_line_1": "Start your",
+        "title_line_2": "St Luke’s journey",
+        "buttons": [
+          {
+            "text": "Book a Tour",
+            "url": "#"
+          },
+          {
+            "text": "Apply to Enrol",
+            "url": "#",
+            "style": "glass"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/cta-poster.webp",
+          "alt": "",
+          "width": 720,
+          "height": 412
+        },
+        "video": null
+      }
+    }
+  ]
+}

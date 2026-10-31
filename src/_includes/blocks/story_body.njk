@@ -1,0 +1,31 @@
+<section class="story-body">
+  <div class="story-body__inner">
+    <div class="story-body__sections">
+      {% for section in value.sections %}
+      <div class="story-body__section">
+        <div class="story-body__text">
+          <h2 data-anim="split" data-anim-type="lines">{{ section.title }}</h2>
+          <div data-anim="reveal" data-anim-type="fade-up">{{ section.body | safe }}</div>
+        </div>
+        {% if section.quote %}
+        <blockquote class="story-body__quote" data-anim="reveal" data-anim-type="fade-up">
+          <p>“{{ section.quote.text }}”</p>
+          <footer><cite>{{ section.quote.name }}</cite><span>{{ section.quote.role }}</span></footer>
+        </blockquote>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+    <div class="story-body__foot">
+      <div class="story-body__share" data-anim="reveal" data-anim-type="fade-up">
+        <p>{{ value.share_label }}</p>
+        <ul>
+          {% for item in site.socials %}
+          <li><a class="story-body__link" href="{{ item.url }}" aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+          {% endfor %}
+        </ul>
+      </div>
+      <a class="btn btn-outline-navy story-body__back" href="{{ value.back.url | default('#') }}" data-anim="reveal" data-anim-type="fade-up"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{{ value.back.text }}</a>
+    </div>
+  </div>
+</section>

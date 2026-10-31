@@ -1,0 +1,116 @@
+.contact-intro {
+  margin-top: 6 * @px;
+  padding: 48 * @px 0;
+  background: var(--color-background-tint);
+  color: var(--color-navy);
+  @media (min-width: @bp-lg) { padding: 65 * @px 0; }
+
+  &__top {
+    display: flex;
+    flex-direction: column;
+    gap: 24 * @px;
+    @media (min-width: @bp-lg) {
+      display: grid;
+      grid-template-columns: minmax(0, 625fr) minmax(0, 615fr);
+      gap: 0;
+    }
+    h2 {
+      .type-h2();
+      margin: 0;
+      color: var(--color-navy);
+      @media (min-width: @bp-lg) {
+        max-width: 515 * @px;
+        padding-left: 5 * @px;
+      }
+    }
+  }
+
+  &__lead {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    @media (min-width: @bp-lg) { padding-top: 2 * @px; }
+  }
+
+  &__text p {
+    .type-body-2();
+    position: relative;
+    top: -0.1em;
+    margin: 0 0 25 * @px;
+    line-height: 1.389;
+    &:last-child { margin-bottom: 0; }
+  }
+
+  &__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15 * @px;
+    .btn {
+      @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
+    }
+  }
+
+  &__cards {
+    display: grid;
+    gap: 40 * @px 24 * @px;
+    margin-top: 48 * @px;
+    @media (min-width: @bp-md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (min-width: @bp-lg) {
+      grid-template-columns: minmax(0, 308fr) minmax(0, 314fr) minmax(0, 312fr) minmax(0, 304fr);
+      gap: 0;
+      margin-top: 109 * @px;
+      padding-left: 2 * @px;
+    }
+  }
+
+  &__card {
+    @media (min-width: @bp-lg) { max-width: 236 * @px; }
+    h3 {
+      .type-heading-4();
+      position: relative;
+      top: -0.1em;
+      margin: 0 0 16 * @px;
+      color: var(--color-navy);
+    }
+    p {
+      .type-body-3-150();
+      margin: 0;
+    }
+  }
+
+  // Figma places each card's heading gap and links by hand, so they don't line up across the row
+  @media (min-width: @bp-lg) {
+    &__card:nth-child(1) h3 { margin-bottom: 26 * @px; }
+    &__card:nth-child(1) &__links { margin-top: 35 * @px; }
+    &__card:nth-child(2) h3,
+    &__card:nth-child(3) h3 { margin-bottom: 24 * @px; }
+    &__card:nth-child(2) &__links { margin: 82 * @px 0 0 1 * @px; }
+    &__card:nth-child(3) &__links { margin: 78 * @px 0 0 -2 * @px; }
+    &__card:nth-child(4) { margin-top: -2 * @px; }
+    &__card:nth-child(4) h3 { margin-bottom: 12 * @px; }
+    &__card:nth-child(4) &__links { margin: 67 * @px 0 0 4 * @px; }
+  }
+
+  &__links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10 * @px;
+    position: relative;
+    top: -2 * @px;
+    margin-top: 20 * @px;
+  }
+
+  &__link {
+    .type-body-2-semibold();
+    .tap-area();
+    border-bottom: 3 * @px solid var(--color-gold);
+    color: var(--color-navy);
+    white-space: nowrap;
+    transition: color var(--duration-fast) ease;
+    @media (hover: hover) {
+      &:hover { color: var(--color-royal); }
+    }
+  }
+}

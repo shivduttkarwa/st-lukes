@@ -370,3 +370,87 @@
   font-size: 18 * @px;
   @media (min-width: @bp-lg) { font-size: 20 * @px; }
 }
+
+// Sanshand "Heading 1": 60 / 1.05, -2%
+.type-heading-1() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  font-size: 36 * @px;
+  @media (min-width: @bp-lg) { font-size: 60 * @px; }
+}
+
+// the news card titles use Figma's second "Heading 5": Sanshand 25 / 1.2, no tracking
+.type-news-card-title() {
+  .type-sans();
+  line-height: 1.2;
+  letter-spacing: 0;
+  font-size: 22 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+// the news story headline has no named style: Poppins ExtraBold 60 / 0.9, -3%
+.type-article-headline() {
+  .type-poppins();
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  font-size: 34 * @px;
+  @media (min-width: @bp-lg) { font-size: 60 * @px; }
+}
+
+// the news story tag has no named style: Sanshand 16, caps
+.type-article-tag() {
+  .type-sans();
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 16 * @px;
+}
+
+// "Lead Paragraph": Myriad 25 / 1.4, -3%
+.type-lead-paragraph() {
+  .type-myriad();
+  line-height: 1.4;
+  letter-spacing: -0.03em;
+  font-size: 20 * @px;
+  @media (min-width: @bp-lg) { font-size: 25 * @px; }
+}
+
+// form labels and text links: Myriad Semibold at Body 2
+.type-body-2-semibold() {
+  .type-myriad();
+  font-weight: 600;
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-size: 16 * @px;
+  @media (min-width: @bp-lg) { font-size: 18 * @px; }
+}
+
+// the fine print under media text: Myriad Italic 18 / 1.4, -2%
+.type-note() {
+  .type-myriad();
+  font-style: italic;
+  line-height: 1.4;
+  letter-spacing: -0.02em;
+  font-size: 16 * @px;
+  @media (min-width: @bp-lg) { font-size: 18 * @px; }
+}
+
+// the sports tabs: Myriad Semibold 16, caps, +12%
+.type-tab() {
+  .type-myriad();
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 16 * @px;
+}
+
+// the share label: Myriad Semibold 14, caps, +12%
+.type-share-label() {
+  .type-myriad();
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-size: 14 * @px;
+}

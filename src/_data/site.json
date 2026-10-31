@@ -9,10 +9,15 @@
       "label": "Home",
       "url": "/",
       "children": [
-        { "label": "Welcome", "url": "/", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Our Story", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Visit Us", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Contact", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } }
+        { "label": "Home", "url": "/", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Our School", "url": "/our-school/", "image": { "src": "/assets/images/our-school/hero-768.webp", "alt": "", "width": 768, "height": 438 } },
+        { "label": "Our School Alternative", "url": "/our-school-alternative/", "image": { "src": "/assets/images/our-school/row-4.webp", "alt": "", "width": 1432, "height": 1024 } },
+        { "label": "Leadership & Staff", "url": "/leadership-staff/", "image": { "src": "/assets/images/our-school/hero-leadership-768.webp", "alt": "", "width": 768, "height": 412 } },
+        { "label": "Principal's Welcome", "url": "/principals-welcome/", "image": { "src": "/assets/images/our-school/hero-principal-768.webp", "alt": "", "width": 768, "height": 412 } },
+        { "label": "Contact", "url": "/contact/", "image": { "src": "/assets/images/pages/hero-contact-768.webp", "alt": "", "width": 768, "height": 412 } },
+        { "label": "News List", "url": "/news/", "image": { "src": "/assets/images/pages/feature-1.webp", "alt": "", "width": 1334, "height": 820 } },
+        { "label": "News Story", "url": "/news-story/", "image": { "src": "/assets/images/pages/article-hero.webp", "alt": "", "width": 1080, "height": 624 } },
+        { "label": "Extra Blocks", "url": "/extra-blocks/", "image": { "src": "/assets/images/pages/hero-extra-768.webp", "alt": "", "width": 768, "height": 412 } }
       ]
     },
     {
@@ -29,10 +34,10 @@
       "label": "Our School",
       "url": "#",
       "children": [
-        { "label": "Principal's Welcome", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Principal's Welcome", "url": "/principals-welcome/", "image": { "src": "/assets/images/our-school/hero-principal-768.webp", "alt": "", "width": 768, "height": 412 } },
         { "label": "Why Choose St Luke's", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
         { "label": "Christian Foundation", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Leadership & Staff", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Leadership & Staff", "url": "/leadership-staff/", "image": { "src": "/assets/images/our-school/hero-leadership-768.webp", "alt": "", "width": 768, "height": 412 } },
         { "label": "Strategic Plan", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
         { "label": "Campus Masterplan 2029–2031", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
         { "label": "Round Square Global Network", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
@@ -93,7 +98,7 @@
       "label": "News & Stories",
       "url": "#",
       "children": [
-        { "label": "Latest News", "url": "#", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Latest News", "url": "/news/", "image": { "src": "/assets/images/pages/feature-1.webp", "alt": "", "width": 1334, "height": 820 } },
         { "label": "Newsletters", "url": "#", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
         { "label": "Media", "url": "#", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]

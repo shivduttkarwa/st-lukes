@@ -1,9 +1,10 @@
-<section class="photo-strip" data-slider-scope>
+<section class="photo-strip{% if value.captioned %} photo-strip--captioned{% endif %}" data-slider-scope>
   <div class="swiper photo-strip__slider" data-slider data-slider-gap="6" data-slider-start="{{ value.start | default(0) }}">
     <div class="swiper-wrapper">
       {% for image in value.images %}
       <div class="swiper-slide photo-strip__slide">
         {% set img = image %}{% set cls = "photo-strip__img" %}{% set loading = "eager" %}{% include "snippets/image.njk" %}
+        {% if image.caption %}<p class="photo-strip__caption">{{ image.caption }}</p>{% endif %}
       </div>
       {% endfor %}
     </div>

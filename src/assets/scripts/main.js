@@ -1,7 +1,7 @@
 import { Anim } from "./anim.js";
 import { initPreloader } from "./preloader.js";
 import { initSliders } from "./slider.js";
-import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initFilters, initHoverVideos, initMarquees, initMenu, initPromos, initScrollState } from "./ui.js";
+import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initFilters, initHoverVideos, initMarquees, initMenu, initNewsFilter, initPromos, initScrollState } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initDevicePixel();
@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initDisclosures();
   initAccordions();
   initFilters();
+  initNewsFilter();
   initMenu();
   initPromos();
   initHoverVideos();

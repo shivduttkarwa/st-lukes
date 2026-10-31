@@ -23,6 +23,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ### Header and menu (`partials/header.njk`, `partials/menu.njk`)
 - `site.nav` is the page tree: top-level pages in menu order; `children` are each page's live children, shown in the submenu when the parent row is clicked. A parent with no children renders as a plain link (arrow ↗); with children it is a `<button aria-expanded>` (arrow turns ↘ when open). The parent page itself is not linked in the design; add it as the first child ("Overview") if the client wants it reachable from the menu.
+- For the demo, the Home submenu in `site.nav` lists every built page. It is review-only: replace it once the page tree drives the menu.
 - `children[].image` is the submenu thumbnail — a page field (e.g. `menu_image`), fall back to the page's hero image. The template only writes its URL on each child link as `data-thumb`; there is one shared, decorative `<div class="menu__thumb" aria-hidden="true">` after the nav, and the script fills it. Opening a submenu shows its first child's image; switching to another top-level row cross-fades to that row's first child; hovering or focusing a child swaps to its image. The first child carries `is-current` (Nunjucks `loop.first` → Django `forloop.first`) and the script moves it with the image.
 - `site.menu_links` (six small links), `site.utility_links` (Tours / Enquire / Enrol, shown in the header and again inside the panel), `site.socials` (`network` is the sprite icon id) and `site.quick_links` are site settings.
 - The search field posts `GET /search/?q=`. The results view (rows with thumbnail + title + description, "Popular searches" on the right) is described in `docs/design-guidelines.md` but not designed or built yet.
@@ -94,6 +95,45 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### faq (`blocks/faq.njk`)
 - `initAccordions()` in `ui.js`: one open at a time, the panel animates on `grid-template-rows`, and the arrow turns 180. A closed panel is `visibility: hidden`, so its button leaves the tab order. A row with no `answer` renders a disabled button.
 
+### contact_intro (`blocks/contact_intro.njk`)
+- Heading, two paragraphs and two buttons, then four cards with text links. Figma places each card by hand, so from 992 the heading gaps and link positions are set per card with `nth-child`. A fifth card would need its own values, so `cards` is exactly four.
+
+### campus_visit (`blocks/campus_visit.njk`)
+- Each campus: a photo with name and detail, contact rows, then a map. `rows.icon` is a sprite id (`location`, `phone`, `laptop`). The map is Figma's screenshot, linking to Google Maps. It is not an embed: swap in an iframe in Wagtail if the client wants a live map, and check its consent and privacy requirements.
+
+### contact_form (`blocks/contact_form.njk`)
+- A static form that posts nowhere yet. In Wagtail it should be a form page or Wagtail Forms; the template loops over fields by type. Controls keep the 16px floor and 44px height on touch, and 28 tall under a fine pointer.
+
+### connect_band (`blocks/connect_band.njk`)
+- The navy "Connect with us" box, with gold `.social-button()` links from `site.socials`.
+
+### news_hero (`blocks/news_hero.njk`)
+- The royal band with the title, the featured-story slider, the Connect box and a photo that drops 104 below the band. Slider: the shared `slider.js` in fade mode. Figma draws one story, so slides 2 and 3 reuse stories from the list.
+
+### news_index (`blocks/news_index.njk`, card markup in `snippets/news-card.njk`)
+- Filter bar and story grid. In the static build `initNewsFilter()` in `ui.js` filters by category and search text on the page. In Wagtail the form should submit `GET` and filter the queryset; remove `data-news-filter` then. Figma gives no values for Age or Year group, so they have no options yet.
+
+### article_hero (`blocks/article_hero.njk`)
+- The news story hero: the royal band with an inset photo, gold tag, date and centred title.
+
+### story_body (`blocks/story_body.njk`)
+- Sections of heading, rich text and an optional quote, then the share links and back button. Share links are `#` for now: in Wagtail point them at each network's share URL with the page address.
+
+### photo_strip captions
+- `captioned: true` (News Story, `20262:21004`) removes the top padding, adds each image's `caption` under it and uses Figma's position for the left arrow, 11.5 further out.
+
+### author_card (`blocks/author_card.njk`), related_stories (`blocks/related_stories.njk`)
+- The royal author box, and "Explore more Stories" with three `news-card` snippets. Both are News Story blocks.
+
+### sports_tabs (`blocks/sports_tabs.njk`)
+- Heading, tabs and a card slider (`slider.js`, overflow visible to the right). Tabs use `initFilters()`, which also updates the slider. Figma doesn't say which sports belong to which tab, so all four cards are in every tab for now.
+
+### media_text (`blocks/media_text.njk`)
+- One row: heading, rich text, up to two buttons, italic note and a photo flush to the window edge. `side` picks the photo's side. Below 992 the photo comes first.
+
+### Variants on existing blocks
+- `where_next`: `flush` sets 100 padding for pages with no white gap around it (News List). `faq`: `flush` removes the top padding and uses 100 below (Contact). `social`: `spaced` uses 100 padding (News List).
+
 ### intro (`blocks/intro.njk`)
 - The navy band under the hero: the statement and a button on the left; the portrait photo and an outline button on the right, flush to the window edge; the promo video below the statement, flush to the left edge. Fields in `blocks.yaml`. Below 992 it stacks in that order (statement, video, photo); phone layout interpreted.
 - `statement` is one rich-text paragraph. Its line break before "on Sydney’s Northern Beaches" only applies from 992 up, where the measure matches the design, so keep a space before it.
@@ -161,6 +201,11 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ## Content to enter in the admin
 
+- Contact: where the form posts, and the Phone field's placeholder. Figma reads "example@gmail.com" there, and it is built as drawn.
+- News List: options for Age and Year group. Figma's feature tag reads "student leadeers" and its first card "Thank to our amazing volunteers"; both are built as drawn and look like typos.
+- News List photo: Figma's side photo is a video fill, so the image is a still export.
+- News Story: the real author (Figma has "Example Name"), and captions for each photo (Figma repeats one placeholder).
+- Extra Blocks: which sports belong to which tab, and "Internal page headline", "Primary Action" and "Secondary Action" are Figma's sample copy. "Rock climbing" repeats the Mountain biking photo in Figma.
 - Leadership and Staff: people for Directors, School Council and Anglican Schools Corporation. Figma only lists the Executive Team, so those tabs are empty for now. Larger portraits too: Figma holds 200 x 200, shown 305.
 - Principal's Welcome: answers for the last five FAQ rows (Figma only has the first, so the others can't open yet). A larger portrait: Figma holds 900 x 500, shown 1032 wide.
 - Principal's Welcome: Figma's menu highlights Leadership & Staff, copied from the other page. It is built as drawn; set `current` on Principal's Welcome, or let the page tree do it.

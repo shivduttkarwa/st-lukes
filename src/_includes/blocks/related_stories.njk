@@ -1,0 +1,11 @@
+<section class="related-stories">
+  <div class="container">
+    <div class="related-stories__head">
+      <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
+      <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+    </div>
+    <div class="news-grid" data-anim-group="fade">
+      {% for card in value.stories %}{% include "snippets/news-card.njk" %}{% endfor %}
+    </div>
+  </div>
+</section>

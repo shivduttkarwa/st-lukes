@@ -1,0 +1,24 @@
+<section class="contact-intro">
+  <div class="container">
+    <div class="contact-intro__top">
+      <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
+      <div class="contact-intro__lead">
+        <div class="contact-intro__text" data-anim="reveal" data-anim-type="fade-up">{{ value.text | safe }}</div>
+        <div class="contact-intro__actions" data-anim-group="fade-up">
+          {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="contact-intro__cards" data-anim-group="fade-up">
+      {% for card in value.cards %}
+      <article class="contact-intro__card">
+        <h3>{{ card.title }}</h3>
+        <p>{{ card.text }}</p>
+        <div class="contact-intro__links">
+          {% for link in card.links %}<a class="contact-intro__link" href="{{ link.url | default('#') }}">{{ link.text }}</a>{% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

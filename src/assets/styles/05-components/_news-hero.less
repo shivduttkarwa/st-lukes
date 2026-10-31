@@ -1,0 +1,208 @@
+@news-hero-tail: 104 * @px;
+@news-arrow: 38 * @px;
+
+.news-hero {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 32 * @px;
+  padding-top: calc(var(--header-height) + 64 * @px);
+  color: var(--color-white);
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 @news-hero-tail;
+    background: var(--gradient-navy-to-blue);
+  }
+  > * { position: relative; }
+  @media (min-width: @bp-lg) {
+    display: grid;
+    grid-template-columns: minmax(0, 723fr) minmax(0, 667fr) minmax(0, 50fr);
+    gap: 0;
+    padding-top: 258 * @px;
+  }
+
+  &__intro {
+    display: flex;
+    flex-direction: column;
+    gap: 25 * @px;
+    padding-inline: var(--gutter);
+    @media (min-width: @bp-lg) {
+      grid-area: 1 / 1;
+      max-width: 540 * @px;
+      padding: 76 * @px 0 0 var(--gutter);
+    }
+    h1 {
+      .type-display-3();
+      display: flex;
+      flex-direction: column;
+      gap: 13 * @px;
+      margin: 0;
+      color: var(--color-gold);
+      span {
+        display: block;
+        text-box: trim-both cap alphabetic;
+      }
+      span + span { color: var(--color-white); }
+    }
+    p {
+      .type-lead-paragraph();
+      position: relative;
+      top: -0.1em;
+      margin: 0;
+    }
+  }
+
+  &__feature {
+    position: relative;
+    aspect-ratio: 667 / 410;
+    margin-inline: var(--gutter);
+    overflow: hidden;
+    @media (min-width: @bp-lg) {
+      grid-area: 1 / 2;
+      margin: 0;
+    }
+  }
+
+  &__slider { height: 100%; }
+
+  &__story {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    height: 100%;
+    padding: 20 * @px;
+    color: var(--color-white);
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-news-feature);
+    }
+    @media (min-width: @bp-lg) { padding: 30 * @px; }
+  }
+
+  &__img {
+    .cover();
+    object-fit: cover;
+  }
+
+  &__copy {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12 * @px;
+    max-width: 476 * @px;
+    padding-right: 96 * @px;
+    @media (min-width: @bp-lg) { padding-right: 0; }
+  }
+
+  &__tag {
+    .type-tag();
+    display: block;
+    text-box: trim-both cap alphabetic;
+    span { color: var(--color-gold); }
+  }
+
+  &__title {
+    .type-heading-4();
+    position: relative;
+    top: -0.1em;
+    white-space: pre-line;
+  }
+
+  &__nav {
+    position: absolute;
+    right: 20 * @px;
+    bottom: 20 * @px;
+    z-index: 2;
+    display: flex;
+    gap: 7 * @px;
+    @media (min-width: @bp-lg) {
+      right: 30 * @px;
+      bottom: 30 * @px;
+    }
+  }
+
+  &__arrow {
+    display: grid;
+    place-items: center;
+    width: var(--tap-size);
+    height: var(--tap-size);
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    transition: background-color var(--duration-base) ease;
+    @media @fine {
+      width: @news-arrow;
+      height: @news-arrow;
+    }
+    @media (hover: hover) {
+      &:hover { background: var(--color-gold-deep); }
+    }
+    .icon {
+      width: 18 * @px;
+      height: 18 * @px;
+      transform: rotate(45deg);
+    }
+    &[data-slider-prev] .icon { transform: rotate(-135deg); }
+  }
+
+  &__side {
+    aspect-ratio: 613 / 410;
+    margin-right: var(--gutter);
+    overflow: hidden;
+    @media (min-width: @bp-lg) {
+      grid-area: 2 / 1;
+      width: percentage((613 / 723));
+      margin: 6 * @px 0 0;
+    }
+  }
+
+  &__side-img { .img-cover(); }
+
+  &__connect {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20 * @px;
+    margin-inline: var(--gutter);
+    padding: 24 * @px;
+    background: var(--color-navy);
+    @media (min-width: @bp-lg) {
+      grid-area: 2 / 2;
+      flex-wrap: nowrap;
+      align-self: start;
+      margin: 110 * @px 0 0;
+      padding: 33 * @px 28 * @px;
+    }
+    @media (min-width: @bp-xl) { margin: 110 * @px percentage((50 / 667)) 0 percentage((104 / 667)); }
+    h2 {
+      .type-heading-4();
+      position: relative;
+      top: -0.1em;
+      margin: 0 0 4 * @px;
+      color: var(--color-white);
+    }
+    p {
+      .type-body-1();
+      position: relative;
+      top: -0.1em;
+      margin: 0;
+      color: var(--color-white-75);
+    }
+  }
+
+  &__links {
+    .reset-list();
+    flex: none;
+    display: flex;
+    gap: 12 * @px;
+  }
+
+  &__link { .social-button(var(--color-white), var(--color-navy), var(--color-gold), var(--color-navy)); }
+}

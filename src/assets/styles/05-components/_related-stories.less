@@ -1,0 +1,24 @@
+.related-stories {
+  padding: 56 * @px 0;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 100 * @px 0; }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20 * @px;
+    margin-bottom: 33 * @px;
+    h2 {
+      .type-heading-1();
+      position: relative;
+      top: -0.086em;
+      margin: 0;
+      color: var(--color-navy);
+    }
+    .btn {
+      @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
+    }
+  }
+}

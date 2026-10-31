@@ -1,0 +1,166 @@
+{
+  "seo": {
+    "title": "Students leading change through service | St Luke's Grammar School",
+    "description": "Two of our Junior School students are putting service into action through the SchoolAid Kids Ambassador Team program."
+  },
+  "body": [
+    {
+      "type": "article_hero",
+      "value": {
+        "tag": "service",
+        "date": "21 SEPTEMBER 2026",
+        "title": "Students leading change through service",
+        "image": {
+          "src": "/assets/images/pages/article-hero.webp",
+          "alt": "A student in a blue blazer presenting beside a SchoolAid poster",
+          "width": 1080,
+          "height": 624
+        }
+      }
+    },
+    {
+      "type": "story_body",
+      "value": {
+        "sections": [
+          {
+            "title": "Young leaders making a difference in our community",
+            "body": "<p>Two of our Junior School students are putting service into action through the SchoolAid Kids Ambassador Team program.</p><p>This year, Ethan and Rachel have worked alongside their staff mentors, Mrs Paterson, Mr Chilton and Mrs Lebic, to plan and lead community outreach initiatives across the Dee Why Junior School.</p><p>During Terms 2 and 3, their focus has been supporting The Salvation Army through a series of fundraising activities, including mufti days, bake sales and donation drives.</p><p>Together, the St Luke’s community has already raised an impressive $5,116, with more fundraising planned through PJ Day.</p>"
+          },
+          {
+            "title": "Finding their voice",
+            "body": "<p>The KAT Program has also given Ethan and Rachel opportunities to develop as young leaders.</p><p>They have created presentations and posters, spoken at assemblies and chapel services, hosted guest speakers and encouraged their classmates to think about the importance of serving others.</p><p>Recently, Ethan represented St Luke’s at the IPSHA Social Expo at St Ignatius’ College Riverview. He confidently delivered part of the SchoolAid KAT Program presentation before being selected from the audience to respond to questions from the Master of Ceremonies.</p><p>These experiences are helping our students develop the confidence to communicate, collaborate and lead, while understanding that even small actions can make a meaningful difference.</p>",
+            "quote": {
+              "text": "They have inspired fellow students to appreciate the importance and impact of community outreach.",
+              "name": "Mrs Lebic",
+              "role": "Learning Enhancement Teacher"
+            }
+          },
+          {
+            "title": "Service starts with us",
+            "body": "<p>At St Luke’s, service is part of developing the whole person. Through opportunities to support others, students learn that leadership isn't simply about having a title. It's about noticing where help is needed, taking responsibility and having the courage to make a difference.</p><p>Congratulations to Ethan and Rachel on their leadership, initiative and commitment to serving others.</p>"
+          }
+        ],
+        "share_label": "Share this article",
+        "back": {
+          "text": "All Articles",
+          "url": "/news/"
+        }
+      }
+    },
+    {
+      "type": "photo_strip",
+      "value": {
+        "start": 1,
+        "captioned": true,
+        "images": [
+          {
+            "src": "/assets/images/pages/detail-strip-1.webp",
+            "alt": "Students performing a musical on a colourful stage",
+            "width": 1680,
+            "height": 1090,
+            "caption": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community."
+          },
+          {
+            "src": "/assets/images/pages/detail-strip-2.webp",
+            "alt": "Dancers in red leaping and posing on stage",
+            "width": 1650,
+            "height": 1090,
+            "caption": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community."
+          },
+          {
+            "src": "/assets/images/pages/detail-strip-3.webp",
+            "alt": "Students playing saxophones in a band",
+            "width": 1680,
+            "height": 1090,
+            "caption": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community."
+          }
+        ]
+      }
+    },
+    {
+      "type": "author_card",
+      "value": {
+        "eyebrow": "Author profile",
+        "name": "Example Name",
+        "bio": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders.",
+        "image": {
+          "src": "/assets/images/pages/author.webp",
+          "alt": "",
+          "width": 312,
+          "height": 312
+        }
+      }
+    },
+    {
+      "type": "related_stories",
+      "value": {
+        "title": "Explore more Stories",
+        "button": {
+          "text": "Back to All News",
+          "url": "/news/",
+          "style": "outline-navy"
+        },
+        "stories": [
+          {
+            "tag": "Service",
+            "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-2.webp",
+              "alt": "Students with shovels working together on a building site",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Junior School",
+            "title": "students represent at the SchoolAid Kids Ambassador Team (KAT) Program",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-6.webp",
+              "alt": "A student in a blue blazer presenting beside a SchoolAid poster",
+              "width": 818,
+              "height": 568
+            }
+          },
+          {
+            "tag": "Service",
+            "title": "Year 10 Ambassadors host raise money for Indigenous Literacy Foundation (ILF)",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/pages/story-8.webp",
+              "alt": "Older and younger students looking at picture books on a table",
+              "width": 818,
+              "height": 568
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta",
+      "value": {
+        "title_line_1": "Start your",
+        "title_line_2": "St Luke’s journey",
+        "buttons": [
+          {
+            "text": "Book a Tour",
+            "url": "#"
+          },
+          {
+            "text": "Apply to Enrol",
+            "url": "#",
+            "style": "glass"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/cta-poster.webp",
+          "alt": "",
+          "width": 720,
+          "height": 412
+        },
+        "video": null
+      }
+    }
+  ]
+}

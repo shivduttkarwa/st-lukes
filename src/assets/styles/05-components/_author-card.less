@@ -1,0 +1,61 @@
+.author-card {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 var(--gutter) 48 * @px;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { min-height: 410 * @px; padding-bottom: 0; }
+
+  &__box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 25 * @px;
+    width: 100%;
+    max-width: 824 * @px;
+    padding: 32 * @px 24 * @px;
+    background: var(--color-royal);
+    color: var(--color-white);
+    @media (min-width: @bp-md) {
+      flex-direction: row;
+      justify-content: center;
+      min-height: 247 * @px;
+      padding: 8 * @px 45 * @px;
+    }
+  }
+
+  &__img {
+    flex: none;
+    display: block;
+    width: 156 * @px;
+    height: 156 * @px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  &__text {
+    min-width: 0;
+    max-width: 552 * @px;
+    h2 {
+      .type-h2();
+      margin: 0 0 15 * @px;
+      color: var(--color-white);
+    }
+  }
+
+  &__eyebrow {
+    .type-heading-6();
+    position: relative;
+    top: -0.1em;
+    margin: 0 0 6 * @px;
+    color: var(--color-gold);
+  }
+
+  &__bio {
+    .type-news-text();
+    position: relative;
+    top: -0.1em;
+    margin: 0;
+    white-space: pre-wrap;
+  }
+}

@@ -1,0 +1,32 @@
+<section class="campus-visit" id="campuses">
+  <div class="container">
+    <div class="campus-visit__head">
+      <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
+      <p data-anim="reveal" data-anim-type="fade-up">{{ value.lead }}</p>
+    </div>
+    <div class="campus-visit__grid">
+      {% for campus in value.campuses %}
+      <article class="campus-visit__campus">
+        <div class="campus-visit__media" data-anim="reveal" data-anim-type="fade-up">
+          {% set img = campus.image %}{% set cls = "campus-visit__img" %}{% include "snippets/image.njk" %}
+          <div class="campus-visit__title">
+            <h3>{{ campus.name }}</h3>
+            <p>{{ campus.detail }}</p>
+          </div>
+        </div>
+        <ul class="campus-visit__rows" data-anim-group="fade-up">
+          {% for row in campus.rows %}
+          <li class="campus-visit__row">
+            <svg class="campus-visit__icon" aria-hidden="true"><use href="#icon-{{ row.icon }}"></use></svg>
+            <span>{% if row.label %}<strong>{{ row.label }}</strong> {% endif %}{% if row.url %}<a href="{{ row.url }}">{{ row.text }}</a>{% else %}{{ row.text }}{% endif %}</span>
+          </li>
+          {% endfor %}
+        </ul>
+        <a class="campus-visit__map" href="{{ campus.map_url }}" data-anim="reveal" data-anim-type="fade-up">
+          {% set img = campus.map %}{% set cls = "campus-visit__map-img" %}{% include "snippets/image.njk" %}
+        </a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>

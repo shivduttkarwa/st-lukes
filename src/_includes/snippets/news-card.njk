@@ -1,0 +1,5 @@
+<a class="news-card" href="{{ card.url | default('#') }}" data-news-tag="{{ card.tag }}">
+  {% set img = card.image %}{% set cls = "news-card__img" %}{% include "snippets/image.njk" %}
+  <p class="news-card__tag"><span aria-hidden="true">#</span>{{ card.tag }}</p>
+  <h3>{{ card.title }}</h3>
+</a>

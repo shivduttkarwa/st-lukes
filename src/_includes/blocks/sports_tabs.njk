@@ -1,0 +1,21 @@
+<section class="sports" data-filter-scope>
+  <div class="container">
+    <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
+    <div class="sports__tabs" data-anim-group="fade-up">
+      {% for tab in value.tabs %}
+      <button class="sports__tab" type="button" data-filter="{{ tab.slug }}" aria-pressed="{% if tab.slug == value.active %}true{% else %}false{% endif %}">{{ tab.label }}</button>
+      {% endfor %}
+    </div>
+    <div class="swiper sports__slider" data-slider data-slider-gap="6">
+      <div class="swiper-wrapper" data-anim-group="fade">
+        {% for card in value.cards %}
+        <a class="swiper-slide sports__card" href="{{ card.url | default('#') }}" data-filter-groups="{{ card.groups }}">
+          {% set img = card.image %}{% set cls = "sports__img" %}{% include "snippets/image.njk" %}
+          <span class="sports__title">{{ card.title }}</span>
+          <span class="sports__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+        </a>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>

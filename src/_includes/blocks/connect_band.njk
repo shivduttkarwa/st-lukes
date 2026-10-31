@@ -1,0 +1,15 @@
+<section class="connect-band">
+  <div class="container">
+    <div class="connect-band__box" data-anim="reveal" data-anim-type="fade-up">
+      <div class="connect-band__text">
+        <h2>{{ value.title }}</h2>
+        <p>{{ value.text }}</p>
+      </div>
+      <ul class="connect-band__links">
+        {% for item in site.socials %}
+        <li><a class="connect-band__link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</section>

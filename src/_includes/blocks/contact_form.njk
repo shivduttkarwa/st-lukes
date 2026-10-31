@@ -1,0 +1,34 @@
+<section class="contact-form" id="contact-form">
+  <div class="contact-form__frame" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+    {% set img = value.image %}{% set cls = "contact-form__img" %}{% include "snippets/image.njk" %}
+  </div>
+  <div class="contact-form__panel">
+    <div class="contact-form__intro">
+      <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
+      <p data-anim="reveal" data-anim-type="fade-up">{{ value.text }}</p>
+    </div>
+    <form class="contact-form__form" action="#" method="post" data-anim="reveal" data-anim-type="fade-up">
+      <div class="contact-form__fields">
+        {% for field in value.fields %}
+        <div class="contact-form__field{% if field.half %} contact-form__field--half{% endif %}">
+          <label for="contact-{{ field.name }}">{{ field.label }}</label>
+          {% if field.type == "select" %}
+          <div class="contact-form__select">
+            <select id="contact-{{ field.name }}" name="{{ field.name }}" required>
+              <option value="" disabled selected hidden>{{ field.placeholder }}</option>
+              {% for option in field.options %}<option>{{ option }}</option>{% endfor %}
+            </select>
+            <svg class="icon" aria-hidden="true"><use href="#icon-angle-down"></use></svg>
+          </div>
+          {% elif field.type == "textarea" %}
+          <textarea id="contact-{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" rows="4" required></textarea>
+          {% else %}
+          <input id="contact-{{ field.name }}" name="{{ field.name }}" type="{{ field.type }}" placeholder="{{ field.placeholder }}" required>
+          {% endif %}
+        </div>
+        {% endfor %}
+      </div>
+      <button class="btn btn-primary" type="submit">{{ value.button }}</button>
+    </form>
+  </div>
+</section>

@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-10-31 — Contact, News List, News Story, Extra Blocks
+- New pages `/contact/` (`20169:13360`), `/news/` (`20169:14008`), `/news-story/` (`20169:14107`) and `/extra-blocks/` (`20262:20213`). New blocks: `contact_intro`, `campus_visit`, `contact_form`, `connect_band`, `news_hero`, `news_index`, `article_hero`, `story_body`, `author_card`, `related_stories`, `sports_tabs`, `media_text`; snippet `news-card`.
+- At 1440 against Figma's renders: section tops land within 1px on all four pages. Text wraps as in Figma, and ink is within 1px apart from a few phone-row and form lines, up to 2px. Figma's News Detail frame is 5632 tall and clips its footer; the page shows the whole footer.
+- Variants: `where_next.flush`, `faq.flush`, `social.spaced`, `photo_strip.captioned`. `initFilters()` now updates a slider inside its scope. New `initNewsFilter()`, the `location`, `phone`, `laptop` and `angle-down` icons from Figma's vectors, and tokens `--gradient-news-feature`, `--gradient-article-hero`, `--gradient-sports`, `--color-search`.
+- Phone layouts interpreted. Checked at 320, 375, 430, 667 x 375, 768, 1024, 1280, 1440 and 1920, with no horizontal scroll. Filters, search, form validation, sliders and tabs checked in Chrome with no script errors.
+
 ## 2026-10-31 — Leadership and Staff, Principal's Welcome
 - New pages `/leadership-staff/` (`20169:5889`) and `/principals-welcome/` (`20262:19567`). New blocks: `inner_hero`, `page_lead`, `staff_grid`, `where_next`, `article`, `photo_strip`, `values_collage`, `faq`. Both end with the shared `cta` (the homepage's bush-walk still, as in these frames) and the footer.
 - At 1440 against Figma's renders: section tops land on Figma's numbers (Leadership 772, 1122, 3193, 4400, 5226; Principal's 772, 1066, 3045, 3804, 4837, 5699, 6879, 7705). Text wraps as in Figma and ink lands within 1px per line, apart from the menu links (up to 2px narrower).

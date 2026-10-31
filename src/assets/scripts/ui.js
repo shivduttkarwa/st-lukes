@@ -67,9 +67,29 @@ export function initFilters() {
         cards.forEach((card) => {
           card.hidden = group !== "all" && !card.dataset.filterGroups.split(" ").includes(group);
         });
+        scope.querySelectorAll("[data-slider]").forEach((slider) => slider.swiper?.update());
         window.Anim?.refresh();
       });
     });
+  });
+}
+
+export function initNewsFilter() {
+  document.querySelectorAll("[data-news-filter]").forEach((root) => {
+    const category = root.querySelector("[data-news-category]");
+    const search = root.querySelector("[data-news-search]");
+    const cards = root.querySelectorAll("[data-news-tag]");
+    const apply = () => {
+      const term = search.value.trim().toLowerCase();
+      cards.forEach((card) => {
+        const matches = !category.value || card.dataset.newsTag === category.value;
+        card.hidden = !matches || !card.textContent.toLowerCase().includes(term);
+      });
+      window.Anim?.refresh();
+    };
+    category.addEventListener("change", apply);
+    search.addEventListener("input", apply);
+    root.querySelector("form").addEventListener("submit", (e) => e.preventDefault());
   });
 }
 

@@ -178,6 +178,129 @@ blocks:
         answer: TextBlock   # without one the row stays closed
         button: StructBlock(text: CharBlock, url: URLBlock)
 
+  contact_intro:
+    figma: "20169:13367"
+    template: blocks/contact_intro.njk
+    fields:
+      title: CharBlock(required)   # Poppins H2
+      text: RichTextBlock(features=[])   # Body 2 paragraphs
+      buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(primary, outline-dark)), max_num=2)
+      cards: ListBlock(StructBlock, min_num=4, max_num=4)   # drawn for four; Figma places each one by hand
+        title: CharBlock(required)
+        text: TextBlock
+        links: ListBlock(StructBlock(text: CharBlock, url: URLBlock))
+
+  campus_visit:
+    figma: "20169:13393"
+    template: blocks/campus_visit.njk
+    fields:
+      title: CharBlock(required)
+      lead: TextBlock
+      campuses: ListBlock(StructBlock, min_num=1)   # two per row from 992
+        name: CharBlock(required)
+        detail: CharBlock
+        image: ImageChooserBlock(required)   # fill-1234x824
+        rows: ListBlock(StructBlock(icon: ChoiceBlock(location, phone, laptop), label: CharBlock, text: CharBlock, url: URLBlock))
+        map: ImageChooserBlock(required)   # Figma's map screenshot, shown 617 x 467
+        map_url: URLBlock
+
+  contact_form:
+    figma: "20169:13420"
+    template: blocks/contact_form.njk
+    fields:
+      image: ImageChooserBlock(required)   # fill-1280x1527
+      title: CharBlock(required)
+      text: TextBlock   # line breaks apply from 992 up
+      fields: a Wagtail form page's fields (text, email, tel, select, textarea); half = two to a row
+      button: CharBlock   # the submit label
+
+  connect_band:
+    figma: "20169:13436"
+    template: blocks/connect_band.njk
+    fields:
+      title: CharBlock(required)
+      text: TextBlock   # the buttons are site.socials
+
+  news_hero:
+    figma: "20169:14033 (ground), 20169:14039 (title), 20169:14044 (feature), 20169:14058 (photo), 20169:14034 (connect)"
+    template: blocks/news_hero.njk
+    fields:
+      title_line_1: CharBlock(required)   # gold
+      title_line_2: CharBlock(required)   # white
+      lead: TextBlock
+      stories: the featured news pages, or ListBlock(StructBlock(tag, title, url, image))   # crossfading slider; Figma draws one, slides 2 and 3 reuse list stories
+      image: ImageChooserBlock(required)   # fill-1226x820, the photo that drops below the band
+      connect: StructBlock(title: CharBlock, text: CharBlock)   # the buttons are site.socials
+
+  news_index:
+    figma: "20169:14009"
+    template: blocks/news_index.njk   # card markup in snippets/news-card.njk
+    fields:
+      filters: ListBlock(StructBlock(name, label, options))   # server-side in Wagtail; only category has values here
+      search_label: CharBlock
+      stories: the NewsPage queryset   # tag, title, url, image fill-818x568
+
+  article_hero:
+    figma: "20169:14108 (ground), 20169:14109 (photo, meta, title)"
+    template: blocks/article_hero.njk
+    fields:
+      tag: CharBlock
+      date: DateBlock   # shown as "21 SEPTEMBER 2026"
+      title: CharBlock(required)
+      image: ImageChooserBlock(required)   # shown 1339 x 774
+
+  story_body:
+    figma: "20262:20964"
+    template: blocks/story_body.njk
+    fields:
+      sections: ListBlock(StructBlock)
+        title: CharBlock(required)   # Heading 3
+        body: RichTextBlock(features=[])
+        quote: StructBlock(text: TextBlock, name: CharBlock, role: CharBlock)   # optional
+      share_label: CharBlock   # the buttons are site.socials
+      back: StructBlock(text: CharBlock, url: URLBlock)
+
+  author_card:
+    figma: "20262:20261"
+    template: blocks/author_card.njk
+    fields:
+      eyebrow: CharBlock
+      name: CharBlock(required)
+      bio: TextBlock
+      image: ImageChooserBlock(required)   # fill-312x312, shown round
+
+  related_stories:
+    figma: "20262:21039"
+    template: blocks/related_stories.njk   # card markup in snippets/news-card.njk
+    fields:
+      title: CharBlock(required)   # Sanshand Heading 1
+      button: StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(outline-navy))
+      stories: the page's related NewsPages, 3
+
+  sports_tabs:
+    figma: "20262:20250"
+    template: blocks/sports_tabs.njk
+    fields:
+      title: TextBlock(required)
+      active: CharBlock   # the slug of the tab selected on load
+      tabs: ListBlock(StructBlock(label: CharBlock, slug: CharBlock))
+      cards: ListBlock(StructBlock)   # Swiper slider, 410 x 521, 6 apart
+        title: CharBlock(required)
+        url: URLBlock
+        groups: CharBlock   # tab slugs separated by spaces
+        image: ImageChooserBlock(required)   # decorative
+
+  media_text:
+    figma: "20262:20234 (photo right), 20262:20241 (photo left)"
+    template: blocks/media_text.njk
+    fields:
+      side: ChoiceBlock(right, left)   # which side the photo sits on
+      title: CharBlock(required)   # Heading 3
+      body: RichTextBlock(features=[])
+      buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(primary, outline-navy)), max_num=2)
+      note: TextBlock   # the italic fine print
+      image: ImageChooserBlock(required)   # fill-1226x1024
+
   intro:
     figma: "20169:5686 (statement, button), 20169:5689 (photo, button), 20169:5684 (promo video)"
     template: blocks/intro.njk

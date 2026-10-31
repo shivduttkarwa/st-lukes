@@ -1,0 +1,109 @@
+.sports {
+  padding: 56 * @px 0;
+  overflow: hidden;
+  background: var(--color-background-tint);
+  @media (min-width: @bp-lg) { margin-top: 18 * @px; padding: 100 * @px 0; }
+
+  h2 {
+    .type-h2();
+    max-width: 765 * @px;
+    margin: 0 0 32 * @px;
+    color: var(--color-navy);
+    @media (min-width: @bp-lg) {
+      height: 120 * @px;
+      margin-bottom: 44 * @px;
+    }
+  }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6 * @px;
+    margin-bottom: 32 * @px;
+    @media (min-width: @bp-lg) { margin-bottom: 44 * @px; }
+  }
+
+  &__tab {
+    .type-tab();
+    flex: 1 1 auto;
+    min-height: var(--tap-size);
+    padding: 18 * @px 12 * @px 22 * @px;
+    border: 0;
+    border-bottom: 3 * @px solid var(--color-royal-tint);
+    background: none;
+    color: var(--color-navy);
+    text-align: center;
+    transition: color var(--duration-base) ease, border-color var(--duration-base) ease;
+    @media (min-width: @bp-md) { flex: 0 0 196 * @px; }
+    &[aria-pressed="true"] {
+      border-color: var(--color-royal);
+      color: var(--color-royal);
+    }
+    @media (hover: hover) {
+      &:hover { color: var(--color-royal); }
+    }
+  }
+
+  &__slider {
+    --swiper-wrapper-transition-timing-function: var(--ease-out);
+    overflow: visible;
+  }
+
+  &__card {
+    position: relative;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 8 * @px;
+    width: 300 * @px;
+    height: auto;
+    aspect-ratio: 410 / 521;
+    padding: 20 * @px;
+    overflow: hidden;
+    color: var(--color-white);
+    &[hidden] { display: none; }
+    &::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--gradient-sports);
+    }
+    @media (min-width: @bp-md) {
+      width: 410 * @px;
+      padding: 30 * @px;
+    }
+  }
+
+  &__img {
+    .cover();
+    object-fit: cover;
+  }
+
+  &__title {
+    .type-h5();
+    position: relative;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    flex: 1;
+    min-width: 0;
+    min-height: ~"max(var(--tap-size), @{slider-arrow-size})";
+  }
+
+  &__arrow {
+    position: relative;
+    z-index: 1;
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: ~"max(var(--tap-size), @{slider-arrow-size})";
+    height: ~"max(var(--tap-size), @{slider-arrow-size})";
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    .icon {
+      width: 24 * @px;
+      height: 24 * @px;
+    }
+  }
+}
