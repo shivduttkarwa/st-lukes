@@ -1,0 +1,347 @@
+{
+  "seo": {
+    "title": "Leadership and Staff | St Luke's Grammar School",
+    "description": "Great education begins with great relationships. Our leaders and educators know our students, challenge their thinking and help them shape their future."
+  },
+  "body": [
+    {
+      "type": "inner_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/our-school/hero-leadership-1900.webp",
+          "srcset": "/assets/images/our-school/hero-leadership-768.webp 768w, /assets/images/our-school/hero-leadership-1280.webp 1280w, /assets/images/our-school/hero-leadership-1900.webp 1900w",
+          "alt": "A teacher smiling with two young students and a small robot at a white table",
+          "width": 1900,
+          "height": 1019
+        },
+        "video": null,
+        "title_line_1": "Leadership",
+        "title_line_2": "and staff",
+        "title_raised": false
+      }
+    },
+    {
+      "type": "page_lead",
+      "value": {
+        "statement": "Great education begins with great relationships. Our leaders and educators know our students, challenge their thinking and help them shape their future.",
+        "text": "From our leadership team to the teachers and support staff who bring each school day to life, our people are committed to knowing every student, nurturing their potential and encouraging them to aim high. Together, they create a community where academic excellence, Christian character and genuine care go hand in hand, preparing young people to make a difference in the world."
+      }
+    },
+    {
+      "type": "staff_grid",
+      "value": {
+        "title": "Meet our passionate leaders",
+        "active": "executive",
+        "tabs": [
+          {
+            "label": "All",
+            "slug": "all"
+          },
+          {
+            "label": "Executive Team",
+            "slug": "executive"
+          },
+          {
+            "label": "Directors",
+            "slug": "directors"
+          },
+          {
+            "label": "School Council",
+            "slug": "council"
+          },
+          {
+            "label": "Anglican Schools Corporation",
+            "slug": "corporation"
+          }
+        ],
+        "people": [
+          {
+            "name": "Geoff Lancaster",
+            "role": "Principal",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/1.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "David Chilton",
+            "role": "Head of Ministry and Service",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/2.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Scott Bedingfield",
+            "role": "Deputy Principal",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/3.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Jane Hughes",
+            "role": "Business Manager",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/4.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Jennifer Pollock",
+            "role": "Deputy, Academic Strategy",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/5.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Mark Liddell",
+            "role": "Head of Learning and Innovation",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/6.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Alana Koch",
+            "role": "Head of Wellbeing",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/7.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Kathryn McDonald",
+            "role": "Head of Senior School",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/8.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Tammy Paterson",
+            "role": "Head of Junior School Dee Why",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/9.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Peter Scott",
+            "role": "Head of Junior School Bayview",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/10.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Rob Currer",
+            "role": "Dean of Students (7-9)",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/11.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Gaby Smith",
+            "role": "Dean of Students (10-12)",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/12.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Ross Andersen",
+            "role": "Assistant Head of Junior School Dee Why",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/13.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Rebecca Willis",
+            "role": "Assistant Head of Junior School Bayview",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/14.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          },
+          {
+            "name": "Elizabeth Little",
+            "role": "Executive Assistant to the Principal, Ex-Officio",
+            "groups": "executive",
+            "image": {
+              "src": "/assets/images/our-school/staff/15.webp",
+              "alt": "",
+              "width": 200,
+              "height": 200
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "tight": false,
+        "title_line_1": "Where",
+        "title_line_2": "to Next?",
+        "cards": [
+          {
+            "title": "Why Choose St Luke's",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-1.webp",
+              "alt": "",
+              "width": 1298,
+              "height": 925
+            }
+          },
+          {
+            "title": "Christian Foundation",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-2.webp",
+              "alt": "",
+              "width": 1026,
+              "height": 612
+            }
+          },
+          {
+            "title": "Leadership & Staff",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-3.webp",
+              "alt": "",
+              "width": 1026,
+              "height": 612
+            }
+          }
+        ],
+        "menu": {
+          "title_line_1": "Explore",
+          "title_line_2": "Our School",
+          "links": [
+            {
+              "label": "Principal's Welcome",
+              "url": "#"
+            },
+            {
+              "label": "Why Choose St Luke's",
+              "url": "#"
+            },
+            {
+              "label": "Christian Foundation",
+              "url": "#"
+            },
+            {
+              "label": "Leadership & Staff",
+              "url": "#",
+              "current": true
+            },
+            {
+              "label": "Strategic Plan",
+              "url": "#"
+            },
+            {
+              "label": "Campus Masterplan 2029–2031",
+              "url": "#"
+            },
+            {
+              "label": "Round Square",
+              "url": "#"
+            },
+            {
+              "label": "History",
+              "url": "#"
+            },
+            {
+              "label": "Acknowledgement of Country",
+              "url": "#"
+            }
+          ],
+          "buttons": [
+            {
+              "text": "Make an Enquiry",
+              "url": "#",
+              "style": "outline-dark"
+            },
+            {
+              "text": "Apply Today to Enrol",
+              "url": "#",
+              "style": "outline-dark"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "cta",
+      "value": {
+        "title_line_1": "Start your",
+        "title_line_2": "St Luke’s journey",
+        "buttons": [
+          {
+            "text": "Book a Tour",
+            "url": "#"
+          },
+          {
+            "text": "Apply to Enrol",
+            "url": "#",
+            "style": "glass"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/cta-poster.webp",
+          "alt": "",
+          "width": 720,
+          "height": 412
+        },
+        "video": null
+      }
+    }
+  ]
+}

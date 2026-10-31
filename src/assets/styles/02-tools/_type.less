@@ -320,3 +320,53 @@
   letter-spacing: 0.03em;
   text-transform: uppercase;
 }
+
+// "Heading 6 Poppins Caps": the staff names
+.type-poppins-h6-caps() {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
+// the Where to Next cards have no named style: Sanshand 45 and 30 / 1.05, -3%, caps
+.type-next-title-lg() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 45 * @px; }
+}
+
+.type-next-title-sm() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  font-size: 24 * @px;
+  @media (min-width: @bp-lg) { font-size: 30 * @px; }
+}
+
+// the internal page menu links have no named style: Poppins SemiBold 16 / 0.9, caps
+.type-next-link() {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: 0;
+  text-transform: uppercase;
+  font-size: 16 * @px;
+}
+
+// the FAQ questions have no named style: Poppins SemiBold 20 / 1.5
+.type-faq-question() {
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: 1.5;
+  letter-spacing: 0;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}

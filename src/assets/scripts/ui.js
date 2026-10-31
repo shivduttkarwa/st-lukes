@@ -39,6 +39,40 @@ export function initDisclosures() {
   });
 }
 
+export function initAccordions() {
+  document.querySelectorAll("[data-accordion]").forEach((root) => {
+    const items = [...root.querySelectorAll("[data-accordion-item]")];
+    items.forEach((item) => {
+      item.querySelector("[aria-expanded]").addEventListener("click", () => {
+        const open = !item.classList.contains("is-open");
+        items.forEach((other) => {
+          const on = open && other === item;
+          other.classList.toggle("is-open", on);
+          other.querySelector("[aria-expanded]").setAttribute("aria-expanded", String(on));
+        });
+        setTimeout(() => window.Anim?.refresh(), 700);
+      });
+    });
+  });
+}
+
+export function initFilters() {
+  document.querySelectorAll("[data-filter-scope]").forEach((scope) => {
+    const tabs = scope.querySelectorAll("[data-filter]");
+    const cards = scope.querySelectorAll("[data-filter-groups]");
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const group = tab.dataset.filter;
+        tabs.forEach((other) => other.setAttribute("aria-pressed", String(other === tab)));
+        cards.forEach((card) => {
+          card.hidden = group !== "all" && !card.dataset.filterGroups.split(" ").includes(group);
+        });
+        window.Anim?.refresh();
+      });
+    });
+  });
+}
+
 export function initPromos() {
   document.querySelectorAll("[data-promo]").forEach((promo) => {
     const video = promo.querySelector("video");

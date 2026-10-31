@@ -1,0 +1,33 @@
+<section class="faq">
+  <div class="container faq__inner">
+    <div class="faq__head">
+      <div class="faq__titles">
+        <p class="faq__eyebrow" data-anim="reveal" data-anim-type="fade-up">{{ value.eyebrow }}</p>
+        <h2 data-anim="reveal" data-anim-type="fade-up">{{ value.title }}</h2>
+      </div>
+      {% if value.button %}
+      <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+      {% endif %}
+    </div>
+    <div class="faq__list" data-accordion data-anim-group="fade-up">
+      {% for item in value.questions %}
+      <div class="faq__item{% if loop.first %} is-open{% endif %}" data-accordion-item>
+        <h3>
+          <button class="faq__question" type="button" aria-expanded="{% if loop.first %}true{% else %}false{% endif %}"{% if not item.answer %} disabled{% endif %}>
+            <span>{{ item.question }}</span>
+            <span class="faq__icon" aria-hidden="true"><svg><use href="#icon-arrow-diagonal"></use></svg></span>
+          </button>
+        </h3>
+        {% if item.answer %}
+        <div class="faq__panel">
+          <div class="faq__answer">
+            <p>{{ item.answer }}</p>
+            {% set btn = item.button %}{% set plain = true %}{% include "snippets/button.njk" %}
+          </div>
+        </div>
+        {% endif %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>

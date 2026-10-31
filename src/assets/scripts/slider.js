@@ -33,12 +33,15 @@ export function initSliders() {
     const fade = el.dataset.sliderMode === "fade";
     const delay = parseFloat(el.dataset.sliderAutoplay || "0");
     const dots = scope.querySelector("[data-slider-pagination]");
+    const start = el.dataset.sliderStart;
     const swiper = new Swiper(el, {
       modules: [A11y, EffectFade, Keyboard, Navigation, Pagination],
       slidesPerView: fade ? 1 : "auto",
       spaceBetween: fade ? 0 : designPx(gap),
       speed: still.matches ? 0 : 900,
       grabCursor: !fade,
+      centeredSlides: start !== undefined,
+      initialSlide: parseInt(start || "0", 10),
       effect: fade ? "fade" : "slide",
       fadeEffect: { crossFade: true },
       loop: fade,

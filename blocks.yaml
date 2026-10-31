@@ -94,6 +94,90 @@ blocks:
         image: ImageChooserBlock(required)   # odd rows fill-1436x1028, even rows fill-1432x1024
         button: StructBlock(text: CharBlock, url: URLBlock)   # solid, no arrow
 
+  inner_hero:
+    figma: "20169:5890 (Leadership and Staff), 20262:20150 (Principal's Welcome)"
+    template: blocks/inner_hero.njk
+    fields:
+      image: ImageChooserBlock(required)   # fill-1900x1019, renditions 768 / 1280 / 1900 for the srcset
+      video: DocumentChooserBlock(optional)   # mp4, autoplay muted loop; the image is its poster
+      title_line_1: CharBlock(required)   # gold
+      title_line_2: CharBlock(required)   # gold outline
+      title_raised: BooleanBlock(default=False)   # Principal's Welcome draws the title 27 higher and 1 further left
+
+  page_lead:
+    figma: "20169:5896, 20262:20199"
+    template: blocks/page_lead.njk
+    fields:
+      statement: TextBlock(required)   # Heading 4
+      text: TextBlock(required)   # Body 1
+
+  staff_grid:
+    figma: "20169:5899"
+    template: blocks/staff_grid.njk
+    fields:
+      title: CharBlock(required)
+      active: CharBlock   # the slug of the tab selected on load
+      tabs: ListBlock(StructBlock(label: CharBlock, slug: CharBlock))   # slug "all" shows everyone
+      people: ListBlock(StructBlock)   # four per row from 992, three from 768, two below
+        name: CharBlock(required)
+        role: CharBlock
+        groups: CharBlock   # tab slugs separated by spaces
+        image: ImageChooserBlock(required)   # decorative, fill-610x610
+
+  where_next:
+    figma: "20169:5926 (Leadership and Staff), 20262:20810 (Principal's Welcome); menu component 20225:16862"
+    template: blocks/where_next.njk
+    fields:
+      tight: BooleanBlock(default=False)   # Principal's Welcome: 100 padding and a 50 gap above the menu, against 104 and 75
+      title_line_1: CharBlock(required)   # navy
+      title_line_2: CharBlock(required)   # navy outline
+      cards: ListBlock(StructBlock, min_num=3, max_num=3)   # the first is the large one
+        title: CharBlock(required)
+        url: PageChooserBlock or URLBlock
+        image: ImageChooserBlock(required)   # decorative; first fill-1298x925, others fill-1026x612
+      menu: StructBlock
+        title_line_1: CharBlock
+        title_line_2: CharBlock
+        links: ListBlock(StructBlock(label: CharBlock, url: URLBlock, current: BooleanBlock))   # three to a column; from the section's page tree in Wagtail
+        buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(outline-dark)), max_num=2)
+
+  article:
+    figma: "20262:19578"
+    template: blocks/article.njk
+    fields:
+      title: CharBlock(required)   # Heading 3
+      intro: RichTextBlock(features=[bold])
+      image: ImageChooserBlock   # shown 1032 x 614
+      quote: TextBlock   # the template adds the quotation marks
+      body: RichTextBlock(features=[bold])
+
+  photo_strip:
+    figma: "20262:20746"
+    template: blocks/photo_strip.njk
+    fields:
+      start: IntegerBlock(default=0)   # the slide centred on load
+      images: ListBlock(ImageChooserBlock, min_num=1)   # each slide takes its width from its photo at a fixed height
+
+  values_collage:
+    figma: "20262:22075 (words: 20262:22076)"
+    template: blocks/values_collage.njk
+    fields:
+      image: ImageChooserBlock(required)   # fill-1044x1394
+      words: ImageChooserBlock(required)   # an SVG of the word collage; alt carries the sentence
+      button: StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(outline))
+
+  faq:
+    figma: "20262:22114"
+    template: blocks/faq.njk
+    fields:
+      eyebrow: CharBlock
+      title: TextBlock(required)   # a line break is kept
+      button: StructBlock(text: CharBlock, url: URLBlock)
+      questions: ListBlock(StructBlock, min_num=1)   # the first starts open; one open at a time
+        question: CharBlock(required)
+        answer: TextBlock   # without one the row stays closed
+        button: StructBlock(text: CharBlock, url: URLBlock)
+
   intro:
     figma: "20169:5686 (statement, button), 20169:5689 (photo, button), 20169:5684 (promo video)"
     template: blocks/intro.njk

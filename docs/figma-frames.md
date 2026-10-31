@@ -40,5 +40,11 @@ Hero `20420:27600` (813 tall, eyebrow `20420:27601`), title texts `20420:27603` 
 ## Our School Landing Alternative top level
 Hero `20348:24216`, title texts `20348:24219` / `20348:24220`, navy collage band `20348:24215` (812–2322): same layout and fills as Our School Landing. Rows in `20413:27213` (from y 2321): `20412:27187`, `20412:27180`, `20413:27239`, `20413:27245`, `20413:27261`, `20413:27267`, `20413:27300`, `20413:27286`, `20413:27314`. CTA Banner `20413:27325`, Footer `20413:27326`. The frame is 3px taller than its content (a white sliver under the footer).
 
+## Leadership and Staff top level
+Hero `20169:5890` (772 tall), lead `20169:5896`, staff `20169:5899`, Where to Next `20169:5926`, CTA Banner `20169:5924`, Footer `20169:5925`.
+
+## Principal's Welcome top level
+Hero `20262:20150` (772 tall), lead `20262:20199`, article `20262:19578`, photo strip `20262:20746`, values `20262:22075` (words `20262:22076`), FAQ `20262:22114`, Where to Next `20262:20810`, CTA Banner `20262:19662`, Footer `20262:19663`. White 6px gaps sit between the frames.
+
 ## Homepage top level
 Hero `20169:5668` (813 tall), title texts `20169:5681` / `20169:5682`, promo video `20169:5684`, intro `20169:5686`, `20169:5689`, rest of page `20169:5692` (11929 tall, drill into it section by section).

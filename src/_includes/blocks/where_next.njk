@@ -1,0 +1,40 @@
+<section class="where-next{% if value.tight %} where-next--tight{% endif %}">
+  <div class="container">
+    <div class="where-next__grid">
+      <h2 data-anim="reveal" data-anim-type="fade-up"><span>{{ value.title_line_1 }}</span> <span class="where-next__outline">{{ value.title_line_2 }}</span></h2>
+      {% for card in value.cards %}
+      {% if loop.first %}
+      <a class="where-next__card where-next__card--lead" href="{{ card.url | default('#') }}" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+        {% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}
+        <span class="where-next__title">{{ card.title }}</span>
+        <span class="where-next__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
+      </a>
+      {% endif %}
+      {% endfor %}
+      <div class="where-next__side">
+        {% for card in value.cards %}
+        {% if not loop.first %}
+        <a class="where-next__card" href="{{ card.url | default('#') }}" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+          {% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}
+          <span class="where-next__title">{{ card.title }}</span>
+        </a>
+        {% endif %}
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="where-next__menu" data-anim="reveal" data-anim-type="fade-up">
+      <h2><span>{{ value.menu.title_line_1 }}</span> <span class="where-next__menu-outline">{{ value.menu.title_line_2 }}</span></h2>
+      <div class="where-next__row">
+        <ul class="where-next__links">
+          {% for link in value.menu.links %}
+          <li><a class="where-next__link{% if link.current %} is-current{% endif %}" href="{{ link.url | default('#') }}"{% if link.current %} aria-current="page"{% endif %}><span>{{ link.label }}</span></a></li>
+          {% endfor %}
+        </ul>
+        <div class="where-next__actions">
+          {% for btn in value.menu.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<section class="photo-strip" data-slider-scope>
+  <div class="swiper photo-strip__slider" data-slider data-slider-gap="6" data-slider-start="{{ value.start | default(0) }}">
+    <div class="swiper-wrapper">
+      {% for image in value.images %}
+      <div class="swiper-slide photo-strip__slide">
+        {% set img = image %}{% set cls = "photo-strip__img" %}{% set loading = "eager" %}{% include "snippets/image.njk" %}
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+  <button class="photo-strip__arrow photo-strip__arrow--prev" type="button" data-slider-prev aria-label="Previous photo"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></button>
+  <button class="photo-strip__arrow photo-strip__arrow--next" type="button" data-slider-next aria-label="Next photo"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></button>
+</section>

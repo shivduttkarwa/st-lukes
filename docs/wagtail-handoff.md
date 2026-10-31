@@ -69,6 +69,31 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - The Alternative landing page's alternating rows: a photo flush to the window edge beside a heading, copy and a solid button. Odd rows have the photo on the left and even rows on the right, by position (`loop.index % 2` → `forloop.counter|divisibleby:2`), through CSS and the glide direction only. Below 992 each row stacks with the photo first; phone layout interpreted.
 - The photo glides in from its own side (`data-anim-scroll="timed"`), the heading and copy reveal line by line, and the button fades up. There's no parallax, because Figma's crops fill the source's height.
 
+### inner_hero (`blocks/inner_hero.njk`)
+- The inner-page hero: the header, shade and motion of `.hero`, through a `hero--inner` modifier. 772 tall at 1440, and capped at the window height. The title is Display 3, gold then a 1px gold outline, inside the photo. `title_raised` keeps Figma's higher title on Principal's Welcome.
+
+### page_lead (`blocks/page_lead.njk`)
+- The navy band under an inner hero: a Heading 4 statement on the left and Body 1 on the right, each revealing line by line. Stacks below 992.
+
+### staff_grid (`blocks/staff_grid.njk`)
+- Heading, filter tabs and profile cards. `initFilters()` in `ui.js` matches a tab's `data-filter` against each card's space-separated `data-filter-groups`, hides the rest and refreshes the scroll triggers. In Wagtail, render only tabs that have people, or an empty tab shows an empty grid.
+
+### where_next (`blocks/where_next.njk`)
+- "Where to Next?": three image links (only the large one carries the gold arrow, as in Figma), and the "Explore Our School" menu with up to two `outline-dark` buttons. `current` adds the gold dot and `aria-current`. In Wagtail it should come from the page tree, so the current page highlights itself.
+- Menu links are 27 tall under a fine pointer and 44 on touch.
+
+### article (`blocks/article.njk`)
+- Heading and intro at 822 wide, a 1032 photo, then the quote and body at 826 wide. Intro paragraphs are 25 apart and body paragraphs 28, as in Figma.
+
+### photo_strip (`blocks/photo_strip.njk`)
+- A centred Swiper on the shared `slider.js`, with `data-slider-start` setting the first centred slide. There is no loop: the arrows dim at the ends. Slides keep their photo's shape at a fixed height, so renditions decide the width: 1665 x 1080, 1441 x 952 and 1424 x 1090 here. Add a `srcset`; the phone audit flags them as about 2x too wide.
+
+### values_collage (`blocks/values_collage.njk`)
+- The photo and the word collage. The words are Figma's vector export with the text outlined (`values-words.svg`), so they scale exactly, with the sentence in the `alt`. Changing a word means a new export.
+
+### faq (`blocks/faq.njk`)
+- `initAccordions()` in `ui.js`: one open at a time, the panel animates on `grid-template-rows`, and the arrow turns 180. A closed panel is `visibility: hidden`, so its button leaves the tab order. A row with no `answer` renders a disabled button.
+
 ### intro (`blocks/intro.njk`)
 - The navy band under the hero: the statement and a button on the left; the portrait photo and an outline button on the right, flush to the window edge; the promo video below the statement, flush to the left edge. Fields in `blocks.yaml`. Below 992 it stacks in that order (statement, video, photo); phone layout interpreted.
 - `statement` is one rich-text paragraph. Its line break before "on Sydney’s Northern Beaches" only applies from 992 up, where the measure matches the design, so keep a space before it.
@@ -136,6 +161,9 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ## Content to enter in the admin
 
+- Leadership and Staff: people for Directors, School Council and Anglican Schools Corporation. Figma only lists the Executive Team, so those tabs are empty for now. Larger portraits too: Figma holds 200 x 200, shown 305.
+- Principal's Welcome: answers for the last five FAQ rows (Figma only has the first, so the others can't open yet). A larger portrait: Figma holds 900 x 500, shown 1032 wide.
+- Principal's Welcome: Figma's menu highlights Leadership & Staff, copied from the other page. It is built as drawn; set `current` on Principal's Welcome, or let the page tree do it.
 - Our School Alternative: a clean poster for the video. Figma's still is a screen grab with a player bar and a pointer burned in (`video-still.webp`), which this page shows because it matches the design. `/our-school/` still uses the earlier clean crop (`video-poster.webp`).
 - Our School Alternative rows 2, 3, 5 and 8: larger photos. Figma only holds 700 × 425 versions, shown about 20% enlarged at 1440.
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.

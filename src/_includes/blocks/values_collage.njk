@@ -1,0 +1,15 @@
+<section class="values">
+  <div class="container values__grid">
+    <div class="values__frame" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+      {% set img = value.image %}{% set cls = "values__img" %}{% include "snippets/image.njk" %}
+    </div>
+    <div class="values__side">
+      <div data-anim="reveal" data-anim-type="fade-up">
+        {% set img = value.words %}{% set cls = "values__words" %}{% include "snippets/image.njk" %}
+      </div>
+      {% if value.button %}
+      <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+      {% endif %}
+    </div>
+  </div>
+</section>

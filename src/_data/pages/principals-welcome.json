@@ -1,0 +1,250 @@
+{
+  "seo": {
+    "title": "Principal's Welcome | St Luke's Grammar School",
+    "description": "At St Luke’s Grammar School, we believe every student deserves to be known, challenged and supported to flourish in both learning and life."
+  },
+  "body": [
+    {
+      "type": "inner_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/our-school/hero-principal-1900.webp",
+          "srcset": "/assets/images/our-school/hero-principal-768.webp 768w, /assets/images/our-school/hero-principal-1280.webp 1280w, /assets/images/our-school/hero-principal-1900.webp 1900w",
+          "alt": "The Principal smiling with two young students working on puzzles at a classroom table",
+          "width": 1900,
+          "height": 1019
+        },
+        "video": null,
+        "title_line_1": "Principal's",
+        "title_line_2": "Welcome",
+        "title_raised": true
+      }
+    },
+    {
+      "type": "page_lead",
+      "value": {
+        "statement": "At St Luke’s Grammar School, we believe every student deserves to be known, challenged and supported to flourish in both learning and life.",
+        "text": "Our approach brings together academic ambition, meaningful relationships and a strong sense of purpose, creating an environment where young people can discover their strengths and prepare to make a difference in the world."
+      }
+    },
+    {
+      "type": "article",
+      "value": {
+        "title": "Young leaders making a difference in our community",
+        "intro": "<p>We are committed to helping every student find their own pathway to success. Our academic program encourages students to think deeply, pursue excellence and develop the knowledge and skills they need for life beyond school. Alongside academic achievement, we value the many pathways our students pursue, supporting their individual interests, aspirations and future opportunities.</p><p><strong>Engagement is at the heart of great learning.</strong> We encourage students to approach their education with rigour, relevance and a willingness to connect with the world around them. Rigour means striving for excellence in what we do every day. Relevance means making learning meaningful, helping students connect ideas with their interests and experiences. Relationships mean creating a community where students and staff feel seen, known and valued.</p>",
+        "image": {
+          "src": "/assets/images/our-school/article.webp",
+          "alt": "Portrait of the Principal smiling in a blue suit and pink tie, with green foliage behind",
+          "width": 840,
+          "height": 500
+        },
+        "quote": "The Christian faith underpins and informs the work of the School as we seek to develop young men and women of character who will stand up against injustice and serve the communities in which they live.",
+        "body": "<p>These principles shape our learning culture. Our teachers continually reflect on their practice, collaborate with colleagues and seek ways to strengthen student motivation and engagement. We want students to be active participants in their learning, confident enough to ask questions, take on challenges and learn from setbacks.</p><p>We also recognise that students flourish when they feel a genuine sense of belonging. Through supportive relationships, clear expectations and a commitment to wellbeing, we help each young person develop the confidence, character and resilience to navigate challenges and embrace opportunities.</p><p>Our partnership with families is an important part of this journey. By working together, we can help students approach each day ready to learn, contribute to their community and make the most of the opportunities available to them.</p><p>At St Luke’s, education is about more than what students achieve. It is about who they become, how they treat others and the contribution they make to the world. We look forward to sharing that journey with every student and family in our community.</p><p>I look forward to meeting you and welcoming you to our wonderful community.</p><p><strong>Geoff Lancaster</strong><br>BSc (Hons), DipEd, MEdLead</p>"
+      }
+    },
+    {
+      "type": "photo_strip",
+      "value": {
+        "start": 1,
+        "images": [
+          {
+            "src": "/assets/images/our-school/strip-1.webp",
+            "alt": "Students with bouquets of flowers gathered at a school celebration",
+            "width": 1665,
+            "height": 1080
+          },
+          {
+            "src": "/assets/images/our-school/strip-2.webp",
+            "alt": "The Principal speaking at a lectern on an outdoor stage, with staff seated behind and students watching",
+            "width": 1441,
+            "height": 952
+          },
+          {
+            "src": "/assets/images/our-school/strip-3.webp",
+            "alt": "Two men in St Luke's ski jackets smiling on a snowy mountain",
+            "width": 1424,
+            "height": 1090
+          }
+        ]
+      }
+    },
+    {
+      "type": "values_collage",
+      "value": {
+        "image": {
+          "src": "/assets/images/our-school/values.webp",
+          "alt": "Two senior students writing equations on a glass wall",
+          "width": 1044,
+          "height": 1394
+        },
+        "words": {
+          "src": "/assets/images/our-school/values-words.svg",
+          "alt": "St Luke’s students are resourceful, reflective, relational, restorative + resilient, showing kindness, grace, humility, justice, compassion & joy",
+          "width": 506,
+          "height": 747
+        },
+        "button": {
+          "text": "View our Graduate Profile",
+          "url": "#",
+          "style": "outline"
+        }
+      }
+    },
+    {
+      "type": "faq",
+      "value": {
+        "eyebrow": "Frequently Asked Questions",
+        "title": "You might\nbe wondering",
+        "button": {
+          "text": "View more FAQS",
+          "url": "#"
+        },
+        "questions": [
+          {
+            "question": "What year levels does St Luke’s offer?",
+            "answer": "St Luke’s Grammar School is a coeducational Anglican school offering education from Pre-Kindergarten through to Year 12 across its Dee Why and Bayview campuses.",
+            "button": {
+              "text": "View all Entry Points",
+              "url": "#"
+            }
+          },
+          {
+            "question": "Where are the St Luke’s campuses located?"
+          },
+          {
+            "question": "How do I enrol my child at St Luke’s?"
+          },
+          {
+            "question": "Can I visit the school before applying?"
+          },
+          {
+            "question": "Is St Luke’s a Christian school?"
+          },
+          {
+            "question": "What makes St Luke’s different?"
+          }
+        ]
+      }
+    },
+    {
+      "type": "where_next",
+      "value": {
+        "tight": true,
+        "title_line_1": "Where",
+        "title_line_2": "to Next?",
+        "cards": [
+          {
+            "title": "Why Choose St Luke's",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-1.webp",
+              "alt": "",
+              "width": 1298,
+              "height": 925
+            }
+          },
+          {
+            "title": "Christian Foundation",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-2.webp",
+              "alt": "",
+              "width": 1026,
+              "height": 612
+            }
+          },
+          {
+            "title": "Leadership & Staff",
+            "url": "#",
+            "image": {
+              "src": "/assets/images/our-school/next-3.webp",
+              "alt": "",
+              "width": 1026,
+              "height": 612
+            }
+          }
+        ],
+        "menu": {
+          "title_line_1": "Explore",
+          "title_line_2": "Our School",
+          "links": [
+            {
+              "label": "Principal's Welcome",
+              "url": "#"
+            },
+            {
+              "label": "Why Choose St Luke's",
+              "url": "#"
+            },
+            {
+              "label": "Christian Foundation",
+              "url": "#"
+            },
+            {
+              "label": "Leadership & Staff",
+              "url": "#",
+              "current": true
+            },
+            {
+              "label": "Strategic Plan",
+              "url": "#"
+            },
+            {
+              "label": "Campus Masterplan 2029–2031",
+              "url": "#"
+            },
+            {
+              "label": "Round Square",
+              "url": "#"
+            },
+            {
+              "label": "History",
+              "url": "#"
+            },
+            {
+              "label": "Acknowledgement of Country",
+              "url": "#"
+            }
+          ],
+          "buttons": [
+            {
+              "text": "Make an Enquiry",
+              "url": "#",
+              "style": "outline-dark"
+            },
+            {
+              "text": "Apply Today to Enrol",
+              "url": "#",
+              "style": "outline-dark"
+            }
+          ]
+        }
+      }
+    },
+    {
+      "type": "cta",
+      "value": {
+        "title_line_1": "Start your",
+        "title_line_2": "St Luke’s journey",
+        "buttons": [
+          {
+            "text": "Book a Tour",
+            "url": "#"
+          },
+          {
+            "text": "Apply to Enrol",
+            "url": "#",
+            "style": "glass"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/home/cta-poster.webp",
+          "alt": "",
+          "width": 720,
+          "height": 412
+        },
+        "video": null
+      }
+    }
+  ]
+}

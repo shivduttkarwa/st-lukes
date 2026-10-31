@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-10-31 — Leadership and Staff, Principal's Welcome
+- New pages `/leadership-staff/` (`20169:5889`) and `/principals-welcome/` (`20262:19567`). New blocks: `inner_hero`, `page_lead`, `staff_grid`, `where_next`, `article`, `photo_strip`, `values_collage`, `faq`. Both end with the shared `cta` (the homepage's bush-walk still, as in these frames) and the footer.
+- At 1440 against Figma's renders: section tops land on Figma's numbers (Leadership 772, 1122, 3193, 4400, 5226; Principal's 772, 1066, 3045, 3804, 4837, 5699, 6879, 7705). Text wraps as in Figma and ink lands within 1px per line, apart from the menu links (up to 2px narrower).
+- Chrome sets Sanshand 30 and Myriad 20 lower than Figma, so they carry `top: -0.1em` as in the rows. The article heading carries `-0.086em`, and a slightly looser `-0.008em` tracking because Figma draws it 3px wider. The tabs use 8 / 12 vertical padding for the same reason.
+- New: Poppins SemiBold and Bold (`poppins-semibold.woff2`, `poppins-bold.woff2`, from `@fontsource/poppins`, OFL), `--gradient-next`, `icon-arrow-diagonal`, `initFilters()`, `initAccordions()`, `data-slider-start`.
+- The third strip photo is 712 wide, not Figma's 840: Figma's fill stops 128 short of its frame's right edge, off screen. The slide takes the photo's real shape, so it matches at rest and shows no gap when centred.
+- Phone layouts interpreted. Checked at 320, 375, 430, 667 x 375, 768, 1024, 1280, 1440 and 1920, with no horizontal scroll. Filters, accordion and slider checked with real clicks, no script errors. The touch audit flags only the strip photos as oversized on phones.
+
 ## 2026-10-31 — Our School alternative landing page
 - New page `/our-school-alternative/` (`src/our-school-alternative.njk`, `pages/our-school-alternative.json`) from "Our School Landing Alternative" `20348:24214`: `page_hero`, `collage`, the new `feature_rows` block (nine rows), `cta` and the footer.
 - At 1440 × 1000 against Figma's render: section tops land at 813, 2321, 8811 and 9637, rows are 722 / 720 tall, photos 718 × 514 at 0 and 716 × 512 at 724, text columns at 825 and 100. Every row's text wraps as in Figma, and each line's ink is within 1px. Chrome sets Sanshand 45 about 5px and Myriad 20 about 2px lower than Figma, so the heading and copy carry `top: -0.12em` and `-0.1em`. Figma's 3px white sliver under the footer isn't reproduced.

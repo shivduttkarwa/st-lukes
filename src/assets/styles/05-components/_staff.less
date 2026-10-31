@@ -1,0 +1,77 @@
+.staff {
+  padding: 64 * @px 0;
+  background: var(--color-white);
+  @media (min-width: @bp-lg) { padding: 104 * @px 0; }
+
+  h2 {
+    .type-section-title();
+    margin: 0 0 25 * @px;
+    color: var(--color-navy);
+    @media (min-width: @bp-lg) { height: 47 * @px; }
+  }
+
+  &__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10 * @px;
+    margin-bottom: 25 * @px;
+  }
+
+  &__tab {
+    .type-heading-6();
+    min-height: var(--tap-size);
+    padding: 8 * @px 25 * @px 12 * @px;
+    border: 1 * @px solid var(--color-navy-tint);
+    border-radius: var(--radius-pill);
+    background: none;
+    color: var(--color-royal);
+    transition: color var(--duration-base) ease, background-color var(--duration-base) ease, border-color var(--duration-base) ease;
+    &[aria-pressed="true"] {
+      border-color: var(--color-royal);
+      background: var(--color-royal);
+      color: var(--color-white);
+    }
+    @media (hover: hover) {
+      &:hover { border-color: var(--color-royal); }
+    }
+  }
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 32 * @px 6 * @px;
+    @media (min-width: @bp-md) { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    @media (min-width: @bp-lg) {
+      grid-template-columns: repeat(4, percentage((305 / 1240)));
+      gap: 40 * @px percentage((6 / 1240));
+    }
+  }
+
+  &__card {
+    padding-bottom: 6 * @px;
+    &[hidden] { display: none; }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 1;
+    object-fit: cover;
+  }
+
+  &__body {
+    padding: 10 * @px 20 * @px 20 * @px 0;
+    h3 {
+      .type-poppins-h6-caps();
+      margin: 0;
+      color: var(--color-royal);
+    }
+    p {
+      .type-body-1();
+      position: relative;
+      top: -0.1em;
+      margin: 0;
+      color: var(--color-black-75);
+    }
+  }
+}

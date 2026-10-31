@@ -1,0 +1,21 @@
+<section class="staff" data-filter-scope>
+  <div class="container">
+    <h2 data-anim="reveal" data-anim-type="fade-up">{{ value.title }}</h2>
+    <div class="staff__tabs" data-anim-group="fade-up">
+      {% for tab in value.tabs %}
+      <button class="staff__tab" type="button" data-filter="{{ tab.slug }}" aria-pressed="{% if tab.slug == value.active %}true{% else %}false{% endif %}">{{ tab.label }}</button>
+      {% endfor %}
+    </div>
+    <div class="staff__grid" data-anim-group="fade">
+      {% for person in value.people %}
+      <article class="staff__card" data-filter-groups="{{ person.groups }}">
+        {% set img = person.image %}{% set cls = "staff__img" %}{% include "snippets/image.njk" %}
+        <div class="staff__body">
+          <h3>{{ person.name }}</h3>
+          <p>{{ person.role }}</p>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
