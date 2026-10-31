@@ -50,6 +50,25 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - The header is site chrome (`partials/header.njk`): `site.quick_links` and `site.utility_links` from `site.json`; the logo files are `assets/icons/crest.svg` and `wordmark.svg`.
 - Preloader (homepage, `p.preloader`): `base.njk` includes `partials/preloader.njk` (navy layer and rings), and `head.njk` adds `is-preloading` to `<html>` before the first paint unless the reader prefers reduced motion. While the build is being reviewed it only plays with `?preloader` in the address. For launch, replace that test with `!sessionStorage.getItem("preloader-played")` (in a `try`), which `preloader.js` already sets, so it plays once per session. `preloader.js` carries the hero's own `h1` (it needs a hero block on the page): the rows slide in from the canvas edges to the screen centre, a circle mask opens on the real hero image or video, then the rows move down into place, and just before they land `Anim.init({ after })` plays the header, then the statement and notice. If `main.js` hasn't started it within 5s, the head script drops the class and the page shows normally.
 
+### page_hero (`blocks/page_hero.njk`)
+- The landing-page hero (Our School): the homepage hero's frame, height, shade, header and Display 1 title, through the same `.hero` styles with a `hero--page` modifier. Fields in `blocks.yaml`.
+- The title rows sit inset rather than bleeding: line 1 starts 92 in, line 2 ends 66 in. Both slide in from the canvas edges like the homepage title (`enter-left` / `enter-right`), then the header comes in and the eyebrow fades up.
+- The eyebrow (Heading 5) keeps its spaces as typed (`white-space: pre`); Figma has two between "Our" and "School".
+- The image is drawn at Figma's crop (118.33% × 119.47% of the frame at −8.33%, −0.73%), so renditions are that shape: 1900 × 1083 here (`fill-1900x1083`, plus 1280 and 768 for the `srcset`). It has no parallax, because the crop leaves no photo above the frame for it to move into.
+
+### collage (`blocks/collage.njk`)
+- The navy band under a landing-page hero: statement and button, portrait, video with its play pill, stat circle, quote and Instagram tile. Fields in `blocks.yaml`. Below 992 it stacks; phone layout interpreted.
+- The portrait's parallax moves the whole frame ±5% (`.collage__layer`), not the photo inside it, because Figma's crop fills the source's full height and leaves nothing to travel into. Rendition `fill-810x1004`.
+- The stat counts up through `data-anim="counter"`. The curved caption is inline SVG text on a circle path.
+- The tile's foot is covered by whatever follows it, as in Figma: 2px by `page_links`, 1px by `feature_rows`. The following block needs `position: relative` to paint over it.
+
+### page_links (`blocks/page_links.njk`)
+- Child-page cards, two per row from 768 up. Each card is one link; on hover the optional `text` opens, the shade deepens and the gold arrow fades in. On touch the arrow is always shown and the text stays closed. An optional `video` plays muted on hover.
+
+### feature_rows (`blocks/feature_rows.njk`)
+- The Alternative landing page's alternating rows: a photo flush to the window edge beside a heading, copy and a solid button. Odd rows have the photo on the left and even rows on the right, by position (`loop.index % 2` → `forloop.counter|divisibleby:2`), through CSS and the glide direction only. Below 992 each row stacks with the photo first; phone layout interpreted.
+- The photo glides in from its own side (`data-anim-scroll="timed"`), the heading and copy reveal line by line, and the button fades up. There's no parallax, because Figma's crops fill the source's height.
+
 ### intro (`blocks/intro.njk`)
 - The navy band under the hero: the statement and a button on the left; the portrait photo and an outline button on the right, flush to the window edge; the promo video below the statement, flush to the left edge. Fields in `blocks.yaml`. Below 992 it stacks in that order (statement, video, photo); phone layout interpreted.
 - `statement` is one rich-text paragraph. Its line break before "on Sydney’s Northern Beaches" only applies from 992 up, where the measure matches the design, so keep a space before it.
@@ -117,6 +136,8 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ## Content to enter in the admin
 
+- Our School Alternative: a clean poster for the video. Figma's still is a screen grab with a player bar and a pointer burned in (`video-still.webp`), which this page shows because it matches the design. `/our-school/` still uses the earlier clean crop (`video-poster.webp`).
+- Our School Alternative rows 2, 3, 5 and 8: larger photos. Figma only holds 700 × 425 versions, shown about 20% enlarged at 1440.
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
 - Homepage CTA banner: its background video (a video fill in Figma; only a 720 × 720 preview still could be exported, which is now the poster).
 - Homepage pathways: the website address for each of the 16 logos (all `#` for now).

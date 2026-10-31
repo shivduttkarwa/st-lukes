@@ -1,0 +1,43 @@
+<section class="collage">
+  <div class="collage__text">
+    <div class="collage__statement" data-anim="split" data-anim-type="lines">{{ value.statement | safe }}</div>
+    {% if value.button %}
+    <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+    {% endif %}
+  </div>
+
+  <div class="collage__portrait" data-anim-parallax-trigger>
+    <div class="collage__layer" data-anim="parallax" data-anim-centered data-anim-speed="5">
+      <div class="collage__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+        {% set img = value.portrait %}{% set cls = "collage__portrait-img" %}{% include "snippets/image.njk" %}
+      </div>
+    </div>
+  </div>
+
+  <div class="promo collage__video" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+    {% set promo = value.video %}{% include "snippets/promo.njk" %}
+  </div>
+
+  <figure class="collage__stat" data-anim="counter" data-anim-scroll="timed">
+    <svg class="collage__path" viewBox="0 0 338 338" aria-hidden="true" focusable="false">
+      <path id="collage-stat-path" d="M 338 169 A 169 169 0 1 1 0 169 A 169 169 0 1 1 338 169" fill="none"></path>
+      <text font-size="30" dy="11"><textPath href="#collage-stat-path" startOffset="40.53%" text-anchor="middle">{{ value.stat.caption }}</textPath></text>
+    </svg>
+    <div class="collage__circle">
+      <p class="collage__value" data-anim-count>{{ value.stat.value }}</p>
+      <figcaption class="collage__label"><span class="visually-hidden">{{ value.stat.caption }} </span>{{ value.stat.label }}</figcaption>
+    </div>
+  </figure>
+
+  <blockquote class="collage__quote" data-anim="reveal" data-anim-type="fade-up">
+    <p class="collage__mark" aria-hidden="true">“</p>
+    <p class="collage__words">{{ value.quote.text }}</p>
+    <footer class="collage__cite"><cite>{{ value.quote.name }}</cite><span>{{ value.quote.role }}</span></footer>
+  </blockquote>
+
+  <a class="collage__social" href="{{ value.social.url | default('#') }}" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+    {% set img = value.social.image %}{% set cls = "collage__social-img" %}{% include "snippets/image.njk" %}
+    <svg class="collage__social-icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
+    <span class="visually-hidden">{{ value.social.label }}</span>
+  </a>
+</section>

@@ -1,0 +1,224 @@
+@collage-top: 198 * @px;
+@collage-text-x: 103 * @px;
+@collage-text-w: 718 * @px;
+@collage-portrait-top: 195 * @px;
+@collage-video-top: 139 * @px;
+@collage-stat-top: -49 * @px;
+@collage-row-3: 110 * @px;
+@collage-quote-x: 100 * @px;
+@collage-quote-w: 384 * @px;
+@collage-stat: 338 * @px;
+@collage-ring: 23 * @px;
+@collage-social: 296 * @px;
+@collage-play-x: 39 * @px;
+@collage-play-y: 66 * @px;
+@collage-gap-sm: 56 * @px;
+@collage-side-sm: 62%;
+
+.collage {
+  display: flex;
+  flex-direction: column;
+  padding: 88 * @px 0 72 * @px;
+  background: var(--color-navy);
+  color: var(--color-white);
+  @media (min-width: @bp-lg) {
+    display: grid;
+    grid-template-columns: minmax(0, 821fr) minmax(0, 214fr) minmax(0, 405fr);
+    align-items: start;
+    padding: @collage-top 0 0;
+  }
+
+  &__text {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 25 * @px;
+    padding-inline: var(--gutter);
+    @media (min-width: @bp-lg) {
+      grid-area: 1 / 1;
+      padding: 0 0 0 @collage-text-x;
+    }
+  }
+
+  &__text .btn {
+    @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
+  }
+
+  // Chrome sets Sanshand 3px lower than Figma in the same line box, so the statement and quote sit that far up
+  &__statement {
+    .type-heading-3();
+    position: relative;
+    top: -0.086em;
+    max-width: @collage-text-w;
+    p { margin: 0; }
+  }
+
+  &__portrait {
+    position: relative;
+    align-self: flex-end;
+    width: @collage-side-sm;
+    margin-top: @collage-gap-sm;
+    aspect-ratio: 405 / 502;
+    @media (min-width: @bp-lg) {
+      grid-area: 1 / 3 / span 2;
+      align-self: start;
+      width: auto;
+      margin-top: @collage-portrait-top;
+    }
+  }
+
+  // the frame drifts rather than the photo inside it, so Figma's crop holds without a zoom
+  &__layer {
+    --parallax-from: -5%;
+    --parallax-to: 5%;
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+  }
+
+  &__frame {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  &__portrait-img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__video {
+    --promo-shade: var(--gradient-video);
+    --promo-play-x: @collage-play-x;
+    --promo-play-y: @collage-play-y;
+    margin: @collage-gap-sm var(--gutter) 0 0;
+    aspect-ratio: 821 / 514;
+    @media (min-width: @bp-lg) {
+      grid-area: 2 / 1;
+      margin: @collage-video-top 0 0;
+    }
+  }
+
+  &__stat {
+    position: relative;
+    align-self: center;
+    flex: none;
+    width: @collage-stat;
+    height: @collage-stat;
+    margin: 32 * @px 0 0;
+    @media (min-width: @bp-lg) {
+      grid-area: 3 / 1 / auto / span 3;
+      align-self: start;
+      justify-self: center;
+      margin: @collage-stat-top 0 0;
+    }
+  }
+
+  &__path {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    text {
+      .type-sans();
+      fill: var(--color-white);
+    }
+  }
+
+  &__circle {
+    position: absolute;
+    inset: @collage-ring;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20 * @px;
+    border-radius: 50%;
+    background: var(--color-gold);
+    color: var(--color-navy);
+    text-align: center;
+  }
+
+  &__value {
+    .type-collage-stat();
+    margin: 0;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__label {
+    .type-body-3();
+    width: 161 * @px;
+    color: var(--color-text);
+    white-space: pre-line;
+  }
+
+  &__quote {
+    margin: 40 * @px 0 0;
+    padding-inline: var(--gutter);
+    @media (min-width: @bp-lg) {
+      grid-area: 3 / 1;
+      margin: @collage-row-3 0 0;
+      padding: 0 0 0 @collage-quote-x;
+    }
+  }
+
+  &__mark {
+    .type-display-2();
+    .outline-text();
+    margin: 0 0 -0.36em;
+    text-box: trim-both cap alphabetic;
+  }
+
+  &__words {
+    .type-collage-quote();
+    position: relative;
+    top: -0.075em;
+    max-width: @collage-quote-w;
+    margin: 0 0 18 * @px;
+    color: var(--color-gold);
+  }
+
+  &__cite {
+    .type-collage-cite();
+    cite {
+      display: block;
+      font-style: normal;
+      font-weight: 700;
+    }
+    span { display: block; }
+  }
+
+  &__social {
+    position: relative;
+    display: block;
+    align-self: flex-end;
+    width: @collage-side-sm;
+    margin-top: 40 * @px;
+    aspect-ratio: 1;
+    overflow: hidden;
+    @media (min-width: @bp-lg) {
+      grid-area: 3 / 3;
+      align-self: start;
+      width: @collage-social;
+      // Figma's card grid starts 2px above the tile's foot and covers it
+      margin: @collage-row-3 0 -2 * @px;
+    }
+  }
+
+  &__social-img {
+    .cover();
+    object-fit: cover;
+  }
+
+  &__social-icon {
+    position: absolute;
+    top: 15 * @px;
+    right: 16 * @px;
+    width: 22 * @px;
+    height: 22 * @px;
+    color: var(--color-white);
+  }
+}

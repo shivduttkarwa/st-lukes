@@ -48,6 +48,52 @@ blocks:
         image: ImageChooserBlock
         button: StructBlock(text: CharBlock, url: URLBlock)
 
+  page_hero:
+    figma: "20420:27600 (Our School Landing: background, eyebrow), 20420:27603 / 20420:27604 (title rows)"
+    template: blocks/page_hero.njk
+    fields:
+      image: ImageChooserBlock(required)   # drawn 1704 × 971 at (−120, −6) in the 1440 × 813 frame; no parallax, the crop has no room above
+      video: DocumentChooserBlock(optional)   # mp4, autoplay muted loop; the image is its poster
+      eyebrow: CharBlock(optional)   # spaces are kept as typed (Figma has two between "Our" and "School")
+      title_line_1: CharBlock(required)   # gold, starts 92 in
+      title_line_2: CharBlock(required)   # white, ends 66 in
+
+  collage:
+    figma: "20420:27606 / 27616 / 27617 / 27609 / 27631 / 27625 (Our School Landing); same layout in 20348:24214 (Alternative)"
+    template: blocks/collage.njk
+    fields:
+      statement: RichTextBlock(features=[])
+      button: StructBlock(text: CharBlock, url: URLBlock)   # solid, no arrow
+      portrait: ImageChooserBlock(required)   # fill-810x1004; the frame drifts on scroll, the crop never changes
+      video: StructBlock(required)
+        title: CharBlock(required)
+        image: ImageChooserBlock(required)   # the poster, shown 821 × 514, fill crop
+        video: DocumentChooserBlock(optional)   # mp4, plays inline with controls when the pill is pressed
+      stat: StructBlock(value: CharBlock, label: TextBlock, caption: CharBlock)   # value counts up; caption runs round the circle
+      quote: StructBlock(text: CharBlock, name: CharBlock, role: CharBlock)
+      social: StructBlock(image: ImageChooserBlock, url: URLBlock, label: CharBlock)   # the Instagram tile, 296 square
+
+  page_links:
+    figma: "20420:28063 (Our School Landing child-page cards)"
+    template: blocks/page_links.njk
+    fields:
+      cards: ListBlock(StructBlock, min_num=1)   # two per row from 768 up
+        title: CharBlock(required)   # a line break is kept
+        text: TextBlock   # opens on hover
+        url: PageChooserBlock or URLBlock
+        image: ImageChooserBlock(required)   # decorative, fill-1234x820
+        video: DocumentChooserBlock(optional)   # mp4, plays muted on hover
+
+  feature_rows:
+    figma: "20412:27187 … 20413:27314 (Our School Landing Alternative, nine rows)"
+    template: blocks/feature_rows.njk
+    fields:
+      rows: ListBlock(StructBlock, min_num=1)   # odd rows photo left, even rows photo right, by position
+        title: CharBlock(required)   # Heading 2
+        text: TextBlock(required)   # Body 1
+        image: ImageChooserBlock(required)   # odd rows fill-1436x1028, even rows fill-1432x1024
+        button: StructBlock(text: CharBlock, url: URLBlock)   # solid, no arrow
+
   intro:
     figma: "20169:5686 (statement, button), 20169:5689 (photo, button), 20169:5684 (promo video)"
     template: blocks/intro.njk

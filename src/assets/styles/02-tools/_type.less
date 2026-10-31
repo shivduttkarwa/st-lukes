@@ -182,6 +182,33 @@
   @media (min-width: @bp-md) { font-size: 100 * @px; }
 }
 
+// the collage stat has no named style: Sanshand 100 / 1.05, -5%
+.type-collage-stat() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.05em;
+  font-size: 72 * @px;
+  @media (min-width: @bp-lg) { font-size: 100 * @px; }
+}
+
+// the collage quote has no named style: Sanshand 40 / 1.05, -1%
+.type-collage-quote() {
+  .type-sans();
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  font-size: 30 * @px;
+  @media (min-width: @bp-lg) { font-size: 40 * @px; }
+}
+
+// the quote's name and year: Body 1 at -1%
+.type-collage-cite() {
+  .type-myriad();
+  line-height: 1.4;
+  letter-spacing: -0.01em;
+  font-size: 18 * @px;
+  @media (min-width: @bp-lg) { font-size: 20 * @px; }
+}
+
 // news tags have no named style: Sanshand 14 / 1.4, caps
 .type-tag() {
   .type-sans();

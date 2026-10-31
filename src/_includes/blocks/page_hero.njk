@@ -1,0 +1,19 @@
+<section class="hero hero--page">
+  <div class="hero__media" aria-hidden="true">
+    {% if value.video %}
+    <video class="hero__video" src="{{ value.video.src }}" poster="{{ value.image.src }}" autoplay muted loop playsinline data-ambient></video>
+    {% else %}
+    <img class="hero__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" fetchpriority="high" decoding="async">
+    {% endif %}
+    <div class="hero__shade"></div>
+  </div>
+
+  <div class="hero__inner">
+    {% if value.eyebrow %}<p class="hero__eyebrow" data-anim="reveal" data-anim-type="fade-up" data-anim-tier="hero" data-anim-order="2">{{ value.eyebrow }}</p>{% endif %}
+
+    <h1 data-anim="sequence" data-anim-tier="hero" data-anim-order="0" data-anim-stagger="0.3">
+      <span class="hero__line" data-anim-item="enter-left">{{ value.title_line_1 }}</span>
+      <span class="hero__line hero__line--alt" data-anim-item="enter-right">{{ value.title_line_2 }}</span>
+    </h1>
+  </div>
+</section>

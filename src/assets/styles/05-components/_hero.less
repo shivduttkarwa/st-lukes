@@ -3,6 +3,10 @@
 @hero-title-bleed: 0.1em;
 // the title overhangs the hero by 82 at 1440; the cap keeps that plus 32 of air inside the first screen
 @hero-fold-room: 114 * @px;
+@page-hero-eyebrow-x: 99 * @px;
+@page-hero-eyebrow-y: 155 * @px;
+@page-hero-row-1: 92 * @px;
+@page-hero-row-2: 66 * @px;
 
 .hero {
   position: relative;
@@ -102,6 +106,22 @@
     @media (min-width: @bp-lg) { margin-right: -(15 * @px); }
   }
 
+  // Chrome sets Sanshand 3px lower than Figma in the same line box, so the eyebrow sits 0.12em up
+  &__eyebrow {
+    .type-heading-5();
+    position: relative;
+    top: -0.12em;
+    margin: 0 0 16 * @px;
+    white-space: pre;
+    @media (min-width: @bp-lg) {
+      position: absolute;
+      top: auto;
+      left: @page-hero-eyebrow-x;
+      bottom: ~"calc(@{page-hero-eyebrow-y} + 0.12em)";
+      margin: 0;
+    }
+  }
+
   &__notice {
     order: 1;
     margin: 0 0 32 * @px;
@@ -112,6 +132,29 @@
       width: 361 * @px;
       margin: 0;
     }
+  }
+}
+
+.hero--page {
+  .hero__img,
+  .hero__video {
+    top: -0.73%;
+    left: -8.33%;
+    width: 118.33%;
+    max-width: none;
+    height: 119.47%;
+    object-position: 50% 50%;
+  }
+
+  .hero__line {
+    margin-left: 0;
+    @media (min-width: @bp-lg) { margin-left: @page-hero-row-1; }
+  }
+
+  .hero__line--alt {
+    margin: 0;
+    // CSS tracks after the last letter too, so the box sits that far in to keep the ink on Figma's edge
+    @media (min-width: @bp-lg) { margin-right: ~"calc(@{page-hero-row-2} + 0.03em)"; }
   }
 }
 

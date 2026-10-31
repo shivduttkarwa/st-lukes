@@ -1,5 +1,19 @@
 # Changelog
 
+## 2026-10-31 — Our School alternative landing page
+- New page `/our-school-alternative/` (`src/our-school-alternative.njk`, `pages/our-school-alternative.json`) from "Our School Landing Alternative" `20348:24214`: `page_hero`, `collage`, the new `feature_rows` block (nine rows), `cta` and the footer.
+- At 1440 × 1000 against Figma's render: section tops land at 813, 2321, 8811 and 9637, rows are 722 / 720 tall, photos 718 × 514 at 0 and 716 × 512 at 724, text columns at 825 and 100. Every row's text wraps as in Figma, and each line's ink is within 1px. Chrome sets Sanshand 45 about 5px and Myriad 20 about 2px lower than Figma, so the heading and copy carry `top: -0.12em` and `-0.1em`. Figma's 3px white sliver under the footer isn't reproduced.
+- Photos are Figma's centred cover crops. Rows 1, 4, 6, 7 and 9 are at 2×. Rows 2, 3, 5 and 8 are the 700 × 425 sources Figma holds, cropped to 594 × 425.
+- Collage, on both landing pages: the portrait was a crop 10% larger than Figma's to leave parallax room. It is now Figma's exact crop (810 × 1004) and the frame drifts instead. The button's label sits on Figma's 30 inset (`@btn-padding-inset`), as the 1px stroke was adding to the padding. `.page-links` is `position: relative`, so it covers the Instagram tile's foot as in Figma.
+- Video still on this page only: `video-still.webp` is Figma's exact crop of the fill, which has a player bar burned in. A clean poster is on the handoff's content list.
+- Phone layout interpreted: photo first and full width, text in the gutter. Checked at 320, 375, 430, 667 × 375, 768, 1024, 1280, 1440 and 1920, with no horizontal scroll. The touch audit flags only the collage's curved caption, 1px past the edge at 320.
+
+## 2026-10-30 — Our School: hero
+- New page `/our-school/` (`src/our-school.njk`, `pages/our-school.json`) from "Our School Landing" `20420:27598`, built one section at a time. Hero first: new `page_hero` block on the homepage hero's styles (`hero--page`).
+- At 1440 against Figma's render: the photo lines up with no offset (mean difference 2.4 out of 255, compression level). Title ink is within 1px (`EVERYONE` 100–849, bottom 786; `IS KNOWN` 629–1364, bottom 902). Eyebrow ink is 634–651 high, as in Figma, after a 0.12em lift for Chrome's lower Sanshand.
+- The photo is Figma's visible fill at 1900 × 1083 (renditions 768 / 1280 / 1900). The fill under it is a different photo it fully covers, so it isn't used. A global `img { max-width: 100% }` had narrowed the 118%-wide photo; `max-width: none` restores Figma's crop.
+- Phone layout interpreted: eyebrow and title stacked inside the gutter.
+
 ## 2026-10-30 — slider entrance
 - The homepage sliders (USPs, Learning, Join the conversation) bring their slides in with a plain staggered fade and no rise (`data-anim-group="fade"`, was `fade-up`). Glide was tried from the slider entrance lab (`/lab/slider-entrance/`, `src/lab/slider-entrance.njk`, noindex) and dropped.
 

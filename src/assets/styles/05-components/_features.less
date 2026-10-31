@@ -1,0 +1,89 @@
+@feature-title: 490 * @px;
+@feature-text-odd: 515 * @px;
+@feature-text-even: 509 * @px;
+@feature-pad: 104 * @px;
+
+// Figma's rows start 1px above the Instagram tile's foot and cover it
+.collage:has(+ .features) .collage__social {
+  @media (min-width: @bp-lg) { margin-bottom: -1 * @px; }
+}
+
+.features {
+  position: relative;
+  background: var(--color-navy);
+  color: var(--color-white);
+
+  &__row {
+    display: flex;
+    flex-direction: column;
+    gap: 32 * @px;
+    padding-bottom: 64 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40 * @px;
+      padding-block: @feature-pad;
+      &:nth-child(even) { flex-direction: row-reverse; }
+    }
+  }
+
+  &__frame {
+    flex: none;
+    aspect-ratio: 718 / 514;
+    overflow: hidden;
+    @media (min-width: @bp-lg) { width: percentage((718 / 1440)); }
+  }
+
+  &__row:nth-child(even) &__frame {
+    aspect-ratio: 716 / 512;
+    @media (min-width: @bp-lg) { width: percentage((716 / 1440)); }
+  }
+
+  &__img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20 * @px;
+    padding-inline: var(--gutter);
+    @media (min-width: @bp-lg) {
+      flex: 0 1 @feature-text-odd;
+      min-width: 0;
+      padding-inline: 0;
+      margin-right: var(--gutter);
+    }
+    // Chrome sets both faces lower than Figma in the same line box
+    h2 {
+      .type-heading-2();
+      position: relative;
+      top: -0.12em;
+      max-width: @feature-title;
+      margin: 0;
+      color: var(--color-white);
+    }
+    p {
+      .type-body-1();
+      position: relative;
+      top: -0.1em;
+      margin: 0;
+    }
+    .btn {
+      @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
+    }
+  }
+
+  &__row:nth-child(even) &__body {
+    @media (min-width: @bp-lg) {
+      flex-basis: @feature-text-even;
+      margin-right: 0;
+      margin-left: var(--gutter);
+    }
+  }
+}

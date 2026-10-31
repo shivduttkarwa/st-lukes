@@ -1,0 +1,8 @@
+{% set img = promo.image %}{% set cls = "promo__poster" %}{% include "snippets/image.njk" %}
+{% if promo.video %}
+<video class="promo__video" data-src="{{ promo.video.src }}" poster="{{ promo.image.src }}" controls playsinline preload="none" hidden></video>
+{% endif %}
+<button class="promo__play" type="button"{% if not promo.video %} disabled{% endif %}>
+  <span class="promo__play-icon"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg></span>
+  <span class="promo__play-title"><span class="visually-hidden">Play video: </span>{{ promo.title }}</span>
+</button>

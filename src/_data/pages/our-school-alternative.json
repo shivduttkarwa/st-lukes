@@ -1,0 +1,228 @@
+{
+  "seo": {
+    "title": "Our School | St Luke's Grammar School",
+    "description": "A community where everyone is known, where Christian values are lived through everyday actions, and where academic ambition goes hand in hand with genuine care."
+  },
+  "body": [
+    {
+      "type": "page_hero",
+      "value": {
+        "image": {
+          "src": "/assets/images/our-school/hero-1900.webp",
+          "srcset": "/assets/images/our-school/hero-768.webp 768w, /assets/images/our-school/hero-1280.webp 1280w, /assets/images/our-school/hero-1900.webp 1900w",
+          "alt": "Students in blue blazers and boaters walking together along a footpath",
+          "width": 1900,
+          "height": 1083
+        },
+        "video": null,
+        "eyebrow": "Our  School",
+        "title_line_1": "Everyone",
+        "title_line_2": "is known"
+      }
+    },
+    {
+      "type": "collage",
+      "value": {
+        "statement": "<p>A community where everyone is known, where Christian values are lived through everyday actions, and where academic ambition goes hand in hand with genuine care. Discover the people, purpose and Northern Beaches spirit that make our school what it is.</p>",
+        "button": {
+          "text": "Welcome from our Principal, Mr Geoff Lancaster",
+          "url": "#"
+        },
+        "portrait": {
+          "src": "/assets/images/our-school/portrait.webp",
+          "alt": "A smiling young student in a nativity costume, waving",
+          "width": 810,
+          "height": 1004
+        },
+        "video": {
+          "title": "Faith lived through action",
+          "image": {
+            "src": "/assets/images/our-school/video-still.webp",
+            "alt": "",
+            "width": 1204,
+            "height": 754
+          },
+          "video": null
+        },
+        "stat": {
+          "value": "99%",
+          "label": "of our families are\nNorthern Beaches Locals",
+          "caption": "Did you know?"
+        },
+        "quote": {
+          "text": "Faith grows through everyday moments of kindness.",
+          "name": "Student Name",
+          "role": "Year 10"
+        },
+        "social": {
+          "image": {
+            "src": "/assets/images/our-school/instagram.webp",
+            "alt": "Three students in wetsuits celebrating on a headland above the ocean",
+            "width": 592,
+            "height": 592
+          },
+          "url": "#",
+          "label": "St Luke's on Instagram"
+        }
+      }
+    },
+    {
+      "type": "feature_rows",
+      "value": {
+        "rows": [
+          {
+            "title": "Principal's Welcome",
+            "text": "It is an exciting time to be a student at St Luke’s, and the School’s well-developed learning culture and agility to respond to evidence based innovations enable it to provide stimulating opportunities for our students inside and outside the classroom.",
+            "image": {
+              "src": "/assets/images/our-school/row-1.webp",
+              "alt": "The Principal smiling with two young students working on puzzles at a classroom table",
+              "width": 1436,
+              "height": 1028
+            },
+            "button": {
+              "text": "Welcome from our Principal, Mr Geoff Lancaster",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Why Choose St Luke's",
+            "text": "Discover what makes St Luke’s distinctive, from a community where every student is known to strong academic outcomes, individual support and opportunities across sport, performing arts and service. Learn how our Christian foundation, experienced teachers and Northern Beaches community help students build confidence, develop their strengths and prepare for life beyond school.",
+            "image": {
+              "src": "/assets/images/our-school/row-2.webp",
+              "alt": "Two students in blue blazers smiling at each other outside the school building",
+              "width": 594,
+              "height": 425
+            },
+            "button": {
+              "text": "Discover Why St Luke’s",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Our Christian Foundation",
+            "text": "Christian faith is woven into everyday school life through relationships, learning, worship and service. Discover how values such as compassion, humility, kindness and justice encourage students to respect others, explore questions of faith and develop a sense of purpose in a welcoming community where every student is valued.",
+            "image": {
+              "src": "/assets/images/our-school/row-3.webp",
+              "alt": "A staff member talking with three students seated in a circle in a classroom",
+              "width": 594,
+              "height": 425
+            },
+            "button": {
+              "text": "Explore Our Christian Foundation",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Leadership and Staff",
+            "text": "Get to know the principal, leadership team, teachers and support staff who shape the St Luke’s experience. Explore the people responsible for guiding learning, supporting student wellbeing and building a positive school culture, all united by a commitment to knowing each student, setting high expectations and helping them reach their potential.",
+            "image": {
+              "src": "/assets/images/our-school/row-4.webp",
+              "alt": "A teacher smiling with two young students and a small robot at a white table",
+              "width": 1432,
+              "height": 1024
+            },
+            "button": {
+              "text": "Meet Our People",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Strategic Plan",
+            "text": "Our Strategic Plan sets the direction for the future of St Luke’s, outlining the priorities that guide our decisions, shape the learning experience and strengthen our community. Discover how our commitment to academic achievement, student wellbeing, Christian character and continuous improvement translates into meaningful opportunities for students and a clear vision for the years ahead.",
+            "image": {
+              "src": "/assets/images/our-school/row-5.webp",
+              "alt": "A teacher leaning over a desk to point at a book while two senior students look up and smile",
+              "width": 594,
+              "height": 425
+            },
+            "button": {
+              "text": "Explore Our Strategic Plan",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Campus Masterplan 2029–2031",
+            "text": "Discover the vision for the future of St Luke’s, including planned improvements to learning environments, facilities and shared spaces. The campus masterplan reflects a commitment to providing contemporary places for students to learn, connect and pursue their interests, supporting the school’s evolving needs while preserving the strong relationships and community spirit at its heart.",
+            "image": {
+              "src": "/assets/images/our-school/row-6.webp",
+              "alt": "The campus courtyard at dusk, with timber benches, a curved lawn and lit classrooms",
+              "width": 1432,
+              "height": 1024
+            },
+            "button": {
+              "text": "Explore the Masterplan",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Round Square",
+            "text": "Discover how St Luke’s connects students with a global community through Round Square, broadening their perspectives beyond the classroom. With opportunities centred on international understanding, student leadership, service, adventure and collaboration, students are encouraged to step outside their comfort zones, learn from different cultures and become thoughtful, active contributors to the world.",
+            "image": {
+              "src": "/assets/images/our-school/row-7.webp",
+              "alt": "A teacher and two young students around a table with a small robot and a coding map",
+              "width": 1436,
+              "height": 1028
+            },
+            "button": {
+              "text": "Explore Round Square",
+              "url": "#"
+            }
+          },
+          {
+            "title": "History and identity",
+            "text": "Explore the story and traditions that have shaped St Luke’s Grammar School and its place in Sydney’s Northern Beaches community. Discover the values, Anglican heritage and distinctive local character that continue to influence school life, connecting generations of students and families while guiding the school’s vision for the future.",
+            "image": {
+              "src": "/assets/images/our-school/row-8.webp",
+              "alt": "A black and white archive photo of a large group of students in blazers and tartan skirts",
+              "width": 594,
+              "height": 425
+            },
+            "button": {
+              "text": "Discover Our Story",
+              "url": "#"
+            }
+          },
+          {
+            "title": "Acknowledgement of Country",
+            "text": "We acknowledge the Traditional Custodians of the land on which our school communities learn, work and gather. We pay our respects to Elders past and present, and recognise the enduring connection of Aboriginal and Torres Strait Islander peoples to Country, culture and community. We are committed to fostering respect, understanding and meaningful opportunities for our students to learn about First Nations histories, perspectives and contributions.",
+            "image": {
+              "src": "/assets/images/our-school/row-9.webp",
+              "alt": "Students sitting along a grassy headland above the ocean, listening to a guide",
+              "width": 1436,
+              "height": 1028
+            },
+            "button": {
+              "text": "Our Commitment to Reconciliation",
+              "url": "#"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "cta",
+      "value": {
+        "title_line_1": "Start your",
+        "title_line_2": "St Luke’s journey",
+        "buttons": [
+          {
+            "text": "Book a Tour",
+            "url": "#"
+          },
+          {
+            "text": "Apply to Enrol",
+            "url": "#",
+            "style": "glass"
+          }
+        ],
+        "image": {
+          "src": "/assets/images/our-school/cta.webp",
+          "alt": "",
+          "width": 1920,
+          "height": 1102
+        },
+        "video": null
+      }
+    }
+  ]
+}
