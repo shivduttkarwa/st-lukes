@@ -59,4 +59,4 @@ Band `20169:14108` (879), hero `20169:14109`, body `20262:20964`, photo strip `2
 Hero `20262:20302`, lead `20262:20307`, sports `20262:20250`, rows `20262:20234` and `20262:20241`, Where to Next `20262:20881`, CTA and Footer `20262:20299`.
 
 ## Homepage top level
-Hero `20169:5668` (813 tall), title texts `20169:5681` / `20169:5682`, promo video `20169:5684`, intro `20169:5686`, `20169:5689`, rest of page `20169:5692` (11929 tall, drill into it section by section).
+Hero `20169:5668` (813 tall), title texts `20169:5681` / `20169:5682`, promo video `20169:5684`, intro `20169:5686`, `20169:5689`, rest of page `20169:5692` (11929 tall, drill into it section by section). Hear from our community `20195:16202` (1034 tall, six cards).

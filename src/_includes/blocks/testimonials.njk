@@ -1,0 +1,21 @@
+<section class="testimonials" data-slider-scope>
+  <div class="container">
+    <div class="testimonials__head">
+      <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="testimonials__outline">{{ value.title_line_2 }}</span></h2>
+      <div class="testimonials__nav" data-anim="reveal" data-anim-type="fade">
+        <button class="testimonials__arrow" type="button" aria-label="Previous" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
+        <button class="testimonials__arrow" type="button" aria-label="Next" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
+      </div>
+    </div>
+    <div class="testimonials__slider swiper" data-slider data-slider-gap="6">
+      <div class="swiper-wrapper" data-anim-group="fade">
+        {% for card in value.cards %}
+        {% set icon = "play" %}{% include "snippets/entry-card.njk" %}
+        {% endfor %}
+      </div>
+    </div>
+    {% if value.button %}
+    <div class="testimonials__action" data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+    {% endif %}
+  </div>
+</section>

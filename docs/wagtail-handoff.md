@@ -181,6 +181,12 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - `video` (optional, the brief's "video or image background"): autoplay muted loop with the image as poster. Background videos carry `data-ambient`; `initAmbientVideos()` holds them on the first frame under reduced motion. The hero's video uses the same attribute.
 - New button style `glass` (`.btn-glass`): white at 20% with a 20px background blur, as Figma's frosted button.
 
+### testimonials (`blocks/testimonials.njk`)
+- "Hear from our community": two title lines (the second a navy outline), prev / next arrows, a slider of video testimonial cards (the same `slider.js` as Learning) and an `outline-navy` button, 64 tall as in Figma.
+- Cards share `snippets/entry-card.njk` and `.entry` with Learning. The template sets `icon` before the include (`{% include … with icon="play" %}` in Django). On hover or keyboard focus the gold play button fades in; on touch it is always shown.
+- Each card is one link to its `url`. Figma has no prototype or design for playing a testimonial, so nothing opens in place. The optional `video` plays muted on hover, as on the other image cards. No testimonial videos have been supplied yet.
+- Figma's first three crops squeeze the photo about 5% horizontally, and the renditions keep that so they match. Figma's fifth and sixth cards repeat the first two photos under new names, which reads as placeholder content.
+
 ### news (`blocks/news.njk`)
 - "Latest news and stories": the title on one line (the second half a navy outline) and a "View All News" button (`outline-navy`: gold outline, navy label), then a crossfading feature. Each story is one slide: a royal panel (tags, title, excerpt, "Read Full Story") beside its photo, stacked photo-first below 992. The dots are the slider's pagination, bottom right of the panel.
 - Stories should be the newest news pages, not editor-entered (see `blocks.yaml`). Figma shows one story with four dots, so the static build repeats it four times.

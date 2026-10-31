@@ -408,6 +408,20 @@ blocks:
       image: ImageChooserBlock(required)   # full-bleed, 2:1; renditions 768 / 1280 / 1920 wide for the srcset
       video: DocumentChooserBlock(optional)   # mp4, autoplay muted loop in place of the image (the image is its poster); held still under reduced motion
 
+  testimonials:
+    figma: "20195:16202 (cards: Video Testimonial, Normal / Active)"
+    template: blocks/testimonials.njk
+    fields:
+      title_line_1: CharBlock(required)   # navy
+      title_line_2: CharBlock(required)   # navy outline
+      cards: ListBlock(StructBlock, min_num=1)   # Swiper slider, 400 × 618 (300 wide below 768), 6 apart
+        title: CharBlock(required)   # the person's first name
+        meta: CharBlock   # the gold line under the name
+        url: PageChooserBlock or URLBlock   # the whole card links here, to the testimonial
+        image: ImageChooserBlock(required)   # fill-800x1236, decorative (the name is the link text)
+        video: DocumentChooserBlock(optional)   # mp4, plays muted on hover
+      button: StructBlock(text: CharBlock, url: URLBlock)   # outline-navy style
+
   news:
     figma: "20169:5802"
     template: blocks/news.njk

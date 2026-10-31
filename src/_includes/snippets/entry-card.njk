@@ -1,0 +1,11 @@
+<a class="entry swiper-slide" href="{{ card.url | default('#') }}"{% if card.video %} data-hover-video{% endif %}>
+  {% set img = card.image %}{% set cls = "entry__img" %}{% include "snippets/image.njk" %}
+  {% if card.video %}<video class="entry__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
+  <span class="entry__shade" aria-hidden="true"></span>
+  <span class="entry__body">
+    <h3>{{ card.title }}</h3>
+    <span class="entry__meta">{{ card.meta }}</span>
+    {% if card.text %}<span class="entry__more"><span class="entry__text">{{ card.text }}</span></span>{% endif %}
+  </span>
+  <span class="entry__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-{{ icon }}"></use></svg></span>
+</a>

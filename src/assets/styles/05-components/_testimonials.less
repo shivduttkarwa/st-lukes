@@ -1,0 +1,59 @@
+.testimonials {
+  padding: 72 * @px 0;
+  background: var(--color-white);
+  color: var(--color-navy);
+  @media (min-width: @bp-lg) { padding: 97 * @px 0 90 * @px; }
+
+  &__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 24 * @px;
+  }
+
+  h2 {
+    .type-h1();
+    margin: 0;
+    color: var(--color-navy);
+    span { display: block; }
+    span:first-child { margin-bottom: -0.1833em; }
+  }
+
+  &__outline { .outline-text(var(--color-navy), var(--color-white)); }
+
+  &__nav {
+    display: flex;
+    gap: 10 * @px;
+  }
+
+  &__arrow { .slider-arrow(var(--color-navy), var(--color-white)); }
+
+  &__slider {
+    --swiper-wrapper-transition-timing-function: var(--ease-out);
+    overflow: visible;
+    margin-top: 25 * @px;
+  }
+
+  &__action { margin-top: 25 * @px; }
+
+  .btn {
+    @media (min-width: @bp-lg) {
+      --bs-btn-padding-x: @btn-padding-inset;
+      min-height: var(--control-height);
+    }
+  }
+
+  // Figma's labels sit 2px lower here than the shared card's nudges place them
+  .entry h3 { top: 0; }
+  .entry__meta { top: -0.1em; }
+
+  .entry__arrow {
+    bottom: 31 * @px;
+    .icon {
+      width: 20 * @px;
+      height: 20 * @px;
+    }
+    @media (min-width: @bp-lg) { bottom: 37 * @px; }
+  }
+}

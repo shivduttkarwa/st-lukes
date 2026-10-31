@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-10-31 — Home: Hear from our community
+- New block `testimonials` from `20195:16202`, between Discover and News: two title lines, prev / next arrows, a slider of six cards and an `outline-navy` button, 64 tall. Home is now 13846 tall against Figma's 13844, carrying the existing 1px offset from the intro band.
+- Cards share `.entry` and a new `snippets/entry-card.njk` with Learning, whose render is unchanged. The gold play button appears on hover or focus and is always shown on touch, and sits at Figma's 320, 531 in the card.
+- Photos cropped from Figma's fill transforms at `fill-800x1236` (`hear-1` to `hear-4`). Figma's fifth and sixth cards repeat the first two photos.
+- At 1440 against Figma's render: 0.67% diff, card labels on Figma's ink, the title 1px high. Phone layouts interpreted. Checked at 320, 375, 430, 667 x 375, 768, 1024, 1280 and 1920, with no horizontal scroll, and the touch audit reports nothing in this block.
+- Each card links to its `url`. Figma has no design for playing a testimonial and no videos have been supplied.
+
 ## 2026-10-31 — Contact, News List, News Story, Extra Blocks
 - New pages `/contact/` (`20169:13360`), `/news/` (`20169:14008`), `/news-story/` (`20169:14107`) and `/extra-blocks/` (`20262:20213`). New blocks: `contact_intro`, `campus_visit`, `contact_form`, `connect_band`, `news_hero`, `news_index`, `article_hero`, `story_body`, `author_card`, `related_stories`, `sports_tabs`, `media_text`; snippet `news-card`.
 - At 1440 against Figma's renders: section tops land within 1px on all four pages. Text wraps as in Figma, and ink is within 1px apart from a few phone-row and form lines, up to 2px. Figma's News Detail frame is 5632 tall and clips its footer; the page shows the whole footer.
