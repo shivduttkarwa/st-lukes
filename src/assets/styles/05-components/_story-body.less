@@ -36,7 +36,7 @@
       top: -0.086em;
       margin: 0;
       color: var(--color-royal);
-      letter-spacing: -0.008em;
+      letter-spacing: -0.009em;
     }
     p {
       .type-body-1();
@@ -74,6 +74,8 @@
     }
     span {
       .type-body-2();
+      position: relative;
+      top: 1 * @px;
       color: var(--color-black-75);
       letter-spacing: 0;
       line-height: 1.389;
@@ -94,11 +96,16 @@
     width: 100%;
     padding-top: 30 * @px;
     border-top: 1 * @px solid var(--color-muted);
+    @media (min-width: @bp-lg) {
+      margin-top: -1 * @px;
+      padding-top: 31 * @px;
+    }
     p {
       .type-share-label();
       position: relative;
       top: -0.14em;
       margin: 0;
+      line-height: 1.143;
       color: var(--color-navy);
     }
     ul {
@@ -126,6 +133,5 @@
     @media (hover: hover) {
       &:hover .icon { transform: rotate(-135deg); }
     }
-    @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
   }
 }

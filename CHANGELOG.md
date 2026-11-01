@@ -1,5 +1,24 @@
 # Changelog
 
+## 2026-11-01 — Second Figma audit
+- Re-audited all nine pages with new checks: sub-pixel text position, all copy including off-screen slides, every fill, border, radius and line, and Figma's hover variants. Figma itself had not changed.
+- Hovers: a Where next link now shows Figma's gold dot, overlaid so the columns don't move, and a main menu row's line turns royal.
+- Outline arrows draw Figma's 0.83 stroke as an inset ring. Outlined titles use a rounder filter kernel, which brings their diagonals to Figma's weight.
+- Buttons: Figma rounds each label's box up, so buttons gain half a pixel on the right, and every button and arrow is now within 0.7px. Small buttons take the stroke off their padding too. Where next buttons are Figma's 215 wide.
+- Lines on Figma's row: Contact's gold link underlines (2px lower), the news filter bar, the story share rule and the footer rule. News hero arrows are 37.5.
+- Contact: the form button and two FAQ buttons sit on Figma's y. Where next: column and title gaps on Figma's x, titles on whole-pixel line boxes so they land the same on every page. Offsets also corrected on the notice title, Our School hero, values words, article heading tracking, author bio and footer legal row.
+
+## 2026-10-31 — Figma audit fixes on all nine pages
+- All nine pages now match Figma's height exactly at 1440 (Home 13844). No text layer's ink is 2px or more off, and every button and arrow is within 1.6px. Report in `docs/figma-audit.md`.
+- Who we are: the frame drifts ±3% instead of a taller photo layer, and the four photos are re-exported at Figma's crop without the 10% overhang. `.parallax-layer()` is gone.
+- Stat rings draw Figma's 3% on all four (`ring: 3`). First "previous" arrows are solid, as Figma draws them, with only the cursor showing they are inactive.
+- Bayview uses Figma's aerial still, Our School uses the same video still as the alternative page (`video-poster.webp` removed), USP card 8 has Figma's photo, and USP cards 5, 8 and 9 have Figma's copy. The CTA still is rebuilt at Figma's exact 1440 × 826 crop.
+- Buttons: the 1px stroke comes off the 30 padding everywhere, so `@btn-padding-inset` is gone. Labels sit 1px lower from 992 up, except the Discover, News head, testimonials and contact form buttons, which Figma draws level.
+- Outlined titles over a photo or gradient (Learning, Discover, CTA, footer marquee) are Figma's hollow outside stroke, through an SVG filter on live text. `.outline-text-clear()` now takes a whole-pixel weight.
+- Figma's optical offsets added across Home, the footer, header, Where next, social, collage, contact and news blocks. Home's intro overlaps Who we are by 1px as in Figma. Fractions that made six pages 1px long are removed.
+- Footer: Figma's bolder, taller Bayview line, straight Directions arrow and 13px marquee gap. Contact form fields are 526 wide with Last Name at Figma's x. News Story captioned strip arrows sit at Figma's height. News tags are 12 apart.
+- Kept: the Submenu frame's nine menu rows, including the demo Home row, the Homepage wording of USP cards 1 and 4, and the article heading's looser tracking, which lands its ink on Figma's. Checked at 320, 375, 430, 667 × 375, 768, 1024, 1280 and 1920 on all nine pages, with no horizontal overflow.
+
 ## 2026-10-31 — Home: Hear from our community
 - New block `testimonials` from `20195:16202`, between Discover and News: two title lines, prev / next arrows, a slider of six cards and an `outline-navy` button, 64 tall. Home is now 13846 tall against Figma's 13844, carrying the existing 1px offset from the intro band.
 - Cards share `.entry` and a new `snippets/entry-card.njk` with Learning, whose render is unchanged. The gold play button appears on hover or focus and is always shown on touch, and sits at Figma's 320, 531 in the card.

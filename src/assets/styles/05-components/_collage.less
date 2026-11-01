@@ -40,10 +40,6 @@
     }
   }
 
-  &__text .btn {
-    @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
-  }
-
   // Chrome sets Sanshand 3px lower than Figma in the same line box, so the statement and quote sit that far up
   &__statement {
     .type-heading-3();
@@ -144,12 +140,17 @@
 
   &__value {
     .type-collage-stat();
+    position: relative;
+    left: -0.03em;
     margin: 0;
     text-box: trim-both cap alphabetic;
   }
 
   &__label {
     .type-body-3();
+    position: relative;
+    top: -0.0625em;
+    left: -1 * @px;
     width: 161 * @px;
     color: var(--color-text);
     white-space: pre-line;
@@ -175,7 +176,7 @@
   &__words {
     .type-collage-quote();
     position: relative;
-    top: -0.075em;
+    top: -0.1em;
     max-width: @collage-quote-w;
     margin: 0 0 18 * @px;
     color: var(--color-gold);
@@ -183,6 +184,8 @@
 
   &__cite {
     .type-collage-cite();
+    position: relative;
+    top: -0.1em;
     cite {
       display: block;
       font-style: normal;

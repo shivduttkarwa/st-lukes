@@ -1,8 +1,8 @@
-@pillars-travel: 5%;
 @pillars-gap-sm: 56 * @px;
 @pillars-narrow: percentage((409 / 617));
 
 .pillars {
+  position: relative;
   padding: 72 * @px 0;
   background: var(--color-navy);
   color: var(--color-white);
@@ -15,14 +15,19 @@
 
   &__eyebrow {
     .type-heading-6();
+    position: relative;
+    top: -0.1em;
     margin: 0 0 10 * @px;
     color: var(--color-gold);
   }
 
   h2 {
     .type-heading-2();
+    position: relative;
+    top: -0.11em;
     margin: 0;
     color: var(--color-white);
+    @media (min-width: @bp-lg) { left: 1 * @px; }
   }
 
   &__grid {
@@ -79,8 +84,6 @@
   &__media {
     position: relative;
     width: 100%;
-    overflow: hidden;
-    background: var(--color-navy);
   }
 
   &__card--1 &__media {
@@ -91,7 +94,21 @@
   &__card--3 &__media { aspect-ratio: 409 / 514; }
   &__card--4 &__media { aspect-ratio: 617 / 407; }
 
-  &__layer { .parallax-layer(@pillars-travel); }
+  // the frame drifts rather than the photo inside it, so Figma's crop holds; 3% stays inside the gap to the title
+  &__layer {
+    --parallax-from: -3%;
+    --parallax-to: 3%;
+    position: absolute;
+    inset: 0;
+    will-change: transform;
+  }
+
+  &__frame {
+    position: relative;
+    height: 100%;
+    overflow: hidden;
+    img { .img-cover(); }
+  }
 
   &__video {
     position: absolute;
@@ -118,6 +135,8 @@
     margin-top: 5 * @px;
     p {
       .type-body-1();
+      position: relative;
+      top: -0.09em;
       margin: 0;
       @media (min-width: @bp-xl) { white-space: pre-line; }
     }

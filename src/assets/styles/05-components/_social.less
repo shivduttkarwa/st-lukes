@@ -9,6 +9,10 @@
 
   &--spaced {
     @media (min-width: @bp-lg) { padding: 100 * @px 0; }
+    h2 {
+      position: relative;
+      top: 1 * @px;
+    }
   }
 
   &__head {
@@ -26,7 +30,10 @@
     color: var(--color-navy);
   }
 
-  &__outline { .outline-text(var(--color-navy), var(--color-white)); }
+  &__outline {
+    .outline-text(var(--color-navy), var(--color-white));
+    margin-left: 0.11em;
+  }
 
   &__nav {
     display: flex;
@@ -70,6 +77,8 @@
 
   &__follow {
     .type-heading-3();
+    position: relative;
+    top: -0.086em;
     flex: 1;
     min-width: 0;
     margin: 0;

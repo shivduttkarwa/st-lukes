@@ -28,7 +28,7 @@
         "portrait": { "src": "/assets/images/our-school/portrait.webp", "alt": "A smiling young student in a nativity costume, waving", "width": 810, "height": 1004 },
         "video": {
           "title": "Faith lived through action",
-          "image": { "src": "/assets/images/our-school/video-poster.webp", "alt": "", "width": 1093, "height": 684 },
+          "image": { "src": "/assets/images/our-school/video-still.webp", "alt": "", "width": 1093, "height": 684 },
           "video": null
         },
         "stat": { "value": "99%", "label": "of our families are\nNorthern Beaches Locals", "caption": "Did you know?" },

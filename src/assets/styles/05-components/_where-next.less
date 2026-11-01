@@ -27,13 +27,14 @@
       .type-display-4();
       display: flex;
       flex-wrap: wrap;
-      gap: 15 * @px;
+      gap: 16 * @px;
       margin: 0 0 24 * @px;
       letter-spacing: 0;
       color: var(--color-navy);
       span { text-box: trim-both cap alphabetic; }
       @media (min-width: @bp-lg) {
         grid-area: 1 / 1;
+        height: 53 * @px;
         margin-bottom: 45 * @px;
       }
     }
@@ -90,10 +91,16 @@
   &__title {
     .type-next-title-sm();
     position: relative;
+    top: -0.095em;
     z-index: 1;
+    @media (min-width: @bp-lg) { line-height: 32 * @px; }
   }
 
-  &__card--lead &__title { .type-next-title-lg(); }
+  &__card--lead &__title {
+    .type-next-title-lg();
+    top: -0.11em;
+    @media (min-width: @bp-lg) { line-height: 47 * @px; }
+  }
 
   &__arrow {
     position: relative;
@@ -167,7 +174,7 @@
       grid-template-rows: repeat(3, auto);
       grid-auto-flow: column;
       justify-content: start;
-      column-gap: 25 * @px;
+      column-gap: 25.5 * @px;
     }
   }
 
@@ -198,6 +205,25 @@
     }
     @media (hover: hover) {
       &:hover { color: var(--color-royal); }
+      &:not(.is-current) {
+        position: relative;
+        span { transition: transform var(--duration-base) var(--ease-out); }
+        &::before {
+          content: "";
+          position: absolute;
+          top: 50%;
+          left: 8 * @px;
+          width: 10 * @px;
+          height: 10 * @px;
+          border-radius: 50%;
+          background: var(--color-gold);
+          opacity: 0;
+          transform: translateY(-50%);
+          transition: opacity var(--duration-base) ease;
+        }
+        &:hover::before { opacity: 1; }
+        &:hover span { transform: translateX(18 * @px); }
+      }
     }
   }
 
@@ -208,8 +234,6 @@
     align-self: flex-start;
     gap: 16 * @px;
     @media (min-width: @bp-lg) { align-self: center; }
-    .btn {
-      @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
-    }
+    .btn { @media (min-width: @bp-lg) { min-width: 215 * @px; } }
   }
 }

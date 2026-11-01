@@ -19,6 +19,8 @@
 
   h2 {
     .type-h1();
+    position: relative;
+    top: 1 * @px;
     margin: 0;
     color: var(--color-gold);
     span { display: block; }
@@ -87,21 +89,23 @@
     min-width: 0;
   }
 
-  // Chrome sets Poppins 2px, Sanshand 4px and the description 2.7px lower than Figma in the same line boxes; the nudges keep the boxes
+  // Figma's open card sets its labels 2px higher than a card at rest; both are in Chrome's line boxes, so the nudges keep the boxes
   h3 {
     .type-h3();
     position: relative;
-    top: -0.057em;
+    top: 0;
     margin: 0;
     color: var(--color-white);
+    transition: top var(--duration-slow) var(--ease-out);
     @media (min-width: @bp-md) { white-space: pre-line; }
   }
 
   &__meta {
     .type-heading-6();
     position: relative;
-    top: -0.2em;
+    top: -0.1em;
     color: var(--color-gold);
+    transition: top var(--duration-slow) var(--ease-out);
   }
 
   &__more {
@@ -153,6 +157,8 @@
 
     &:hover,
     &:focus-visible {
+      h3 { top: -0.057em; }
+      .entry__meta { top: -0.2em; }
       .entry__more {
         grid-template-rows: 1fr;
         opacity: 1;
@@ -163,6 +169,8 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .entry h3,
+  .entry__meta,
   .entry__video,
   .entry__more,
   .entry__arrow { transition: none; }

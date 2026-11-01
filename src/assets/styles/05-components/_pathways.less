@@ -6,7 +6,7 @@
   overflow: hidden;
   background: var(--color-white);
   color: var(--color-coal);
-  @media (min-width: @bp-lg) { padding: 100 * @px 0 85 * @px; }
+  @media (min-width: @bp-lg) { padding: 100 * @px 0 84 * @px; }
 
   &__head {
     display: flex;
@@ -21,6 +21,8 @@
 
   h2 {
     .type-h1();
+    position: relative;
+    top: 1 * @px;
     margin: 0;
     color: var(--color-navy);
     @media (min-width: @bp-lg) { width: 685 * @px; }
@@ -51,7 +53,7 @@
     gap: 40 * @px;
     margin-top: 56 * @px;
     @media (min-width: @bp-lg) {
-      gap: 50 * @px;
+      gap: 51 * @px;
       margin-top: @pathways-gap;
     }
   }

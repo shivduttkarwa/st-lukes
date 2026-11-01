@@ -196,7 +196,7 @@
   .hero__line--alt {
     margin: 0;
     // CSS tracks after the last letter too, so the box sits that far in to keep the ink on Figma's edge
-    @media (min-width: @bp-lg) { margin-right: ~"calc(@{page-hero-row-2} + 0.03em)"; }
+    @media (min-width: @bp-lg) { margin-right: ~"calc(@{page-hero-row-2} + 0.038em)"; }
   }
 }
 
@@ -233,6 +233,8 @@
   }
 
   &__teaser-title {
+    position: relative;
+    top: -1 * @px;
     display: block;
     margin-bottom: 5 * @px;
     font-weight: 700;

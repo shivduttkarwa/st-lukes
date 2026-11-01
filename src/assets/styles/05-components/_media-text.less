@@ -1,4 +1,5 @@
 .media-text {
+  & + .where-next { @media (min-width: @bp-lg) { margin-top: -0.5 * @px; } }
   display: flex;
   flex-direction: column;
   gap: 32 * @px;
@@ -39,9 +40,6 @@
       margin: 0;
       color: var(--color-royal);
     }
-    .btn {
-      @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; }
-    }
   }
 
   &--left &__body {
@@ -55,7 +53,7 @@
   &__copy p {
     .type-body-1();
     position: relative;
-    top: -0.06em;
+    top: -0.11em;
     margin: 0 0 28 * @px;
     color: var(--color-black-75);
     &:last-child { margin-bottom: 0; }
@@ -64,7 +62,7 @@
   &__actions {
     display: flex;
     flex-wrap: wrap;
-    gap: 10 * @px;
+    gap: 9.5 * @px;
   }
 
   &__note {

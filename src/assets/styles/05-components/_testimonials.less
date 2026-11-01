@@ -14,6 +14,8 @@
 
   h2 {
     .type-h1();
+    position: relative;
+    top: 1 * @px;
     margin: 0;
     color: var(--color-navy);
     span { display: block; }
@@ -39,14 +41,10 @@
 
   .btn {
     @media (min-width: @bp-lg) {
-      --bs-btn-padding-x: @btn-padding-inset;
       min-height: var(--control-height);
+      padding-block: @btn-padding-y;
     }
   }
-
-  // Figma's labels sit 2px lower here than the shared card's nudges place them
-  .entry h3 { top: 0; }
-  .entry__meta { top: -0.1em; }
 
   .entry__arrow {
     bottom: 31 * @px;

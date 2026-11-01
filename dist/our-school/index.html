@@ -22,7 +22,11 @@
 
 </head>
 <body>
-  <svg xmlns="http://www.w3.org/2000/svg" hidden>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <filter id="text-outline-1" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB"><feMorphology in="SourceGraphic" operator="dilate" radius="1 0" result="a"/><feMorphology in="SourceGraphic" operator="dilate" radius="0 1" result="b"/><feMerge result="grown"><feMergeNode in="a"/><feMergeNode in="b"/></feMerge><feComposite in="grown" in2="SourceAlpha" operator="out"/></filter>
+  <filter id="text-outline-2" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB"><feMorphology in="SourceGraphic" operator="dilate" radius="2 1" result="a"/><feMorphology in="SourceGraphic" operator="dilate" radius="1 2" result="b"/><feMerge result="grown"><feMergeNode in="a"/><feMergeNode in="b"/></feMerge><feComposite in="grown" in2="SourceAlpha" operator="out"/></filter>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" hidden>
   <symbol id="icon-search" viewBox="0 0 20 20"><path fill="currentColor" d="M15 8.5C15 9.9375 14.5312 11.25 13.75 12.3438L17.7188 16.2812C18.0938 16.6875 18.0938 17.3125 17.7188 17.7188C17.3125 18.0938 16.6875 18.0938 16.2812 17.7188L12.3438 13.75C11.25 14.5312 9.9375 15 8.5 15C4.90625 15 2 12.0938 2 8.5C2 4.90625 4.90625 2 8.5 2C12.0938 2 15 4.90625 15 8.5ZM8.5 13C11 13 13 11 13 8.5C13 6 11 4 8.5 4C6 4 4 6 4 8.5C4 11 6 13 8.5 13Z"/></symbol>
   <symbol id="icon-arrow" viewBox="0 0 24 24"><path fill="currentColor" transform="rotate(-45 12 12) translate(3.645 3.6)" d="M16.5283 7.79395C16.7699 8.03565 16.77 8.42727 16.5283 8.66895L8.39844 16.7988L7.52344 15.9238L14.585 8.8623H0V7.625H14.6094L7.86035 0.875L8.73535 0L16.5283 7.79395Z"/></symbol>
   <symbol id="icon-arrow-diagonal" viewBox="0 0 32 26"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3.81 3.73 22.38 3.73 22.38 21.54M22.38 3.62 4 22"/></symbol>
@@ -129,7 +133,7 @@
   </div>
 
   <div class="promo collage__video" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
-    <img class="promo__poster" src="/assets/images/our-school/video-poster.webp" alt="" width="1093" height="684" loading="lazy" decoding="async">
+    <img class="promo__poster" src="/assets/images/our-school/video-still.webp" alt="" width="1093" height="684" loading="lazy" decoding="async">
 
 
 <button class="promo__play" type="button" disabled>
@@ -326,7 +330,7 @@ of Country</span>
             <p class="site-footer__years">Cottage – Year 12</p>
             <address>210 Headland Road,
 Dee Why NSW 2099</address>
-            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
+            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
           </div>
           
           <p class="site-footer__phone"><strong>Senior School</strong><a href="tel:+61294386200">+61 2 9438 6200</a></p>
@@ -341,7 +345,7 @@ Dee Why NSW 2099</address>
             <p class="site-footer__years">Cottage – Year 6</p>
             <address>1977 Pittwater Road,
 Bayview NSW 2104</address>
-            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
+            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
           </div>
           
           <p class="site-footer__phone"><strong>Junior School</strong><a href="tel:+61299795755">+61 2 9979 5755</a></p>

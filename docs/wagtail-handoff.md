@@ -38,7 +38,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
   - the "Local heart. Global mind." marquee;
   - the white social buttons and affiliation logos;
   - the legal row and the 16px gold strip.
-- The marquee is the same `initMarquees()` as the pathways logos (`data-marquee="left"`, right to left at 35 design px/s). Odd phrases are a 2px gold outline, even ones solid gold. It's `aria-hidden` and stands still under reduced motion.
+- The marquee is the same `initMarquees()` as the pathways logos (`data-marquee="left"`, right to left at 35 design px/s). Odd phrases are a hollow 2px gold outline outside the glyph (`.outline-text-clear()`), even ones solid gold. The lane carries 3px of padding so its overflow doesn't clip the outline. It's `aria-hidden` and stands still under reduced motion.
 - Figma sets Dee Why's years line in Semibold 16 / 1.4 and Bayview's in Bold 16 / 1.5. The template uses Dee Why's for both (one field), so Bayview's column sits 2px higher than Figma.
 - Footer links are plain text links in the inherited white. Quick links are 28px rows under a fine pointer and 44px on touch, and the phone numbers carry an invisible 44px hit area.
 
@@ -145,14 +145,14 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### pillars (`blocks/pillars.njk`, card markup in `snippets/pillar-card.njk`)
 - "Who we are": eyebrow, Heading 2 title, and a collage of four cards (Local heart, Academic excellence, Student wellbeing, Global mind). The collage is drawn for exactly four, so `cards` is `min_num=4, max_num=4`.
 - The template renders two columns from the one list: cards 1 and 3 on the left, 2 and 4 on the right (`loop.index0 % 2` → `forloop.counter0|divisibleby:2`). Each card carries `pillars__card--{{ loop.index }}` (`forloop.counter`), which sets its image shape and width. Below 768 the columns dissolve and the cards return to 1–4 order.
-- Each image sits in a parallax layer 10% taller than its frame (it drifts ±5% as the card passes), so renditions are the layer's shape: `fill-1232x902`, `fill-818x1199`, `fill-818x1131`, `fill-1234x895` for cards 1–4. Add a `srcset` with half-width renditions; the 768 audit flags card 1 as 1.8× wider than its slot.
+- The whole frame drifts ±3% as the card passes (`.pillars__layer`), not the photo inside it, so Figma's crop holds without a zoom and the frame stays clear of the title below. Renditions are the frame's shape: `fill-1232x820`, `fill-818x1090`, `fill-818x1028`, `fill-1234x814` for cards 1–4. Add a `srcset` with half-width renditions; the 768 audit flags card 1 as 1.8× wider than its slot.
 - `video` (optional mp4) plays muted over the image while the pointer is on the card, fading in over 0.6s, and resets once it has faded out. Mouse and trackpad only, never on touch, never under reduced motion.
 - `logo` (optional) sits beside the text at 70 × 70: the Round Square mark on Global mind (`assets/images/home/round-square.svg`).
 - A line break typed in `text` applies from 1200 up, where the card measure matches the design; below that it reads as a space.
 - Image reveals: each frame glides open like the intro's media, the left column from the left and the right from the right. The column sets `glide` before the include (`glide-right` / `glide-left` → `{% include … with glide="glide-right" %}`). The card's text and button fade up through `data-anim-group` on the card, which skips the frame because it carries its own `data-anim`.
 
 ### stats (`blocks/stats.njk`)
-- A list of statistics and an outline button. Each item: `value` as displayed ("1200+", "99%", ">35"), `label`, and `ring`, the share of the circle the white arc draws (0–100). Two per row from 1200 up, one per row below.
+- A list of statistics and an outline button. Each item: `value` as displayed ("1200+", "99%", ">35"), `label`, and `ring`, the share of the circle the white arc draws (0–100). Figma draws 3 on all four, so that's what the page data holds; the brief describes the arc growing to the stat's own value, so the client may want real values here. Two per row from 1200 up, one per row below.
 - Motion lives in `anim.js` (`data-anim="counter"`): as each item scrolls in, the first number in its value counts up from 0 (prefix and suffix kept, commas kept if typed) while its ring draws clockwise from 12 o'clock to `ring`. It takes 2s, 0.1s apart in list order (`data-anim-order="{{ loop.index0 }}"` → `{{ forloop.counter0 }}`). The ring's final value is the circle's `stroke-dasharray` attribute, so without JS or under reduced motion the finished state shows.
 - The ring is inline SVG from the Figma geometry: outer 100, stroke 12.88, white track at 40%.
 
@@ -169,7 +169,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### learning (`blocks/learning.njk`)
 - "Learning at St Luke's": two title lines (the second a gold outline), prev / next arrows, a slider of Entry Points cards (the same `slider.js` as the USPs) and an outline button.
 - Each card is one link: image (`fill-800x1236`, decorative), Figma's shade over the bottom 37%, title, gold meta line, and an optional short `text`. On hover or keyboard focus the text opens under the meta, lifting the title, and the gold arrow fades in (Figma's Normal → Active). The shade stays as it is, as in Figma's Active variant. On touch the arrow is always shown and the text stays closed.
-- The outline title here sits on a gradient, so it uses `.outline-text-clear()` (a centred 1px stroke, no fill).
+- The outline title here sits on a gradient, so it uses `.outline-text-clear()`: an SVG filter (`partials/icons.njk`) that grows the glyph with a near-round kernel and cuts the original out, which gives Figma's hollow outside stroke on live text. Keep the `.svg-defs` block in the base template.
 
 ### pathways (`blocks/pathways.njk`)
 - "Diverse pathways for every student": two title lines (the second a navy outline on white), a lead, a solid button, and up to two rows of linked logos. Row 1 runs right to left and row 2 left to right (by position, `forloop.counter0|divisibleby:2`), as the brief asks.
@@ -177,7 +177,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Each logo is an image with its name as alt text, linking to the institution's site (`url`). The ADF Careers logo is a Figma SVG export with its 7px caption outlined, so no live text falls under the 12px floor.
 
 ### discover (`blocks/discover.njk`)
-- The full-width promo ("Discover new ways to thrive"): two title lines (the second a gold outline, centred 1px since it sits on a photo), a lead and up to two buttons, bottom left over a full-bleed image or video with Figma's diagonal navy shade. Below 992 the shade turns vertical and the crop shifts right, so the copy stays readable and the subject stays in frame.
+- The full-width promo ("Discover new ways to thrive"): two title lines (the second a hollow gold outline, `.outline-text-clear()`, since it sits on a photo), a lead and up to two buttons, bottom left over a full-bleed image or video with Figma's diagonal navy shade. Below 992 the shade turns vertical and the crop shifts right, so the copy stays readable and the subject stays in frame.
 - `video` (optional, the brief's "video or image background"): autoplay muted loop with the image as poster. Background videos carry `data-ambient`; `initAmbientVideos()` holds them on the first frame under reduced motion. The hero's video uses the same attribute.
 - New button style `glass` (`.btn-glass`): white at 20% with a 20px background blur, as Figma's frosted button.
 
@@ -199,7 +199,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - The band runs 38 past the container on the right from 1400 up, as in Figma.
 
 ### cta (`blocks/cta.njk`)
-- The "Start your St Luke's journey" banner (Figma's CTA Banner component, so likely reused on other pages): two centred Poppins 90 title lines (the second a 2px white outline, centred on the glyph because it sits on moving video), and up to two buttons (Book a Tour gold, Apply to Enrol glass).
+- The "Start your St Luke's journey" banner (Figma's CTA Banner component, so likely reused on other pages): two centred Poppins 90 title lines (the second a hollow 2px white outline, `.outline-text-clear()`, because it sits on moving video), and up to two buttons (Book a Tour gold, Apply to Enrol glass).
 - Background: `video` (Figma's is a video fill) as an ambient loop with `data-ambient`, or the `image` alone. Over it are Figma's navy 30% wash and a navy gradient from 56% down, which ends solid navy into the footer.
 
 ### placeholder (`blocks/placeholder.njk`)
@@ -215,7 +215,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Leadership and Staff: people for Directors, School Council and Anglican Schools Corporation. Figma only lists the Executive Team, so those tabs are empty for now. Larger portraits too: Figma holds 200 x 200, shown 305.
 - Principal's Welcome: answers for the last five FAQ rows (Figma only has the first, so the others can't open yet). A larger portrait: Figma holds 900 x 500, shown 1032 wide.
 - Principal's Welcome: Figma's menu highlights Leadership & Staff, copied from the other page. It is built as drawn; set `current` on Principal's Welcome, or let the page tree do it.
-- Our School Alternative: a clean poster for the video. Figma's still is a screen grab with a player bar and a pointer burned in (`video-still.webp`), which this page shows because it matches the design. `/our-school/` still uses the earlier clean crop (`video-poster.webp`).
+- Our School and Our School Alternative: a clean poster for the video. Figma's still is a screen grab with a player bar and a pointer burned in (`video-still.webp`), which both pages show because it matches the design.
 - Our School Alternative rows 2, 3, 5 and 8: larger photos. Figma only holds 700 × 425 versions, shown about 20% enlarged at 1440.
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
 - Homepage CTA banner: its background video (a video fill in Figma; only a 720 × 720 preview still could be exported, which is now the poster).

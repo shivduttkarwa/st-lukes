@@ -66,7 +66,7 @@
           {
             "title": "Local heart",
             "text": "A strong local community grounded in Christian faith, where every student is known, valued and supported.",
-            "image": { "src": "/assets/images/home/pillars-local-heart.webp", "alt": "Three students in wetsuits on a grassy headland above the ocean", "width": 1232, "height": 902 },
+            "image": { "src": "/assets/images/home/pillars-local-heart.webp", "alt": "Three students in wetsuits on a grassy headland above the ocean", "width": 1232, "height": 820 },
             "video": null,
             "logo": null,
             "button": { "text": "View our Values and Christian Foundation", "url": "#", "style": "outline" }
@@ -74,7 +74,7 @@
           {
             "title": "Academic excellence",
             "text": "Our five R’s (Resilience, Resourcefulness, Reciprocity, Reflectiveness and Restoration)\nhelp students master knowledge, learn from challenges, collaborate and grow in character.",
-            "image": { "src": "/assets/images/home/pillars-academic.webp", "alt": "A teacher shaking hands with a student in a blue blazer at a school exhibition", "width": 818, "height": 1199 },
+            "image": { "src": "/assets/images/home/pillars-academic.webp", "alt": "A teacher shaking hands with a student in a blue blazer at a school exhibition", "width": 818, "height": 1090 },
             "video": null,
             "logo": null,
             "button": { "text": "Explore our Learning Framework", "url": "#", "style": "outline" }
@@ -82,7 +82,7 @@
           {
             "title": "Student Wellbeing",
             "text": "A supportive environment where students feel known, connected and confident to flourish in every part of school life.",
-            "image": { "src": "/assets/images/home/pillars-wellbeing.webp", "alt": "A Wellbeing Week banner on the school campus", "width": 782, "height": 1080 },
+            "image": { "src": "/assets/images/home/pillars-wellbeing.webp", "alt": "A Wellbeing Week banner on the school campus", "width": 818, "height": 1028 },
             "video": null,
             "logo": null,
             "button": { "text": "View our Wellbeing program", "url": "#", "style": "outline" }
@@ -90,7 +90,7 @@
           {
             "title": "Global Mind",
             "text": "Students are challenged to think deeply, achieve highly and see their place in a changing world, with outstanding HSC outcomes and a global perspective through Round Square.",
-            "image": { "src": "/assets/images/home/pillars-global-mind.webp", "alt": "Four junior students in blue blazers sitting together outdoors", "width": 1234, "height": 895 },
+            "image": { "src": "/assets/images/home/pillars-global-mind.webp", "alt": "Four junior students in blue blazers sitting together outdoors", "width": 1234, "height": 814 },
             "video": null,
             "logo": { "src": "/assets/images/home/round-square.svg", "alt": "Round Square", "width": 70, "height": 70 },
             "button": { "text": "Read about Round Square", "url": "#", "style": "outline" }
@@ -102,10 +102,10 @@
       "type": "stats",
       "value": {
         "items": [
-          { "value": "1200+", "label": "Students across Bayview and Dee Why campuses", "ring": 100 },
-          { "value": "99%", "label": "of Families are Northern Beaches residents", "ring": 99 },
-          { "value": "90%+", "label": "ATAR score of 50% or more of St Luke’s graduating students", "ring": 90 },
-          { "value": ">35", "label": "Among the Top 35 NSW Schools Ranking in HSC results", "ring": 100 }
+          { "value": "1200+", "label": "Students across Bayview and Dee Why campuses", "ring": 3 },
+          { "value": "99%", "label": "of Families are Northern Beaches residents", "ring": 3 },
+          { "value": "90%+", "label": "ATAR score of 50% or more of St Luke’s graduating students", "ring": 3 },
+          { "value": ">35", "label": "Among the Top 35 NSW Schools Ranking in HSC results", "ring": 3 }
         ],
         "button": { "text": "View our HSC and NAPLAN Results", "url": "#", "style": "outline" }
       }
@@ -130,11 +130,11 @@
           { "title": "the spirit of the Northern Beaches", "text": "We work hard, we play hard,\nwe achieve well.", "image": { "src": "/assets/images/home/usp-2.webp", "alt": "Students in wetsuits with surfboards on the beach", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our 2025 HSC Results", "url": "#" } },
           { "title": "Top-ranked co-ed school in NSW", "text": "We’re consistently top-ranked non-selective co-educational school in NSW north of the harbour.", "image": { "src": "/assets/images/home/usp-3.webp", "alt": "Two senior students writing equations on a glass board", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our Graduate Profile", "url": "#" } },
           { "title": "Strong pastoral care with\nPERMA Framework", "text": "Our wellbeing framework is grounded in positive psychology (PERMA).", "image": { "src": "/assets/images/home/usp-4.webp", "alt": "A teacher sitting outdoors with four students in uniform", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Wellbeing Framework", "url": "#" } },
-          { "title": "Authentic Christian faith", "text": "Authentic Christian faith that is welcoming and inclusive, not exclusive.", "image": { "src": "/assets/images/home/usp-5.webp", "alt": "Students and young children smiling together on a grassy hill", "width": 800, "height": 800 }, "video": null, "link": { "text": "How we live out our Faith", "url": "#" } },
+          { "title": "Authentic Christian faith", "text": "We live out an authentic Christian faith that is welcoming and inclusive, not exclusive.", "image": { "src": "/assets/images/home/usp-5.webp", "alt": "Students and young children smiling together on a grassy hill", "width": 800, "height": 800 }, "video": null, "link": { "text": "How we live out our Faith", "url": "#" } },
           { "title": "Personal attention, Huge co-curricular range", "text": "Small-school individualised learning combined with large-school co-curricular opportunities.", "image": { "src": "/assets/images/home/usp-6.webp", "alt": "A smiling student playing the cello in a school orchestra", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore Co-Curricular Opportunities", "url": "#" } },
           { "title": "~99% of Families are local Northern Beaches residents", "text": "We’ve got everything you would travel to the North Shore for without the commute.", "image": { "src": "/assets/images/home/usp-7.webp", "alt": "Students boarding a St Luke’s school bus", "width": 800, "height": 800 }, "video": null, "link": { "text": "View Transport and Bus Routes", "url": "#" } },
-          { "title": "Exceptional sport and Athlete program", "text": "State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": null, "link": { "text": "See our Sporting Programs", "url": "#" } },
-          { "title": "A growing modern campus", "text": "Plans for a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031)", "image": { "src": "/assets/images/home/usp-9.webp", "alt": "Students gathered on the lawn in front of the campus buildings", "width": 381, "height": 381 }, "video": null, "link": { "text": "Browse the College Masterplan", "url": "#" } }
+          { "title": "Exceptional sport and Athlete programs", "text": "Students can participate in State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": null, "link": { "text": "See our Sporting Programs", "url": "#" } },
+          { "title": "A growing modern campus", "text": "We’re building a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031) as part of our Masterplan.", "image": { "src": "/assets/images/home/usp-9.webp", "alt": "Students gathered on the lawn in front of the campus buildings", "width": 381, "height": 381 }, "video": null, "link": { "text": "Browse the College Masterplan", "url": "#" } }
         ]
       }
     },
@@ -293,7 +293,7 @@
           { "text": "Book a Tour", "url": "#" },
           { "text": "Apply to Enrol", "url": "#", "style": "glass" }
         ],
-        "image": { "src": "/assets/images/home/cta-poster.webp", "alt": "", "width": 720, "height": 412 },
+        "image": { "src": "/assets/images/home/cta-poster.webp", "alt": "", "width": 1440, "height": 826 },
         "video": null
       }
     }

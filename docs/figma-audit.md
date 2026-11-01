@@ -1,10 +1,46 @@
 # Figma audit: all built pages
 
-Audited 2026-10-31 against Figma file `Ec8NFmOIMTGbBVYbdJcKD9`, page "02 Approved Design Concept", at the design width of 1440. This is a report only: no site code was changed for it.
+Audited 2026-10-31 against Figma file `Ec8NFmOIMTGbBVYbdJcKD9`, page "02 Approved Design Concept", at the design width of 1440.
 
-**Update, same day:** item 1, "Hear from our community", is now built as the `testimonials` block, and Home is 13846 tall. The figures below are the audit as first run. The new section measures 0.67% diff with its card labels on Figma's ink and its title 1px high, and its first arrow is faded like the other sliders (item 6).
+## Status after fixes
 
-## Verdict
+All the deviations listed below were fixed on 2026-10-31, and a second audit on 2026-11-01 measured text to a fraction of a pixel and added off-screen copy, every line, border and radius, and Figma's hover variants. What remains is under [What still differs](#what-still-differs). Everything from [First audit](#first-audit) down is the audit as first run, kept as the record of what changed.
+
+| Page | Figma height | Live height | Largest section diff | Text 2px or more off |
+|---|---:|---:|---|---:|
+| Home | 13844 | 13844 | Footer 2.6% | 0 |
+| Our School | 6540 | 6540 | Page links 3.6% (first card drawn hovered) | 0 |
+| Our School Alternative | 10749 | 10749 | Acknowledgement row 2.7% | 0 |
+| Leadership and Staff | 6338 | 6338 | Lead 5.7% (heavier white text) | 0 |
+| Principal's Welcome | 8817 | 8817 | Lead 4.8% (heavier white text) | 0 |
+| Contact | 8106 | 8106 | Footer 2.1% | 0 |
+| News | 6720 | 6720 | Footer 2.1% | 0 |
+| News Story | 6413 | 6413 | Footer 2.1% | 0 |
+| Extra Blocks | 6653 | 6653 | Lead 4.8% (heavier white text) | 0 |
+
+Every image slot shows Figma's crop, with the Pathways logos within 1px of their slots as they sit before the marquee moves them. Every button and arrow is within 0.7px. Every line is on Figma's row, apart from the form underlines below. All copy matches, apart from the items below and the two typos noted under [Copy to raise with the client](#copy-to-raise-with-the-client). The median section diff is 0.7%, and the largest diffs that remain are Chrome's heavier text.
+
+### What still differs
+
+- **Sub-pixel text offsets.** Two text layers are 0.7px or more off, neither reaching 1px: "St Luke's journey" on the Our School CTAs (0.9px) and the Acknowledgement of Country title (0.7px). 25 distinct layers are 0.5px or more off.
+- **Contact form underlines.** Figma centres each 1px stroke on a pixel boundary, so its render smears the line across two rows at half strength. The build draws a crisp 1px line on the lower of the two rows.
+- **Heavier text in Chrome.** Accepted on 2026-10-29 and not fixable without altering the font.
+- **USP wording: Figma contradicts itself, so both can't match.** The Homepage frame and the USPs Slider frame word cards 1, 4, 5, 8 and 9 differently, and the Homepage frame's off-screen cards also have an older card 8 photo. The build shows the Homepage wording on cards 1 and 4, which are on screen in that frame, and the Slider wording and photo on cards 5, 8 and 9.
+- **Main menu Home row.** The Main Menu frame has eight rows and the Submenu frame has nine, with Home. The build keeps Home because its submenu is the demo navigation to every built page.
+- **Cards Figma draws hovered.** Cottage, the first Our School card and Bayview's arrow match Figma on hover, not at rest.
+- **Outline at other widths.** The hollow outline on Learning, Discover, the CTA and the footer marquee stays at its fixed 1px or 2px rather than scaling with the page. It hasn't been tested in Safari.
+- **Hover states with no Figma variant.** Figma defines hovers for the filter tabs, main menu rows, Where next links and social icons, and these match. Buttons, arrows and cards have no hover variant, so theirs are the build's own.
+- **Video.** Figma's video fills can't be exported, so those slots show Figma's stills until the files are supplied.
+
+### Decisions taken to match Figma literally
+
+- **Stat rings** draw Figma's 3% on all four, although the brief describes each arc growing to its stat's value. To restore that, set `ring` in `home.json` to 100, 99, 90 and 100.
+- **First "previous" arrow** is solid, as drawn, so nothing but the cursor shows it's inactive on the first slide.
+- **Our School video still** has the player bar baked in, because that's Figma's image.
+
+## First audit
+
+### Verdict
 
 **The build does not yet match Figma with zero deviation.** Of 77 page sections, 1 is missing, 9 have a visible difference, 44 are within about 5px and 23 match outright.
 

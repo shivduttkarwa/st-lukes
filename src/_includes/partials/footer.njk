@@ -21,7 +21,7 @@
           <div class="site-footer__campus">
             <p class="site-footer__years">{{ campus.years }}</p>
             <address>{{ campus.address }}</address>
-            <a class="site-footer__directions" href="{{ campus.directions }}">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
+            <a class="site-footer__directions" href="{{ campus.directions }}">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
           </div>
           {% for phone in campus.phones %}
           <p class="site-footer__phone"><strong>{{ phone.label }}</strong><a href="tel:{{ phone.tel }}">{{ phone.number }}</a></p>

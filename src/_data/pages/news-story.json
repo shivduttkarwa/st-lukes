@@ -156,8 +156,8 @@
         "image": {
           "src": "/assets/images/home/cta-poster.webp",
           "alt": "",
-          "width": 720,
-          "height": 412
+          "width": 1440,
+          "height": 826
         },
         "video": null
       }

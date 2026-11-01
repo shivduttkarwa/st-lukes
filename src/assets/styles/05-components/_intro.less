@@ -11,6 +11,7 @@
   @media (min-width: @bp-lg) {
     grid-template-columns: minmax(0, 821fr) minmax(0, 111fr) minmax(0, 508fr);
     align-items: start;
+    margin-bottom: -1 * @px;
     padding-top: 198 * @px;
   }
 
@@ -32,6 +33,8 @@
 
   &__statement {
     .type-heading-2();
+    position: relative;
+    top: -0.11em;
     max-width: 620 * @px;
     // the design's line break only holds at its own measure
     br {

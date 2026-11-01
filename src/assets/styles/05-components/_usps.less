@@ -28,14 +28,19 @@
 
   &__eyebrow {
     .type-heading-6();
+    position: relative;
+    top: -0.1em;
     margin: 0 0 10 * @px;
     color: var(--color-gold);
   }
 
   h2 {
     .type-heading-2();
+    position: relative;
+    top: -0.11em;
     margin: 0;
     color: var(--color-white);
+    @media (min-width: @bp-lg) { left: 1 * @px; }
   }
 
   &__actions {
@@ -122,6 +127,8 @@
 
   h3 {
     .type-usp-title();
+    position: relative;
+    top: -0.08em;
     margin: 0;
     color: var(--color-royal);
     @media (min-width: @bp-md) { white-space: pre-line; }
@@ -141,7 +148,7 @@
     align-items: center;
     justify-content: space-between;
     gap: 16 * @px;
-    padding: 20 * @px 20 * @px 20 * @px 30 * @px;
+    padding: 19 * @px 20 * @px 21 * @px 30 * @px;
     background: var(--color-gold);
     color: var(--color-navy);
     transition: background-color var(--duration-base) ease;

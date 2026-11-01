@@ -27,7 +27,11 @@
 
 </head>
 <body>
-  <svg xmlns="http://www.w3.org/2000/svg" hidden>
+  <svg class="svg-defs" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
+  <filter id="text-outline-1" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB"><feMorphology in="SourceGraphic" operator="dilate" radius="1 0" result="a"/><feMorphology in="SourceGraphic" operator="dilate" radius="0 1" result="b"/><feMerge result="grown"><feMergeNode in="a"/><feMergeNode in="b"/></feMerge><feComposite in="grown" in2="SourceAlpha" operator="out"/></filter>
+  <filter id="text-outline-2" x="-5%" y="-20%" width="110%" height="140%" color-interpolation-filters="sRGB"><feMorphology in="SourceGraphic" operator="dilate" radius="2 1" result="a"/><feMorphology in="SourceGraphic" operator="dilate" radius="1 2" result="b"/><feMerge result="grown"><feMergeNode in="a"/><feMergeNode in="b"/></feMerge><feComposite in="grown" in2="SourceAlpha" operator="out"/></filter>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" hidden>
   <symbol id="icon-search" viewBox="0 0 20 20"><path fill="currentColor" d="M15 8.5C15 9.9375 14.5312 11.25 13.75 12.3438L17.7188 16.2812C18.0938 16.6875 18.0938 17.3125 17.7188 17.7188C17.3125 18.0938 16.6875 18.0938 16.2812 17.7188L12.3438 13.75C11.25 14.5312 9.9375 15 8.5 15C4.90625 15 2 12.0938 2 8.5C2 4.90625 4.90625 2 8.5 2C12.0938 2 15 4.90625 15 8.5ZM8.5 13C11 13 13 11 13 8.5C13 6 11 4 8.5 4C6 4 4 6 4 8.5C4 11 6 13 8.5 13Z"/></symbol>
   <symbol id="icon-arrow" viewBox="0 0 24 24"><path fill="currentColor" transform="rotate(-45 12 12) translate(3.645 3.6)" d="M16.5283 7.79395C16.7699 8.03565 16.77 8.42727 16.5283 8.66895L8.39844 16.7988L7.52344 15.9238L14.585 8.8623H0V7.625H14.6094L7.86035 0.875L8.73535 0L16.5283 7.79395Z"/></symbol>
   <symbol id="icon-arrow-diagonal" viewBox="0 0 32 26"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3.81 3.73 22.38 3.73 22.38 21.54M22.38 3.62 4 22"/></symbol>
@@ -193,11 +197,13 @@
     <div class="pillars__grid">
       <div class="pillars__col">
         <article class="pillars__card pillars__card--1" data-anim-group="fade-up">
-  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
-    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
-      <img class="pillars__img" src="/assets/images/home/pillars-local-heart.webp" alt="Three students in wetsuits on a grassy headland above the ocean" width="1232" height="902" loading="lazy" decoding="async">
+  <div class="pillars__media" data-anim-parallax-trigger>
+    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="3">
+      <div class="pillars__frame" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+        <img class="pillars__img" src="/assets/images/home/pillars-local-heart.webp" alt="Three students in wetsuits on a grassy headland above the ocean" width="1232" height="820" loading="lazy" decoding="async">
 
-      
+        
+      </div>
     </div>
   </div>
   <div class="pillars__body">
@@ -211,11 +217,13 @@
 
 </article>
 <article class="pillars__card pillars__card--3" data-anim-group="fade-up">
-  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
-    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
-      <img class="pillars__img" src="/assets/images/home/pillars-wellbeing.webp" alt="A Wellbeing Week banner on the school campus" width="782" height="1080" loading="lazy" decoding="async">
+  <div class="pillars__media" data-anim-parallax-trigger>
+    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="3">
+      <div class="pillars__frame" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+        <img class="pillars__img" src="/assets/images/home/pillars-wellbeing.webp" alt="A Wellbeing Week banner on the school campus" width="818" height="1028" loading="lazy" decoding="async">
 
-      
+        
+      </div>
     </div>
   </div>
   <div class="pillars__body">
@@ -232,11 +240,13 @@
       </div>
       <div class="pillars__col">
         <article class="pillars__card pillars__card--2" data-anim-group="fade-up">
-  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
-    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
-      <img class="pillars__img" src="/assets/images/home/pillars-academic.webp" alt="A teacher shaking hands with a student in a blue blazer at a school exhibition" width="818" height="1199" loading="lazy" decoding="async">
+  <div class="pillars__media" data-anim-parallax-trigger>
+    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="3">
+      <div class="pillars__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+        <img class="pillars__img" src="/assets/images/home/pillars-academic.webp" alt="A teacher shaking hands with a student in a blue blazer at a school exhibition" width="818" height="1090" loading="lazy" decoding="async">
 
-      
+        
+      </div>
     </div>
   </div>
   <div class="pillars__body">
@@ -251,11 +261,13 @@ help students master knowledge, learn from challenges, collaborate and grow in c
 
 </article>
 <article class="pillars__card pillars__card--4" data-anim-group="fade-up">
-  <div class="pillars__media" data-anim-parallax-trigger data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
-    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="4.55">
-      <img class="pillars__img" src="/assets/images/home/pillars-global-mind.webp" alt="Four junior students in blue blazers sitting together outdoors" width="1234" height="895" loading="lazy" decoding="async">
+  <div class="pillars__media" data-anim-parallax-trigger>
+    <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="3">
+      <div class="pillars__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+        <img class="pillars__img" src="/assets/images/home/pillars-global-mind.webp" alt="Four junior students in blue blazers sitting together outdoors" width="1234" height="814" loading="lazy" decoding="async">
 
-      
+        
+      </div>
     </div>
   </div>
   <div class="pillars__body">
@@ -285,7 +297,7 @@ help students master knowledge, learn from challenges, collaborate and grow in c
         <li class="stats__item" data-anim="counter" data-anim-scroll="timed" data-anim-order="0">
           <svg class="stats__ring" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="stats__track" cx="50" cy="50" r="43.56"></circle>
-            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="100 100" data-anim-ring></circle>
+            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="3 100" data-anim-ring></circle>
           </svg>
           <p class="stats__value" data-anim-count>1200+</p>
           <p class="stats__label">Students across Bayview and Dee Why campuses</p>
@@ -294,7 +306,7 @@ help students master knowledge, learn from challenges, collaborate and grow in c
         <li class="stats__item" data-anim="counter" data-anim-scroll="timed" data-anim-order="1">
           <svg class="stats__ring" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="stats__track" cx="50" cy="50" r="43.56"></circle>
-            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="99 100" data-anim-ring></circle>
+            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="3 100" data-anim-ring></circle>
           </svg>
           <p class="stats__value" data-anim-count>99%</p>
           <p class="stats__label">of Families are Northern Beaches residents</p>
@@ -303,7 +315,7 @@ help students master knowledge, learn from challenges, collaborate and grow in c
         <li class="stats__item" data-anim="counter" data-anim-scroll="timed" data-anim-order="2">
           <svg class="stats__ring" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="stats__track" cx="50" cy="50" r="43.56"></circle>
-            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="90 100" data-anim-ring></circle>
+            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="3 100" data-anim-ring></circle>
           </svg>
           <p class="stats__value" data-anim-count>90%+</p>
           <p class="stats__label">ATAR score of 50% or more of St Luke’s graduating students</p>
@@ -312,7 +324,7 @@ help students master knowledge, learn from challenges, collaborate and grow in c
         <li class="stats__item" data-anim="counter" data-anim-scroll="timed" data-anim-order="3">
           <svg class="stats__ring" viewBox="0 0 100 100" aria-hidden="true">
             <circle class="stats__track" cx="50" cy="50" r="43.56"></circle>
-            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="100 100" data-anim-ring></circle>
+            <circle class="stats__arc" cx="50" cy="50" r="43.56" pathLength="100" stroke-dasharray="3 100" data-anim-ring></circle>
           </svg>
           <p class="stats__value" data-anim-count>&gt;35</p>
           <p class="stats__label">Among the Top 35 NSW Schools Ranking in HSC results</p>
@@ -416,7 +428,7 @@ PERMA Framework</h3>
   </div>
   <div class="usp__body">
     <h3>Authentic Christian faith</h3>
-    <p>Authentic Christian faith that is welcoming and inclusive, not exclusive.</p>
+    <p>We live out an authentic Christian faith that is welcoming and inclusive, not exclusive.</p>
   </div>
   <a class="usp__link" href="#">How we live out our Faith<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
 </article>
@@ -451,8 +463,8 @@ PERMA Framework</h3>
     
   </div>
   <div class="usp__body">
-    <h3>Exceptional sport and Athlete program</h3>
-    <p>State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).</p>
+    <h3>Exceptional sport and Athlete programs</h3>
+    <p>Students can participate in State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).</p>
   </div>
   <a class="usp__link" href="#">See our Sporting Programs<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
 </article>
@@ -464,7 +476,7 @@ PERMA Framework</h3>
   </div>
   <div class="usp__body">
     <h3>A growing modern campus</h3>
-    <p>Plans for a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031)</p>
+    <p>We’re building a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031) as part of our Masterplan.</p>
   </div>
   <a class="usp__link" href="#">Browse the College Masterplan<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
 </article>
@@ -977,7 +989,7 @@ NAPLAN Results</h3>
 <section class="cta">
   <div class="cta__media" aria-hidden="true">
     
-    <img class="cta__img" src="/assets/images/home/cta-poster.webp" alt="" width="720" height="412" loading="lazy" decoding="async">
+    <img class="cta__img" src="/assets/images/home/cta-poster.webp" alt="" width="1440" height="826" loading="lazy" decoding="async">
 
     
   </div>
@@ -1022,7 +1034,7 @@ NAPLAN Results</h3>
             <p class="site-footer__years">Cottage – Year 12</p>
             <address>210 Headland Road,
 Dee Why NSW 2099</address>
-            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
+            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
           </div>
           
           <p class="site-footer__phone"><strong>Senior School</strong><a href="tel:+61294386200">+61 2 9438 6200</a></p>
@@ -1037,7 +1049,7 @@ Dee Why NSW 2099</address>
             <p class="site-footer__years">Cottage – Year 6</p>
             <address>1977 Pittwater Road,
 Bayview NSW 2104</address>
-            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>
+            <a class="site-footer__directions" href="#">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
           </div>
           
           <p class="site-footer__phone"><strong>Junior School</strong><a href="tel:+61299795755">+61 2 9979 5755</a></p>

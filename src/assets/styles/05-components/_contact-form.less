@@ -23,7 +23,7 @@
     flex-direction: column;
     gap: 37 * @px;
     padding: 40 * @px var(--gutter) 56 * @px;
-    @media (min-width: @bp-lg) { padding: 102 * @px var(--gutter) 52 * @px percentage((98 / 720)); }
+    @media (min-width: @bp-lg) { padding: 103 * @px percentage((96 / 720)) 52 * @px percentage((98 / 720)); }
   }
 
   &__intro {
@@ -50,8 +50,10 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 37 * @px;
-    @media (min-width: @bp-lg) { max-width: 526 * @px; }
-    .btn { @media (min-width: @bp-lg) { --bs-btn-padding-x: @btn-padding-inset; } }
+    @media (min-width: @bp-lg) {
+      gap: 36 * @px;
+      max-width: 526 * @px;
+    }
   }
 
   &__fields {
@@ -70,7 +72,7 @@
     label {
       .type-body-2-semibold();
       position: relative;
-      top: -0.12em;
+      top: -0.175em;
       line-height: 1.389;
     }
     input,
@@ -111,11 +113,12 @@
     select {
       appearance: none;
       padding-right: 28 * @px;
+      padding-bottom: 8 * @px;
       &:invalid { color: var(--color-navy-tint); }
     }
     .icon {
       position: absolute;
-      top: 4 * @px;
+      top: 6 * @px;
       right: 0;
       width: 20 * @px;
       height: 20 * @px;

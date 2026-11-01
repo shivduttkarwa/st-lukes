@@ -1,9 +1,8 @@
 @btn-font-sm: 16 * @px;
 @btn-font-lg: 18 * @px;
 @btn-padding-sm: 24 * @px;
-@btn-padding-lg: 30 * @px;
 // Figma's 1px stroke sits inside its 30 padding
-@btn-padding-inset: 29 * @px;
+@btn-padding-lg: 29 * @px;
 @btn-padding-y: 10 * @px;
 
 .btn {
@@ -27,6 +26,9 @@
   @media (min-width: @bp-lg) {
     --bs-btn-font-size: @btn-font-lg;
     --bs-btn-padding-x: @btn-padding-lg;
+    padding-block: (@btn-padding-y + 1 * @px) (@btn-padding-y - 1 * @px);
+    // Figma rounds the label's box up, half a pixel on average
+    padding-right: calc(var(--bs-btn-padding-x) + 0.5 * @px);
     &:has(.icon) { min-height: var(--control-height); }
   }
 
@@ -80,7 +82,7 @@
 
 // Figma's small solid button: Myriad Semibold 16, 41 tall, compact only under a fine pointer
 @btn-small-height: 41 * @px;
-@btn-small-padding: 20 * @px;
+@btn-small-padding: 19 * @px;
 .btn-small {
   --bs-btn-font-size: @btn-font-sm;
   --bs-btn-font-weight: 600;
@@ -90,6 +92,7 @@
   @media (min-width: @bp-lg) {
     --bs-btn-font-size: @btn-font-sm;
     --bs-btn-padding-x: @btn-small-padding;
+    padding-block: 0 2 * @px;
   }
   @media @fine { min-height: @btn-small-height; }
 }

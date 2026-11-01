@@ -34,6 +34,8 @@
 
   .container { position: relative; }
 
+  .btn { @media (min-width: @bp-lg) { padding-block: @btn-padding-y; } }
+
   &__content {
     display: flex;
     flex-direction: column;
@@ -43,6 +45,8 @@
 
   h2 {
     .type-h1();
+    position: relative;
+    top: 1 * @px;
     margin: 0;
     color: var(--color-gold);
     span { display: block; }

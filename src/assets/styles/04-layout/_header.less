@@ -81,7 +81,11 @@
     display: none;
     color: var(--color-white);
     text-box: trim-both cap alphabetic;
-    @media (min-width: @bp-lg) { display: block; }
+    // Figma rounds each label's box up, which sets the row's spacing
+    @media (min-width: @bp-lg) {
+      display: block;
+      padding-right: 1 * @px;
+    }
     @media (hover: hover) {
       &:hover { color: var(--color-gold); }
     }
@@ -117,6 +121,10 @@
     }
     @media (hover: hover) {
       &:hover { background: var(--color-white-40); }
+    }
+    span {
+      position: relative;
+      top: -0.1em;
     }
     .icon {
       width: 15 * @px;
