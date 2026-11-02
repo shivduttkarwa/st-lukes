@@ -68,7 +68,7 @@
           },
           {
             "name": "category",
-            "label": "category",
+            "label": "Category",
             "options": [
               "Community",
               "Service",

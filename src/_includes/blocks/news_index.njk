@@ -3,7 +3,7 @@
     <form class="news-index__bar" action="" method="get" data-anim="reveal" data-anim-type="fade">
       <div class="news-index__filters">
         {% for filter in value.filters %}
-        <div class="news-index__filter">
+        <div class="news-index__filter select" data-select>
           <select name="{{ filter.name }}" aria-label="{{ filter.label }}"{% if filter.name == "category" %} data-news-category{% endif %}>
             <option value="">{{ filter.label }}</option>
             {% for option in filter.options %}<option>{{ option }}</option>{% endfor %}

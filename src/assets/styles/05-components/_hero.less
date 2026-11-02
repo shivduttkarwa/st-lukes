@@ -135,6 +135,7 @@
   }
 }
 
+@notice-hover-delay: 200ms;
 @inner-hero-foot: 33 * @px;
 @inner-hero-raise: 27 * @px;
 
@@ -311,9 +312,12 @@
         opacity: 1;
         visibility: visible;
         transform: none;
-        transition-delay: 0s;
+        transition-delay: @notice-hover-delay;
       }
-      .notice__teaser { opacity: 0; }
+      .notice__teaser {
+        opacity: 0;
+        transition-delay: @notice-hover-delay;
+      }
     }
   }
 }

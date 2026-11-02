@@ -1,4 +1,5 @@
 import { Anim } from "./anim.js";
+import { initMenuSearch } from "./search.js";
 
 export function lockScroll(lock) {
   const root = document.documentElement;
@@ -173,24 +174,29 @@ export function initMarquees() {
       const width = list.getBoundingClientRect().width;
       const lane = track.parentElement.clientWidth;
       if (!width) return;
-      for (let i = 0, n = Math.ceil(lane / width) + 1; i < n; i++) {
+      const copies = Math.ceil(lane / width) + 1;
+      for (let i = 0; i < copies; i++) {
         const copy = list.cloneNode(true);
         copy.setAttribute("aria-hidden", "true");
         copy.setAttribute("data-marquee-copy", "");
         copy.querySelectorAll("a").forEach((a) => a.setAttribute("tabindex", "-1"));
         track.append(copy);
       }
-      track.style.setProperty("--marquee-shift", `${width}px`);
+      // the keyframes move one list's share of the track, so the loop stays seamless whatever the text measures
+      track.style.setProperty("--marquee-lists", copies + 1);
       track.style.setProperty("--marquee-time", `${width / (MARQUEE_SPEED * scale)}s`);
       track.classList.add("is-running");
     });
   };
   build();
-  let width = window.innerWidth;
+  document.fonts?.ready.then(build);
+  // a phone's toolbar changes only the height, which leaves both of these alone
+  const size = () => `${window.innerWidth} ${getComputedStyle(document.documentElement).fontSize}`;
+  let built = size();
   let timer = 0;
   window.addEventListener("resize", () => {
-    if (window.innerWidth === width) return; // a phone's toolbar showing or hiding changes only the height
-    width = window.innerWidth;
+    if (size() === built) return;
+    built = size();
     clearTimeout(timer);
     timer = setTimeout(build, 200);
   });
@@ -227,10 +233,12 @@ export function initMenu() {
     if (item !== except && item.classList.contains("is-open")) setItem(item, false);
   });
   const syncWide = () => {
-    const wide = items.some((item) => item.classList.contains("is-open"));
+    const wide = menu.classList.contains("is-searching") || items.some((item) => item.classList.contains("is-open"));
     menu.classList.toggle("is-wide", wide);
     if (wide) menu.classList.add("has-widened");
   };
+
+  const search = initMenuSearch(menu, { closeItems, syncWide });
 
   // the 1024px design frame is 64rem; never shrink its 18px links below 12px
   const fit = () => {
@@ -256,7 +264,7 @@ export function initMenu() {
       panel.focus({ preventScroll: true });
     } else {
       closeItems();
-      syncWide();
+      search.close();
       if (opener) opener.focus({ preventScroll: true });
       // keep the scrollbar away until the panel has left, or the fixed menu narrows mid-slide
       unlock = setTimeout(() => lockScroll(false), parseFloat(getComputedStyle(menu).transitionDelay) * 1000);
@@ -325,7 +333,7 @@ export function initMenu() {
       }
       closeItems(item);
       setItem(item, open);
-      syncWide();
+      search.close();
     });
 
     links.forEach((link) => {

@@ -89,6 +89,15 @@
   @media (min-width: @bp-lg) { font-size: 25 * @px; }
 }
 
+// the menu's search result titles have no Figma style: the main menu rows' Poppins and tracking at a row's size
+.type-search-result() {
+  .type-poppins();
+  line-height: 1.2;
+  letter-spacing: -0.03em;
+  font-size: 16 * @px;
+  @media (min-width: @bp-lg) { font-size: 18 * @px; }
+}
+
 // the campus names have no named style: Poppins ExtraBold 45 / 1.1, no tracking
 .type-campus-title() {
   .type-poppins();

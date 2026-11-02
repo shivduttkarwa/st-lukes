@@ -131,7 +131,13 @@
     { "network": "instagram", "label": "Instagram", "url": "#" },
     { "network": "linkedin", "label": "LinkedIn", "url": "#" }
   ],
-  "popular_searches": [],
+  "popular_searches": [
+    { "label": "Our School", "url": "/our-school/" },
+    { "label": "Principal's Welcome", "url": "/principals-welcome/" },
+    { "label": "Leadership & Staff", "url": "/leadership-staff/" },
+    { "label": "News & Stories", "url": "/news/" },
+    { "label": "Contact", "url": "/contact/" }
+  ],
   "footer": {
     "statement": "St Luke's Grammar School welcomes enrolment enquiries and applications, for both girls and boys, from Pre-Kindergarten to Year 12.",
     "intro": "St Luke’s is an independent Anglican, Pre-K to Year 12 co-educational school with two campuses Bayview and Dee Why, on Sydney’s Northern Beaches.",

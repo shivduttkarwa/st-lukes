@@ -179,26 +179,33 @@
             "name": "first_name",
             "label": "First Name",
             "placeholder": "Jane",
-            "half": true
+            "half": true,
+            "error": "Please enter your first name"
           },
           {
             "type": "text",
             "name": "last_name",
             "label": "Last Name",
             "placeholder": "Doe",
-            "half": true
+            "half": true,
+            "error": "Please enter your last name"
           },
           {
             "type": "email",
             "name": "email",
             "label": "Email",
-            "placeholder": "example@gmail.com"
+            "placeholder": "example@gmail.com",
+            "error": "Please enter your email address",
+            "invalid": "Please enter a valid email address"
           },
           {
             "type": "tel",
             "name": "phone",
             "label": "Phone",
-            "placeholder": "example@gmail.com"
+            "placeholder": "example@gmail.com",
+            "error": "Please enter your phone number",
+            "invalid": "Please enter a valid phone number",
+            "pattern": "[0-9+() \\-]{8,}"
           },
           {
             "type": "select",
@@ -210,16 +217,19 @@
               "General Enquiries",
               "Current Families",
               "Employment"
-            ]
+            ],
+            "error": "Please choose a category"
           },
           {
             "type": "textarea",
             "name": "message",
             "label": "Message",
-            "placeholder": "Write your message"
+            "placeholder": "Write your message",
+            "error": "Please write your message"
           }
         ],
-        "button": "Send Message"
+        "button": "Send Message",
+        "success": "Thanks, your message has been sent. We’ll be in touch soon."
       }
     },
     {

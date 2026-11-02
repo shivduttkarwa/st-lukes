@@ -12,7 +12,7 @@ settings:
       quick_links: ListBlock(StructBlock(label, url))
       utility_links: ListBlock(StructBlock(label, url))
       socials: ListBlock(StructBlock(network, label, url))   # network = icon id: facebook, instagram, linkedin
-      popular_searches: ListBlock(CharBlock)
+      popular_searches: ListBlock(StructBlock(label, url))   # direct links to pages, beside the search results
       footer: StructBlock   # figma 20169:5888 (Footer); template partials/footer.njk
         statement: CharBlock   # top right, Heading 2 at 1.05
         intro: TextBlock
@@ -211,8 +211,9 @@ blocks:
       image: ImageChooserBlock(required)   # fill-1280x1527
       title: CharBlock(required)
       text: TextBlock   # line breaks apply from 992 up
-      fields: a Wagtail form page's fields (text, email, tel, select, textarea); half = two to a row
+      fields: a Wagtail form page's fields (text, email, tel, select, textarea); half = two to a row; error = message when empty; invalid = message when the format is wrong; pattern = optional regex
       button: CharBlock   # the submit label
+      success: CharBlock   # shown after a valid send
 
   connect_band:
     figma: "20169:13436"

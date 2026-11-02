@@ -7,28 +7,30 @@
       <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
       <p data-anim="reveal" data-anim-type="fade-up">{{ value.text }}</p>
     </div>
-    <form class="contact-form__form" action="#" method="post" data-anim="reveal" data-anim-type="fade-up">
+    <form class="contact-form__form" action="#" method="post" data-validate data-anim="reveal" data-anim-type="fade-up">
       <div class="contact-form__fields">
         {% for field in value.fields %}
-        <div class="contact-form__field{% if field.half %} contact-form__field--half{% endif %}">
+        <div class="contact-form__field{% if field.half %} contact-form__field--half{% endif %}" data-field>
           <label for="contact-{{ field.name }}">{{ field.label }}</label>
           {% if field.type == "select" %}
-          <div class="contact-form__select">
-            <select id="contact-{{ field.name }}" name="{{ field.name }}" required>
+          <div class="contact-form__select select" data-select>
+            <select id="contact-{{ field.name }}" name="{{ field.name }}" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}">
               <option value="" disabled selected hidden>{{ field.placeholder }}</option>
               {% for option in field.options %}<option>{{ option }}</option>{% endfor %}
             </select>
             <svg class="icon" aria-hidden="true"><use href="#icon-angle-down"></use></svg>
           </div>
           {% elif field.type == "textarea" %}
-          <textarea id="contact-{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" rows="4" required></textarea>
+          <textarea id="contact-{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" rows="4" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}"></textarea>
           {% else %}
-          <input id="contact-{{ field.name }}" name="{{ field.name }}" type="{{ field.type }}" placeholder="{{ field.placeholder }}" required>
+          <input id="contact-{{ field.name }}" name="{{ field.name }}" type="{{ field.type }}" placeholder="{{ field.placeholder }}" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}"{% if field.invalid %} data-invalid="{{ field.invalid }}"{% endif %}{% if field.pattern %} pattern="{{ field.pattern }}"{% endif %}>
           {% endif %}
+          <p class="contact-form__error" id="contact-{{ field.name }}-error" hidden></p>
         </div>
         {% endfor %}
       </div>
       <button class="btn btn-primary" type="submit">{{ value.button }}</button>
+      <p class="contact-form__success" role="status" data-form-success hidden>{{ value.success }}</p>
     </form>
   </div>
 </section>

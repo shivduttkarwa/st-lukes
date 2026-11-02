@@ -56,6 +56,20 @@ textarea {
   outline-offset: 2 * @px;
 }
 
+// a field shows focus through its own line or ring; the global gold outline read as a yellow box around it
+input,
+select,
+textarea {
+  &:focus-visible { outline: 0; }
+}
+
+// Chrome's autofill tint can't be overridden, only held off
+input:-webkit-autofill,
+textarea:-webkit-autofill {
+  -webkit-text-fill-color: currentColor;
+  transition: background-color 99999s linear;
+}
+
 ::selection {
   background: var(--color-accent);
   color: var(--color-primary);

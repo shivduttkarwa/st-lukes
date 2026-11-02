@@ -7,9 +7,10 @@
  * every hero-tier element joins one timeline on load, stepping through data-anim-order (0 first);
  * elements that share an order start together and each step starts as the previous one lands
  * (data-anim-lead = seconds before the previous step ends; the default is DEFAULTS.entranceLead).
- * Scroll steps are tied to the scroll position but only ever move forwards (see SCRUB). A scroll step
- * already in view at load plays in time after the entrance instead, so a short hero never lets the
- * content below it beat the title. On phones a section's copy waits for its title as well.
+ * Scroll steps are tied to the scroll position but only ever move forwards (see SCRUB); split titles
+ * play on the clock once they reach their start line. A scroll step already in view at load plays in
+ * time after the entrance instead, so a short hero never lets the content below it beat the title.
+ * On phones a section's copy waits for its title as well.
  */
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -24,7 +25,7 @@ const DEFAULTS = {
   stagger: 0.1,
   spread: 0.6, // the longest a batch of staggered reveals may run in total
   entranceLead: 0.4, // an entrance step starts this long before the previous one ends
-  titleLead: 0.6, // the step after a hero title: its last letters read as landed this long before they stop fading, so no pause
+  titleLead: 0.6, // the step after a hero title: its last line reads as landed this long before it stops fading, so no pause
   lenis: { duration: 1.2, smoothWheel: true, wheelMultiplier: 0.8, touchMultiplier: 1.5 },
 };
 
@@ -73,16 +74,13 @@ const REVEAL = {
   "clip":       { from: { "--anim-clip": "100%", autoAlpha: 0 }, to: { "--anim-clip": "0%", autoAlpha: 1, duration: 1.1, ease: "power3.out" } },
 };
 
-// Split text: characters slide up one after another; lines rise and fade in, 0.15s apart, with no mask (the reference
-// site's section titles, ref/wcc .split-text-lines-js: the rise over 0.6s, the fade over 0.5s from 0.1s in, both
-// power1.out; the reference rises 30, here the lines rise the 15 of every fade-up so a title moves like the copy under it). `spread` caps how long a stagger may run in total, so a long title tightens its stagger instead of dragging on.
-// `rise` is the distance in em of the element's font size, so a phone title rises less than the
-// 1640 one (0.12em: 16 at the 131.6 hero, 7 at the 60 phone hero; 0.2em: 7 at the 35 section h2).
-// `lift` ends the rise early: eased as slowly as the fade, its last pixels land as separate hops after the letter looks still.
-const SPLIT = {
-  "chars":      { from: { autoAlpha: 0 }, rise: 0.12, to: { y: 0, autoAlpha: 1, duration: 0.85, ease: "power2.out", stagger: 0.022 }, lift: { duration: 0.4, ease: "power1.out" }, spread: 0.56 }, // hero titles
-  "chars-soft": { from: { autoAlpha: 0 }, rise: 0.2, to: { y: 0, autoAlpha: 1, duration: 0.62, ease: "power2.out", stagger: 0.015 }, lift: { duration: 0.3, ease: "power1.out" }, spread: 0.375 }, // section titles
-  "lines":      { from: { y: 15, autoAlpha: 0 }, to: { y: 0, duration: 0.6, ease: "power1.out", stagger: 0.15 }, fade: { autoAlpha: 1, duration: 0.5, ease: "power1.out", delay: 0.1 } }, // section titles below lg
+// Split titles rise line by line. Each line stays one run of text, so its kerning never changes, and force3D: false keeps
+// it off a GPU layer, so no line snaps sideways or down when its tween ends or when the split is reverted.
+const LINES = {
+  from: { y: LIFT, autoAlpha: 0, force3D: false },
+  rise: { y: 0, duration: 0.42, ease: whole("power1.out", LIFT), force3D: false },
+  fade: { autoAlpha: 1, duration: 0.75, ease: "power1.out" },
+  stagger: 0.15,
 };
 
 // Scroll tiers start once the element's top is this far up the viewport; data-anim-start overrides it
@@ -175,7 +173,7 @@ function titleHold(el) {
   return run * gsap.utils.clamp(0, 1, share);
 }
 const triggers = new WeakMap(); // element -> its ScrollTrigger
-const splits = new WeakMap(); // element -> its SplitText while split
+const splits = new WeakMap(); // element -> puts its markup back while split
 const entrances = new WeakMap(); // root -> its entrance timeline
 
 function initScroll(opts) {
@@ -193,7 +191,7 @@ function initScroll(opts) {
 // already on screen when created plays in time after the entrance, even below its start line (the
 // copy under a short hero), as does one whose range the page is too short to scroll through. data-anim-scroll="timed" keeps a step on the clock
 // (the staggered slider wipes, which scrubbing makes feel rushed).
-function scrollStep(el, animation, hold) {
+function scrollStep(el, animation, hold, timed) {
   let tl = null;
   let reached = 0;
   const timeline = () => (tl ||= gsap.timeline({ paused: true }).add(animation(), hold));
@@ -203,7 +201,7 @@ function scrollStep(el, animation, hold) {
     triggers.delete(el);
     gsap.delayedCall(follow(), () => timeline().play());
   };
-  if (attr(el, "data-anim-scroll") === "timed") {
+  if (timed || attr(el, "data-anim-scroll") === "timed") {
     const st = ScrollTrigger.create({ trigger: el, start: startOf(el), once: true, onEnter: playNow });
     triggers.set(el, st);
     if (onScreen()) playNow(st);
@@ -245,7 +243,7 @@ function play(el, step, entrance, scroll, hold = orderOf(el) * DEFAULTS.stagger)
     entrance.push({ order: orderOf(el), lead: leadOf(el), ...step });
     return;
   }
-  const create = () => scrollStep(el, step.animation, hold + titleHold(el));
+  const create = () => scrollStep(el, step.animation, hold + titleHold(el), step.timed);
   // a title already on screen is split with the entrance's own, before anything moves
   if (step.prepare && el.getBoundingClientRect().top < window.innerHeight) create.prepare = step.prepare;
   scroll.push(create);
@@ -256,6 +254,7 @@ function playEntrance(steps, root) {
   const tl = gsap.timeline();
   entrances.set(root, tl);
   let titleEnd = 0; // when the last hero title has finished splitting
+  let landed = 0; // when the steps so far read as landed: data-anim-landed, or their end
   [...new Set(steps.map((step) => step.order))]
     .sort((a, b) => a - b)
     .forEach((order, i, orders) => {
@@ -264,15 +263,18 @@ function playEntrance(steps, root) {
       const afterTitle = i > 0 && steps.some((step) => step.order === orders[i - 1] && step.deferred);
       const usual = afterTitle ? DEFAULTS.titleLead : DEFAULTS.entranceLead;
       const lead = Math.max(...group.map((step) => step.lead ?? usual));
-      const at = i ? Math.max(0, tl.duration() - lead) : 0;
+      const at = i ? Math.max(0, landed - lead) : 0;
       group.forEach((step) => {
         if (!step.deferred) {
-          tl.add(step.animation(), at);
+          const animation = step.animation();
+          tl.add(animation, at);
+          landed = Math.max(landed, step.landed ? at + step.landed : animation.endTime());
           return;
         }
         tl.call(() => step.animation(), [], at);
         tl.to({}, { duration: step.duration }, at); // holds the slot so the next step waits for it
         titleEnd = Math.max(titleEnd, at + step.duration);
+        landed = Math.max(landed, titleEnd);
       });
     });
   // scroll steps already in view follow as the last step, but never while a title is still rising;
@@ -383,138 +385,89 @@ function setupReveals(root, entrance, scroll) {
   });
 }
 
-// Box of every non-blank glyph while the text is still one kerned run.
-function glyphBoxes(el) {
-  const boxes = [];
-  const walker = document.createTreeWalker(el, NodeFilter.SHOW_TEXT);
+// Where each line of the text really starts: the word whose top drops below the line before it
+function lineStarts(target) {
+  const half = parseFloat(getComputedStyle(target).lineHeight) / 2 || parseFloat(getComputedStyle(target).fontSize) / 2;
+  const starts = [];
+  let top = null;
+  const walker = document.createTreeWalker(target, NodeFilter.SHOW_TEXT);
   for (let node = walker.nextNode(); node; node = walker.nextNode()) {
-    const text = node.textContent;
-    for (let i = 0; i < text.length; i++) {
-      if (/\s/.test(text[i])) continue;
+    // a line can also start after a hyphen or dash inside a word
+    for (const word of node.textContent.matchAll(/[^\s\-–—]+[\-–—]*|[\-–—]+/g)) {
       const range = document.createRange();
-      range.setStart(node, i);
-      range.setEnd(node, i + 1);
-      boxes.push(range.getBoundingClientRect());
+      range.setStart(node, word.index);
+      range.setEnd(node, word.index + 1);
+      const now = range.getBoundingClientRect().top;
+      if (top !== null && now > top + half) starts.push({ node, offset: word.index });
+      if (top === null || now > top + half) top = now;
     }
   }
-  return boxes;
+  return starts;
 }
 
-// Boxed words run a little wider than the kerned text, so a full line would wrap its last word while split.
-// The split keeps the original line breaks instead: no wrapping, and a <br> wherever a line used to start.
-// Both read every box first and write afterwards: a read after each write is a full layout per word or letter,
-// which on a phone froze the page for several frames whenever a title was split while another was still moving.
-function keepLines(el, split, boxes) {
-  const index = new Map(split.chars.map((char, i) => [char, i]));
-  el.style.whiteSpace = "nowrap";
-  const words = split.words
-    .map((word) => ({ word, first: index.get(word.querySelector(".anim-char")) }))
-    .filter((item) => item.first !== undefined);
-  const tops = words.map((item) => item.word.getBoundingClientRect().top);
-  words.forEach((item, i) => {
-    const prev = words[i - 1];
-    if (prev && boxes[item.first].top > boxes[prev.first].top + 1 && tops[i] <= tops[i - 1] + 1) {
-      const br = document.createElement("br");
-      br.style.display = "inline"; // a heading may hide its own designed <br> at this width; this one must still break
-      item.word.before(br);
+// A <br> directly in the target at that point; an inline element the line falls inside is cut in two around it
+function breakBefore(target, { node, offset }) {
+  let right = node.splitText(offset);
+  while (right.parentNode !== target) {
+    const parent = right.parentNode;
+    const rest = parent.cloneNode(false);
+    rest.style.marginLeft = 0; // an inline box's margin only applies where it starts
+    while (right) {
+      const next = right.nextSibling;
+      rest.append(right);
+      right = next;
     }
-  });
-}
-
-// Boxing each character loses the kerning between pairs; nudge every box back to where its glyph sat.
-// A margin moves its letter and the rest of the line, so each letter takes only what the one before it left over.
-function keepKerning(chars, boxes) {
-  const now = chars.map((char) => char.getBoundingClientRect());
-  let line = null;
-  let carried = 0;
-  chars.forEach((char, i) => {
-    if (line === null || Math.abs(now[i].top - line) > 1) {
-      line = now[i].top;
-      carried = 0;
-    }
-    const owed = boxes[i].left - now[i].left;
-    const nudge = owed - carried;
-    carried = owed;
-    if (Math.abs(nudge) > 0.01) char.style.marginLeft = `${nudge}px`;
-  });
+    parent.after(rest);
+    right = rest;
+  }
+  target.insertBefore(document.createElement("br"), right);
 }
 
 function setupSplits(root, entrance, scroll) {
   scoped(root, '[data-anim="split"]').forEach((el) => {
     bind(el);
-    const type = attr(el, variant(el, "data-anim-type"), "lines"); // data-anim-type-mobile: the phone titles rise as lines
-    const preset = SPLIT[type] || SPLIT.lines;
-    const isChars = preset !== SPLIT.lines;
-    const count = isChars
-      ? el.textContent.replace(/\s/g, "").length
-      : Math.max(1, Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)) || 1);
-    const step = preset.spread ? Math.min(preset.to.stagger, preset.spread / Math.max(1, count)) : preset.to.stagger;
-    titleDurations.set(el, preset.to.duration + step * Math.max(0, count - 1));
+    const count = Math.max(1, Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)) || 1);
+    titleDurations.set(el, LINES.fade.duration + LINES.stagger * (count - 1));
     const build = () => {
-      const half = parseFloat(getComputedStyle(el).lineHeight) / 2 || parseFloat(getComputedStyle(el).fontSize) / 2;
-      const boxes = glyphBoxes(el);
-      // every title is boxed by word and letter with its lines held where they sat; a phone title then rises line by line
-      // as its words, since SplitText's own lines can disagree with the layout (an <em> across a wrap, a <br> the width hides)
-      const split = new SplitText(el, { type: "words,chars", wordsClass: "anim-word", charsClass: "anim-char" });
-      const kept = boxes.length === split.chars.length;
-      if (kept) {
-        keepLines(el, split, boxes);
-        keepKerning(split.chars, boxes);
-      }
-      let targets = split.chars;
-      let stagger = step;
-      if (!isChars) {
-        const index = new Map(split.chars.map((char, i) => [char, i]));
-        const tops = split.words.map((word) => {
-          const first = index.get(word.querySelector(".anim-char"));
-          return kept && first !== undefined ? boxes[first].top : word.getBoundingClientRect().top;
-        });
-        let line = -1;
-        let top = -Infinity;
-        const lineOf = tops.map((t) => {
-          if (t > top + half) { // an italic run sits a pixel low on the same line
-            line += 1;
-            top = t;
-          }
-          return line;
-        });
-        targets = split.words;
-        stagger = (i) => lineOf[i] * step;
-      }
-      splits.set(el, split);
-      const from = preset.rise ? { ...preset.from, y: parseFloat(getComputedStyle(el).fontSize) * preset.rise } : preset.from;
-      // read every transform first: gsap.set would read each letter back after writing the one before, a layout apiece
-      targets.forEach((target) => gsap.getProperty(target, "y"));
-      gsap.set(targets, from);
-      return { split, targets, stagger };
+      const html = el.innerHTML;
+      // a paragraph or a title's row is split inside itself, so the layout around it never changes
+      const rows = [...el.children].filter((child) => child.tagName !== "BR" && getComputedStyle(child).display !== "inline");
+      const targets = rows.length ? rows : [el];
+      // SplitText's own lines come from boxed words, which run wider than the kerned text and push a full line's last
+      // word down, so the breaks are read from the real layout first and nothing can rewrap while it is split
+      const breaks = targets.map(lineStarts);
+      el.querySelectorAll("br").forEach((br) => br.remove());
+      targets.forEach((target, i) => breaks[i].reverse().forEach((start) => breakBefore(target, start)));
+      el.style.whiteSpace = "nowrap";
+      const split = new SplitText(targets, { type: "lines", linesClass: "anim-line", aria: "none" });
+      split.lines.forEach((line) => line.querySelectorAll("span:empty").forEach((empty) => empty.remove()));
+      splits.set(el, () => {
+        split.revert();
+        el.innerHTML = html;
+        el.style.whiteSpace = "";
+      });
+      gsap.set(split.lines, LINES.from);
+      return split.lines;
     };
     let built = null;
     play(el, {
       deferred: true,
+      timed: true,
       duration: titleDurations.get(el),
       prepare: () => { built = build(); },
       animation: () => {
-        const { split, targets, stagger } = built || build();
+        const lines = built || build();
         built = null;
-        gsap.set(el, { autoAlpha: 1 }); // the container shows; its pieces carry the hidden state
+        gsap.set(el, { autoAlpha: 1 }); // the container shows; its lines carry the hidden state
         // the original markup comes back once it has played, so the audited layout is untouched
         const onComplete = () => {
           el.classList.add("is-revealed");
-          split.revert();
-          el.style.whiteSpace = "";
+          splits.get(el)?.();
           splits.delete(el);
         };
-        if (preset.fade) {
-          const { delay, ...fade } = preset.fade;
-          return gsap.timeline()
-            .to(targets, { ...preset.to, stagger, onComplete }, 0)
-            .to(targets, { ...fade, stagger }, delay);
-        }
-        if (!preset.lift) return gsap.to(targets, { ...preset.to, stagger, onComplete });
-        const { y, ...fade } = preset.to;
-        return gsap.timeline()
-          .to(targets, { ...fade, stagger, onComplete }, 0)
-          .to(targets, { y, ...preset.lift, stagger }, 0);
+        return gsap.timeline({ onComplete })
+          .to(lines, { ...LINES.fade, stagger: LINES.stagger }, 0)
+          .to(lines, { ...LINES.rise, stagger: LINES.stagger }, 0);
       },
     }, entrance, scroll);
   });
@@ -555,6 +508,7 @@ function setupSequences(root, entrance, scroll) {
     // a CSS transition on an item would smear every frame of the tween, so it is paused until the end
     items.forEach((item) => gsap.set(item, { ...presetFor(item).from, transition: "none" }));
     play(el, {
+      landed: number(el, "data-anim-landed", 0), // a long glide reads as landed well before it stops, so the next step needn't wait for its tail
       animation: () => {
         const tl = gsap.timeline({
           delay: number(el, "data-anim-delay", 0),
@@ -718,11 +672,10 @@ function resetAll(root) {
   bound.forEach((el) => {
     triggers.get(el)?.kill();
     triggers.delete(el);
-    const pieces = Array.from(el.querySelectorAll("[data-anim-item], .anim-char"));
+    const pieces = Array.from(el.querySelectorAll("[data-anim-item], .anim-line"));
     gsap.killTweensOf([el, ...pieces]);
-    splits.get(el)?.revert();
+    splits.get(el)?.();
     splits.delete(el);
-    el.style.whiteSpace = "";
     gsap.set([el, ...pieces], { clearProps: "all" });
     counters.get(el)?.();
     counters.delete(el);

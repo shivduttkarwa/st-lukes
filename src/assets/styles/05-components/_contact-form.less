@@ -1,5 +1,10 @@
 @contact-field-line: 1 * @px solid var(--color-navy);
 
+.contact-field-active(@colour) {
+  border-bottom-color: @colour;
+  box-shadow: 0 1px 0 @colour;
+}
+
 .contact-form {
   display: grid;
   background: var(--color-background-tint);
@@ -46,6 +51,8 @@
   }
 
   &__form {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -85,7 +92,6 @@
       border: 0;
       border-bottom: @contact-field-line;
       border-radius: 0;
-      outline-offset: 2 * @px;
       background: none;
       color: var(--color-navy);
       letter-spacing: -0.01em;
@@ -97,7 +103,9 @@
         color: var(--color-navy-tint);
         opacity: 1;
       }
+      &:focus { .contact-field-active(var(--color-royal)); }
     }
+    &.has-error :is(input, select, textarea, .select__toggle) { .contact-field-active(var(--color-error)); }
     textarea {
       display: block;
       height: 115 * @px;
@@ -108,6 +116,20 @@
 
   &__field--half { grid-column: span 1; }
 
+  &__error {
+    .type-body-4();
+    margin: 3 * @px 0 0;
+    color: var(--color-error);
+  }
+
+  .select.is-open + &__error { visibility: hidden; }
+
+  &__success {
+    .type-body-2-semibold();
+    margin: 0;
+    color: var(--color-royal);
+  }
+
   &__select {
     position: relative;
     select {
@@ -116,6 +138,24 @@
       padding-bottom: 8 * @px;
       &:invalid { color: var(--color-navy-tint); }
     }
+    .select__toggle {
+      .type-control();
+      min-height: var(--tap-size);
+      padding: 0 28 * @px 8 * @px 0;
+      border-bottom: @contact-field-line;
+      color: var(--color-navy);
+      letter-spacing: -0.01em;
+      @media @fine {
+        height: 28 * @px;
+        min-height: 0;
+      }
+      &:focus-visible {
+        outline: 0;
+        .contact-field-active(var(--color-royal));
+      }
+      &[aria-expanded="true"] { .contact-field-active(var(--color-royal)); }
+    }
+    .select__value.is-placeholder { color: var(--color-navy-tint); }
     .icon {
       position: absolute;
       top: 6 * @px;

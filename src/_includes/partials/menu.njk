@@ -1,10 +1,11 @@
 <div class="menu" id="site-menu" role="dialog" aria-modal="true" aria-label="Menu" data-menu>
   <div class="menu__overlay" data-menu-close></div>
-  <div class="menu__panel" tabindex="-1">
+  <div class="menu__panel" tabindex="-1" data-lenis-prevent>
     <div class="menu__top">
-      <form class="menu__search" role="search" action="/search/" method="get">
+      <form class="menu__search" role="search" action="/search/" method="get" data-search>
         <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
         <input class="menu__search-input" type="search" name="q" placeholder="Search" aria-label="Search the site" autocomplete="off">
+        <button class="menu__search-clear" type="button" aria-label="Clear search" data-search-clear hidden></button>
       </form>
       <div class="menu__utility">
         {% for item in site.utility_links %}
@@ -15,6 +16,33 @@
     </div>
 
     <div class="menu__body">
+      <div class="menu__results">
+        <p class="menu__results-status" role="status" data-search-status></p>
+        <ul class="menu__results-list" data-search-list></ul>
+      </div>
+      <template data-search-index>
+        {% for item in search_index %}
+        <li>
+          <a class="menu__result" href="{{ item.url }}">
+            <span class="menu__result-thumb"><img src="{{ item.image }}" alt="" width="192" height="144" loading="lazy" decoding="async"></span>
+            <span class="menu__result-copy">
+              <span class="menu__result-title">{{ item.title }}</span>
+              <span class="menu__result-text">{{ item.text }}</span>
+            </span>
+          </a>
+        </li>
+        {% endfor %}
+      </template>
+
+      <div class="menu__popular">
+        <h2>Popular searches</h2>
+        <ul class="menu__sub-list">
+          {% for item in site.popular_searches %}
+          <li><a class="menu__sub-link" href="{{ item.url }}">{{ item.label }}</a></li>
+          {% endfor %}
+        </ul>
+      </div>
+
       <nav class="menu__nav" aria-label="Main">
         <ul class="menu__list">
           {% for item in site.nav %}

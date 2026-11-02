@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-02 — Motion fixes, custom dropdown, form errors and search
+- Split titles rise as whole lines on the clock instead of per-word layers tied to the scroll. Line breaks are read from the real layout, so nothing rewraps or snaps when the split reverts. The unused character presets are gone.
+- Page entrance: the step after a sliding hero title starts 1.2s in (`data-anim-landed`), which removes the pause before the header.
+- Marquees move one list's share of the track and rebuild once fonts load, so the footer text loops without a jump.
+- Button labels are centred with balanced padding. This replaces the 1px drop added to match Figma on 2026-10-31.
+- Menu: submenu items leave together, and the utility links no longer clip their last letter. The announcement card waits 200ms on hover.
+- Forms: custom dropdown over the native select, inline validation messages, and no gold outline on fields. Search results and Popular searches are built in the menu.
+- Search rows use small 192 × 144 thumbnails from `.qa/search-thumbs.py`, and only the rows scroll under a fixed menu header.
+
 ## 2026-11-02 — Build runs from any folder
 - The build writes every URL relative to its page, replacing the HtmlBase path prefix, so `dist/` needs no prefix for staging or GitHub Pages. Video and menu thumbnail URLs are covered too, which the prefix missed. Templates and data keep `/assets/…`.
 - `dist/` is out of git. GitHub Pages builds its own copy; staging and the Wagtail handoff use a local `npm run build`.

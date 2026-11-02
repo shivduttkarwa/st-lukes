@@ -17,10 +17,6 @@ html.anim-ready:not(.anim-reduced) [data-anim="progress"] { --anim-progress: 0; 
 
 [data-anim="reveal"][data-anim-type="nudge-right"] { will-change: transform, opacity; }
 
-.anim-char { display: inline-block; }
-.anim-word,
-.anim-char { text-indent: 0; }
-
 html.lenis,
 html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
@@ -28,13 +24,13 @@ html.lenis body { height: auto; }
 .lenis.lenis-stopped { overflow: clip; }
 .lenis.lenis-smooth iframe { pointer-events: none; }
 
-// data-marquee: initMarquees() in ui.js fills the track and sets --marquee-shift / --marquee-time
+// data-marquee: initMarquees() in ui.js fills the track and sets --marquee-lists / --marquee-time
 @keyframes marquee-left {
-  to { transform: translate3d(calc(-1 * var(--marquee-shift)), 0, 0); }
+  to { transform: translate3d(calc(-100% / var(--marquee-lists)), 0, 0); }
 }
 
 @keyframes marquee-right {
-  from { transform: translate3d(calc(-1 * var(--marquee-shift)), 0, 0); }
+  from { transform: translate3d(calc(-100% / var(--marquee-lists)), 0, 0); }
   to { transform: translate3d(0, 0, 0); }
 }
 

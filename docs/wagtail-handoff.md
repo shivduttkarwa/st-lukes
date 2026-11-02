@@ -26,8 +26,9 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - For the demo, the Home submenu in `site.nav` lists every built page. It is review-only: replace it once the page tree drives the menu.
 - `children[].image` is the submenu thumbnail — a page field (e.g. `menu_image`), fall back to the page's hero image. The template only writes its URL on each child link as `data-thumb`; there is one shared, decorative `<div class="menu__thumb" aria-hidden="true">` after the nav, and the script fills it. Opening a submenu shows its first child's image; switching to another top-level row cross-fades to that row's first child; hovering or focusing a child swaps to its image. The first child carries `is-current` (Nunjucks `loop.first` → Django `forloop.first`) and the script moves it with the image.
 - `site.menu_links` (six small links), `site.utility_links` (Tours / Enquire / Enrol, shown in the header and again inside the panel), `site.socials` (`network` is the sprite icon id) and `site.quick_links` are site settings.
-- The search field posts `GET /search/?q=`. The results view (rows with thumbnail + title + description, "Popular searches" on the right) is described in `docs/design-guidelines.md` but not designed or built yet.
+- Search is built from the designer's brief; Figma draws no results state. Focusing the field widens the panel and shows `site.popular_searches` in the submenu's place; typing swaps the main list for result rows (thumbnail, title, short description). `search.js` (`initMenuSearch`) filters rows rendered into a `<template data-search-index>` from `_data/search_index.js`: the built pages, the news stories, and menu-only pages with their section as the description. In Wagtail, drop the template and fetch the same `<li>` markup from a search view inside `run()`, using `search_description` for the text and a `fill-192x144` rendition for the thumbnail (the static build cuts these with `.qa/search-thumbs.py`). The form already points at `GET /search/?q=`, but the script intercepts it until then. `site.popular_searches` are plain links straight to their pages (label + url), and the client chooses which pages to list.
 - Behaviour lives in `ui.js` (`initMenu`): overlay + panel slide in, panel widens to the left when a submenu opens, `inert` on the rest of the page, scroll lock with Lenis stopped, Escape and overlay click close, focus returns to the burger. The dialog role sits on the `.menu` root. The burger and close icons are a CSS `.menu-icon` (no sprite icon). On desktop it sets `--menu-zoom` so the panel fits the window height, and it numbers each list's children (`--i`) for the entrance stagger. Copy `main.js` as-is.
+- The menu header never scrolls: from `lg` only the result rows scroll while search results show, and below `lg` everything under the header scrolls. The panel carries `data-lenis-prevent`, because Lenis, stopped while the menu is open, otherwise cancels wheel and touch scrolling inside it.
 - Below `lg` the panel is full width and submenus open as accordions; the thumbnail is hidden. Phone layout is interpreted until the designer's mobile frames arrive.
 
 ### Footer (`partials/footer.njk`)
@@ -103,6 +104,8 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ### contact_form (`blocks/contact_form.njk`)
 - A static form that posts nowhere yet. In Wagtail it should be a form page or Wagtail Forms; the template loops over fields by type. Controls keep the 16px floor and 44px height on touch, and 28 tall under a fine pointer.
+- `data-validate` turns on `initForms()` in `forms.js`: messages from `data-error` (empty) and `data-invalid` (wrong format) show in each field's `.contact-form__error`, with `aria-invalid` and `aria-describedby`, and focus goes to the first bad field. `action="#"` shows `value.success` instead of posting; with a real action the form posts normally, and server errors can render into the same `<p>`.
+- The select is a real `<select>` inside `data-select`. `initSelects()` builds the combobox and listbox over it from its options, so a Django widget works unchanged. Figma draws no open or error state; the list follows the Quick Links panel, and `--color-error` is not a Figma colour.
 
 ### connect_band (`blocks/connect_band.njk`)
 - The navy "Connect with us" box, with gold `.social-button()` links from `site.socials`.
@@ -111,7 +114,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - The royal band with the title, the featured-story slider, the Connect box and a photo that drops 104 below the band. Slider: the shared `slider.js` in fade mode. Figma draws one story, so slides 2 and 3 reuse stories from the list.
 
 ### news_index (`blocks/news_index.njk`, card markup in `snippets/news-card.njk`)
-- Filter bar and story grid. In the static build `initNewsFilter()` in `ui.js` filters by category and search text on the page. In Wagtail the form should submit `GET` and filter the queryset; remove `data-news-filter` then. Figma gives no values for Age or Year group, so they have no options yet.
+- Filter bar and story grid. In the static build `initNewsFilter()` in `ui.js` filters by category and search text on the page. In Wagtail the form should submit `GET` and filter the queryset; remove `data-news-filter` then. Figma gives no values for Age or Year group, so they have no options yet. The filters use the same `data-select` dropdown as the contact form; it fires `change` on the native select.
 
 ### article_hero (`blocks/article_hero.njk`)
 - The news story hero: the royal band with an inset photo, gold tag, date and centred title.

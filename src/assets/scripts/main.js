@@ -1,4 +1,5 @@
 import { Anim } from "./anim.js";
+import { initForms, initSelects } from "./forms.js";
 import { initPreloader } from "./preloader.js";
 import { initSliders } from "./slider.js";
 import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initFilters, initHoverVideos, initMarquees, initMenu, initNewsFilter, initPromos, initScrollState } from "./ui.js";
@@ -8,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const preloaded = initPreloader();
   initScrollState();
   initSliders();
+  initSelects();
   initMarquees();
   initAmbientVideos();
   Anim.init({ after: preloaded, afterMax: 10000 });
@@ -15,6 +17,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAccordions();
   initFilters();
   initNewsFilter();
+  initForms();
   initMenu();
   initPromos();
   initHoverVideos();

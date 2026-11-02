@@ -26,7 +26,6 @@
   @media (min-width: @bp-lg) {
     --bs-btn-font-size: @btn-font-lg;
     --bs-btn-padding-x: @btn-padding-lg;
-    padding-block: (@btn-padding-y + 1 * @px) (@btn-padding-y - 1 * @px);
     // Figma rounds the label's box up, half a pixel on average
     padding-right: calc(var(--bs-btn-padding-x) + 0.5 * @px);
     &:has(.icon) { min-height: var(--control-height); }
@@ -92,7 +91,7 @@
   @media (min-width: @bp-lg) {
     --bs-btn-font-size: @btn-font-sm;
     --bs-btn-padding-x: @btn-small-padding;
-    padding-block: 0 2 * @px;
+    padding-block: 0 4 * @px;
   }
   @media @fine { min-height: @btn-small-height; }
 }
