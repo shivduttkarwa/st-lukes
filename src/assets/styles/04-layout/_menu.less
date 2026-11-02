@@ -282,7 +282,7 @@ html.is-locked {
 
   &.is-open &__close {
     opacity: 1;
-    transition: opacity 500ms ease @menu-close-in, background-color var(--duration-base) ease;
+    transition: background-color var(--duration-base) ease;
   }
 
   &__body {
@@ -649,6 +649,7 @@ html.is-locked {
       .menu__panel { will-change: transform; }
       .menu__search,
       .menu__utility,
+      .menu__close,
       .menu__link,
       .menu__secondary > li,
       .menu__social > li { will-change: translate; }
@@ -657,11 +658,13 @@ html.is-locked {
     &.is-open {
       .menu__search,
       .menu__utility,
+      .menu__close,
       .menu__link,
       .menu__secondary > li,
       .menu__social > li { animation: menu-rise @menu-rise var(--ease-settle) backwards; }
       .menu__search,
-      .menu__utility { animation-delay: calc(@menu-content + var(--i) * 60ms); }
+      .menu__utility,
+      .menu__close { animation-delay: calc(@menu-content + var(--i) * 60ms); }
       .menu__link { animation-delay: calc(@menu-content + 100ms + var(--i) * @menu-step); }
       .menu__secondary > li { animation-delay: calc(@menu-foot + var(--i) * 30ms); }
       .menu__social > li { animation-delay: calc(@menu-foot + 150ms + var(--i) * @menu-step); }
