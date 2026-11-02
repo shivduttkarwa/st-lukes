@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-02 — Repo is code only
+- Removed the GitHub Pages workflow. The repo is private and holds code only, so nothing deploys on push. Build `dist/` locally with `npm run build`.
+
 ## 2026-11-02 — Motion fixes, custom dropdown, form errors and search
 - Split titles rise as whole lines on the clock instead of per-word layers tied to the scroll. Line breaks are read from the real layout, so nothing rewraps or snaps when the split reverts. The unused character presets are gone.
 - Page entrance: the step after a sliding hero title starts 1.2s in (`data-anim-landed`), which removes the pause before the header.
