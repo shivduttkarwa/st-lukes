@@ -162,7 +162,7 @@
     display: none;
     color: var(--color-white);
     text-box: trim-both cap alphabetic;
-    transition: translate @stuck-morph;
+    transition: translate @stuck-morph, color var(--duration-base) ease;
     // Figma rounds each label's box up, which sets the row's spacing
     @media (min-width: @bp-lg) {
       display: block;
@@ -170,7 +170,7 @@
       padding-right: 1.2 * @px;
     }
     @media (hover: hover) {
-      &:hover { color: var(--color-gold); }
+      &:hover { color: var(--color-gold-light); }
     }
   }
 

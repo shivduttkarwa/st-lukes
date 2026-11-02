@@ -16,6 +16,7 @@ const chrome = spawn(
 );
 const finish = (code) => {
   try { execSync(`taskkill /PID ${chrome.pid} /T /F`, { stdio: "ignore" }); } catch {}
+  try { fs.rmSync(profile, { recursive: true, force: true, maxRetries: 10, retryDelay: 200 }); } catch {}
   process.exit(code);
 };
 setTimeout(() => { console.error("timed out"); finish(1); }, 90000);
