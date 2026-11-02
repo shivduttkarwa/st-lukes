@@ -7,6 +7,29 @@
 @quick-pad-y: 15 * @px;
 @quick-row: 26 * @px;
 @quick-radius: 26 * @px;
+@header-top-sm: 14 * @px;
+@header-top: 30 * @px;
+@stuck-bar-sm: 64 * @px;
+@stuck-bar: 72 * @px;
+@stuck-quick-shift: ((@stuck-bar - @quick-head) / 2 - @header-top);
+@stuck-tools-shift: ((@stuck-bar - @circle-size) / 2 - @header-top);
+@stuck-logo-sm: 0.8;
+@stuck-logo: 0.7;
+@stuck-disc: (58 / 65);
+@stuck-slide: 0.5s;
+@stuck-morph: var(--duration-slow) var(--ease-settle);
+
+// registered so these animate on the main thread: a GPU layer snaps a fraction of a pixel as its transition ends
+@property --header-strip {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: -100%;
+}
+@property --quick-turn {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
 
 .site-header {
   position: absolute;
@@ -15,8 +38,61 @@
   right: 0;
   z-index: var(--z-header);
   color: var(--color-white);
+  transition: translate @stuck-slide var(--ease-out);
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto;
+    height: @stuck-bar-sm;
+    background: var(--color-navy);
+    translate: 0 var(--header-strip);
+    pointer-events: none;
+    transition: --header-strip @stuck-morph;
+    @media (min-width: @bp-lg) { height: @stuck-bar; }
+  }
+
+  // held layers stop the labels jumping a sub-pixel as each change ends
+  &.is-held { will-change: transform; }
+  &.is-held .quick-links,
+  &.is-held &__link,
+  &.is-held &__menu { will-change: translate; }
+
+  // the compact moves sit inside the entrance's items: GSAP folds a CSS translate or scale on its own targets into an inline transform
+  &.is-stuck {
+    position: fixed;
+    pointer-events: none;
+    .quick-links,
+    .site-header__logo,
+    .site-header__link,
+    .site-header__menu { pointer-events: auto; }
+  }
+
+  &.is-compact {
+    &::before { --header-strip: 0%; }
+    .quick-links,
+    .site-header__link,
+    .site-header__menu { translate: 0 ~"calc((@{stuck-bar-sm} - var(--tap-size)) / 2 - @{header-top-sm})"; }
+    .site-header__logo { scale: @stuck-logo-sm; }
+    @media (min-width: @bp-lg) {
+      .quick-links { translate: 0 @stuck-quick-shift; }
+      .site-header__link,
+      .site-header__menu { translate: 0 @stuck-tools-shift; }
+      .site-header__logo { scale: @stuck-logo; }
+      .site-header__menu::before { scale: @stuck-disc; }
+    }
+  }
+
+  // a keyboard user tabbing in, or an open dropdown, keeps the bar on screen
+  &.is-hidden:not(:has(:focus-visible, .is-open)) { translate: 0 -100%; }
+
+  &.is-instant,
+  &.is-instant::before,
+  &.is-instant *,
+  &.is-instant *::before { transition: none !important; }
 
   &__bar {
+    position: relative;
     display: grid;
     grid-template-columns: 1fr auto 1fr;
     align-items: start;
@@ -27,10 +103,11 @@
   &__quick {
     position: relative;
     z-index: 1;
-    padding-top: 14 * @px;
-    @media (min-width: @bp-lg) { padding-top: 30 * @px; }
+    padding-top: @header-top-sm;
+    @media (min-width: @bp-lg) { padding-top: @header-top; }
   }
 
+  // scaled on a layer held from first paint: a layer that exists only while the scale runs re-snaps the box to the pixel grid when it drops
   &__logo {
     display: flex;
     flex-direction: column;
@@ -41,6 +118,10 @@
     height: 112 * @px;
     padding: 12 * @px;
     background: var(--color-royal);
+    scale: 1;
+    transform-origin: top center;
+    will-change: transform;
+    transition: scale @stuck-morph;
     @media (min-width: @bp-lg) {
       width: 136 * @px;
       height: var(--header-height);
@@ -71,8 +152,8 @@
     align-items: center;
     justify-self: end;
     gap: 27 * @px;
-    padding-top: 14 * @px;
-    @media (min-width: @bp-lg) { padding-top: 30 * @px; }
+    padding-top: @header-top-sm;
+    @media (min-width: @bp-lg) { padding-top: @header-top; }
   }
 
   &__link {
@@ -81,6 +162,7 @@
     display: none;
     color: var(--color-white);
     text-box: trim-both cap alphabetic;
+    transition: translate @stuck-morph;
     // Figma rounds each label's box up, which sets the row's spacing
     @media (min-width: @bp-lg) {
       display: block;
@@ -92,13 +174,36 @@
     }
   }
 
-  &__menu { .circle-button(); }
+  // the stuck bar shrinks only the gold disc, as scaling the button would blur the burger lines
+  &__menu {
+    .circle-button();
+    position: relative;
+    isolation: isolate;
+    background: none;
+    transition: translate @stuck-morph;
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      border-radius: 50%;
+      background: var(--color-gold);
+      scale: 1;
+      will-change: transform;
+      transition: background-color var(--duration-base) ease, scale @stuck-morph;
+    }
+    @media (hover: hover) {
+      &:hover { background: none; }
+      &:hover::before { background: var(--color-gold-deep); }
+    }
+  }
 }
 
 .quick-links {
   --quick-head: var(--tap-size);
   position: relative;
   width: fit-content;
+  transition: translate @stuck-morph;
   @media (min-width: @bp-lg) { --quick-head: @quick-head; }
 
   &__toggle {
@@ -131,7 +236,11 @@
       translate: 0 (-0.4 * @px);
       width: 15 * @px;
       height: 15 * @px;
-      transition: transform var(--duration-base) var(--ease-settle);
+      use {
+        transform: rotate(var(--quick-turn));
+        transform-origin: center;
+        transition: --quick-turn var(--duration-base) var(--ease-settle);
+      }
     }
   }
 
@@ -167,7 +276,7 @@
   &.is-open &__toggle {
     color: var(--color-navy);
     transition-delay: 0s;
-    .icon { transform: rotate(180deg); }
+    .icon use { --quick-turn: 180deg; }
   }
 
   &.is-open &__panel {
@@ -178,8 +287,17 @@
   }
 }
 
+html.is-locked .site-header.is-stuck { right: var(--scrollbar-gutter, 0); }
+
 @media (prefers-reduced-motion: reduce) {
+  .site-header,
+  .site-header::before,
+  .site-header__logo,
+  .site-header__link,
+  .site-header__menu,
+  .site-header__menu::before,
+  .quick-links,
   .quick-links__toggle,
-  .quick-links__toggle .icon,
+  .quick-links__toggle .icon use,
   .quick-links__panel { transition: none; }
 }

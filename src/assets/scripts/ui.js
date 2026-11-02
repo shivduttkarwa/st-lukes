@@ -6,9 +6,10 @@ export function lockScroll(lock) {
   if (lock && !root.classList.contains("is-locked")) {
     root.style.setProperty("--scrollbar-gutter", `${window.innerWidth - root.clientWidth}px`);
   }
+  // Lenis reads the scroll as it starts, so it must start while the gutter padding still holds the page width
+  if (!lock) Anim.start();
   root.classList.toggle("is-locked", lock);
   if (lock) Anim.stop();
-  else Anim.start();
 }
 
 export function initDevicePixel() {
@@ -212,6 +213,39 @@ export function initScrollState() {
   const sync = () => root.classList.toggle("is-scrolled", window.scrollY > 0);
   sync();
   window.addEventListener("scroll", sync, { passive: true });
+}
+
+export function initStickyHeader() {
+  const header = document.querySelector(".site-header");
+  if (!header) return;
+  const tolerance = 8;
+  let zone = header.offsetHeight;
+  let anchor = window.scrollY;
+  const sync = () => {
+    const y = window.scrollY;
+    if (y <= 0) {
+      header.classList.remove("is-stuck", "is-compact", "is-hidden");
+      anchor = 0;
+      return;
+    }
+    if (!header.classList.contains("is-stuck")) {
+      if (y > zone) {
+        header.classList.add("is-instant", "is-held", "is-stuck", "is-compact", "is-hidden");
+        void header.offsetHeight;
+        header.classList.remove("is-instant");
+      }
+      anchor = y;
+      return;
+    }
+    header.classList.toggle("is-compact", y > zone);
+    if (y <= zone || Math.abs(y - anchor) >= tolerance) {
+      header.classList.toggle("is-hidden", y > zone && y > anchor);
+      anchor = y;
+    }
+  };
+  sync();
+  window.addEventListener("scroll", sync, { passive: true });
+  window.addEventListener("resize", () => { zone = header.offsetHeight; });
 }
 
 export function initMenu() {
