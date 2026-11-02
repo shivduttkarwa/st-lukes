@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-02 — Build runs from any folder
+- The build writes every URL relative to its page, replacing the HtmlBase path prefix, so `dist/` needs no prefix for staging or GitHub Pages. Video and menu thumbnail URLs are covered too, which the prefix missed. Templates and data keep `/assets/…`.
+
 ## 2026-11-01 — Second Figma audit
 - Re-audited all nine pages with new checks: sub-pixel text position, all copy including off-screen slides, every fill, border, radius and line, and Figma's hover variants. Figma itself had not changed.
 - Hovers: a Where next link now shows Figma's gold dot, overlaid so the columns don't move, and a main menu row's line turns royal.

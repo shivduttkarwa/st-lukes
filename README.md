@@ -8,7 +8,7 @@ npm run dev      # http://localhost:3000, live reload; also on the Wi-Fi address
 npm run build    # production build → dist/
 ```
 
-GitHub Pages builds with `PATH_PREFIX=/<repo-name>/` (see `.github/workflows/pages.yml`). To preview that locally use the CLI flag, since Git Bash rewrites a leading-slash env var: `npx eleventy --pathprefix=/st-lukes/`.
+The build writes every URL relative to its page, so `dist/` runs from any folder with no prefix. Staging: upload the contents of `dist/` to `websites/stlukes/` for https://cim-staging.au/websites/stlukes.
 
 - Rules: `CLAUDE.md`
 - Designer's brief: `docs/design-guidelines.md`

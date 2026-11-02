@@ -15,7 +15,7 @@ Stack: Eleventy 3 + Nunjucks · Bootstrap 5.3 themed only through `--bs-*` · LE
 - Headings bare (`h1`–`h6`, no classes), styled from the parent block. No inline styles, no IDs for styling.
 - Images are `{ src, alt, width, height }` rendered through `snippets/image.njk`. One image per slot; `image_mobile` only where the phone design shows a different photo. Video slots are `{ src, poster }`.
 - Site chrome (header, footer, menus, quick links) reads `site.json`.
-- URLs are root-relative (`/assets/…`); the HtmlBase plugin applies the GitHub Pages prefix at build.
+- Source URLs are root-relative (`/assets/…`); the build rewrites them relative to each page, so `dist/` runs from any folder. A new attribute holding a URL must be added to `relativeUrls` in `.eleventy.js`.
 
 ## LESS
 - Mobile-first `min-width` only; each property set once per breakpoint. No `max-width` redraw blocks.

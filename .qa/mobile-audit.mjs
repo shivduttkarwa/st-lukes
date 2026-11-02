@@ -1,7 +1,7 @@
 // Touch-device audit of the built pages: horizontal overflow, tap targets under 44, small text,
 // inputs under 16px (iOS zoom) and how oversized each downloaded image is for its slot.
 // Usage: node .qa/mobile-audit.mjs <widths comma-separated> [page ...]   (pages default to index)
-// Pages are read over http (QA_BASE, default http://127.0.0.1:8123/) because asset URLs are root-relative.
+// Pages are read over http (QA_BASE, default http://127.0.0.1:8123/).
 import { spawn, execSync } from "node:child_process";
 import fs from "node:fs";
 import os from "node:os";

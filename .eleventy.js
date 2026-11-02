@@ -4,9 +4,15 @@ import less from "less";
 import postcss from "postcss";
 import autoprefixer from "autoprefixer";
 import * as esbuild from "esbuild";
-import { EleventyHtmlBasePlugin } from "@11ty/eleventy";
 
 const PROD = process.env.ELEVENTY_RUN_MODE === "build";
+
+function relativeUrls(html, pageUrl) {
+  const up = "../".repeat(pageUrl.split("/").length - 2);
+  return html
+    .replace(/\b(href|src|poster|action|data-src|data-thumb)="\/(?!\/)([^"]*)"/g, (_, attr, url) => `${attr}="${up + url || "./"}"`)
+    .replace(/\bsrcset="([^"]*)"/g, (_, set) => `srcset="${set.replace(/(^|[\s,])\/(?!\/)/g, `$1${up}`)}"`);
+}
 
 async function compileCss() {
   const input = "src/assets/styles/main.less";
@@ -23,7 +29,9 @@ async function compileCss() {
 }
 
 export default function (eleventyConfig) {
-  eleventyConfig.addPlugin(EleventyHtmlBasePlugin);
+  eleventyConfig.addTransform("relative-urls", function (content) {
+    return (this.page.outputPath || "").endsWith(".html") ? relativeUrls(content, this.page.url) : content;
+  });
 
   eleventyConfig.on("eleventy.before", compileCss);
   eleventyConfig.addWatchTarget("src/assets/styles/");
@@ -42,6 +50,5 @@ export default function (eleventyConfig) {
     htmlTemplateEngine: "njk",
     markdownTemplateEngine: "njk",
     templateFormats: ["njk", "html"],
-    pathPrefix: process.env.PATH_PREFIX || "/",
   };
 }
