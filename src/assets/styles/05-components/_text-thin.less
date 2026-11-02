@@ -1,8 +1,30 @@
 // Chrome on Windows draws light Sanshand heavy and fringed, so filters in partials/icons.njk thin it to Figma's weight.
 // A split title carries it on its lines while they play: on the parent it would clip their rise and delay their fade.
 .is-windows-chrome {
-  .site-header__link,
-  .quick-links:not(.is-open) .quick-links__toggle span { filter: url("#text-thin-crisp"); }
+  .site-header__link { filter: url("#text-thin-crisp"); }
+
+  // the open label is navy on white and takes no filter, so a filtered white copy cross-fades with it instead of the filter switching
+  .quick-links__toggle span {
+    color: transparent;
+    white-space: nowrap;
+    transition: color var(--duration-base) ease var(--duration-fast);
+    &::after {
+      content: ~'attr(data-label) / ""';
+      position: absolute;
+      inset: 0;
+      color: var(--color-white);
+      filter: url("#text-thin-crisp");
+      transition: opacity var(--duration-base) ease var(--duration-fast);
+    }
+  }
+  .quick-links.is-open .quick-links__toggle span {
+    color: var(--color-navy);
+    transition-delay: 0s;
+    &::after {
+      opacity: 0;
+      transition-delay: 0s;
+    }
+  }
 
   .hero__statement,
   .promo__play-title,

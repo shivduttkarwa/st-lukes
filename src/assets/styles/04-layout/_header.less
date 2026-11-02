@@ -226,7 +226,7 @@
       padding: 0 @quick-pad-x;
     }
     @media (hover: hover) {
-      &:hover { background: var(--color-white-40); }
+      &:hover { background: var(--color-white-10); }
     }
     span {
       position: relative;
@@ -239,7 +239,7 @@
       use {
         transform: rotate(var(--quick-turn));
         transform-origin: center;
-        transition: --quick-turn var(--duration-base) var(--ease-settle);
+        transition: --quick-turn var(--duration-slow) var(--ease-settle);
       }
     }
   }
@@ -298,6 +298,8 @@ html.is-locked .site-header.is-stuck { right: var(--scrollbar-gutter, 0); }
   .site-header__menu::before,
   .quick-links,
   .quick-links__toggle,
+  .quick-links__toggle span,
+  .quick-links__toggle span::after,
   .quick-links__toggle .icon use,
   .quick-links__panel { transition: none; }
 }
