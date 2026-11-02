@@ -24,7 +24,7 @@ Every image slot shows Figma's crop, with the Pathways logos within 1px of their
 
 - **Sub-pixel text offsets.** Two text layers are 0.7px or more off, neither reaching 1px: "St Luke's journey" on the Our School CTAs (0.9px) and the Acknowledgement of Country title (0.7px). 25 distinct layers are 0.5px or more off.
 - **Contact form underlines.** Figma centres each 1px stroke on a pixel boundary, so its render smears the line across two rows at half strength. The build draws a crisp 1px line on the lower of the two rows.
-- **Heavier text in Chrome.** Accepted on 2026-10-29 and not fixable without altering the font.
+- **Heavier text in Chrome.** Accepted on 2026-10-29. On the homepage, white and gold Sanshand text now matches within 4% through the `text-thin` filters on Chrome and Edge on Windows. Navy and royal Sanshand stays 4–6% heavy, and other pages and fonts are unchanged apart from the shared header, footer and entry cards.
 - **USP wording: Figma contradicts itself, so both can't match.** The Homepage frame and the USPs Slider frame word cards 1, 4, 5, 8 and 9 differently, and the Homepage frame's off-screen cards also have an older card 8 photo. The build shows the Homepage wording on cards 1 and 4, which are on screen in that frame, and the Slider wording and photo on cards 5, 8 and 9.
 - **Main menu Home row.** The Main Menu frame has eight rows and the Submenu frame has nine, with Home. The build keeps Home because its submenu is the demo navigation to every built page.
 - **Cards Figma draws hovered.** Cottage, the first Our School card and Bayview's arrow match Figma on hover, not at rest.

@@ -84,7 +84,8 @@
     // Figma rounds each label's box up, which sets the row's spacing
     @media (min-width: @bp-lg) {
       display: block;
-      padding-right: 1 * @px;
+      top: 0.5 * @px;
+      padding-right: 1.2 * @px;
     }
     @media (hover: hover) {
       &:hover { color: var(--color-gold); }
@@ -127,6 +128,7 @@
       top: -0.1em;
     }
     .icon {
+      translate: 0 (-0.4 * @px);
       width: 15 * @px;
       height: 15 * @px;
       transition: transform var(--duration-base) var(--ease-settle);

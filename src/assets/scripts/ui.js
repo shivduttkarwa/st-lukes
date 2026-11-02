@@ -19,6 +19,10 @@ export function initDevicePixel() {
   set();
 }
 
+export function initPlatform() {
+  if (/Windows.*Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("is-windows-chrome");
+}
+
 export function initDisclosures() {
   document.querySelectorAll("[data-disclosure]").forEach((root) => {
     const toggle = root.querySelector("[aria-expanded]");

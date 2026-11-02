@@ -1,0 +1,24 @@
+// Chrome on Windows draws light Sanshand heavy and fringed, so filters in partials/icons.njk thin it to Figma's weight.
+// A split title carries it on its lines while they play: on the parent it would clip their rise and delay their fade.
+.is-windows-chrome {
+  .site-header__link,
+  .quick-links:not(.is-open) .quick-links__toggle span,
+  .hero__statement,
+  .promo__play-title,
+  .pillars__eyebrow,
+  .usps__eyebrow,
+  .campus__detail,
+  .entry__meta,
+  .site-footer__col h2 { filter: url("#text-thin"); }
+
+  .intro__statement p:not(:has(.anim-line)),
+  .intro__statement .anim-line,
+  .pillars h2:not(:has(.anim-line)),
+  .pillars h2 .anim-line,
+  .usps h2:not(:has(.anim-line)),
+  .usps h2 .anim-line,
+  .stats__value,
+  .site-footer__statement { filter: url("#text-thin-soft"); }
+
+  .story__tags li { filter: url("#text-thin-strong"); }
+}

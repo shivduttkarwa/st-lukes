@@ -112,6 +112,7 @@
     { "label": "Scholarships", "url": "#" },
     { "label": "Policies", "url": "#" }
   ],
+  "quick_links_label": "Quick Links",
   "quick_links": [
     { "label": "St Luke’s Portal", "url": "#" },
     { "label": "Make an Enquiry", "url": "#" },

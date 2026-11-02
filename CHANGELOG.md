@@ -1,5 +1,11 @@
 # Changelog
 
+## 2026-11-02 — Header labels
+- Tours, Enquire and Enrol sit on Figma's pixel rows, up from 1px high.
+- The Quick Links toggle text is a site setting, `site.quick_links_label`.
+- Chrome and Edge on Windows get SVG filters on the homepage's white and gold Sanshand text, which bring it to Figma's weight and remove the colour fringes: `text-thin` up to 35px, `text-thin-soft` on the 45px headings and stats, `text-thin-strong` on the 14px tags. The text stays live, and the rules are in `_text-thin.less`. Navy and royal text has no filter.
+- The Quick Links arrow is 0.4px higher, on Figma's rows.
+
 ## 2026-11-02 — Repo is code only
 - Removed the GitHub Pages workflow. The repo is private and holds code only, so nothing deploys on push. Build `dist/` locally with `npm run build`.
 
