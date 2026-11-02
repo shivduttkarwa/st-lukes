@@ -2,7 +2,7 @@
 
 Static cutup of the St Luke's Grammar School Figma design, handed on to a Wagtail build. Read `docs/design-guidelines.md` before building any section. `blocks.yaml` is the field contract. These rules override the `figma-to-html` skill where they differ.
 
-Stack: Eleventy 3 + Nunjucks · Bootstrap 5.3 themed only through `--bs-*` · LESS (ITCSS + BEM) · `anim` (Lenis + GSAP, `data-anim-*` only). One CSS, one JS, `dist/` committed. `npm run dev` serves on :3000; `npm run build` before every commit.
+Stack: Eleventy 3 + Nunjucks · Bootstrap 5.3 themed only through `--bs-*` · LESS (ITCSS + BEM) · `anim` (Lenis + GSAP, `data-anim-*` only). One CSS, one JS, `dist/` is build output and stays out of git. `npm run dev` serves on :3000; `npm run build` before every upload.
 
 ## Figma
 - File `Ec8NFmOIMTGbBVYbdJcKD9`, page "02 Approved Design Concept" (`20157:4948`), desktop frames at 1440. Frame ids in `docs/figma-frames.md`.

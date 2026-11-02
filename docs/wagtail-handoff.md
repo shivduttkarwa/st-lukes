@@ -15,7 +15,7 @@ Living document. Updated as blocks land; the Wagtail build reads this, `blocks.y
 | `src/_data/pages/<page>.json` | the page's fields + StreamField |
 | `src/_data/site.json` | site settings and snippets |
 | `blocks.yaml` | the StreamField block definitions |
-| `dist/assets/css/main.css`, `dist/assets/js/main.js` | copied as-is into the Wagtail static files; never edited there |
+| `dist/assets/css/main.css`, `dist/assets/js/main.js`, from `npm run build` | copied as-is into the Wagtail static files; never edited there |
 
 Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`, `{% else %}` in a `for` → `{% empty %}`, `{% set %}` → `{% with %}`.
 

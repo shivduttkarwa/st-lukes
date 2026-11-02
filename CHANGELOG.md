@@ -2,6 +2,7 @@
 
 ## 2026-11-02 — Build runs from any folder
 - The build writes every URL relative to its page, replacing the HtmlBase path prefix, so `dist/` needs no prefix for staging or GitHub Pages. Video and menu thumbnail URLs are covered too, which the prefix missed. Templates and data keep `/assets/…`.
+- `dist/` is out of git. GitHub Pages builds its own copy; staging and the Wagtail handoff use a local `npm run build`.
 
 ## 2026-11-01 — Second Figma audit
 - Re-audited all nine pages with new checks: sub-pixel text position, all copy including off-screen slides, every fill, border, radius and line, and Figma's hover variants. Figma itself had not changed.
