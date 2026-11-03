@@ -3,6 +3,7 @@ import { A11y, EffectFade, Keyboard, Navigation, Pagination } from "swiper/modul
 
 // data-slider-gap is in design px; it follows the fluid root like everything else
 const designPx = (value) => (value * parseFloat(getComputedStyle(document.documentElement).fontSize)) / 16;
+const SPEED = 900;
 
 // data-slider-autoplay: the next slide comes this many ms after one settles, only while the slider is on screen,
 // not hovered and not holding focus. Swiper's own autoplay keeps transition-pause state that an outside pause breaks.
@@ -11,7 +12,7 @@ function autoplay(swiper, scope, delay) {
   let timer = 0;
   const arm = () => {
     clearTimeout(timer);
-    if (!hold.view && !hold.hover && !hold.focus) timer = setTimeout(() => swiper.slideNext(), delay);
+    if (!hold.view && !hold.hover && !hold.focus) timer = setTimeout(() => (swiper.isEnd ? swiper.slideTo(0) : swiper.slideNext()), delay);
   };
   const set = (key, value) => {
     hold[key] = value;
@@ -69,20 +70,40 @@ function shrinkOnSpeed(swiper) {
   swiper.on("transitionEnd", stop);
 }
 
+// data-slider-mode="stack": slides overlap and CSS swaps them, keyed to is-leaving on the old one and is-entering on the new
+function stack(swiper) {
+  const mark = (slide, name) => {
+    swiper.slides.forEach((each) => each.classList.remove(name));
+    if (!slide) return;
+    void slide.offsetWidth;
+    slide.classList.add(name);
+  };
+  swiper.on("slideChange", () => {
+    mark(swiper.slides[swiper.previousIndex], "is-leaving");
+    mark(swiper.slides[swiper.activeIndex], "is-entering");
+  });
+}
+
 export function initSliders() {
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");
   document.querySelectorAll("[data-slider]").forEach((el) => {
     const scope = el.closest("[data-slider-scope]") || el.parentElement;
     const gap = parseFloat(el.dataset.sliderGap || "0");
     const fade = el.dataset.sliderMode === "fade";
+    const stacked = el.dataset.sliderMode === "stack";
+    const single = fade || stacked;
     const delay = parseFloat(el.dataset.sliderAutoplay || "0");
     const dots = scope.querySelector("[data-slider-pagination]");
     const start = el.dataset.sliderStart;
     const swiper = new Swiper(el, {
       modules: [A11y, EffectFade, Keyboard, Navigation, Pagination],
-      slidesPerView: fade ? 1 : "auto",
-      spaceBetween: fade ? 0 : designPx(gap),
-      speed: still.matches ? 0 : 900,
+      slidesPerView: single ? 1 : "auto",
+      spaceBetween: single ? 0 : designPx(gap),
+      speed: still.matches || stacked ? 0 : SPEED,
+      virtualTranslate: stacked,
+      // backface-hidden puts each slide on its own layer, which keeps a stacked slide's panel and photo from interleaving
+      maxBackfaceHiddenSlides: stacked ? 0 : 10,
+      longSwipesRatio: stacked ? 0.1 : 0.5,
       grabCursor: !fade,
       resistance: false,
       centeredSlides: start !== undefined,
@@ -98,11 +119,12 @@ export function initSliders() {
       pagination: dots ? { el: dots, clickable: true } : false,
       on: {
         beforeResize(s) {
-          if (!fade) s.params.spaceBetween = designPx(gap);
+          if (!single) s.params.spaceBetween = designPx(gap);
         },
       },
     });
+    if (stacked) stack(swiper);
     if (delay && !still.matches) autoplay(swiper, scope, delay);
-    if (!fade && !still.matches) shrinkOnSpeed(swiper);
+    if (!single && !still.matches) shrinkOnSpeed(swiper);
   });
 }

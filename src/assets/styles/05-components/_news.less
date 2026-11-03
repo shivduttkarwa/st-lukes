@@ -1,6 +1,21 @@
 @news-dot: 15 * @px;
 @news-pad-sm: 24 * @px;
 @news-pad: 40 * @px;
+@news-gap: 6 * @px;
+@news-out: 450ms;
+@news-swap: 1200ms;
+@news-swap-scale: 1.1;
+@news-text-out: 360ms;
+@news-text-in: 700ms;
+@news-step-out: 30ms;
+@news-step-in: 60ms;
+@news-rise: 16 * @px;
+
+@property --news-dot-fill {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
 
 .news {
   padding: 72 * @px 0;
@@ -37,7 +52,10 @@
     @media (min-width: @bp-lg) { left: -1 * @px; }
   }
 
-  &__slider .swiper-slide { transition-timing-function: var(--ease-in-out-soft); }
+  &__slider {
+    .swiper-wrapper { display: grid; }
+    .swiper-slide { grid-area: 1 / 1; }
+  }
 
   &__dots {
     position: absolute;
@@ -58,22 +76,28 @@
       margin: 0;
       border: 1 * @px solid var(--color-gold);
       border-radius: 50%;
-      background: transparent;
+      // gold faded over royal reads olive, so the fill grows from the centre instead
+      background: radial-gradient(closest-side, var(--color-gold) calc(var(--news-dot-fill) - 1 * @px), transparent var(--news-dot-fill));
       opacity: 1;
       cursor: pointer;
-      transition: background-color var(--duration-base) ease;
+      transition: --news-dot-fill var(--duration-base) var(--ease-settle);
     }
 
-    .swiper-pagination-bullet-active { background: var(--color-gold); }
+    .swiper-pagination-bullet-active { --news-dot-fill: calc(100% + 1 * @px); }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .news__dots .swiper-pagination-bullet { transition: none; }
 }
 
 .story {
   display: flex;
   flex-direction: column-reverse;
-  gap: 6 * @px;
+  gap: @news-gap;
   height: auto;
-  background: var(--color-white);
+  visibility: hidden;
+  &.swiper-slide-active { visibility: visible; }
   @media (min-width: @bp-lg) {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -81,7 +105,10 @@
   }
 
   &__panel {
+    position: relative;
+    z-index: 1;
     display: flex;
+    flex: 1;
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
@@ -124,6 +151,8 @@
 
   &__media {
     position: relative;
+    z-index: 1;
+    overflow: hidden;
     aspect-ratio: 617 / 513;
     @media (min-width: @bp-lg) { aspect-ratio: auto; }
   }
@@ -140,4 +169,55 @@
   }
 
   &.is-playing &__video { opacity: 1; }
+
+  // the new photo fades in over the old one at once, but the old panel stays on top until its text has faded up and away
+  &.swiper-slide-active &__panel,
+  &.swiper-slide-active &__media { z-index: 2; }
+
+  &__tags { --story-step: 0; }
+  h3 { --story-step: 1; }
+  p { --story-step: 2; }
+  .btn { --story-step: 3; }
+
+  &__tags,
+  h3,
+  p,
+  .btn,
+  &__img,
+  &__video { will-change: transform; }
+
+  &.is-leaving {
+    animation: story-leave @news-swap linear;
+    .story__panel { animation: story-hold @news-out linear; }
+    .story__tags,
+    h3,
+    p,
+    .btn { animation: story-text-out @news-text-out var(--ease-settle) calc(var(--story-step) * @news-step-out) both; }
+    .story__img,
+    .story__video { animation: story-photo-out @news-swap var(--ease-in-out-soft) both; }
+  }
+
+  &.is-entering {
+    .story__tags,
+    h3,
+    p,
+    .btn { animation: story-text-in @news-text-in var(--ease-out) calc(@news-out + var(--story-step) * @news-step-in) both; }
+    .story__media { animation: story-photo-in @news-swap var(--ease-in-out-soft) both; }
+    .story__img,
+    .story__video { animation: story-photo-settle @news-swap var(--ease-in-out-soft) both; }
+  }
+}
+
+@keyframes story-leave { from, to { visibility: visible; } }
+@keyframes story-hold { from, to { z-index: 3; } }
+@keyframes story-text-out { to { opacity: 0; translate: 0 (-@news-rise); } }
+@keyframes story-text-in { from { opacity: 0; translate: 0 @news-rise; } }
+@keyframes story-photo-in { from { opacity: 0; } }
+@keyframes story-photo-settle { from { scale: @news-swap-scale; } }
+@keyframes story-photo-out { to { scale: @news-swap-scale; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .story.is-leaving,
+  .story.is-leaving *,
+  .story.is-entering * { animation: none; }
 }

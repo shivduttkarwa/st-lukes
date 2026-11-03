@@ -1,5 +1,16 @@
 # Changelog
 
+## 2026-11-03 — Latest News changes story text-first, photo like the menu
+- The feature no longer crossfades whole slides (mid-fade both stories were half transparent and the panel washed pale with the white behind). The slides now sit on top of each other (`data-slider-mode="stack"`): the old story's text fades up and away, then the new photo fades in from 110% over the old one, as the menu thumbnail swaps, while the new text fades up line by line. The photo starts at once on a soft 1.2s in-out curve and finishes just as the text lands: panels and photos are layered separately, so the old panel can stay on top while its text goes without holding back the new photo. Waiting for the text left the photo half in at the end on that curve, and a quick 0.7s fade to catch up read as snappy. That layering needs the slides not to be stacking contexts, so the stacked slider turns off Swiper's `swiper-backface-hidden` (`translateZ(0)` on each slide) and the card sliders' held layer now applies only to sliders without a mode; with either on, a forward change hid the old text at once and a backward one popped the new photo and text in at the end. A book page-turn was tried first and dropped for this.
+- A new story every 4s, back to the first after the last. Dragging changes story (a tenth of the width), with no loop, so the first and last stories don't drag past themselves.
+- The slides are four different stories. Figma draws one with four dots, so slides 2–4 come from the News List (KAT Program, Cambodia LIGHT Tour, the leadership retreat). The KAT excerpt is Figma's copy from the News Story page; the other two are placeholders. On phones the shorter slides had a white gap above the photo, as every slide takes the tallest one's height; the panel now takes up the difference.
+- The dots fill from the centre instead of fading: gold fading over royal read olive halfway.
+- "Read Full Story" sat 1px higher than in Figma; its label's ink now matches Figma row for row.
+
+## 2026-11-03 — Card arrows and play buttons
+- The testimonial cards' name and year no longer jump 2px on hover. The learning card hover lifted every `.entry` card's text, including cards with no description to open; that now applies only to cards with a description.
+- The gold button on learning and testimonial cards grows in from 80% while it fades (0.6s) and shrinks back as it goes (0.35s), on a held layer so it lands without a snap.
+
 ## 2026-11-03 — Outline titles stay outlined while they rise
 - The outline line of a split title (Discover, Learning, the CTA) no longer rises in solid gold or white and only turns into an outline at the end. While a title is split, its lines are `<div class="anim-line">` blocks inside the inline outline span, and the span's SVG outline filter doesn't reach a block inside an inline, so the line drew solid until the split was undone. `.outline-text-clear()` now moves the filter onto the `.anim-line` while the title is split (`:has(.anim-line)` turns the span's off) and leaves it on the span at rest. Checked mid-rise and at rest on all three.
 

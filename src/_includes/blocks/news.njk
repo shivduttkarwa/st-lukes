@@ -5,7 +5,7 @@
       {% if value.button %}<div data-anim="reveal" data-anim-type="fade">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>{% endif %}
     </div>
     <div class="news__feature" data-slider-scope data-anim="reveal" data-anim-type="fade-up">
-      <div class="news__slider swiper" data-slider data-slider-mode="fade" data-slider-autoplay="4000">
+      <div class="news__slider swiper" data-slider data-slider-mode="stack" data-slider-autoplay="4000">
         <div class="swiper-wrapper">
           {% for story in value.stories %}
           <article class="story swiper-slide"{% if story.video %} data-hover-video{% endif %}>

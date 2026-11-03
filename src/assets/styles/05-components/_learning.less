@@ -134,7 +134,6 @@
     border-radius: 50%;
     background: var(--color-gold);
     color: var(--color-navy);
-    transition: opacity var(--duration-base) ease;
     .icon {
       width: 24 * @px;
       height: 24 * @px;
@@ -146,39 +145,52 @@
   }
 
   @media (hover: hover) {
-    &__arrow { opacity: 0; }
+    &__arrow {
+      opacity: 0;
+      scale: 0.8;
+      transition: opacity var(--duration-base) ease, scale var(--duration-base) var(--ease-settle);
+      will-change: transform;
+    }
+    &:hover &__arrow,
+    &:focus-visible &__arrow {
+      opacity: 1;
+      scale: none;
+      transition-duration: var(--duration-base), var(--duration-slow);
+      transition-timing-function: ease, var(--ease-out);
+    }
 
     // the text is laid out but invisible, and each line sits pushed down by its height (--entry-more, from initEntryCards()).
     // On hover they slide up on held layers, title first, and back in reverse; grown in layout they stepped a whole
-    // pixel at a time. Figma's open card sets the title and meta 2px higher still
-    h3,
-    &__meta,
-    &__more {
-      translate: 0 var(--entry-more, 0px);
-      transition: translate var(--duration-slow) var(--ease-out) var(--entry-out), opacity var(--duration-slow) ease var(--entry-out);
-      will-change: transform;
-    }
-    h3 { --entry-in: 0s; --entry-out: @entry-stagger-2; }
-    &__meta { --entry-in: @entry-stagger; --entry-out: @entry-stagger; }
-    &__more {
-      --entry-in: @entry-stagger-2;
-      --entry-out: 0s;
-      display: block;
-      opacity: 0;
-    }
-
-    &:hover,
-    &:focus-visible {
+    // pixel at a time. Figma's open card sets the title and meta 2px higher still. Cards without text stay put
+    &:has(.entry__more) {
       h3,
       .entry__meta,
-      .entry__more { transition-delay: var(--entry-in); }
-      h3,
-      .entry__meta { translate: 0 (-2 * @px); }
       .entry__more {
-        translate: none;
-        opacity: 1;
+        translate: 0 var(--entry-more, 0px);
+        transition: translate var(--duration-slow) var(--ease-out) var(--entry-out), opacity var(--duration-slow) ease var(--entry-out);
+        will-change: transform;
       }
-      .entry__arrow { opacity: 1; }
+      h3 { --entry-in: 0s; --entry-out: @entry-stagger-2; }
+      .entry__meta { --entry-in: @entry-stagger; --entry-out: @entry-stagger; }
+      .entry__more {
+        --entry-in: @entry-stagger-2;
+        --entry-out: 0s;
+        display: block;
+        opacity: 0;
+      }
+
+      &:hover,
+      &:focus-visible {
+        h3,
+        .entry__meta,
+        .entry__more { transition-delay: var(--entry-in); }
+        h3,
+        .entry__meta { translate: 0 (-2 * @px); }
+        .entry__more {
+          translate: none;
+          opacity: 1;
+        }
+      }
     }
   }
 }

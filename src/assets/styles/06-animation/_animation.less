@@ -19,7 +19,7 @@ html.anim-ready:not(.anim-reduced) [data-anim="progress"] { --anim-progress: 0; 
 
 // card sliders: initSliders() sets each slide's scale from the drag speed every frame, and this eases it.
 // The layer is held so a slide draws the same way scaled and at rest; dropped at rest, its text jumped up to 0.5px on landing
-[data-slider]:not([data-slider-mode="fade"]) .swiper-slide {
+[data-slider]:not([data-slider-mode]) .swiper-slide {
   transition: scale 0.4s ease-out;
   will-change: transform;
 }
