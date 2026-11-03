@@ -63,7 +63,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### collage (`blocks/collage.njk`)
 - The navy band under a landing-page hero: statement and button, portrait, video with its play pill, stat circle, quote and Instagram tile. Fields in `blocks.yaml`. Below 992 it stacks; phone layout interpreted.
 - The portrait's parallax moves the whole frame ±5% (`.collage__layer`), not the photo inside it, because Figma's crop fills the source's full height and leaves nothing to travel into. Rendition `fill-810x1004`.
-- The video autoplays muted on a loop behind the play pill, as the designer asked for this collage (`{% include "snippets/promo.html" with promo=value.video ambient=True %}`); under reduced motion it holds its first frame. The pill plays the same file from the start with native controls, and the preview resumes when it ends.
+- The video plays as the homepage intro's does (see `intro`), as the designer asked for this collage: muted on a loop behind the play pill once it is on screen.
 - The stat counts up through `data-anim="counter"`. The curved caption is inline SVG text on a circle path.
 - The tile's foot is covered by whatever follows it, as in Figma: 2px by `page_links`, 1px by `feature_rows`. The following block needs `position: relative` to paint over it.
 
@@ -144,7 +144,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - The navy band under the hero: the statement and a button on the left; the portrait photo and an outline button on the right, flush to the window edge; the promo video below the statement, flush to the left edge. Fields in `blocks.yaml`. Below 992 it stacks in that order (statement, video, photo); phone layout interpreted.
 - `statement` is one rich-text paragraph. Its line break before "on Sydney’s Northern Beaches" only applies from 992 up, where the measure matches the design, so keep a space before it.
 - These two buttons have no arrow: the template sets `plain` before the button include (`{% include "snippets/button.html" with btn=value.button plain=True %}`).
-- `promo.video` (mp4) plays inline with native controls when the pill is pressed, and returns to the poster when it ends. Without a video the pill is a disabled button.
+- `promo.video` (mp4) starts playing muted on a loop once 30% of it is on screen and pauses when it leaves (`data-ambient="view"` in `snippets/promo.njk`, `initAmbientVideos()`); it loads nothing before that. The pill plays the same file from the start, inline with native controls, and the muted loop picks up again when it ends. Under reduced motion only the poster shows. Without a video the pill is a disabled button and the image shows.
 - Renditions: photo `fill-1016x818` (shown 508 × 409), poster `fill-821x514` or larger.
 - Media reveals: the promo glides in from the left (`data-anim-type="glide-right"`) and the photo from the right (`glide-left`, on the `.intro__frame` wrapper the template puts around the photo). Both are timed, not scrubbed (`data-anim-scroll="timed"`). Each frame wipes open while its first `img` / `video` slides 24% and settles from 106%, over 1.5s `power2.out`.
 - Statement and button: the statement's lines rise with the scroll (`data-anim-scroll="scrub"`), and the button carries `data-anim-after-title`, which puts its fade-up in the statement's own timeline after the last line, so it never comes in first. Keep both attributes in the template.
@@ -224,7 +224,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Principal's Welcome: Figma's menu highlights Leadership & Staff, copied from the other page. It is built as drawn; set `current` on Principal's Welcome, or let the page tree do it.
 - Our School and Our School Alternative: a clean poster for the video. Figma's still is a screen grab with a player bar and a pointer burned in (`video-still.webp`), which both pages show because it matches the design.
 - Our School Alternative rows 2, 3, 5 and 8: larger photos. Figma only holds 700 × 425 versions, shown about 20% enlarged at 1440.
-- Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
+- Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 4 MB). Swap in the full film if the client has one with sound.
 - CTA banner video: Figma's file is 720 × 720 (`assets/video/cta.mp4`), stretched to fill 1440 × 826, so it plays soft. Ask for a full-size version. It runs on the seven pages where Figma has it (not the two Our School pages, which use a photo).
 - Homepage pathways: the website address for each of the 16 logos (all `#` for now).
 - Homepage learning: short descriptions for Junior School, Senior School, HSC and NAPLAN Results, School Services and Support, and Our Facilities (Figma only has Cottage's). The last two cards' meta lines repeat "Pre-K (Ages 3-5)" in Figma, which looks like a placeholder.

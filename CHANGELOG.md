@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-03 — Promo videos play on arrival
+- The homepage intro promo and the Our School collage video start playing muted on a loop once 30% of them is on screen, and pause when they leave (`data-ambient="view"`, handled by `initAmbientVideos()`). Nothing loads before that. The play pill still plays the file from the start with controls, and the loop picks up again when it ends. Under reduced motion the poster stays.
+- The collage's load-time preview (the `ambient` include flag) is gone; every promo with a video now behaves this way.
+- `intro-promo.mp4` re-encoded from Figma's original at CRF 20 with its own frame timing: 15.7 MB down to 4 MB, SSIM 0.991.
+
 ## 2026-11-03 — Outline button ends
 - Outline buttons (`outline`, `outline-navy`, `outline-dark`): below 2x a one-device-pixel ring breaks into dim, dotted pixels where it curves, so the two round ends get a 1.5 device pixel copy of the ring (`::before` / `::after`, clipped to each half). The straight edges keep the crisp border. Compared at 100% and 125% against a full inset ring and 1.75 / 2 device pixel ends; 1.5 is the one that joins the straight edges without a step.
 

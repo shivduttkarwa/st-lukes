@@ -108,14 +108,14 @@ export function initPromos() {
     const stop = () => {
       promo.classList.remove("is-playing");
       video.hidden = true;
-      if (preview && !matchMedia("(prefers-reduced-motion: reduce)").matches) preview.play().catch(() => {});
+      if (preview) syncAmbient(preview);
       play.focus();
     };
     play.addEventListener("click", () => {
       if (!video.getAttribute("src")) video.src = video.dataset.src;
-      preview?.pause();
       video.hidden = false;
       promo.classList.add("is-playing");
+      if (preview) syncAmbient(preview);
       video.focus();
       video.play().catch(stop);
     });
@@ -145,21 +145,35 @@ export function initHoverVideos() {
   });
 }
 
-// background videos autoplay muted; under reduced motion they hold on their first frame
+// background videos autoplay muted; data-ambient="view" ones play only while on screen and their promo isn't playing;
+// under reduced motion they hold on their first frame
+const ambientStill = window.matchMedia("(prefers-reduced-motion: reduce)");
+const ambientOnScreen = new WeakSet();
+
+function syncAmbient(video) {
+  if (ambientStill.matches) {
+    video.pause();
+    video.currentTime = 0;
+  } else if (video.dataset.ambient === "view" && (!ambientOnScreen.has(video) || video.closest(".is-playing"))) {
+    video.pause();
+  } else {
+    video.play().catch(() => {});
+  }
+}
+
 export function initAmbientVideos() {
-  const videos = document.querySelectorAll("video[data-ambient]");
+  const videos = Array.from(document.querySelectorAll("video[data-ambient]"));
   if (!videos.length) return;
-  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
-  const sync = () => videos.forEach((video) => {
-    if (still.matches) {
-      video.pause();
-      video.currentTime = 0;
-    } else {
-      video.play().catch(() => {});
-    }
+  const view = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
+    if (isIntersecting) ambientOnScreen.add(target);
+    else ambientOnScreen.delete(target);
+    syncAmbient(target);
+  }), { threshold: 0.3 });
+  videos.forEach((video) => {
+    if (video.dataset.ambient === "view") view.observe(video);
+    syncAmbient(video);
   });
-  sync();
-  still.addEventListener("change", sync);
+  ambientStill.addEventListener("change", () => videos.forEach(syncAmbient));
 }
 
 const MARQUEE_SPEED = 35; // design px per second, the same for every row whatever its length

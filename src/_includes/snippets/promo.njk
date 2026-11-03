@@ -1,5 +1,5 @@
-{% if ambient and promo.video %}
-<video class="promo__poster" src="{{ promo.video.src }}" poster="{{ promo.image.src }}" autoplay muted loop playsinline data-ambient aria-hidden="true"></video>
+{% if promo.video %}
+<video class="promo__poster" src="{{ promo.video.src }}" poster="{{ promo.image.src }}" muted loop playsinline preload="none" data-ambient="view" aria-hidden="true"></video>
 {% else %}
 {% set img = promo.image %}{% set cls = "promo__poster" %}{% include "snippets/image.njk" %}
 {% endif %}
