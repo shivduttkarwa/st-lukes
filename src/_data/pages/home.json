@@ -173,11 +173,11 @@
         "title_line_2": "at St Luke’s",
         "cards": [
           { "title": "Cottage", "meta": "Pre-K (Ages 3-5)", "text": "Discover our early learning program, daily experiences and nurturing environment at Bayview.", "url": "#", "image": { "src": "/assets/images/home/learn-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Junior School", "meta": "Kindy - Year 6", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Senior School", "meta": "Years 7-12", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-3.webp", "alt": "", "width": 700, "height": 1080 }, "video": { "src": "/assets/video/learning-senior-school.mp4" } },
-          { "title": "HSC and\nNAPLAN Results", "meta": "Pre-K to 12", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "School Services and Support", "meta": "Pre-K (Ages 3-5)", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-5.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Our Facilities", "meta": "Pre-K (Ages 3-5)", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-6.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
+          { "title": "Junior School", "meta": "Kindy - Year 6", "text": "Explore our Junior School curriculum, classroom life and the care that shapes each child.", "url": "#", "image": { "src": "/assets/images/home/learn-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Senior School", "meta": "Years 7-12", "text": "See how our Senior School prepares students for the HSC and for life beyond school.", "url": "#", "image": { "src": "/assets/images/home/learn-3.webp", "alt": "", "width": 700, "height": 1080 }, "video": { "src": "/assets/video/learning-senior-school.mp4" } },
+          { "title": "HSC and\nNAPLAN Results", "meta": "Pre-K to 12", "text": "Read our latest HSC and NAPLAN results and what they tell us about our students' learning.", "url": "#", "image": { "src": "/assets/images/home/learn-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "School Services and Support", "meta": "Pre-K (Ages 3-5)", "text": "Find out about learning support, wellbeing services and the help available to every family.", "url": "#", "image": { "src": "/assets/images/home/learn-5.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Our Facilities", "meta": "Pre-K (Ages 3-5)", "text": "Take a look around our classrooms, sporting grounds and creative spaces on both campuses.", "url": "#", "image": { "src": "/assets/images/home/learn-6.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
         ],
         "button": { "text": "Explore Learning at St Luke’s", "url": "#", "style": "outline" }
       }

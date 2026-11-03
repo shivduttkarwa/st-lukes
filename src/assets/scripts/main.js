@@ -2,7 +2,7 @@ import { Anim } from "./anim.js";
 import { initForms, initSelects } from "./forms.js";
 import { initPreloader } from "./preloader.js";
 import { initSliders } from "./slider.js";
-import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initFilters, initHoverVideos, initMarquees, initMenu, initNewsFilter, initPlatform, initPromos, initScrollState, initStickyHeader } from "./ui.js";
+import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initEntryCards, initFilters, initHoverVideos, initMarquees, initMenu, initNewsFilter, initPlatform, initPromos, initScrollState, initStickyHeader } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   initDevicePixel();
@@ -23,4 +23,5 @@ document.addEventListener("DOMContentLoaded", () => {
   initMenu();
   initPromos();
   initHoverVideos();
+  initEntryCards();
 });

@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-03 — Learning card text opens without shivering
+- On hover the title and meta no longer shiver as the description opens or closes. The description used to grow its row in the layout (`grid-template-rows` 0fr → 1fr) and the labels nudged up with `top`, so the text moved by layout and stepped a whole pixel at a time. Now the description is laid out but invisible, the card body sits pushed down by its height (`--entry-more`, measured by `initEntryCards()` with a ResizeObserver), and on hover the body slides up with `translate` on a held layer while the description fades in. Every position is unchanged: title, meta and description land within 0.02px of before, at rest, hovered and back. A screencast of the hover shows the title passing through sub-pixel positions (0.31px off a whole pixel on average), where layout movement stepped by whole pixels.
+
+## 2026-11-03 — Learning card descriptions
+- Every learning card now has a short description for its hover state. Only Cottage had one; the other five are placeholders of the same length, each three lines at 1440, until the client sends copy.
+- Checked the hover against the designer's two nodes (`20225:17209` Active, `20225:17210` Normal) and their component set (`20195:16254`). Both variants draw the identical shade, navy from 0% at 63.17% of the card's height to 75% at the bottom, and no prototype interaction changes it. The build matches: the description fades and opens and the arrow fades in, while the shade, the bottom 36.83%, stays put. A taller gradient moving up on hover, as the designer describes, is not in the file.
+
 ## 2026-11-03 — Campus cards rise like the slider cards
 - The two campus cards now come in the way the slider cards do: a 60px rise and fade on the clock, the second 75ms after the first. They were a 15px fade-up following the scroll. Checked after a fast scroll: both land by about 650ms.
 

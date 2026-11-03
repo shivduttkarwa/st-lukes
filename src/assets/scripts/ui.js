@@ -123,6 +123,14 @@ export function initPromos() {
   });
 }
 
+// a learning card's labels slide up by the height of its hidden text when it opens (_learning.less)
+export function initEntryCards() {
+  const sizes = new ResizeObserver((entries) => entries.forEach(({ target, borderBoxSize }) => {
+    target.parentElement.style.setProperty("--entry-more", `${borderBoxSize[0].blockSize}px`);
+  }));
+  document.querySelectorAll("[data-entry-more]").forEach((more) => sizes.observe(more));
+}
+
 export function initHoverVideos() {
   const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");

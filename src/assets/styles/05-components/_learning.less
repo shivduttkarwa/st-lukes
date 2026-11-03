@@ -88,14 +88,10 @@
     min-width: 0;
   }
 
-  // Figma's open card sets its labels 2px higher than a card at rest; both are in Chrome's line boxes, so the nudges keep the boxes
   h3 {
     .type-h3();
-    position: relative;
-    top: 0;
     margin: 0;
     color: var(--color-white);
-    transition: top var(--duration-slow) var(--ease-out);
     @media (min-width: @bp-md) { white-space: pre-line; }
   }
 
@@ -104,24 +100,20 @@
     position: relative;
     top: -0.1em;
     color: var(--color-gold);
-    transition: top var(--duration-slow) var(--ease-out);
   }
 
   &__more {
-    display: grid;
-    grid-template-rows: 0fr;
+    display: none;
     margin-top: -5 * @px;
-    opacity: 0;
-    transition: grid-template-rows var(--duration-slow) var(--ease-out), opacity var(--duration-slow) ease;
   }
 
   &__text {
     .type-body-3-150();
     position: relative;
     top: -0.17em;
+    display: block;
     max-width: 270 * @px;
-    overflow: hidden;
-    // the gap lives inside the clip, so the collapsed row is truly 0 tall
+    // the gap lives inside the text, so its height is the whole distance the labels travel
     &::before {
       content: "";
       display: block;
@@ -154,22 +146,33 @@
   @media (hover: hover) {
     &__arrow { opacity: 0; }
 
+    // back down by the labels' 2px nudge, which Figma doesn't give the text
+    &__more {
+      display: block;
+      translate: 0 (2 * @px);
+      opacity: 0;
+      transition: opacity var(--duration-slow) ease;
+    }
+
+    // the text is laid out but the labels sit pushed down by its height (--entry-more, from initEntryCards()), then slide
+    // up on a held layer: grown in layout they stepped a whole pixel at a time. Figma's open card sets them 2px higher still
+    &__body {
+      translate: 0 var(--entry-more, 0px);
+      transition: translate var(--duration-slow) var(--ease-out);
+      will-change: transform;
+    }
+
     &:hover,
     &:focus-visible {
-      h3 { top: -0.057em; }
-      .entry__meta { top: -0.2em; }
-      .entry__more {
-        grid-template-rows: 1fr;
-        opacity: 1;
-      }
+      .entry__body { translate: 0 (-2 * @px); }
+      .entry__more { opacity: 1; }
       .entry__arrow { opacity: 1; }
     }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .entry h3,
-  .entry__meta,
+  .entry__body,
   .entry__video,
   .entry__more,
   .entry__arrow { transition: none; }
