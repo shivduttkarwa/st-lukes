@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Demo videos
+- Three stand-in classroom clips in `assets/video/` (`demo-teacher`, `demo-arrival`, `demo-writing`), not placed yet. Re-encoded from 4K stock to 1920 × 1080 H.264, CRF 26, no audio, faststart: 66.9 MB down to 11 MB.
+
 ## 2026-11-03 — Hero title entrance
 - Without the preloader, the hero title's rows start with their text just past the screen edge, as the preloader's do. `enter-left` / `enter-right` used to start at ∓110% of the row, and the row spans the whole title, so the text spent about 0.25s (line 1) and 0.35s (line 2) at 1440 gliding out of sight before it appeared. The glide is now 1.2s.
 
