@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-03 — Landing-page stat: "Did you know?" orbits in
+- "Did you know?" travels in from the top of the gold stat circle down the left side to its place, keeping its angle on the arc, as it fades in: a new `orbit` reveal turns the curved-caption SVG about the circle's centre from 12 o'clock, over 1.6s with a soft start and landing. The SVG holds its layer (`will-change: transform`) so the caption doesn't shift as the turn ends. The "99%" still counts up from 0, and the line under it now fades in alongside. Recorded frame by frame: the caption turns 124° to 0° while the number counts 0% to 99%, no script errors.
+## 2026-11-03 — One motion system across the site
+- Every page now animates by the homepage's rules, by what an element is (listed under "Motion conventions" in the handoff doc). Brought into line: the FAQ, staff and "Where to next" titles rise line by line (they only faded up); the feature-row and page-lead paragraphs fade up like other body copy (they were split like titles); the page-link, news, related-story, staff and contact cards rise 35px, 75ms apart, on the clock like the slider cards (they faded); the campus-visit photos rise like the homepage campus cards; the related-stories title-row button fades like News' "View All News". Scrolled all nine pages top to bottom at 1440: every animated element ends fully shown, no split lines are left behind, no script errors.
+
+## 2026-11-03 — Landing-page heroes enter top down
+- The navy band under the landing-page hero now plays like the homepage intro: its button waits for the statement's last line (`data-anim-after-title`) instead of fading up on its own trigger. Scrolling through both, the button starts as the last line settles on each (scrollY 406 against 442 on Our School, 388 against 431 on the homepage).
+- On Our School and Our School Alternative the eyebrow ("Our School") now comes in first, then the title rows, then the header. It came last. The title starts as the eyebrow settles: at 1440 the eyebrow appears at 1.3s and lands at 1.7s, line 1 glides on screen at 1.7s and line 2 at 2.0s. The header comes in earlier, 0.8s after the eyebrow rather than 1.6s, while the second row is still gliding (`data-anim-landed` 0.9 on the landing-page title, was 1.6).
+
 ## 2026-11-03 — Preloader on
 - The homepage preloader now plays on every load (it only ran with `?preloader`), except under reduced motion. The once-per-session flag in `preloader.js` is gone. Checked three loads in a row: each plays and clears itself by about 8s.
 

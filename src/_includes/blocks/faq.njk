@@ -3,7 +3,7 @@
     <div class="faq__head">
       <div class="faq__titles">
         <p class="faq__eyebrow" data-anim="reveal" data-anim-type="fade-up">{{ value.eyebrow }}</p>
-        <h2 data-anim="reveal" data-anim-type="fade-up">{{ value.title }}</h2>
+        <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
       </div>
       {% if value.button %}
       <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>

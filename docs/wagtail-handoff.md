@@ -45,6 +45,24 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Figma sets Dee Why's years line in Semibold 16 / 1.4 and Bayview's in Bold 16 / 1.5. The template uses Dee Why's for both (one field), so Bayview's column sits 2px higher than Figma.
 - Footer links are plain text links in the inherited white. Quick links are 28px rows under a fine pointer and 44px on touch, and the phone numbers carry an invisible 44px hit area.
 
+## Motion conventions
+
+Every page uses the homepage's motion, by what an element is, not where it sits. A new block picks its attributes from this list.
+
+| Element | Motion | Markup |
+|---|---|---|
+| Section title (`h2`), statement | rises line by line with the scroll | `data-anim="split" data-anim-type="lines"` |
+| Eyebrow, lead, body copy, a lone button, a box | fades up 15px | `data-anim="reveal" data-anim-type="fade-up"` |
+| Button under a statement | follows the statement's last line | add `data-anim-after-title` |
+| Buttons, tabs or rows in a set | fade up in turn | `data-anim-group="fade-up"` |
+| Cards (sliders, grids, campus cards) | rise 35px, 75ms apart, on the clock | `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"`, or `data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"` on a single card |
+| Slider arrows, a button in a title row | fade | `data-anim="reveal" data-anim-type="fade"` |
+| Photo or video frame beside copy | glides in from its side, on the clock | `data-anim-type="glide-right"` (frame on the left) or `glide-left` (frame on the right), `data-anim-scroll="timed"` |
+| Logos | fade in turn | `data-anim-group="fade"` |
+| Stat number | counts up from 0 | `data-anim="counter" data-anim-scroll="timed"`, `data-anim-count` on the number |
+| Curved caption on a circle | travels from the top of the circle to its place | `data-anim="reveal" data-anim-type="orbit" data-anim-scroll="timed"` on the `svg` |
+| Hero | the page's own entrance (`data-anim-tier="hero"`), see each hero below | |
+
 ## Blocks
 
 ### hero (`blocks/hero.njk`)
@@ -56,15 +74,16 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ### page_hero (`blocks/page_hero.njk`)
 - The landing-page hero (Our School): the homepage hero's frame, height, shade, header and Display 1 title, through the same `.hero` styles with a `hero--page` modifier. Fields in `blocks.yaml`.
-- The title rows sit inset rather than bleeding: line 1 starts 92 in, line 2 ends 66 in. Both slide in from the canvas edges like the homepage title (`enter-left` / `enter-right`), then the header comes in and the eyebrow fades up.
+- The title rows sit inset rather than bleeding: line 1 starts 92 in, line 2 ends 66 in. The entrance reads top down: the eyebrow fades up first (`data-anim-order="-1"`), the title rows slide in from the canvas edges as it settles (`data-anim-lead="0.2"` on the `h1`), like the homepage title (`enter-left` / `enter-right`), and the header comes in while the second row is still gliding (`data-anim-landed="0.9"` on the `h1`; it was 1.6).
 - The eyebrow (Heading 5) keeps its spaces as typed (`white-space: pre`); Figma has two between "Our" and "School".
 - The image is drawn at Figma's crop (118.33% × 119.47% of the frame at −8.33%, −0.73%), so renditions are that shape: 1900 × 1083 here (`fill-1900x1083`, plus 1280 and 768 for the `srcset`). It has no parallax, because the crop leaves no photo above the frame for it to move into.
 
 ### collage (`blocks/collage.njk`)
 - The navy band under a landing-page hero: statement and button, portrait, video with its play pill, stat circle, quote and Instagram tile. Fields in `blocks.yaml`. Below 992 it stacks; phone layout interpreted.
+- The statement rises line by line with the scroll, and its button follows the last line (`data-anim-after-title`), the same as the homepage intro.
 - The portrait's parallax moves the whole frame ±5% (`.collage__layer`), not the photo inside it, because Figma's crop fills the source's full height and leaves nothing to travel into. Rendition `fill-810x1004`.
 - The video plays as the homepage intro's does (see `intro`), as the designer asked for this collage: muted on a loop behind the play pill once it is on screen.
-- The stat counts up through `data-anim="counter"`. The curved caption is inline SVG text on a circle path.
+- The curved caption ("Did you know?") is inline SVG text on a circle path. On the way in it travels from the top of the circle down the left side to its place, fading in, set on the arc throughout (`data-anim-type="orbit"` on the `svg`: the whole svg turns about the circle's centre from 12 o'clock, worked out from the textPath's `startOffset`, 1.6s in-out). The value counts up from 0 (`data-anim="counter"` on the figure, `data-anim-count` on the value) while its line fades in (`data-anim="reveal" data-anim-type="fade"` on the figcaption).
 - The tile's foot is covered by whatever follows it, as in Figma: 2px by `page_links`, 1px by `feature_rows`. The following block needs `position: relative` to paint over it.
 
 ### page_links (`blocks/page_links.njk`)
@@ -167,7 +186,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### usps (`blocks/usps.njk`, card markup in `snippets/usp-card.njk`)
 - "Why choose St Luke's Grammar": eyebrow, Heading 2 title, up to two buttons (`style` primary or outline, no arrow), prev / next arrows, and the USP cards in a Swiper slider. Behind them a navy-to-royal band, then the `background` image full-bleed with the Figma shade over it. The image starts 146 above the cards, so it holds its place whatever the heading's length.
 - The card's width is rounded to whole device pixels (`round(…, var(--device-px))`, `--device-px` from `initDevicePixel()`). At a half-pixel width Chrome rounds the white card and its photo apart and a 1px white line shows beside the photo, so keep the rounding if the width changes.
-- Slider: `slider.js` (`initSliders()`) turns any `[data-slider]` into a Swiper with `slidesPerView: "auto"`, keyboard and a11y on, and 900ms slides on Swiper's default `ease` with `resistance: false` (0ms under reduced motion). Card sliders (all but `data-slider-mode="fade"`) shrink their slides with the drag speed: scale 0.925 + 0.075 × (1 − clamp((v − 0.01) / 2.99)), v in px per ms, set on each slide's `scale` every frame and eased by `transition: scale 0.4s ease-out` (`06-animation/_animation.less`). A click or release starts as a 2.5 px/ms drag that decays by 0.92 a frame. The scale is cleared when the slide lands, and none of this runs under reduced motion. Each card slide keeps its own GPU layer (`will-change: transform`), or its text jumps up to half a pixel when the scale clears. On the way in, the cards rise 35px and fade in, staggered left to right, on the clock once the slider reaches its start line. A fast scroll still shows the whole rise, where a scrubbed one ran through in a few frames. `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"` on `.swiper-wrapper` marks each slide as a reveal, and the group passes `data-anim-scroll` and `data-anim-stagger` to them. A group's own `data-anim-stagger` is the exact gap between items (here 75ms), with no cap on the row's total, so every slider staggers alike whatever its card count. The arrows are found inside the nearest `[data-slider-scope]`. `data-slider-gap` is the gap in design px, scaled with the fluid root. The track starts on the container edge and stays `overflow: visible`, so cards run off the left of the window as it moves, as the brief asks. The last card stops on the container's right edge.
+- Slider: `slider.js` (`initSliders()`) turns any `[data-slider]` into a Swiper with `slidesPerView: "auto"`, keyboard and a11y on, and 900ms slides on Swiper's default `ease` with `resistance: false` (0ms under reduced motion). Card sliders (those without a `data-slider-mode`) shrink their slides with the drag speed: scale 0.925 + 0.075 × (1 − clamp((v − 0.01) / 2.99)), v in px per ms, set on each slide's `scale` every frame and eased by `transition: scale 0.4s ease-out` (`06-animation/_animation.less`). A click or release starts as a 2.5 px/ms drag that decays by 0.92 a frame. The scale is cleared when the slide lands, and none of this runs under reduced motion. Each card slide keeps its own GPU layer (`will-change: transform`), or its text jumps up to half a pixel when the scale clears. On the way in, the cards rise 35px and fade in, staggered left to right, on the clock once the slider reaches its start line. A fast scroll still shows the whole rise, where a scrubbed one ran through in a few frames. `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"` on `.swiper-wrapper` marks each slide as a reveal, and the group passes `data-anim-scroll` and `data-anim-stagger` to them. A group's own `data-anim-stagger` is the exact gap between items (here 75ms), with no cap on the row's total, so every slider staggers alike whatever its card count. The arrows are found inside the nearest `[data-slider-scope]`. `data-slider-gap` is the gap in design px, scaled with the fluid root. The track starts on the container edge and stays `overflow: visible`, so cards run off the left of the window as it moves, as the brief asks. The last card stops on the container's right edge.
 - Arrows: no slider loops, so Swiper disables the prev arrow on the first slide and next on the last (`disabled` on the button); disabled arrows fade to 40% (`.slider-arrow()`, and the News List hero's own gold arrows) and take no hover.
 - Each card: square image (`fill-800x800`), title, text (a typed line break applies from 768 up), the gold link bar. An optional `video` plays muted on hover, as on the "Who we are" cards. The bodies are at least 176 tall, so the gold bars line up.
 

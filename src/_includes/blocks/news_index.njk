@@ -17,7 +17,7 @@
         <svg class="icon" aria-hidden="true"><use href="#icon-search"></use></svg>
       </div>
     </form>
-    <div class="news-grid" data-anim-group="fade">
+    <div class="news-grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for card in value.stories %}{% include "snippets/news-card.njk" %}{% endfor %}
     </div>
   </div>

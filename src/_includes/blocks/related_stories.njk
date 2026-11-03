@@ -2,9 +2,9 @@
   <div class="container">
     <div class="related-stories__head">
       <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
-      <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+      <div data-anim="reveal" data-anim-type="fade">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
     </div>
-    <div class="news-grid" data-anim-group="fade">
+    <div class="news-grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for card in value.stories %}{% include "snippets/news-card.njk" %}{% endfor %}
     </div>
   </div>

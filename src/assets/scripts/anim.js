@@ -56,6 +56,12 @@ const ink = (el) => {
 const offLeft = (i, el) => -ink(el).right;
 const offRight = (i, el) => document.documentElement.clientWidth - ink(el).left;
 
+// a textPath label on a circle that starts at 3 o'clock and runs clockwise starts out turned to 12 o'clock
+const fromTop = (i, el) => {
+  const path = el.querySelector("textPath");
+  return path ? 270 - parseFloat(path.getAttribute("startOffset")) * 3.6 : 90;
+};
+
 // Every preset fades (autoAlpha) so the CSS FOUC guard works uniformly.
 const REVEAL = {
   "fade-up":    { from: { y: LIFT, autoAlpha: 0 },              to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power1.out", LIFT) }, ease: "none" } } },
@@ -64,6 +70,7 @@ const REVEAL = {
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
   "rise":       { from: { y: 35, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // slider and campus cards: opacity and position only, nothing repaints
   "rise-far":   { from: { y: 60, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // the pillars' left photos, tuned against their parallax
+  "orbit":      { from: { rotation: fromTop, transformOrigin: "50% 50%", autoAlpha: 0 }, to: { rotation: 0, autoAlpha: 1, duration: 1.6, ease: "power2.inOut" } }, // a circle's curved label travels down to its place
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
   // solid from off the canvas, as the preloader title: visibility flips as the tween starts

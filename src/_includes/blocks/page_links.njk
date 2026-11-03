@@ -1,6 +1,6 @@
 <section class="page-links">
   <div class="container">
-    <div class="page-links__grid" data-anim-group="fade-up">
+    <div class="page-links__grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for card in value.cards %}
       <a class="page-links__card" href="{{ card.url | default('#') }}"{% if card.video %} data-hover-video{% endif %}>
         {% set img = card.image %}{% set cls = "page-links__img" %}{% include "snippets/image.njk" %}

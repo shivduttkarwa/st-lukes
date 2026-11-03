@@ -2,7 +2,7 @@
   <div class="collage__text">
     <div class="collage__statement" data-anim="split" data-anim-type="lines">{{ value.statement | safe }}</div>
     {% if value.button %}
-    <div data-anim="reveal" data-anim-type="fade-up">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+    <div data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
     {% endif %}
   </div>
 
@@ -19,13 +19,13 @@
   </div>
 
   <figure class="collage__stat" data-anim="counter" data-anim-scroll="timed">
-    <svg class="collage__path" viewBox="0 0 338 338" aria-hidden="true" focusable="false">
+    <svg class="collage__path" viewBox="0 0 338 338" aria-hidden="true" focusable="false" data-anim="reveal" data-anim-type="orbit" data-anim-scroll="timed">
       <path id="collage-stat-path" d="M 338 169 A 169 169 0 1 1 0 169 A 169 169 0 1 1 338 169" fill="none"></path>
       <text font-size="30" dy="11"><textPath href="#collage-stat-path" startOffset="40.53%" text-anchor="middle">{{ value.stat.caption }}</textPath></text>
     </svg>
     <div class="collage__circle">
       <p class="collage__value" data-anim-count>{{ value.stat.value }}</p>
-      <figcaption class="collage__label"><span class="visually-hidden">{{ value.stat.caption }} </span>{{ value.stat.label }}</figcaption>
+      <figcaption class="collage__label" data-anim="reveal" data-anim-type="fade" data-anim-scroll="timed"><span class="visually-hidden">{{ value.stat.caption }} </span>{{ value.stat.label }}</figcaption>
     </div>
   </figure>
 

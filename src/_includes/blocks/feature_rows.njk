@@ -6,7 +6,7 @@
     </div>
     <div class="features__body">
       <h2 data-anim="split" data-anim-type="lines">{{ row.title }}</h2>
-      <p data-anim="split" data-anim-type="lines">{{ row.text }}</p>
+      <p data-anim="reveal" data-anim-type="fade-up">{{ row.text }}</p>
       {% if row.button %}
       <div data-anim="reveal" data-anim-type="fade-up">{% set btn = row.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
       {% endif %}

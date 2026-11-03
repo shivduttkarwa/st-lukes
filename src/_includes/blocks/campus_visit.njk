@@ -7,7 +7,7 @@
     <div class="campus-visit__grid">
       {% for campus in value.campuses %}
       <article class="campus-visit__campus">
-        <div class="campus-visit__media" data-anim="reveal" data-anim-type="fade-up">
+        <div class="campus-visit__media" data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed">
           {% set img = campus.image %}{% set cls = "campus-visit__img" %}{% include "snippets/image.njk" %}
           <div class="campus-visit__title">
             <h3>{{ campus.name }}</h3>
