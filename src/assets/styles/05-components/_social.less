@@ -49,6 +49,7 @@
   }
 
   &__tile {
+    position: relative;
     display: block;
     width: @social-tile-sm;
     height: auto;
@@ -58,6 +59,15 @@
   }
 
   &__img { .img-cover(); }
+
+  &__video {
+    .cover();
+    object-fit: cover;
+    opacity: 0;
+    transition: opacity var(--duration-base) ease;
+  }
+
+  &__tile.is-playing &__video { opacity: 1; }
 
   &__band {
     display: flex;

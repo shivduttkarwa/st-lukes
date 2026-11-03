@@ -259,10 +259,10 @@
         "title_line_2": "and stories",
         "button": { "text": "View All News", "url": "#", "style": "outline-navy" },
         "stories": [
-          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } },
-          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } },
-          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } },
-          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 } }
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 }, "video": null },
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 }, "video": null },
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 }, "video": null },
+          { "tags": ["GlobalCitizen", "GlobalCitizen", "GlobalCitizen"], "title": "Be The Change: Ninth Graders Become Social Entrepreneurs", "excerpt": "All Grade 9 students take the  “Be The Change” social entrepreneurship course, which aims to inspire students to become active, compassionate leaders in a global community.", "url": "#", "image": { "src": "/assets/images/home/news-1.webp", "alt": "Three junior students building a robot together", "width": 1234, "height": 1026 }, "video": null }
         ]
       }
     },
@@ -273,14 +273,14 @@
         "title_line_2": "Conversation",
         "follow_text": "Follow life at St Luke’s on social media",
         "posts": [
-          { "url": "#", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 } },
-          { "url": "#", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 } }
+          { "url": "#", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null },
+          { "url": "#", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null }
         ]
       }
     },

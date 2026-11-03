@@ -10,7 +10,7 @@
     <div class="social__slider swiper" data-slider data-slider-gap="6">
       <div class="swiper-wrapper" data-anim-group="fade">
         {% for post in value.posts %}
-        <a class="social__tile swiper-slide" href="{{ post.url | default('#') }}">{% set img = post.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}</a>
+        <a class="social__tile swiper-slide" href="{{ post.url | default('#') }}"{% if post.video %} data-hover-video{% endif %}>{% set img = post.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}{% if post.video %}<video class="social__video" data-src="{{ post.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}</a>
         {% endfor %}
       </div>
     </div>

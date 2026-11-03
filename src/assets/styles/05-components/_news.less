@@ -128,5 +128,16 @@
     @media (min-width: @bp-lg) { aspect-ratio: auto; }
   }
 
-  &__img { .cover(); object-fit: cover; }
+  &__img,
+  &__video {
+    .cover();
+    object-fit: cover;
+  }
+
+  &__video {
+    opacity: 0;
+    transition: opacity var(--duration-base) ease;
+  }
+
+  &.is-playing &__video { opacity: 1; }
 }

@@ -8,7 +8,7 @@
       <div class="news__slider swiper" data-slider data-slider-mode="fade" data-slider-autoplay="4000">
         <div class="swiper-wrapper">
           {% for story in value.stories %}
-          <article class="story swiper-slide">
+          <article class="story swiper-slide"{% if story.video %} data-hover-video{% endif %}>
             <div class="story__panel">
               <div class="story__copy">
                 {% if story.tags %}
@@ -23,6 +23,7 @@
             </div>
             <div class="story__media">
               {% set img = story.image %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}
+              {% if story.video %}<video class="story__video" data-src="{{ story.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
             </div>
           </article>
           {% endfor %}

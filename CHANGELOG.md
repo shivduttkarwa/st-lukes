@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Hover video on every homepage image card
+- The designer asked for an optional hover video on all image cards on the homepage. Pillars, USPs, campuses, learning and testimonials had it; the news stories and the Instagram tiles now do too (`story.video`, `post.video`, the same `data-hover-video` as the others, fading in over the image). Every story and post in the data carries `"video": null`; `blocks.yaml` maps the story's to a NewsPage listing video and the post's to Instagram's `media_url` for video posts.
+
 ## 2026-11-03 — Promo videos play on arrival
 - The homepage intro promo and the Our School collage video start playing muted on a loop once 30% of them is on screen, and pause when they leave (`data-ambient="view"`, handled by `initAmbientVideos()`). Nothing loads before that. The play pill still plays the file from the start with controls, and the loop picks up again when it ends. Under reduced motion the poster stays.
 - The collage's load-time preview (the `ambient` include flag) is gone; every promo with a video now behaves this way.

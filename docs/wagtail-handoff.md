@@ -197,6 +197,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### news (`blocks/news.njk`)
 - "Latest news and stories": the title on one line (the second half a navy outline) and a "View All News" button (`outline-navy`: gold outline, navy label), then a crossfading feature. Each story is one slide: a royal panel (tags, title, excerpt, "Read Full Story") beside its photo, stacked photo-first below 992. The dots are the slider's pagination, bottom right of the panel.
 - Stories should be the newest news pages, not editor-entered (see `blocks.yaml`). Figma shows one story with four dots, so the static build repeats it four times.
+- A story with a listing video plays it muted over the photo while the slide is hovered (`data-hover-video`, `initHoverVideos()`), as the designer asked for every image card on the homepage. Hover also holds the rotation, so the video isn't cut off by the next story.
 - Rotation per the brief: `data-slider-mode="fade" data-slider-autoplay="4000"`. The next story crossfades in (0.9s) 4s after the last one settles. It waits while the feature is off screen, hovered or holding keyboard focus, and doesn't run under reduced motion. The timer is our own in `slider.js`: Swiper's autoplay got stuck when paused from outside mid-fade. The fade needs `swiper/modules/effect-fade.css`, which `main.less` now imports.
 - New button styles: `outline-navy`, and `.btn-small` (Myriad Semibold 16, 41 tall under a fine pointer, 44 on touch). Myriad Pro Semibold is now loaded (`myriad-pro-semibold.woff2`, subset like the other weights).
 
@@ -204,6 +205,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - "Join the conversation": title (second half a navy outline), navy prev / next arrows, a slider of Instagram tiles (352 × 469, the same `slider.js` behaviour as the USPs), and a gold band with the follow line and the site's social buttons (`site.socials`, the same `.social-button()` as the menu).
 - The tiles should come from the school's Instagram feed (latest posts, each linking to its post). The static build uses Figma's eight post screenshots, which carry their captions in the image; a live feed would show the post image and caption separately.
 - The band runs 38 past the container on the right from 1400 up, as in Figma.
+- A video post (Instagram `media_type` VIDEO) plays its `media_url` muted over the thumbnail on hover, like the other homepage cards.
 
 ### cta (`blocks/cta.njk`)
 - The "Start your St Luke's journey" banner (Figma's CTA Banner component, so likely reused on other pages): two centred Poppins 90 title lines (the second a hollow 2px white outline, `.outline-text-clear()`, because it sits on moving video), and up to two buttons (Book a Tour gold, Apply to Enrol glass).
