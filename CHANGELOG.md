@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Slider cards rise 35px
+- The slider cards (USPs, Learning, Hear from our community, Join the Conversation, sports tabs) and the campus cards now rise 35px as they fade in, was 60px. Same 0.7s, curve and 75ms stagger. The pillars' left photos keep their 60px, which is tuned against the column parallax, under a new `rise-far` preset.
+
 ## 2026-11-03 — Latest News changes story text-first, photo like the menu
 - The feature no longer crossfades whole slides (mid-fade both stories were half transparent and the panel washed pale with the white behind). The slides now sit on top of each other (`data-slider-mode="stack"`): the old story's text fades up and away, then the new photo fades in from 110% over the old one, as the menu thumbnail swaps, while the new text fades up line by line. The photo starts at once on a soft 1.2s in-out curve and finishes just as the text lands: panels and photos are layered separately, so the old panel can stay on top while its text goes without holding back the new photo. Waiting for the text left the photo half in at the end on that curve, and a quick 0.7s fade to catch up read as snappy. That layering needs the slides not to be stacking contexts, so the stacked slider turns off Swiper's `swiper-backface-hidden` (`translateZ(0)` on each slide) and the card sliders' held layer now applies only to sliders without a mode; with either on, a forward change hid the old text at once and a backward one popped the new photo and text in at the end. A book page-turn was tried first and dropped for this.
 - A new story every 4s, back to the first after the last. Dragging changes story (a tenth of the width), with no loop, so the first and last stories don't drag past themselves.

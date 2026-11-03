@@ -6,7 +6,7 @@
     </div>
     <div class="pillars__grid">
       <div class="pillars__col">
-        {% for card in value.cards %}{% if loop.index0 % 2 == 0 %}{% set n = loop.index %}{% set reveal = "rise" %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}
+        {% for card in value.cards %}{% if loop.index0 % 2 == 0 %}{% set n = loop.index %}{% set reveal = "rise-far" %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}
       </div>
       <div class="pillars__col" data-anim="parallax" data-anim-parallax-trigger data-anim-centered data-anim-reverse data-anim-speed="11" data-anim-snap data-anim-disable-mobile>
         {% for card in value.cards %}{% if loop.index0 % 2 == 1 %}{% set n = loop.index %}{% set reveal = "fade" %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}

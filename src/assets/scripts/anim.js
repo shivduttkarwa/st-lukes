@@ -62,7 +62,8 @@ const REVEAL = {
   "fade":       { from: { autoAlpha: 0 },                       to: { autoAlpha: 1 } },
   "fade-soft":  { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.5, ease: "power1.out" } }, // header items
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
-  "rise":       { from: { y: 60, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // photos: opacity and position only, nothing repaints
+  "rise":       { from: { y: 35, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // slider and campus cards: opacity and position only, nothing repaints
+  "rise-far":   { from: { y: 60, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // the pillars' left photos, tuned against their parallax
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
   // solid from off the canvas, as the preloader title: visibility flips as the tween starts
