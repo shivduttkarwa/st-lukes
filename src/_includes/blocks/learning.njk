@@ -8,7 +8,7 @@
       </div>
     </div>
     <div class="learning__slider swiper" data-slider data-slider-gap="6">
-      <div class="swiper-wrapper" data-anim-group="rise">
+      <div class="swiper-wrapper" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
         {% for card in value.cards %}
         {% set icon = "arrow-corner" %}{% include "snippets/entry-card.njk" %}
         {% endfor %}

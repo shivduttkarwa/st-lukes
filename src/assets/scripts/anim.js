@@ -331,8 +331,10 @@ function hurryOnScroll(tl) {
   hurry();
 }
 
-// data-anim-group -> tag direct children as staggered reveals (auto ordering)
+// data-anim-group -> tag direct children as staggered reveals (auto ordering); its data-anim-scroll and
+// data-anim-stagger pass to them
 const groupItems = new WeakMap(); // a group's item -> all of that group's items
+const PASSED = ["data-anim-scroll", "data-anim-stagger"];
 
 function expandGroups(root) {
   scoped(root, "[data-anim-group]").forEach((group) => {
@@ -345,6 +347,9 @@ function expandGroups(root) {
       if (child.hasAttribute("data-anim") || child.hasAttribute("data-anim-item")) return; // an item belongs to its sequence
       child.setAttribute("data-anim", "reveal");
       child.setAttribute("data-anim-type", type);
+      PASSED.forEach((name) => {
+        if (group.hasAttribute(name)) child.setAttribute(name, group.getAttribute(name));
+      });
       groupItems.set(child, items);
       if (!child.hasAttribute("data-anim-order")) {
         child.setAttribute("data-anim-order", String(i));
@@ -370,13 +375,15 @@ const revealStep = (el) => ({
 });
 
 // A group's auto order is only a stagger index, so it restarts on each row; a hand-written one stays absolute.
+// A row's spread is capped, unless its group sets data-anim-stagger, which is then the exact gap whatever the row's length.
 function staggerHold(el) {
-  if (!el.hasAttribute(AUTO_ORDER)) return orderOf(el) * DEFAULTS.stagger;
+  const own = number(el, variant(el, "data-anim-stagger"), null);
+  if (!el.hasAttribute(AUTO_ORDER)) return orderOf(el) * (own ?? DEFAULTS.stagger);
   const row = (groupItems.get(el) || Array.from(el.parentElement.children)).filter(
     (item) => item.hasAttribute(AUTO_ORDER) && Math.abs(item.offsetTop - el.offsetTop) < 2
   );
   const last = row.length - 1;
-  return last ? row.indexOf(el) * Math.min(DEFAULTS.stagger, DEFAULTS.spread / last) : 0;
+  return last ? row.indexOf(el) * (own ?? Math.min(DEFAULTS.stagger, DEFAULTS.spread / last)) : 0;
 }
 
 function setupReveals(root, entrance, scroll) {

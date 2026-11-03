@@ -7,7 +7,7 @@
       {% endfor %}
     </div>
     <div class="swiper sports__slider" data-slider data-slider-gap="6">
-      <div class="swiper-wrapper" data-anim-group="rise">
+      <div class="swiper-wrapper" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
         {% for card in value.cards %}
         <a class="swiper-slide sports__card" href="{{ card.url | default('#') }}" data-filter-groups="{{ card.groups }}">
           {% set img = card.image %}{% set cls = "sports__img" %}{% include "snippets/image.njk" %}
