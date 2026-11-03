@@ -172,6 +172,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 
 ### campuses (`blocks/campuses.njk`)
 - "Two campuses / one school": two title lines (the second drawn as a gold outline), up to two outline buttons, a rich-text lead, and two campus cards side by side from 992 (stacked below).
+- The cards come in like the slider cards: a 60px rise and fade, on the clock, 75ms apart (`data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"` on `.campuses__grid`).
 - Each card is one link: image (`fill-1234x820`, decorative), shade, name, detail, and a gold arrow. From the prototype's hover state (`Bayview / Dee Why Campus Animation`): on hover the video plays over the image and the arrow fades in. On touch the arrow is always shown, and the video never plays.
 - The outline title uses `-webkit-text-stroke` with a navy fill painted over it (`paint-order: stroke fill`), which leaves Figma's 1px outside stroke. It assumes the navy background.
 

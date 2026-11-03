@@ -9,7 +9,7 @@
       </div>
       <div class="campuses__lead" data-anim="reveal" data-anim-type="fade-up">{{ value.lead | safe }}</div>
     </div>
-    <div class="campuses__grid" data-anim-group="fade-up">
+    <div class="campuses__grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for campus in value.campuses %}
       <a class="campus" href="{{ campus.url | default('#') }}"{% if campus.video %} data-hover-video{% endif %}>
         {% set img = campus.image %}{% set cls = "campus__img" %}{% include "snippets/image.njk" %}

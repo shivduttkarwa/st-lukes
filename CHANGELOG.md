@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Campus cards rise like the slider cards
+- The two campus cards now come in the way the slider cards do: a 60px rise and fade on the clock, the second 75ms after the first. They were a 15px fade-up following the scroll. Checked after a fast scroll: both land by about 650ms.
+
 ## 2026-11-03 — Slider cards rise on the clock
 - The slider cards' rise now plays on the clock once the slider reaches its start line (`data-anim-scroll="timed"` on the group), instead of following the scroll. On a fast scroll a scrubbed rise ran through in a few frames and wasn't seen. After one fast jump the cards now rise and fade in over about 0.85s. `data-anim-group` passes its `data-anim-scroll` to its items.
 - Every card slider now staggers its cards exactly 75ms apart, 25% under the default 100ms (`data-anim-stagger="0.075"` on the group, which passes to the items). A group that sets its own stagger skips the row's 0.6s spread cap. With the cap, the gap depended on how many cards a slider had, mostly off screen: the 9 USP cards were 75ms apart and the 6 Learning cards 100ms, which read as different. Measured on all five sliders, the fourth card starts about 215ms after the first (225ms expected).
