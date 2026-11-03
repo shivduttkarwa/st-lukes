@@ -336,7 +336,7 @@ blocks:
       items: ListBlock(StructBlock, min_num=1)   # two per row from 1200 up
         value: CharBlock(required)   # as shown, e.g. "1200+", "99%", ">35"; its first number counts up from 0
         label: CharBlock(required)
-        ring: IntegerBlock(min_value=0, max_value=100, default=100)   # how much of the circle the white arc draws, in %; Figma draws 3
+        ring: IntegerBlock(min_value=0, max_value=100, default=100)   # how much of the circle the white arc draws, in %: the stat's own number, 100 for a count with no total
       button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
 
   usps:

@@ -58,6 +58,8 @@
     transform: rotate(-90deg);
     transform-box: view-box;
     transform-origin: 50% 50%;
+    // a full dash meets itself at 12 o'clock and GPU raster leaves a seam there
+    &[stroke-dasharray="100 100"] { stroke-dasharray: none; }
   }
 
   &__value {

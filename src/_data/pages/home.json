@@ -102,10 +102,10 @@
       "type": "stats",
       "value": {
         "items": [
-          { "value": "1200+", "label": "Students across Bayview and Dee Why campuses", "ring": 3 },
-          { "value": "99%", "label": "of Families are Northern Beaches residents", "ring": 3 },
-          { "value": "90%+", "label": "ATAR score of 50% or more of St Luke’s graduating students", "ring": 3 },
-          { "value": ">35", "label": "Among the Top 35 NSW Schools Ranking in HSC results", "ring": 3 }
+          { "value": "1200+", "label": "Students across Bayview and Dee Why campuses", "ring": 100 },
+          { "value": "99%", "label": "of Families are Northern Beaches residents", "ring": 99 },
+          { "value": "90%+", "label": "ATAR score of 50% or more of St Luke’s graduating students", "ring": 90 },
+          { "value": ">35", "label": "Among the Top 35 NSW Schools Ranking in HSC results", "ring": 35 }
         ],
         "button": { "text": "View our HSC and NAPLAN Results", "url": "#", "style": "outline" }
       }
