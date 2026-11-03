@@ -17,8 +17,12 @@ html.anim-ready:not(.anim-reduced) [data-anim="progress"] { --anim-progress: 0; 
 
 [data-anim="reveal"][data-anim-type="nudge-right"] { will-change: transform, opacity; }
 
-// card sliders: initSliders() sets each slide's scale from the drag speed every frame, and this eases it
-[data-slider]:not([data-slider-mode="fade"]) .swiper-slide { transition: scale 0.4s ease-out; }
+// card sliders: initSliders() sets each slide's scale from the drag speed every frame, and this eases it.
+// The layer is held so a slide draws the same way scaled and at rest; dropped at rest, its text jumped up to 0.5px on landing
+[data-slider]:not([data-slider-mode="fade"]) .swiper-slide {
+  transition: scale 0.4s ease-out;
+  will-change: transform;
+}
 
 html.lenis,
 html.lenis body { height: auto; }

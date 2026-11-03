@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Slider card text holds still on landing
+- After a drag, a card's text no longer jumps as the card settles back to full size. While scaled, Chrome drew a card at its exact fractional position, and the moment the scale cleared it rounded it back to whole pixels: at 1920 × 945 a USP title jumped 0.50px sideways, another 0.16px. Each card slide now keeps its own GPU layer (`will-change: transform`), so it draws the same way scaled and at rest: 0.00px on the USP and Learning sliders. The resting text weight is unchanged (98.7–100.1% of the ink), and the drag shrink behaves as before.
+
 ## 2026-11-03 — Slider cards rise in, staggered
 - The USP, Learning, testimonial, Instagram and sports slider cards rise 60px and fade in with the scroll, left to right, instead of only fading (`data-anim-group="rise"` on each slider's wrapper, the pillar photos' preset, replacing the plain `fade` of 2026-10-30). The text's 15px `fade-up` was tried first and read as a fade in place, because on a card this size 15px barely shows and its lift lands in the first half of the fade. The drag shrink is unaffected: it sets the separate `scale` property, and the slides land back on no scale.
 
