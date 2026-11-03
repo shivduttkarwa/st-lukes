@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Right pillar photos fade instead of rising
+- The right column's photos (cards 2 and 4) only fade in now. The column's ±11% parallax already carries them up, and with the 60px rise on top they came in about 26% faster than the scroll, twice as fast as the left photos, and read as a jump. Now the left photos enter 11% faster than the scroll and the right ones 15%. The column template passes the type to the card include (`reveal`), as it does the card number.
+
 ## 2026-11-03 — No white edge beside the USP photos
 - A USP card's width now rounds to whole device pixels. At the user's 1920 × 945 the cards were exactly 443.5px wide, and at that half pixel Chrome rounded the card's white background to 444 columns and its photo to 443, so a 1px white line ran down one side of the photo. It vanished while dragging, because a scaled card isn't pixel-rounded, and came back when the card landed. It's the only card slider with a white card behind its photo, so only it showed. At 1440 the width was already whole (400), so the design size is unchanged.
 
