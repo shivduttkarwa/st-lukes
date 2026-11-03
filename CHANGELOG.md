@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-03 — Outline button ring, evened out
+- The round ends of the outline buttons no longer read heavier than the straight edges. The 1.5 device pixel copy gave the ends 1.3× the straight edges' light (measured in linear light at 80%, 100% and 125%); a one device pixel copy over the curves gives 1.01–1.02×, and without it they give 0.66×, which is why they looked dim.
+- At browser zoom below 100% on a 1x screen the straight edges disappeared: `--device-px` is above 1px there, so `round(down, 1px, …)` gave a 0 border. The ring is now at least one device pixel (`max()`).
+
 ## 2026-11-03 — Pillar videos autoplay
 - A "Who we are" card's video now plays muted on a loop once it's on screen, as Figma draws the Student Wellbeing card, instead of on hover (`data-ambient="view"`; it fades in over the still once it starts). It also fills the frame: the video had no size or `object-fit`, so it kept its own 16:9 shape across the card's top. The other homepage cards keep their hover videos.
 - Glide reveals now slide every image and video in the frame, not just the first, so a playing video moves with its still.
