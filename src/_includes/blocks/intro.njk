@@ -10,7 +10,7 @@
     {% set promo = value.promo %}{% include "snippets/promo.njk" %}
   </div>
 
-  <div class="intro__feature">
+  <div class="intro__feature" data-anim="parallax" data-anim-parallax-trigger data-anim-centered data-anim-reverse data-anim-speed="20" data-anim-snap data-anim-disable-mobile>
     <div class="intro__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
       {% set img = value.image %}{% set cls = "intro__photo" %}{% include "snippets/image.njk" %}
     </div>

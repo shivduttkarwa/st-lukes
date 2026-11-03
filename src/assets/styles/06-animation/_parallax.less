@@ -3,15 +3,32 @@
   to { transform: translate3d(0, var(--parallax-to, 0%), 0); }
 }
 
+@property --parallax-y {
+  syntax: "<length-percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+@keyframes parallax-snap {
+  from { --parallax-y: var(--parallax-from, 0%); }
+  to { --parallax-y: var(--parallax-to, 0%); }
+}
+
 @supports (animation-timeline: view()) {
   @media (prefers-reduced-motion: no-preference) {
     [data-anim-parallax-trigger] { view-timeline: --parallax block; }
 
     [data-anim="parallax"] {
-      animation: parallax-y linear both;
+      animation: var(--parallax-keyframes, parallax-y) linear both;
       animation-timeline: --parallax;
       animation-range: cover;
       &[data-anim-start="top top"] { animation-range: exit; }
+    }
+
+    // a block with text or hairlines moves in whole device pixels: at a fractional offset its layer is resampled and 1px lines blur
+    [data-anim="parallax"][data-anim-snap] {
+      --parallax-keyframes: parallax-snap;
+      transform: ~"translate3d(0, round(var(--parallax-y), var(--device-px, 1px)), 0)";
+      will-change: transform;
     }
 
     // at the very top a pinned layer has not moved yet; leaving it unanimated keeps it off the GPU, so text over it stays crisp
@@ -20,7 +37,7 @@
     [data-anim="parallax"][data-anim-disable-mobile] {
       animation: none;
       @media (min-width: @bp-lg) {
-        animation: parallax-y linear both;
+        animation: var(--parallax-keyframes, parallax-y) linear both;
         animation-timeline: --parallax;
         animation-range: cover;
       }

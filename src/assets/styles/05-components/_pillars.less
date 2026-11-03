@@ -57,6 +57,8 @@
   }
 
   &__col + &__col {
+    --parallax-from: 11%;
+    --parallax-to: -11%;
     @media (min-width: @bp-md) {
       align-items: flex-end;
       padding-top: 104 * @px;
@@ -94,13 +96,9 @@
   &__card--3 &__media { aspect-ratio: 409 / 514; }
   &__card--4 &__media { aspect-ratio: 617 / 407; }
 
-  // the frame drifts rather than the photo inside it, so Figma's crop holds; 3% stays inside the gap to the title
   &__layer {
-    --parallax-from: -3%;
-    --parallax-to: 3%;
     position: absolute;
     inset: 0;
-    will-change: transform;
   }
 
   &__frame {
