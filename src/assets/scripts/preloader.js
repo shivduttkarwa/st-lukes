@@ -5,7 +5,6 @@ import { lockScroll } from "./ui.js";
 const ROWS = [-0.48, 0.837];
 const ENTER = { duration: 2.4, ease: "power2.out", stagger: 0.3 };
 const RINGS_LEAD = 0.7;
-const PLAYED = "preloader-played";
 
 const briefly = (promise, ms) => Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
 const after = (seconds) => new Promise((resolve) => gsap.delayedCall(seconds, resolve));
@@ -80,9 +79,6 @@ export function initPreloader() {
     return null;
   }
   root.setAttribute("data-preloader-live", "");
-  try {
-    sessionStorage.setItem(PLAYED, "1");
-  } catch {}
   // the preloader moves the title itself, so Anim must leave it alone
   title.removeAttribute("data-anim");
   const media = briefly(mediaReady(hero), 4000);

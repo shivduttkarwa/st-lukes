@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Preloader on
+- The homepage preloader now plays on every load (it only ran with `?preloader`), except under reduced motion. The once-per-session flag in `preloader.js` is gone. Checked three loads in a row: each plays and clears itself by about 8s.
+
 ## 2026-11-03 — Quick Links label centred at every size
 - The Quick Links label is now trimmed to its capitals (`text-box: trim-both cap alphabetic` on the span and its filtered copy), so the pill centres the letters themselves. Its old fixed nudge (`top: -0.1em`) only held at 1440: measured over a flat background, the label sat 1.4px high at 1536 × 711 at 125% and 1.9px high at 1920 × 945, because the glyphs move inside their line box as the type scales. Now it is within 0.2px of centre at all three (1440 exactly), 0.5px lower than Figma's at 1440. The filtered Windows copy lands within 0.02px of the plain text. A photo behind the translucent pill throws off ink measurements (clouds under the pill), so measure over a flat background.
 ## 2026-11-03 — Testimonials play in place
