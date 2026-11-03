@@ -29,7 +29,7 @@
         "video": {
           "title": "Faith lived through action",
           "image": { "src": "/assets/images/our-school/video-still.webp", "alt": "", "width": 1093, "height": 684 },
-          "video": null
+          "video": { "src": "/assets/video/our-school-promo.mp4" }
         },
         "stat": { "value": "99%", "label": "of our families are\nNorthern Beaches Locals", "caption": "Did you know?" },
         "quote": { "text": "Faith grows through everyday moments of kindness.", "name": "Student Name", "role": "Year 10" },

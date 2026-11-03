@@ -83,7 +83,7 @@
             "title": "Student Wellbeing",
             "text": "A supportive environment where students feel known, connected and confident to flourish in every part of school life.",
             "image": { "src": "/assets/images/home/pillars-wellbeing.webp", "alt": "A Wellbeing Week banner on the school campus", "width": 818, "height": 1028 },
-            "video": null,
+            "video": { "src": "/assets/video/pillar-wellbeing.mp4" },
             "logo": null,
             "button": { "text": "View our Wellbeing program", "url": "#", "style": "outline" }
           },
@@ -133,7 +133,7 @@
           { "title": "Authentic Christian faith", "text": "We live out an authentic Christian faith that is welcoming and inclusive, not exclusive.", "image": { "src": "/assets/images/home/usp-5.webp", "alt": "Students and young children smiling together on a grassy hill", "width": 800, "height": 800 }, "video": null, "link": { "text": "How we live out our Faith", "url": "#" } },
           { "title": "Personal attention, Huge co-curricular range", "text": "Small-school individualised learning combined with large-school co-curricular opportunities.", "image": { "src": "/assets/images/home/usp-6.webp", "alt": "A smiling student playing the cello in a school orchestra", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore Co-Curricular Opportunities", "url": "#" } },
           { "title": "~99% of Families are local Northern Beaches residents", "text": "We’ve got everything you would travel to the North Shore for without the commute.", "image": { "src": "/assets/images/home/usp-7.webp", "alt": "Students boarding a St Luke’s school bus", "width": 800, "height": 800 }, "video": null, "link": { "text": "View Transport and Bus Routes", "url": "#" } },
-          { "title": "Exceptional sport and Athlete programs", "text": "Students can participate in State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": null, "link": { "text": "See our Sporting Programs", "url": "#" } },
+          { "title": "Exceptional sport and Athlete programs", "text": "Students can participate in State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": { "src": "/assets/video/usp-sport.mp4" }, "link": { "text": "See our Sporting Programs", "url": "#" } },
           { "title": "A growing modern campus", "text": "We’re building a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031) as part of our Masterplan.", "image": { "src": "/assets/images/home/usp-9.webp", "alt": "Students gathered on the lawn in front of the campus buildings", "width": 381, "height": 381 }, "video": null, "link": { "text": "Browse the College Masterplan", "url": "#" } }
         ]
       }
@@ -154,7 +154,7 @@
             "detail": "Pre-K to Year 6  |  210 Headland Road, Dee Why",
             "url": "#",
             "image": { "src": "/assets/images/home/campus-bayview.webp", "alt": "", "width": 1234, "height": 820 },
-            "video": null
+            "video": { "src": "/assets/video/campus-bayview.mp4" }
           },
           {
             "name": "Dee Why",
@@ -174,7 +174,7 @@
         "cards": [
           { "title": "Cottage", "meta": "Pre-K (Ages 3-5)", "text": "Discover our early learning program, daily experiences and nurturing environment at Bayview.", "url": "#", "image": { "src": "/assets/images/home/learn-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
           { "title": "Junior School", "meta": "Kindy - Year 6", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Senior School", "meta": "Years 7-12", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-3.webp", "alt": "", "width": 700, "height": 1080 }, "video": null },
+          { "title": "Senior School", "meta": "Years 7-12", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-3.webp", "alt": "", "width": 700, "height": 1080 }, "video": { "src": "/assets/video/learning-senior-school.mp4" } },
           { "title": "HSC and\nNAPLAN Results", "meta": "Pre-K to 12", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
           { "title": "School Services and Support", "meta": "Pre-K (Ages 3-5)", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-5.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
           { "title": "Our Facilities", "meta": "Pre-K (Ages 3-5)", "text": "", "url": "#", "image": { "src": "/assets/images/home/learn-6.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
@@ -294,7 +294,7 @@
           { "text": "Apply to Enrol", "url": "#", "style": "glass" }
         ],
         "image": { "src": "/assets/images/home/cta-poster.webp", "alt": "", "width": 1440, "height": 826 },
-        "video": null
+        "video": { "src": "/assets/video/cta.mp4" }
       }
     }
   ]

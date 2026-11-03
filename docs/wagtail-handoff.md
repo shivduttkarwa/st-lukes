@@ -63,6 +63,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 ### collage (`blocks/collage.njk`)
 - The navy band under a landing-page hero: statement and button, portrait, video with its play pill, stat circle, quote and Instagram tile. Fields in `blocks.yaml`. Below 992 it stacks; phone layout interpreted.
 - The portrait's parallax moves the whole frame ±5% (`.collage__layer`), not the photo inside it, because Figma's crop fills the source's full height and leaves nothing to travel into. Rendition `fill-810x1004`.
+- The video autoplays muted on a loop behind the play pill, as the designer asked for this collage (`{% include "snippets/promo.html" with promo=value.video ambient=True %}`); under reduced motion it holds its first frame. The pill plays the same file from the start with native controls, and the preview resumes when it ends.
 - The stat counts up through `data-anim="counter"`. The curved caption is inline SVG text on a circle path.
 - The tile's foot is covered by whatever follows it, as in Figma: 2px by `page_links`, 1px by `feature_rows`. The following block needs `position: relative` to paint over it.
 
@@ -224,8 +225,8 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - Our School and Our School Alternative: a clean poster for the video. Figma's still is a screen grab with a player bar and a pointer burned in (`video-still.webp`), which both pages show because it matches the design.
 - Our School Alternative rows 2, 3, 5 and 8: larger photos. Figma only holds 700 × 425 versions, shown about 20% enlarged at 1440.
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 15.7 MB). Swap in the full film if the client has one with sound.
-- Homepage CTA banner: its background video (a video fill in Figma; only a 720 × 720 preview still could be exported, which is now the poster).
+- CTA banner video: Figma's file is 720 × 720 (`assets/video/cta.mp4`), stretched to fill 1440 × 826, so it plays soft. Ask for a full-size version. It runs on the seven pages where Figma has it (not the two Our School pages, which use a photo).
 - Homepage pathways: the website address for each of the 16 logos (all `#` for now).
-- Homepage learning: short descriptions for Junior School, Senior School, HSC and NAPLAN Results, School Services and Support, and Our Facilities (Figma only has Cottage's). The Senior School card is a video fill in Figma (its still is used; no file yet). The last two cards' meta lines repeat "Pre-K (Ages 3-5)" in Figma, which looks like a placeholder.
-- Homepage campuses: the Bayview hover video (a video fill in Figma, no file yet). Dee Why's hover video is the promo clip (`intro-promo.mp4`), the same Figma video. The Bayview detail line reads "210 Headland Road, Dee Why" in Figma: check the address with the client.
-- Homepage "Who we are": the Student wellbeing hover video. In Figma that card is a video fill; no file yet, so the card shows its poster only.
+- Homepage learning: short descriptions for Junior School, Senior School, HSC and NAPLAN Results, School Services and Support, and Our Facilities (Figma only has Cottage's). The last two cards' meta lines repeat "Pre-K (Ages 3-5)" in Figma, which looks like a placeholder.
+- Homepage campuses: the Bayview detail line reads "210 Headland Road, Dee Why" in Figma: check the address with the client.
+- Homepage "Who we are": the Student Wellbeing hover video is a 51s 1080p film with its sound removed (`pillar-wellbeing.mp4`, 26 MB). Confirm with the client that it's the right clip for a hover.

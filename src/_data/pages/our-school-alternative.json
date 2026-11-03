@@ -42,7 +42,7 @@
             "width": 1204,
             "height": 754
           },
-          "video": null
+          "video": { "src": "/assets/video/our-school-promo.mp4" }
         },
         "stat": {
           "value": "99%",

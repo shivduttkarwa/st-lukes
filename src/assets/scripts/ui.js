@@ -101,16 +101,19 @@ export function initNewsFilter() {
 
 export function initPromos() {
   document.querySelectorAll("[data-promo]").forEach((promo) => {
-    const video = promo.querySelector("video");
+    const video = promo.querySelector(".promo__video");
+    const preview = promo.querySelector("video[data-ambient]");
     const play = promo.querySelector("button");
     if (!video || !play) return;
     const stop = () => {
       promo.classList.remove("is-playing");
       video.hidden = true;
+      if (preview && !matchMedia("(prefers-reduced-motion: reduce)").matches) preview.play().catch(() => {});
       play.focus();
     };
     play.addEventListener("click", () => {
       if (!video.getAttribute("src")) video.src = video.dataset.src;
+      preview?.pause();
       video.hidden = false;
       promo.classList.add("is-playing");
       video.focus();

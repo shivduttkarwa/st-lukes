@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-03 — Outline button ends
+- Outline buttons (`outline`, `outline-navy`, `outline-dark`): below 2x a one-device-pixel ring breaks into dim, dotted pixels where it curves, so the two round ends get a 1.5 device pixel copy of the ring (`::before` / `::after`, clipped to each half). The straight edges keep the crisp border. Compared at 100% and 125% against a full inset ring and 1.75 / 2 device pixel ends; 1.5 is the one that joins the straight edges without a step.
+
+## 2026-11-03 — Figma videos in place
+- The original uploads behind Figma's video fills, read through the signed-in browser (no export route reaches them), into `assets/video/` without sound. The CTA and Student Wellbeing files are Figma's own H.264 streams, unchanged; the other four are re-encoded at CRF 20 (Sport 18) with the source's own frame timing, all 0.99+ SSIM against Figma's files. The `.mov` sources have variable frame rates, and a constant-rate encode duplicated up to 3.8 frames per source frame, which made motion judder. Placed as the design guidelines ask:
+  - Hover videos on homepage cards: Bayview campus (`campus-bayview.mp4`), Student Wellbeing (`pillar-wellbeing.mp4`, a 51s 1080p film, 26 MB), Senior School learning card (`learning-senior-school.mp4`) and the sport USP card (`usp-sport.mp4`).
+  - CTA banner background (`cta.mp4`) on the seven pages where Figma has it. Figma's file is 720 × 720, so it plays soft at full width.
+  - Our School collage, both pages (`our-school-promo.mp4`): autoplays muted on a loop behind the play pill, per the guidelines. The promo snippet takes `ambient` for this; the pill still plays the file with controls, and the homepage intro promo is unchanged.
+- Figma's homepage promo upload is byte-identical to `intro-promo.mp4`. Its other videos (working-page Instagram and Service Learning cards, and the designer's research recordings) aren't used on the site.
+
 ## 2026-11-03 — Intro statement motion
 - The intro statement's lines follow the scroll (new `data-anim-scroll="scrub"` on a split title), and its button joins the same timeline after the last line lands (new `data-anim-after-title`), so a fast scroll can no longer bring the button in before the text. Other split titles still play on the clock.
 - Scrolling during the hero entrance no longer holds back the content below it: the first scroll still hurries the entrance's remaining steps, and anything held for the entrance plays at once. Before, the intro waited about 0.6s after a fast scroll, and a step already on screen at load kept its original wait.

@@ -340,7 +340,7 @@
           "width": 1440,
           "height": 826
         },
-        "video": null
+        "video": { "src": "/assets/video/cta.mp4" }
       }
     }
   ]

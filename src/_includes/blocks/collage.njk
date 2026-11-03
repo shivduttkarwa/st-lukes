@@ -15,7 +15,7 @@
   </div>
 
   <div class="promo collage__video" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
-    {% set promo = value.video %}{% include "snippets/promo.njk" %}
+    {% set promo = value.video %}{% set ambient = true %}{% include "snippets/promo.njk" %}
   </div>
 
   <figure class="collage__stat" data-anim="counter" data-anim-scroll="timed">
