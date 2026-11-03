@@ -1,6 +1,6 @@
 <section class="intro">
   <div class="intro__text">
-    <div class="intro__statement" data-anim="split" data-anim-type="lines" data-anim-scroll="scrub">{{ value.statement | safe }}</div>
+    <div class="intro__statement" data-anim="split" data-anim-type="lines">{{ value.statement | safe }}</div>
     {% if value.button %}
     <div data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
     {% endif %}

@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Every split title follows the scroll
+- Split titles and statements across the site now rise with the scroll, as the intro statement already did: their lines move forwards only as the reader scrolls, and stop where the scroll stops. Before, every title but the intro played on the clock once it reached its start line. This is now the default for `data-anim="split"`, so the intro's `data-anim-scroll="scrub"` is gone; `data-anim-scroll="timed"` still keeps a step on the clock (the glides). Hero titles still play in the page entrance.
+
 ## 2026-11-03 — Videos wait for their glide
 - A `data-ambient="view"` video inside a reveal (the intro and Our School promos, the Student Wellbeing card) stays on its poster until the reveal lands (`is-revealed`), then starts. Before, it started about 0.3s into the 1.5s glide, and its first frame dropped 33–50ms frames mid-slide (Chrome, smooth scroll into the intro promo, 2 of 3 runs). Now the glide drops none in 3 of 3, and the video starts within 2ms of landing.
 

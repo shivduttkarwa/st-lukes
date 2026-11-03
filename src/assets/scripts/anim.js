@@ -7,9 +7,8 @@
  * every hero-tier element joins one timeline on load, stepping through data-anim-order (0 first);
  * elements that share an order start together and each step starts as the previous one lands
  * (data-anim-lead = seconds before the previous step ends; the default is DEFAULTS.entranceLead).
- * Scroll steps are tied to the scroll position but only ever move forwards (see SCRUB); split titles
- * play on the clock once they reach their start line, unless data-anim-scroll="scrub". A scroll step
- * already in view at load plays in time after the entrance instead, so a short hero never lets the
+ * Scroll steps, split titles included, are tied to the scroll position but only ever move forwards (see SCRUB).
+ * A scroll step already in view at load plays in time after the entrance instead, so a short hero never lets the
  * content below it beat the title; once the reader scrolls, nothing waits for the entrance to finish.
  * On phones a section's copy waits for its title as well; data-anim-after-title puts a reveal in its
  * title's own timeline, after the last line, on every screen.
@@ -216,7 +215,7 @@ function initScroll(opts) {
 // already on screen when created plays in time after the entrance, even below its start line (the
 // copy under a short hero), as does one whose range the page is too short to scroll through. data-anim-scroll="timed" keeps a step on the clock
 // (the staggered slider wipes, which scrubbing makes feel rushed).
-function scrollStep(el, animation, hold, timed) {
+function scrollStep(el, animation, hold) {
   let tl = null;
   let reached = 0;
   const timeline = () => (tl ||= gsap.timeline({ paused: true }).add(animation(), hold));
@@ -226,7 +225,7 @@ function scrollStep(el, animation, hold, timed) {
     triggers.delete(el);
     afterEntrance(() => timeline().play());
   };
-  if (timed || attr(el, "data-anim-scroll") === "timed") {
+  if (attr(el, "data-anim-scroll") === "timed") {
     const st = ScrollTrigger.create({ trigger: el, start: startOf(el), once: true, onEnter: playNow });
     triggers.set(el, st);
     if (onScreen()) playNow(st);
@@ -267,7 +266,7 @@ function play(el, step, entrance, scroll, hold = orderOf(el) * DEFAULTS.stagger)
     entrance.push({ order: orderOf(el), lead: leadOf(el), ...step });
     return;
   }
-  const create = () => scrollStep(el, step.animation, hold + titleHold(el), step.timed);
+  const create = () => scrollStep(el, step.animation, hold + titleHold(el));
   // a title already on screen is split with the entrance's own, before anything moves
   if (step.prepare && el.getBoundingClientRect().top < window.innerHeight) create.prepare = step.prepare;
   scroll.push(create);
@@ -487,7 +486,6 @@ function setupSplits(root, entrance, scroll) {
     let built = null;
     play(el, {
       deferred: true,
-      timed: attr(el, "data-anim-scroll") !== "scrub",
       duration: titleDurations.get(el),
       prepare: () => { built = build(); },
       animation: () => {
