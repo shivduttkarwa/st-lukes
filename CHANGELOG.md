@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-03 — Pillar videos autoplay
+- A "Who we are" card's video now plays muted on a loop once it's on screen, as Figma draws the Student Wellbeing card, instead of on hover (`data-ambient="view"`; it fades in over the still once it starts). It also fills the frame: the video had no size or `object-fit`, so it kept its own 16:9 shape across the card's top. The other homepage cards keep their hover videos.
+- Glide reveals now slide every image and video in the frame, not just the first, so a playing video moves with its still.
+- `pillar-wellbeing.mp4` is cut to the slice the card shows (860 × 1080, centred, CRF 20, SSIM 0.994 against that slice of Figma's file): 26 MB down to 14 MB, still full sharpness at 2x.
+
 ## 2026-11-03 — Hover video on every homepage image card
 - The designer asked for an optional hover video on all image cards on the homepage. Pillars, USPs, campuses, learning and testimonials had it; the news stories and the Instagram tiles now do too (`story.video`, `post.video`, the same `data-hover-video` as the others, fading in over the image). Every story and post in the data carries `"video": null`; `blocks.yaml` maps the story's to a NewsPage listing video and the post's to Instagram's `media_url` for video posts.
 

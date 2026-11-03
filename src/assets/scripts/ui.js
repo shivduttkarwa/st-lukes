@@ -146,7 +146,7 @@ export function initHoverVideos() {
 }
 
 // background videos autoplay muted; data-ambient="view" ones play only while on screen and their promo isn't playing;
-// under reduced motion they hold on their first frame
+// under reduced motion they hold on their first frame. is-live marks one that has started, for a fade-in over its still
 const ambientStill = window.matchMedia("(prefers-reduced-motion: reduce)");
 const ambientOnScreen = new WeakSet();
 
@@ -170,6 +170,7 @@ export function initAmbientVideos() {
     syncAmbient(target);
   }), { threshold: 0.3 });
   videos.forEach((video) => {
+    video.addEventListener("playing", () => video.classList.add("is-live"), { once: true });
     if (video.dataset.ambient === "view") view.observe(video);
     syncAmbient(video);
   });

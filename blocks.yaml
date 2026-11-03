@@ -325,7 +325,7 @@ blocks:
         title: CharBlock(required)
         text: TextBlock   # a line break in the text applies from 992 up (white-space: pre-line); below that it reads as a space
         image: ImageChooserBlock(required)
-        video: DocumentChooserBlock(optional)   # mp4, plays muted over the image on hover (mouse only, not under reduced motion)
+        video: DocumentChooserBlock(optional)   # mp4, plays muted on a loop over the image once on screen (Figma's Student Wellbeing card is a video); the still under reduced motion
         logo: ImageChooserBlock(optional)   # beside the text, 70 × 70 (Round Square)
         button: StructBlock(text: CharBlock, url: URLBlock)   # outline style
 

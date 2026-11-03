@@ -76,7 +76,7 @@ const REVEAL = {
   "pop":        { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.6, ease: "power2.out" } },
   // a crisp wipe from the bottom edge up, no fade: visibility flips as the tween starts
   "wipe-up":    { from: { clipPath: "inset(100% 0% 0% 0%)", visibility: "hidden" }, to: { clipPath: "inset(0% 0% 0% 0%)", visibility: "inherit", duration: 1.1, ease: "power3.out" } },
-  // the frame wipes open from one side while its photo or video glides in with it (`inner`: the first img / video inside)
+  // the frame wipes open from one side while its photo or video glides in with it (`inner`: every img and video inside, so a video moves with its still)
   "glide-right": { from: { clipPath: "inset(0% 100% 0% 0%)", visibility: "hidden" }, to: { clipPath: "inset(0% 0% 0% 0%)", visibility: "inherit", duration: 1.5, ease: "power2.out" }, inner: { from: { xPercent: -24, scale: 1.06 }, to: { xPercent: 0, scale: 1 } } },
   "glide-left":  { from: { clipPath: "inset(0% 0% 0% 100%)", visibility: "hidden" }, to: { clipPath: "inset(0% 0% 0% 0%)", visibility: "inherit", duration: 1.5, ease: "power2.out" }, inner: { from: { xPercent: 24, scale: 1.06 }, to: { xPercent: 0, scale: 1 } } },
   "scale":      { from: { scale: 1.12, autoAlpha: 0 },          to: { scale: 1, autoAlpha: 1, duration: 1.1, ease: "power4.out" } },
@@ -355,7 +355,7 @@ function expandGroups(root) {
   });
 }
 
-const innerOf = (el, preset) => (preset.inner ? el.querySelector("img, video") : null);
+const innerOf = (el, preset) => (preset.inner ? Array.from(el.querySelectorAll("img, video")) : []);
 
 const revealStep = (el) => ({
   animation: () => {
@@ -363,7 +363,7 @@ const revealStep = (el) => ({
     const vars = toVars(preset, el);
     const tween = gsap.to(el, { ...vars, onComplete: () => el.classList.add("is-revealed") });
     const inner = innerOf(el, preset);
-    if (!inner) return tween;
+    if (!inner.length) return tween;
     const { duration, ease, delay } = vars;
     return gsap.timeline().add(tween, 0).to(inner, { ...preset.inner.to, duration, ease, delay, clearProps: "transform" }, 0);
   },
@@ -391,7 +391,7 @@ function setupReveals(root, entrance, scroll) {
     const preset = presetOf(el);
     gsap.set(el, preset.from);
     const inner = innerOf(el, preset);
-    if (inner) gsap.set(inner, preset.inner.from);
+    if (inner.length) gsap.set(inner, preset.inner.from);
 
     // data-anim-scrub hands the reveal to the scroll position. The trigger is an untransformed
     // ancestor, because the preset's start state has already moved the element's own box.

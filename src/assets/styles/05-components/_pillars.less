@@ -111,13 +111,12 @@
   }
 
   &__video {
-    position: absolute;
-    inset: 0;
+    .cover();
+    object-fit: cover;
     opacity: 0;
     transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
   }
-
-  &__card.is-playing &__video { opacity: 1; }
 
   &__body { width: 100%; }
 
