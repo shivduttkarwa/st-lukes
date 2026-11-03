@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-03 — Quick Links label centred at every size
+- The Quick Links label is now trimmed to its capitals (`text-box: trim-both cap alphabetic` on the span and its filtered copy), so the pill centres the letters themselves. Its old fixed nudge (`top: -0.1em`) only held at 1440: measured over a flat background, the label sat 1.4px high at 1536 × 711 at 125% and 1.9px high at 1920 × 945, because the glyphs move inside their line box as the type scales. Now it is within 0.2px of centre at all three (1440 exactly), 0.5px lower than Figma's at 1440. The filtered Windows copy lands within 0.02px of the plain text. A photo behind the translucent pill throws off ink measurements (clouds under the pill), so measure over a flat background.
+## 2026-11-03 — Testimonials play in place
+- A testimonial card with a video now plays it in place: hover still previews it muted, and the play button restarts it from the beginning with sound while the name and year slide down out of the way, the shade lifts and the play triangle turns into a close X. Closing (the X, the video ending, Escape, or scrolling it away) brings the text back, and a card still under the pointer returns to its muted preview. One card plays at a time. These cards are an `<article>` with a real `<button>`; cards without a video stay links.
+- Demo clips with speech for Sarina and Elsie (`testimonial-demo-1.mp4`, `-2.mp4`, 720 × 1080, about 70s and 64s, H.264 with AAC), adapted from two CC BY-SA 4.0 student interviews on Wikimedia Commons by Bjeweld: trimmed before each student says their name, cropped to portrait on the speaker, re-encoded. Credit and source in the handoff doc; replace them before anything goes public. The silent `demo-teacher` and `demo-writing` are unplaced again.
+
+## 2026-11-03 — Slider arrows switch off at the ends, demo testimonial videos
+- Every slider's prev arrow is off on the first slide and next on the last, faded to 40% with no hover, and comes back as soon as there's somewhere to go (Swiper sets `disabled`; `.slider-arrow()` and the News List hero's gold arrows style it). The News List hero no longer loops, so its arrows work the same. Checked USPs, Learning, Hear from our community, Join the Conversation, the News List hero and social, and the photo strips on News Story and Principal's Welcome.
+- Hear from our community: Sarina and Elsie play stand-in clips on hover (`demo-teacher.mp4`, `demo-writing.mp4`) for the demo, through the same `data-hover-video` as the other cards. Replace with the real testimonials.
+
 ## 2026-11-03 — Slider cards rise 35px
 - The slider cards (USPs, Learning, Hear from our community, Join the Conversation, sports tabs) and the campus cards now rise 35px as they fade in, was 60px. Same 0.7s, curve and 75ms stagger. The pillars' left photos keep their 60px, which is tuned against the column parallax, under a new `rise-far` preset.
 

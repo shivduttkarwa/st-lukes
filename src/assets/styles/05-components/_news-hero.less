@@ -135,13 +135,17 @@
     border-radius: 50%;
     background: var(--color-gold);
     color: var(--color-navy);
-    transition: background-color var(--duration-base) ease;
+    transition: background-color var(--duration-base) ease, opacity var(--duration-base) ease;
     @media @fine {
       width: @news-arrow;
       height: @news-arrow;
     }
+    &:disabled {
+      opacity: 0.4;
+      cursor: default;
+    }
     @media (hover: hover) {
-      &:hover { background: var(--color-gold-deep); }
+      &:enabled:hover { background: var(--color-gold-deep); }
     }
     .icon {
       width: 18 * @px;

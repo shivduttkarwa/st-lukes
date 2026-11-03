@@ -110,7 +110,6 @@ export function initSliders() {
       initialSlide: parseInt(start || "0", 10),
       effect: fade ? "fade" : "slide",
       fadeEffect: { crossFade: true },
-      loop: fade,
       keyboard: { enabled: true, onlyInViewport: true },
       navigation: {
         prevEl: scope.querySelector("[data-slider-prev]"),

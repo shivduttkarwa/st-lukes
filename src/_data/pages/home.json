@@ -242,8 +242,8 @@
         "title_line_1": "Hear from",
         "title_line_2": "our community",
         "cards": [
-          { "title": "Sarina", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Elsie", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Sarina", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": { "src": "/assets/video/testimonial-demo-1.mp4" } },
+          { "title": "Elsie", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": { "src": "/assets/video/testimonial-demo-2.mp4" } },
           { "title": "Jared", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-3.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
           { "title": "Ella", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
           { "title": "Milo", "meta": "Year 10 Student", "url": "#", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },

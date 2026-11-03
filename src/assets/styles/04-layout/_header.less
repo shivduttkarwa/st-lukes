@@ -228,10 +228,10 @@
     @media (hover: hover) {
       &:hover { background: var(--color-white-10); }
     }
-    span {
-      position: relative;
-      top: -0.1em;
-    }
+    span { position: relative; }
+    // trimmed to the caps so the pill centres the letters themselves; a fixed nudge only held at one size
+    span,
+    span::after { text-box: trim-both cap alphabetic; }
     .icon {
       translate: 0 (-0.4 * @px);
       width: 15 * @px;

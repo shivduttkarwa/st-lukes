@@ -4,6 +4,9 @@
 @entry-shade: 36.83%;
 @entry-stagger: 0.04s;
 @entry-stagger-2: (2 * @entry-stagger);
+@entry-open: 0.6s;
+@entry-drop: 24 * @px;
+@entry-close: 18 * @px;
 
 .learning {
   padding: 72 * @px 0;
@@ -131,6 +134,8 @@
     place-items: center;
     width: ~"max(var(--tap-size), @{learning-arrow})";
     height: ~"max(var(--tap-size), @{learning-arrow})";
+    padding: 0;
+    border: 0;
     border-radius: 50%;
     background: var(--color-gold);
     color: var(--color-navy);
@@ -152,7 +157,9 @@
       will-change: transform;
     }
     &:hover &__arrow,
-    &:focus-visible &__arrow {
+    &:focus-visible &__arrow,
+    &:has(:focus-visible) &__arrow,
+    &.is-open &__arrow {
       opacity: 1;
       scale: none;
       transition-duration: var(--duration-base), var(--duration-slow);
@@ -195,10 +202,74 @@
   }
 }
 
+// a card that plays its video in place: the text slides down out of the way, the shade lifts and play turns into close
+.entry--player {
+  h3,
+  .entry__meta {
+    transition: translate @entry-open var(--ease-in-out-soft), opacity @entry-open ease;
+    will-change: transform;
+  }
+  .entry__meta { transition-delay: 0.06s; }
+  .entry__shade { transition: opacity @entry-open ease; }
+  .entry__arrow { cursor: pointer; }
+
+  .entry__play,
+  .entry__close {
+    grid-area: 1 / 1;
+    transition: opacity var(--duration-base) ease, rotate @entry-open var(--ease-settle), scale @entry-open var(--ease-settle);
+    will-change: transform;
+  }
+  .entry__close {
+    position: relative;
+    width: @entry-close;
+    height: @entry-close;
+    opacity: 0;
+    rotate: -90deg;
+    scale: 0.6;
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: ~"max(var(--device-px, 1px), round(2.01px, var(--device-px, 1px)))";
+      background: currentColor;
+      translate: 0 -50%;
+      rotate: 45deg;
+    }
+    &::after { rotate: -45deg; }
+  }
+
+  &.is-open {
+    h3,
+    .entry__meta {
+      opacity: 0;
+      translate: 0 @entry-drop;
+    }
+    h3 { transition-delay: 0.06s; }
+    .entry__meta { transition-delay: 0s; }
+    .entry__shade { opacity: 0; }
+    .entry__play {
+      opacity: 0;
+      rotate: 90deg;
+      scale: 0.6;
+    }
+    .entry__close {
+      opacity: 1;
+      rotate: none;
+      scale: none;
+    }
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .entry h3,
   .entry__meta,
+  .entry__shade,
   .entry__video,
   .entry__more,
-  .entry__arrow { transition: none; }
+  .entry__arrow,
+  .entry__play,
+  .entry__close { transition: none; }
 }

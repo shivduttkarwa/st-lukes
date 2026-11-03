@@ -138,12 +138,13 @@ export function initHoverVideos() {
     const video = card.querySelector("video");
     if (!video) return;
     card.addEventListener("pointerenter", () => {
-      if (!pointer.matches || still.matches) return;
+      if (!pointer.matches || still.matches || card.classList.contains("is-open")) return;
       if (!video.getAttribute("src")) video.src = video.dataset.src;
       card.classList.add("is-playing");
       video.play().catch(() => card.classList.remove("is-playing"));
     });
     card.addEventListener("pointerleave", () => {
+      if (card.classList.contains("is-open")) return;
       card.classList.remove("is-playing");
       video.pause();
     });
@@ -151,6 +152,54 @@ export function initHoverVideos() {
       if (!card.classList.contains("is-playing")) video.currentTime = 0;
     });
   });
+}
+
+// data-video-toggle: plays the card's video from the start with sound; the button, its end, Escape or scrolling away closes it
+export function initVideoCards() {
+  const pointer = window.matchMedia("(hover: hover) and (pointer: fine)");
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  let open = null;
+  const away = new IntersectionObserver((entries) => entries.forEach((entry) => {
+    if (entry.target === open && entry.intersectionRatio < 0.3) close(entry.target);
+  }), { threshold: [0, 0.3] });
+  const close = (card) => {
+    const video = card.querySelector("video");
+    const button = card.querySelector("[data-video-toggle]");
+    card.classList.remove("is-open");
+    button.setAttribute("aria-label", button.dataset.label);
+    video.muted = true;
+    video.loop = true;
+    away.unobserve(card);
+    if (open === card) open = null;
+    if (card.matches(":hover") && pointer.matches && !still.matches) {
+      video.currentTime = 0;
+      video.play().catch(() => {});
+    } else {
+      card.classList.remove("is-playing");
+      video.pause();
+    }
+  };
+  const play = (card) => {
+    const video = card.querySelector("video");
+    const button = card.querySelector("[data-video-toggle]");
+    if (open) close(open);
+    open = card;
+    if (!video.getAttribute("src")) video.src = video.dataset.src;
+    card.classList.add("is-open", "is-playing");
+    button.setAttribute("aria-label", "Close video");
+    video.muted = false;
+    video.loop = false;
+    video.currentTime = 0;
+    video.play().catch(() => close(card));
+    away.observe(card);
+  };
+  document.querySelectorAll("[data-video-card]").forEach((card) => {
+    const button = card.querySelector("[data-video-toggle]");
+    button.dataset.label = button.getAttribute("aria-label");
+    button.addEventListener("click", () => (card.classList.contains("is-open") ? close(card) : play(card)));
+    card.querySelector("video").addEventListener("ended", () => { if (card.classList.contains("is-open")) close(card); });
+  });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape" && open) close(open); });
 }
 
 // background videos autoplay muted; data-ambient="view" ones play only while on screen, once their reveal has landed

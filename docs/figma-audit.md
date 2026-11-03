@@ -31,6 +31,7 @@ Every image slot shows Figma's crop, with the Pathways logos within 1px of their
 - **Outline at other widths.** The hollow outline on Learning, Discover, the CTA and the footer marquee stays at its fixed 1px or 2px rather than scaling with the page. It hasn't been tested in Safari.
 - **Hover states with no Figma variant.** Figma defines hovers for the filter tabs, main menu rows, Where next links and social icons, and these match. Buttons, arrows and cards have no hover variant, so theirs are the build's own.
 - **Video.** Figma's video fills can't be exported, so those slots show Figma's stills until the files are supplied.
+- **Quick Links label, centred rather than Figma's.** Figma sets it 0.5px above the pill's centre at 1440; the build trims the label to its caps so it is centred at every size (it had sat up to 1.9px high on larger screens). Changed on 2026-11-03 at the user's request.
 
 ### Decisions taken to match Figma literally
 
