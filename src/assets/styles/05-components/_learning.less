@@ -2,6 +2,8 @@
 @entry-card-sm: 300 * @px;
 @entry-card: 400 * @px;
 @entry-shade: 36.83%;
+@entry-stagger: 0.04s;
+@entry-stagger-2: (2 * @entry-stagger);
 
 .learning {
   padding: 72 * @px 0;
@@ -146,33 +148,44 @@
   @media (hover: hover) {
     &__arrow { opacity: 0; }
 
-    // back down by the labels' 2px nudge, which Figma doesn't give the text
+    // the text is laid out but invisible, and each line sits pushed down by its height (--entry-more, from initEntryCards()).
+    // On hover they slide up on held layers, title first, and back in reverse; grown in layout they stepped a whole
+    // pixel at a time. Figma's open card sets the title and meta 2px higher still
+    h3,
+    &__meta,
     &__more {
-      display: block;
-      translate: 0 (2 * @px);
-      opacity: 0;
-      transition: opacity var(--duration-slow) ease;
-    }
-
-    // the text is laid out but the labels sit pushed down by its height (--entry-more, from initEntryCards()), then slide
-    // up on a held layer: grown in layout they stepped a whole pixel at a time. Figma's open card sets them 2px higher still
-    &__body {
       translate: 0 var(--entry-more, 0px);
-      transition: translate var(--duration-slow) var(--ease-out);
+      transition: translate var(--duration-slow) var(--ease-out) var(--entry-out), opacity var(--duration-slow) ease var(--entry-out);
       will-change: transform;
+    }
+    h3 { --entry-in: 0s; --entry-out: @entry-stagger-2; }
+    &__meta { --entry-in: @entry-stagger; --entry-out: @entry-stagger; }
+    &__more {
+      --entry-in: @entry-stagger-2;
+      --entry-out: 0s;
+      display: block;
+      opacity: 0;
     }
 
     &:hover,
     &:focus-visible {
-      .entry__body { translate: 0 (-2 * @px); }
-      .entry__more { opacity: 1; }
+      h3,
+      .entry__meta,
+      .entry__more { transition-delay: var(--entry-in); }
+      h3,
+      .entry__meta { translate: 0 (-2 * @px); }
+      .entry__more {
+        translate: none;
+        opacity: 1;
+      }
       .entry__arrow { opacity: 1; }
     }
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .entry__body,
+  .entry h3,
+  .entry__meta,
   .entry__video,
   .entry__more,
   .entry__arrow { transition: none; }

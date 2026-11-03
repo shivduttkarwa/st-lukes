@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Learning card text staggers on hover
+- The title, meta and description now slide up one after another on hover: title first, meta 40ms later, the description 80ms later as it fades in (the user tuned the step from 60ms to 40ms). On the way out the description leaves first and the title last. Each moves on its own held layer, so it stays as smooth as the single slide. The open and closed positions are unchanged.
+
 ## 2026-11-03 — Learning card text opens without shivering
 - On hover the title and meta no longer shiver as the description opens or closes. The description used to grow its row in the layout (`grid-template-rows` 0fr → 1fr) and the labels nudged up with `top`, so the text moved by layout and stepped a whole pixel at a time. Now the description is laid out but invisible, the card body sits pushed down by its height (`--entry-more`, measured by `initEntryCards()` with a ResizeObserver), and on hover the body slides up with `translate` on a held layer while the description fades in. Every position is unchanged: title, meta and description land within 0.02px of before, at rest, hovered and back. A screencast of the hover shows the title passing through sub-pixel positions (0.31px off a whole pixel on average), where layout movement stepped by whole pixels.
 
