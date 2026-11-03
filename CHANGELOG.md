@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Slider cards rise in, staggered
+- The USP, Learning, testimonial, Instagram and sports slider cards rise 60px and fade in with the scroll, left to right, instead of only fading (`data-anim-group="rise"` on each slider's wrapper, the pillar photos' preset, replacing the plain `fade` of 2026-10-30). The text's 15px `fade-up` was tried first and read as a fade in place, because on a card this size 15px barely shows and its lift lands in the first half of the fade. The drag shrink is unaffected: it sets the separate `scale` property, and the slides land back on no scale.
+
 ## 2026-11-03 — Right pillar photos fade instead of rising
 - The right column's photos (cards 2 and 4) only fade in now. The column's ±11% parallax already carries them up, and with the 60px rise on top they came in about 26% faster than the scroll, twice as fast as the left photos, and read as a jump. Now the left photos enter 11% faster than the scroll and the right ones 15%. The column template passes the type to the card include (`reveal`), as it does the card number.
 
