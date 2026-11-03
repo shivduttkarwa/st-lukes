@@ -6,10 +6,10 @@
     </div>
     <div class="pillars__grid">
       <div class="pillars__col">
-        {% for card in value.cards %}{% if loop.index0 % 2 == 0 %}{% set n = loop.index %}{% set glide = "glide-right" %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}
+        {% for card in value.cards %}{% if loop.index0 % 2 == 0 %}{% set n = loop.index %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}
       </div>
       <div class="pillars__col">
-        {% for card in value.cards %}{% if loop.index0 % 2 == 1 %}{% set n = loop.index %}{% set glide = "glide-left" %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}
+        {% for card in value.cards %}{% if loop.index0 % 2 == 1 %}{% set n = loop.index %}{% include "snippets/pillar-card.njk" %}{% endif %}{% endfor %}
       </div>
     </div>
   </div>

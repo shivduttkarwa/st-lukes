@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-03 — Lighter pillar card reveals
+- The four "Who we are" photos no longer glide open. Each photo rises 60px and fades in with the scroll (new `rise` preset), over half a window height of scrolling (new `data-anim-distance`, a step's scroll range as a share of the window height; 0.28 by default), so the move plays while the photo comes on screen: half faded with about 230px of a 405px photo in view, done as all of it is. A 15px fade-up over the default range was over before most of the photo was visible and read as no animation. Opacity and position only: the glide animated `clip-path`, which repaints the whole frame every frame, and over the same wheel scroll through the cards paint operations fell from about 890 to about 660. The text and button keep their 15px fade-up.
+- An in-view video now finds the reveal it waits for while it is held, not at load, so it also waits for reveals that a `data-anim-group` marks once anim starts (the Student Wellbeing card).
+
 ## 2026-11-03 — Every split title follows the scroll
 - Split titles and statements across the site now rise with the scroll, as the intro statement already did: their lines move forwards only as the reader scrolls, and stop where the scroll stops. Before, every title but the intro played on the clock once it reached its start line. This is now the default for `data-anim="split"`, so the intro's `data-anim-scroll="scrub"` is gone; `data-anim-scroll="timed"` still keeps a step on the clock (the glides). Hero titles still play in the page entrance.
 

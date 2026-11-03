@@ -151,11 +151,25 @@ export function initHoverVideos() {
 const ambientStill = window.matchMedia("(prefers-reduced-motion: reduce)");
 const ambientOnScreen = new WeakSet();
 const REVEALING = '[data-anim="reveal"]:not(.is-revealed, [data-anim-scrub])';
+const awaitingReveal = new WeakSet();
 
-const revealing = (video) => {
+// looked up while held, not at load: a data-anim-group only marks its children as reveals once anim starts
+function revealing(video) {
   const root = document.documentElement;
-  return root.hasAttribute("data-anim-live") && !root.classList.contains("anim-reduced") && video.closest(REVEALING);
-};
+  if (!root.hasAttribute("data-anim-live") || root.classList.contains("anim-reduced")) return false;
+  const reveal = video.closest(REVEALING);
+  if (reveal && !awaitingReveal.has(video)) {
+    awaitingReveal.add(video);
+    const landed = new MutationObserver(() => {
+      if (!reveal.classList.contains("is-revealed")) return;
+      landed.disconnect();
+      awaitingReveal.delete(video);
+      syncAmbient(video);
+    });
+    landed.observe(reveal, { attributeFilter: ["class"] });
+  }
+  return Boolean(reveal);
+}
 
 function syncAmbient(video) {
   if (ambientStill.matches) {
@@ -178,11 +192,7 @@ export function initAmbientVideos() {
   }), { threshold: 0.3 });
   videos.forEach((video) => {
     video.addEventListener("playing", () => video.classList.add("is-live"), { once: true });
-    if (video.dataset.ambient === "view") {
-      view.observe(video);
-      const reveal = video.closest('[data-anim="reveal"]');
-      if (reveal) new MutationObserver(() => syncAmbient(video)).observe(reveal, { attributeFilter: ["class"] });
-    }
+    if (video.dataset.ambient === "view") view.observe(video);
     syncAmbient(video);
   });
   ambientStill.addEventListener("change", () => videos.forEach(syncAmbient));

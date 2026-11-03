@@ -62,6 +62,7 @@ const REVEAL = {
   "fade":       { from: { autoAlpha: 0 },                       to: { autoAlpha: 1 } },
   "fade-soft":  { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.5, ease: "power1.out" } }, // header items
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
+  "rise":       { from: { y: 60, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // photos: opacity and position only, nothing repaints
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
   // solid from off the canvas, as the preloader title: visibility flips as the tween starts
@@ -214,7 +215,7 @@ function initScroll(opts) {
 // scroll and never goes back. It is built on first use, since a split needs the final layout. One
 // already on screen when created plays in time after the entrance, even below its start line (the
 // copy under a short hero), as does one whose range the page is too short to scroll through. data-anim-scroll="timed" keeps a step on the clock
-// (the staggered slider wipes, which scrubbing makes feel rushed).
+// (the staggered slider wipes, which scrubbing makes feel rushed). data-anim-distance sets the range as a share of the window height.
 function scrollStep(el, animation, hold) {
   let tl = null;
   let reached = 0;
@@ -231,7 +232,7 @@ function scrollStep(el, animation, hold) {
     if (onScreen()) playNow(st);
     return;
   }
-  const range = () => window.innerHeight * SCRUB.distance;
+  const range = () => window.innerHeight * number(el, variant(el, "data-anim-distance"), SCRUB.distance);
   const st = ScrollTrigger.create({
     trigger: el,
     start: `clamp(${startOf(el)})`,

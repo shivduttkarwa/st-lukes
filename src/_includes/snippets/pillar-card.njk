@@ -1,7 +1,7 @@
 <article class="pillars__card pillars__card--{{ n }}" data-anim-group="fade-up">
-  <div class="pillars__media" data-anim-parallax-trigger>
+  <div class="pillars__media" data-anim="reveal" data-anim-type="rise" data-anim-distance="0.5" data-anim-parallax-trigger>
     <div class="pillars__layer" data-anim="parallax" data-anim-centered data-anim-speed="3">
-      <div class="pillars__frame" data-anim="reveal" data-anim-type="{{ glide }}" data-anim-scroll="timed">
+      <div class="pillars__frame">
         {% set img = card.image %}{% set cls = "pillars__img" %}{% include "snippets/image.njk" %}
         {% if card.video %}<video class="pillars__video" src="{{ card.video.src }}" muted loop playsinline preload="none" data-ambient="view" aria-hidden="true"></video>{% endif %}
       </div>
