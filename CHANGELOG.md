@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Outline titles stay outlined while they rise
+- The outline line of a split title (Discover, Learning, the CTA) no longer rises in solid gold or white and only turns into an outline at the end. While a title is split, its lines are `<div class="anim-line">` blocks inside the inline outline span, and the span's SVG outline filter doesn't reach a block inside an inline, so the line drew solid until the split was undone. `.outline-text-clear()` now moves the filter onto the `.anim-line` while the title is split (`:has(.anim-line)` turns the span's off) and leaves it on the span at rest. Checked mid-rise and at rest on all three.
+
 ## 2026-11-03 — Pathways logos link out
 - All 16 pathways logos link to their university's or company's site and open in a new tab, with a visually hidden "(opens in a new tab)". The marquee copies stay `aria-hidden` and out of the tab order. The rows already ran as the designer describes, row 1 right to left and row 2 left to right, both linear at the slow shared speed. A row pauses on hover and on keyboard focus only (`:has(:focus-visible)`, was `:focus-within`). A clicked logo keeps focus while its site opens in a new tab, which held the row still after the mouse left.
 - The marquee loops without a snap. A logo row's width was a fraction of a pixel at most screen sizes (2189.70px at 1920 × 945), so each copy sat a sub-pixel apart from the original and drew slightly differently. When the loop wrapped, the frame changed by up to 126/255 on some pixels. `initMarquees()` now rounds each row up to whole device pixels before copying it: the last frame of a loop matches the first exactly at 1440, at 1920 × 945 and at a real 125%.

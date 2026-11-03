@@ -63,6 +63,9 @@
 .outline-text-clear(@stroke: var(--color-gold), @weight: 1) {
   color: @stroke;
   filter: url("#text-outline-@{weight}");
+  // a split title's lines are blocks inside this inline, which its filter doesn't reach, so they carry it while they play
+  &:has(.anim-line) { filter: none; }
+  .anim-line { filter: url("#text-outline-@{weight}"); }
 }
 
 @slider-arrow-size: 50 * @px;
