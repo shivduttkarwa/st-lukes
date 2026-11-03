@@ -146,6 +146,7 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - `promo.video` (mp4) plays inline with native controls when the pill is pressed, and returns to the poster when it ends. Without a video the pill is a disabled button.
 - Renditions: photo `fill-1016x818` (shown 508 × 409), poster `fill-821x514` or larger.
 - Media reveals: the promo glides in from the left (`data-anim-type="glide-right"`) and the photo from the right (`glide-left`, on the `.intro__frame` wrapper the template puts around the photo). Both are timed, not scrubbed (`data-anim-scroll="timed"`). Each frame wipes open while its first `img` / `video` slides 24% and settles from 106%, over 1.5s `power2.out`.
+- Statement and button: the statement's lines rise with the scroll (`data-anim-scroll="scrub"`), and the button carries `data-anim-after-title`, which puts its fade-up in the statement's own timeline after the last line, so it never comes in first. Keep both attributes in the template.
 
 ### pillars (`blocks/pillars.njk`, card markup in `snippets/pillar-card.njk`)
 - "Who we are": eyebrow, Heading 2 title, and a collage of four cards (Local heart, Academic excellence, Student wellbeing, Global mind). The collage is drawn for exactly four, so `cards` is `min_num=4, max_num=4`.

@@ -8,9 +8,11 @@
  * elements that share an order start together and each step starts as the previous one lands
  * (data-anim-lead = seconds before the previous step ends; the default is DEFAULTS.entranceLead).
  * Scroll steps are tied to the scroll position but only ever move forwards (see SCRUB); split titles
- * play on the clock once they reach their start line. A scroll step already in view at load plays in
- * time after the entrance instead, so a short hero never lets the content below it beat the title.
- * On phones a section's copy waits for its title as well.
+ * play on the clock once they reach their start line, unless data-anim-scroll="scrub". A scroll step
+ * already in view at load plays in time after the entrance instead, so a short hero never lets the
+ * content below it beat the title; once the reader scrolls, nothing waits for the entrance to finish.
+ * On phones a section's copy waits for its title as well; data-anim-after-title puts a reveal in its
+ * title's own timeline, after the last line, on every screen.
  */
 import Lenis from "lenis";
 import { gsap } from "gsap";
@@ -155,6 +157,15 @@ let started = false;
 let immediate = false; // add(root, { immediate }) treats every step as an entrance step
 let handoff = 0; // ticker time from which scroll steps already in view may play: the page entrance's last step
 const follow = () => Math.max(0, handoff - gsap.ticker.time);
+const held = new Map(); // a scroll step's play -> its delayed call, until the entrance ends or the reader scrolls
+function afterEntrance(play) {
+  const wait = follow();
+  if (!wait) return play();
+  held.set(play, gsap.delayedCall(wait, () => {
+    held.delete(play);
+    play();
+  }));
+}
 
 // On phones a section's copy follows its title: the nearest split before it in the same `main > *` block.
 // An ancestor with data-anim-titles-first="off" switches that off (the home page, choreographed per block).
@@ -181,6 +192,11 @@ function titleHold(el) {
   const share = 1 - gap / (window.innerHeight * SCRUB.distance);
   return run * gsap.utils.clamp(0, 1, share);
 }
+
+// data-anim-after-title: a reveal that joins the timeline of the title before it, starting as its last line lands,
+// so it can never beat the title however fast the reader scrolls
+const followers = new WeakMap(); // split -> the reveals that join it
+
 const triggers = new WeakMap(); // element -> its ScrollTrigger
 const splits = new WeakMap(); // element -> puts its markup back while split
 const entrances = new WeakMap(); // root -> its entrance timeline
@@ -208,7 +224,7 @@ function scrollStep(el, animation, hold, timed) {
   const playNow = (st) => {
     st.kill();
     triggers.delete(el);
-    gsap.delayedCall(follow(), () => timeline().play());
+    afterEntrance(() => timeline().play());
   };
   if (timed || attr(el, "data-anim-scroll") === "timed") {
     const st = ScrollTrigger.create({ trigger: el, start: startOf(el), once: true, onEnter: playNow });
@@ -236,11 +252,10 @@ function scrollStep(el, animation, hold, timed) {
   });
   triggers.set(el, st);
   if (!(st.scroll() >= st.start || onScreen())) return;
-  const wait = follow();
-  if (!wait) return playNow(st);
+  if (!follow()) return playNow(st);
   // On screen while the entrance still runs: it plays when that ends. The trigger stays alive throughout, so a
   // reader who scrolls down straight away or just after sees it follow the scroll like any other step, not a blank section.
-  gsap.delayedCall(wait, () => {
+  afterEntrance(() => {
     if (triggers.get(el) === st) timeline().play();
   });
 }
@@ -291,12 +306,12 @@ function playEntrance(steps, root) {
   const lead = phone.matches ? 0 : DEFAULTS.entranceLead;
   if (root !== document) return;
   handoff = gsap.ticker.time + Math.max(0, tl.duration() - lead, titleEnd);
-  hurryOnScroll(tl, lead);
+  hurryOnScroll(tl);
 }
 
-// The reader's first scroll during the entrance starts every step still to come at once, in order, so the hero is
-// never beaten by the copy scrolling in under it
-function hurryOnScroll(tl, lead) {
+// The reader's first scroll during the entrance starts every step still to come at once, in order, and the copy
+// below plays as it comes into view instead of waiting for the entrance to finish
+function hurryOnScroll(tl) {
   const hurry = () => {
     if (window.scrollY < 2) return;
     window.removeEventListener("scroll", hurry);
@@ -304,7 +319,12 @@ function hurryOnScroll(tl, lead) {
     const waiting = tl.getChildren(false, true, true).filter((child) => child.startTime() > now);
     const starts = [...new Set(waiting.map((child) => child.startTime()))].sort((a, b) => a - b);
     waiting.forEach((child) => child.startTime(now + 0.001 + starts.indexOf(child.startTime()) * DEFAULTS.stagger));
-    handoff = gsap.ticker.time + Math.max(0, tl.duration() - now - lead);
+    handoff = 0;
+    held.forEach((call, play) => {
+      call.kill();
+      play();
+    });
+    held.clear();
   };
   tl.eventCallback("onComplete", () => window.removeEventListener("scroll", hurry));
   window.addEventListener("scroll", hurry, { passive: true });
@@ -390,6 +410,12 @@ function setupReveals(root, entrance, scroll) {
       return;
     }
 
+    const title = el.hasAttribute("data-anim-after-title") && titleFor(el);
+    if (title && title.hasAttribute(BOUND)) {
+      followers.set(title, [...(followers.get(title) || []), el]);
+      return;
+    }
+
     play(el, revealStep(el), entrance, scroll, staggerHold(el));
   });
 }
@@ -461,7 +487,7 @@ function setupSplits(root, entrance, scroll) {
     let built = null;
     play(el, {
       deferred: true,
-      timed: true,
+      timed: attr(el, "data-anim-scroll") !== "scrub",
       duration: titleDurations.get(el),
       prepare: () => { built = build(); },
       animation: () => {
@@ -474,9 +500,12 @@ function setupSplits(root, entrance, scroll) {
           splits.get(el)?.();
           splits.delete(el);
         };
-        return gsap.timeline({ onComplete })
+        const tl = gsap.timeline({ onComplete })
           .to(lines, { ...LINES.fade, stagger: LINES.stagger }, 0)
           .to(lines, { ...LINES.rise, stagger: LINES.stagger }, 0);
+        const landed = tl.duration() - (LINES.fade.duration - LINES.rise.duration);
+        followers.get(el)?.forEach((follower) => tl.add(revealStep(follower).animation(), landed));
+        return tl;
       },
     }, entrance, scroll);
   });
@@ -688,6 +717,7 @@ function resetAll(root) {
     gsap.set([el, ...pieces], { clearProps: "all" });
     counters.get(el)?.();
     counters.delete(el);
+    followers.delete(el);
     el.removeAttribute(BOUND);
     el.classList.remove("is-revealed");
   });

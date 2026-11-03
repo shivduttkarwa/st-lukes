@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-03 — Intro statement motion
+- The intro statement's lines follow the scroll (new `data-anim-scroll="scrub"` on a split title), and its button joins the same timeline after the last line lands (new `data-anim-after-title`), so a fast scroll can no longer bring the button in before the text. Other split titles still play on the clock.
+- Scrolling during the hero entrance no longer holds back the content below it: the first scroll still hurries the entrance's remaining steps, and anything held for the entrance plays at once. Before, the intro waited about 0.6s after a fast scroll, and a step already on screen at load kept its original wait.
+
 ## 2026-11-03 — Demo videos
 - Three stand-in classroom clips in `assets/video/` (`demo-teacher`, `demo-arrival`, `demo-writing`), not placed yet. Re-encoded from 4K stock to 1920 × 1080 H.264, CRF 26, no audio, faststart: 66.9 MB down to 11 MB.
 
