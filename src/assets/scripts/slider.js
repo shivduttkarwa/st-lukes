@@ -25,6 +25,50 @@ function autoplay(swiper, scope, delay) {
   new IntersectionObserver(([entry]) => set("view", !entry.isIntersecting)).observe(swiper.el);
 }
 
+// Card sliders: slides shrink with the drag speed (px per ms), to 0.925 at 3, and their CSS transition eases them back.
+// A click or a release snaps over the transition, so it starts as a 2.5 drag that dies away by 0.92 a frame.
+const SHRINK = { least: 0.925, from: 0.01, span: 2.99, nudge: 2.5, decay: 0.92, rest: 0.01 };
+const scaleAt = (speed) => SHRINK.least + (1 - SHRINK.least) * (1 - Math.min(Math.max((speed - SHRINK.from) / SHRINK.span, 0), 1));
+
+function shrinkOnSpeed(swiper) {
+  let speed = 0;
+  let lastTranslate = swiper.translate;
+  let lastTime = performance.now();
+  let frame = 0;
+  const apply = () => swiper.slides.forEach((slide) => { slide.style.scale = scaleAt(speed).toFixed(3); });
+  const stop = () => {
+    cancelAnimationFrame(frame);
+    speed = 0;
+    swiper.slides.forEach((slide) => { slide.style.scale = ""; });
+  };
+  const track = () => {
+    const now = performance.now();
+    speed = Math.abs((swiper.translate - lastTranslate) / (now - lastTime || 1));
+    lastTranslate = swiper.translate;
+    lastTime = now;
+    apply();
+  };
+  const loop = (step) => {
+    cancelAnimationFrame(frame);
+    const tick = () => {
+      step();
+      if (speed > SHRINK.rest) frame = requestAnimationFrame(tick);
+      else stop();
+    };
+    frame = requestAnimationFrame(tick);
+  };
+  swiper.on("setTranslate", track);
+  swiper.on("touchEnd", () => loop(track));
+  swiper.on("transitionStart", () => {
+    speed = SHRINK.nudge;
+    loop(() => {
+      apply();
+      speed *= SHRINK.decay;
+    });
+  });
+  swiper.on("transitionEnd", stop);
+}
+
 export function initSliders() {
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");
   document.querySelectorAll("[data-slider]").forEach((el) => {
@@ -40,6 +84,7 @@ export function initSliders() {
       spaceBetween: fade ? 0 : designPx(gap),
       speed: still.matches ? 0 : 900,
       grabCursor: !fade,
+      resistance: false,
       centeredSlides: start !== undefined,
       initialSlide: parseInt(start || "0", 10),
       effect: fade ? "fade" : "slide",
@@ -58,5 +103,6 @@ export function initSliders() {
       },
     });
     if (delay && !still.matches) autoplay(swiper, scope, delay);
+    if (!fade && !still.matches) shrinkOnSpeed(swiper);
   });
 }

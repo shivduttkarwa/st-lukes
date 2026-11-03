@@ -17,6 +17,9 @@ html.anim-ready:not(.anim-reduced) [data-anim="progress"] { --anim-progress: 0; 
 
 [data-anim="reveal"][data-anim-type="nudge-right"] { will-change: transform, opacity; }
 
+// card sliders: initSliders() sets each slide's scale from the drag speed every frame, and this eases it
+[data-slider]:not([data-slider-mode="fade"]) .swiper-slide { transition: scale 0.4s ease-out; }
+
 html.lenis,
 html.lenis body { height: auto; }
 .lenis.lenis-smooth { scroll-behavior: auto !important; }
