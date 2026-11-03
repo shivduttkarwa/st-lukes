@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Videos wait for their glide
+- A `data-ambient="view"` video inside a reveal (the intro and Our School promos, the Student Wellbeing card) stays on its poster until the reveal lands (`is-revealed`), then starts. Before, it started about 0.3s into the 1.5s glide, and its first frame dropped 33–50ms frames mid-slide (Chrome, smooth scroll into the intro promo, 2 of 3 runs). Now the glide drops none in 3 of 3, and the video starts within 2ms of landing.
+
 ## 2026-11-03 — Outline button ring, evened out
 - The round ends of the outline buttons no longer read heavier than the straight edges. The 1.5 device pixel copy gave the ends 1.3× the straight edges' light (measured in linear light at 80%, 100% and 125%); a one device pixel copy over the curves gives 1.01–1.02×, and without it they give 0.66×, which is why they looked dim.
 - At browser zoom below 100% on a 1x screen the straight edges disappeared: `--device-px` is above 1px there, so `round(down, 1px, …)` gave a 0 border. The ring is now at least one device pixel (`max()`).

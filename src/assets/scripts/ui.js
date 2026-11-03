@@ -145,16 +145,23 @@ export function initHoverVideos() {
   });
 }
 
-// background videos autoplay muted; data-ambient="view" ones play only while on screen and their promo isn't playing;
-// under reduced motion they hold on their first frame. is-live marks one that has started, for a fade-in over its still
+// background videos autoplay muted; data-ambient="view" ones play only while on screen, once their reveal has landed
+// and while their promo isn't playing; under reduced motion they hold on their first frame. is-live marks one that has
+// started, for a fade-in over its still
 const ambientStill = window.matchMedia("(prefers-reduced-motion: reduce)");
 const ambientOnScreen = new WeakSet();
+const REVEALING = '[data-anim="reveal"]:not(.is-revealed, [data-anim-scrub])';
+
+const revealing = (video) => {
+  const root = document.documentElement;
+  return root.hasAttribute("data-anim-live") && !root.classList.contains("anim-reduced") && video.closest(REVEALING);
+};
 
 function syncAmbient(video) {
   if (ambientStill.matches) {
     video.pause();
     video.currentTime = 0;
-  } else if (video.dataset.ambient === "view" && (!ambientOnScreen.has(video) || video.closest(".is-playing"))) {
+  } else if (video.dataset.ambient === "view" && (!ambientOnScreen.has(video) || video.closest(".is-playing") || revealing(video))) {
     video.pause();
   } else {
     video.play().catch(() => {});
@@ -171,7 +178,11 @@ export function initAmbientVideos() {
   }), { threshold: 0.3 });
   videos.forEach((video) => {
     video.addEventListener("playing", () => video.classList.add("is-live"), { once: true });
-    if (video.dataset.ambient === "view") view.observe(video);
+    if (video.dataset.ambient === "view") {
+      view.observe(video);
+      const reveal = video.closest('[data-anim="reveal"]');
+      if (reveal) new MutationObserver(() => syncAmbient(video)).observe(reveal, { attributeFilter: ["class"] });
+    }
     syncAmbient(video);
   });
   ambientStill.addEventListener("change", () => videos.forEach(syncAmbient));
