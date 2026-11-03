@@ -121,3 +121,32 @@
   --bs-btn-active-bg: var(--color-navy);
   --bs-btn-active-border-color: var(--color-navy);
 }
+
+// A one-device-pixel ring breaks up where it curves, so below 2x the round ends get a 1.5 device pixel copy
+.btn-outline,
+.btn-outline-navy,
+.btn-outline-dark {
+  --btn-ring: ~"round(down, 1px, var(--device-px, 1px))";
+  --bs-btn-border-width: var(--btn-ring);
+  position: relative;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    top: calc(-1 * var(--btn-ring));
+    bottom: calc(-1 * var(--btn-ring));
+    aspect-ratio: 1;
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 calc(1.5 * var(--device-px, 1px)) var(--bs-btn-border-color);
+    pointer-events: none;
+  }
+  &::before {
+    left: calc(-1 * var(--btn-ring));
+    clip-path: inset(0 50% 0 0);
+  }
+  &::after {
+    right: calc(-1 * var(--btn-ring));
+    clip-path: inset(0 0 0 50%);
+  }
+}
