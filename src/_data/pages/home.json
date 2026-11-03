@@ -192,26 +192,26 @@
         "rows": [
           {
             "logos": [
-              { "name": "University of Wollongong Australia", "url": "#", "image": { "src": "/assets/images/logos/wollongong.svg", "width": 141, "height": 46 } },
-              { "name": "The University of Sydney", "url": "#", "image": { "src": "/assets/images/logos/sydney.png", "width": 117, "height": 41 } },
-              { "name": "UNSW Sydney", "url": "#", "image": { "src": "/assets/images/logos/unsw.png", "width": 104, "height": 45 } },
-              { "name": "University of Technology Sydney", "url": "#", "image": { "src": "/assets/images/logos/uts.png", "width": 132, "height": 58 } },
-              { "name": "Macquarie University", "url": "#", "image": { "src": "/assets/images/logos/macquarie.png", "width": 116, "height": 35 } },
-              { "name": "Australian Catholic University", "url": "#", "image": { "src": "/assets/images/logos/acu.png", "width": 103, "height": 28 } },
-              { "name": "ICMS", "url": "#", "image": { "src": "/assets/images/logos/icms.png", "width": 121, "height": 39 } },
-              { "name": "Torrens University Australia", "url": "#", "image": { "src": "/assets/images/logos/torrens.png", "width": 111, "height": 43 } },
-              { "name": "The University of Newcastle", "url": "#", "image": { "src": "/assets/images/logos/newcastle.png", "width": 130, "height": 46 } }
+              { "name": "University of Wollongong Australia", "url": "https://www.uow.edu.au/", "image": { "src": "/assets/images/logos/wollongong.svg", "width": 141, "height": 46 } },
+              { "name": "The University of Sydney", "url": "https://www.sydney.edu.au/", "image": { "src": "/assets/images/logos/sydney.png", "width": 117, "height": 41 } },
+              { "name": "UNSW Sydney", "url": "https://www.unsw.edu.au/", "image": { "src": "/assets/images/logos/unsw.png", "width": 104, "height": 45 } },
+              { "name": "University of Technology Sydney", "url": "https://www.uts.edu.au/", "image": { "src": "/assets/images/logos/uts.png", "width": 132, "height": 58 } },
+              { "name": "Macquarie University", "url": "https://www.mq.edu.au/", "image": { "src": "/assets/images/logos/macquarie.png", "width": 116, "height": 35 } },
+              { "name": "Australian Catholic University", "url": "https://www.acu.edu.au/", "image": { "src": "/assets/images/logos/acu.png", "width": 103, "height": 28 } },
+              { "name": "ICMS", "url": "https://www.icms.edu.au/", "image": { "src": "/assets/images/logos/icms.png", "width": 121, "height": 39 } },
+              { "name": "Torrens University Australia", "url": "https://www.torrens.edu.au/", "image": { "src": "/assets/images/logos/torrens.png", "width": 111, "height": 43 } },
+              { "name": "The University of Newcastle", "url": "https://www.newcastle.edu.au/", "image": { "src": "/assets/images/logos/newcastle.svg", "width": 57, "height": 57 } }
             ]
           },
           {
             "logos": [
-              { "name": "ADF Careers", "url": "#", "image": { "src": "/assets/images/logos/adf-careers.svg", "width": 92, "height": 47 } },
-              { "name": "MEGT", "url": "#", "image": { "src": "/assets/images/logos/megt.png", "width": 109, "height": 83 } },
-              { "name": "UTS Sport", "url": "#", "image": { "src": "/assets/images/logos/uts-sport.png", "width": 64, "height": 41 } },
-              { "name": "American Summers", "url": "#", "image": { "src": "/assets/images/logos/american-summers.png", "width": 116, "height": 56 } },
-              { "name": "Multiplex", "url": "#", "image": { "src": "/assets/images/logos/multiplex.png", "width": 146, "height": 28 } },
-              { "name": "Master Builders Australia", "url": "#", "image": { "src": "/assets/images/logos/master-builders.png", "width": 164, "height": 41 } },
-              { "name": "WiseTech Global", "url": "#", "image": { "src": "/assets/images/logos/wisetech.png", "width": 108, "height": 44 } }
+              { "name": "ADF Careers", "url": "https://www.adfcareers.gov.au/", "image": { "src": "/assets/images/logos/adf-careers.svg", "width": 92, "height": 47 } },
+              { "name": "MEGT", "url": "https://www.megt.com.au/", "image": { "src": "/assets/images/logos/megt.png", "width": 109, "height": 83 } },
+              { "name": "UTS Sport", "url": "https://www.activateuts.com.au/sport/intervarsity-sport", "image": { "src": "/assets/images/logos/uts-sport.png", "width": 66, "height": 43 } },
+              { "name": "American Summers", "url": "https://www.americansummers.com/", "image": { "src": "/assets/images/logos/american-summers.png", "width": 116, "height": 56 } },
+              { "name": "Multiplex", "url": "https://www.multiplex.global/", "image": { "src": "/assets/images/logos/multiplex.png", "width": 146, "height": 28 } },
+              { "name": "Master Builders Australia", "url": "https://www.masterbuilders.com.au/", "image": { "src": "/assets/images/logos/master-builders.png", "width": 164, "height": 41 } },
+              { "name": "WiseTech Global", "url": "https://www.wisetechglobal.com/", "image": { "src": "/assets/images/logos/wisetech.png", "width": 108, "height": 44 } }
             ]
           }
         ]

@@ -219,11 +219,14 @@ export function initMarquees() {
       if (!list) return;
       track.classList.remove("is-running");
       track.querySelectorAll("[data-marquee-copy]").forEach((copy) => copy.remove());
+      list.style.width = "";
       list.querySelectorAll("img").forEach((img) => {
         img.style.width = `${parseFloat(img.getAttribute("width")) * scale}px`;
       });
       if (still.matches) return;
-      const width = list.getBoundingClientRect().width;
+      // whole device pixels, or each copy sits a fraction of a pixel out of step, draws differently and the loop snaps as it wraps
+      const width = Math.ceil(list.getBoundingClientRect().width * devicePixelRatio) / devicePixelRatio;
+      list.style.width = `${width}px`;
       const lane = track.parentElement.clientWidth;
       if (!width) return;
       const copies = Math.ceil(lane / width) + 1;

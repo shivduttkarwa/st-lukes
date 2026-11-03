@@ -63,7 +63,8 @@
     @media (hover: hover) {
       &:hover .pathways__track { animation-play-state: paused; }
     }
-    &:focus-within .pathways__track { animation-play-state: paused; }
+    // keyboard focus only: a clicked logo keeps focus while its site opens in a new tab, which held the row still
+    &:has(:focus-visible) .pathways__track { animation-play-state: paused; }
   }
 
   &__track {
