@@ -46,6 +46,15 @@ const whole = (ease, distance) => {
   return (progress) => Math.round(curve(progress) * distance) / distance;
 };
 
+// A title row spans the whole title, so it starts with its text just past the screen edge, not its box, or the glide begins out of sight
+const ink = (el) => {
+  const range = document.createRange();
+  range.selectNodeContents(el);
+  return range.getBoundingClientRect();
+};
+const offLeft = (i, el) => -ink(el).right;
+const offRight = (i, el) => document.documentElement.clientWidth - ink(el).left;
+
 // Every preset fades (autoAlpha) so the CSS FOUC guard works uniformly.
 const REVEAL = {
   "fade-up":    { from: { y: LIFT, autoAlpha: 0 },              to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power1.out", LIFT) }, ease: "none" } } },
@@ -55,8 +64,8 @@ const REVEAL = {
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
   // solid from off the canvas, as the preloader title: visibility flips as the tween starts
-  "enter-right": { from: { x: "110%", visibility: "hidden" },   to: { x: "0%", visibility: "inherit", duration: 2.4, ease: "power2.out" } },
-  "enter-left":  { from: { x: "-110%", visibility: "hidden" },  to: { x: "0%", visibility: "inherit", duration: 2.4, ease: "power2.out" } },
+  "enter-right": { from: { x: offRight, visibility: "hidden" }, to: { x: 0, visibility: "inherit", duration: 1.2, ease: "power2.out" } },
+  "enter-left":  { from: { x: offLeft, visibility: "hidden" },  to: { x: 0, visibility: "inherit", duration: 1.2, ease: "power2.out" } },
   // 2D only: a GPU layer would shift the header text and change its sharpness as the drop ends
   "drop-soft":   { from: { y: -DROP, autoAlpha: 0, force3D: false }, to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power2.out", DROP) }, ease: "none" } } },
   "nudge-right": { from: { x: 40, autoAlpha: 0 },               to: { x: 0, autoAlpha: 1 } },

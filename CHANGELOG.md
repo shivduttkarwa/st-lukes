@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Hero title entrance
+- Without the preloader, the hero title's rows start with their text just past the screen edge, as the preloader's do. `enter-left` / `enter-right` used to start at ∓110% of the row, and the row spans the whole title, so the text spent about 0.25s (line 1) and 0.35s (line 2) at 1440 gliding out of sight before it appeared. The glide is now 1.2s.
+
 ## 2026-11-02 — Sticky header
 - The "Hanging logo tab" option, picked from a sticky header lab (since removed). Figma draws no sticky state, so the bar is our own design. Once the header has scrolled away, scrolling up slides in a 72 navy strip (64 on phones) with the logo block hanging below it at 70% (80% on phones). Scrolling down hides it, over 0.5s with `--ease-out`.
 - Coming back within one header-height of the top turns the strip into Figma's full header, as a single 0.6s change with `--ease-settle` that doesn't follow the scroll. The strip rolls up into the top edge, the logo grows back to full size, and Quick Links, the text links and the menu button move down into place. Scrolling past that point again turns it back. At the top it is exactly the static header.
