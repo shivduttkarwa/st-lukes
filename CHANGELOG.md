@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — No white edge beside the USP photos
+- A USP card's width now rounds to whole device pixels. At the user's 1920 × 945 the cards were exactly 443.5px wide, and at that half pixel Chrome rounded the card's white background to 444 columns and its photo to 443, so a 1px white line ran down one side of the photo. It vanished while dragging, because a scaled card isn't pixel-rounded, and came back when the card landed. It's the only card slider with a white card behind its photo, so only it showed. At 1440 the width was already whole (400), so the design size is unchanged.
+
 ## 2026-11-03 — Card sliders shrink with the drag
 - The card sliders (USPs, Learning, testimonials, Instagram, sports, photo strip) now behave like the agency's reference slider, ported with the same numbers. While dragged, the slides shrink with the drag speed (to 0.925 at 3 px/ms, a quarter of the reference's depth of 0.7, as the user asked for a subtler zoom) and a 0.4s `ease-out` transition on `scale` eases them back. A click or release starts as a 2.5 px/ms drag decaying by 0.92 a frame, and edges have no resistance. Slides move on Swiper's default `ease` over 900ms, as on the reference, instead of `--ease-out`. One difference: the scale is cleared when the slide lands, where the reference leaves cards at about 0.998, which softens them at rest. The fade sliders (news) are unchanged, and nothing scales under reduced motion.
 

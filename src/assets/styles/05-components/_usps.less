@@ -92,10 +92,11 @@
 .usp {
   display: flex;
   flex-direction: column;
-  width: @usps-card-sm;
+  // whole device pixels: at a half-pixel width Chrome rounds the white card and its photo apart, a 1px white edge
+  width: ~"round(@{usps-card-sm}, var(--device-px, 1px))";
   height: auto;
   background: var(--color-white);
-  @media (min-width: @bp-md) { width: @usps-card; }
+  @media (min-width: @bp-md) { width: ~"round(@{usps-card}, var(--device-px, 1px))"; }
 
   &__media {
     position: relative;
