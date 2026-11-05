@@ -140,9 +140,11 @@
 @inner-hero-raise: 27 * @px;
 @inner-hero-lead: 296 * @px;
 @inner-hero-least: 400 * @px;
+@inner-hero-most: 772 * @px;
 
 .hero--inner {
-  @media (min-width: @bp-lg) { height: ~"min(53.61vw, calc(100svh - var(--hero-fold, 0px)))"; }
+  // Figma's 772 in design px follows the root, which scales with the window's height too, so a wide screen keeps Figma's fold
+  @media (min-width: @bp-lg) { height: ~"min(53.61vw, @{inner-hero-most}, calc(100svh - var(--hero-fold, 0px)))"; }
 
   // a page lead's text shares the first screen; its bottom padding may fall below. initHeroFold() measures it, Figma's is 296
   &:has(+ .page-lead) {

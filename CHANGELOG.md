@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-05 — Inner heroes stop short of the fold on wide screens
+- On Contact the hero filled the whole window on wide screens: its height was the lesser of Figma's ratio (53.61% of the width) and the window height, and on a 1918 × 945 window the ratio (1028) is taller than the window, so it took all 945. It is now also capped at Figma's 772 in design px, which follow the root and so scale with the window's height, keeping Figma's fold: 856 at 1918 × 945 with 82px of the next block in view, 901 at 1920 × 1080 (was 1029), unchanged at 1440 × 900 (772, Figma's) and on laptops (732 at 1366 × 768, 686 at 1280 × 720). Leadership and Staff, Principal's Welcome and Extra Blocks give up the lead's text under the hero, so they are unchanged up to 1920 wide and only capped at 901 on very large screens (at 2560 × 1440, 1095 on Leadership and Staff and 1160 on the other two before).
+
 ## 2026-11-05 — FAQ rows all answer, open smoothly, arrows turn like the menu's
 - Contact and Principal's Welcome: every FAQ row now has an answer and a button (Maps & Transport, How to Apply, Book a Tour, Christian Foundation, Why Choose St Luke's), written from the site's own copy for the client to replace. Only the first had one, so the other five were disabled.
 - Opening a row no longer stutters. The panel eased on `grid-template-rows` with a sharp ease-out that spent its last 0.3s creeping under a pixel a frame, so the question text and the rows below settled through fractional positions. It now eases in whole pixels on the menu's settle curve over 0.6s, with the answer fading in. Recorded frame by frame at 1440 × 900: every height whole, the moving question always on the same sub-pixel phase, and the row above closing in step.
