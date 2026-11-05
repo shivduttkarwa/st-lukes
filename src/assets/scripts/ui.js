@@ -123,6 +123,16 @@ export function initPromos() {
   });
 }
 
+// data-hero-fold: an inner hero gives up this block's height so the two share the first screen (_hero.less)
+export function initHeroFold() {
+  const sizes = new ResizeObserver((entries) => entries.forEach(({ target, borderBoxSize }) => {
+    target.previousElementSibling.style.setProperty("--hero-fold", `${borderBoxSize[0].blockSize}px`);
+  }));
+  document.querySelectorAll("[data-hero-fold]").forEach((block) => {
+    if (block.previousElementSibling?.classList.contains("hero--inner")) sizes.observe(block);
+  });
+}
+
 // a learning card's labels slide up by the height of its hidden text when it opens (_learning.less)
 export function initEntryCards() {
   const sizes = new ResizeObserver((entries) => entries.forEach(({ target, borderBoxSize }) => {

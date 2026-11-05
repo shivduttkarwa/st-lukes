@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-03 — Inner hero and page lead share the first screen
+- On Leadership and Staff, Principal's Welcome and Extra Blocks, the inner hero and the page lead under it now fill exactly one screen, as they do in Figma (772 + 350 at 1440). The hero was capped at the full window height, so on most screens it filled the window alone and the lead started below the fold. Now the hero gives up the lead's height, measured by `initHeroFold()`, and never grows past Figma's 772: at 1440 × 1200 it is Figma exactly. Measured on all three pages: 711 of 711 at 1536 × 711 (125%), 945 of 945 at 1920 × 945, 900 of 900 at 1440 × 900. The title stays at least 75px clear of the logo, and the hero's floor drops from 560 to 400 design px only when a lead follows it. Phones are unchanged.
+
 ## 2026-11-03 — Landing-page stat: "Did you know?" orbits in
 - "Did you know?" travels in from the top of the gold stat circle down the left side to its place, keeping its angle on the arc, as it fades in: a new `orbit` reveal turns the curved-caption SVG about the circle's centre from 12 o'clock, over 1.6s with a soft start and landing. The SVG holds its layer (`will-change: transform`) so the caption doesn't shift as the turn ends. The "99%" still counts up from 0, and the line under it now fades in alongside. Recorded frame by frame: the caption turns 124° to 0° while the number counts 0% to 99%, no script errors.
 ## 2026-11-03 — One motion system across the site
