@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-05 — Inner hero titles both come in from the left
+- On Leadership and Staff, Principal's Welcome, Contact and Extra Blocks, the second title row ("And Staff") now slides in from the left like the first, 0.3s behind it. It came from the right edge and crossed nearly the whole window to reach its place on the left (about 1,800px at 1920). Recorded at 1920 × 945: line 1 enters at x −522 and line 2 at x −500 300ms later, both landing at 111, the same place as before.
+
 ## 2026-11-05 — Card buttons come and go alike
 - The gold arrow on the homepage campus cards and the Our School child-page cards now comes in like the learning cards' button: it fades in over 0.35s while it grows from 80% over 0.6s on a held layer, and fades and shrinks back over 0.35s. They only faded. All three, and the testimonial cards that share the learning card, use one pair of mixins (`.card-arrow()` / `.card-arrow-shown()` in `_mixins.less`). Measured at 1440: identical transitions on all three, and under reduced motion the campus and child-page arrows appear at once.
 - No other block shows a button or text on hover: Where Next's arrow is always shown, and the rest of the site's hovers are colour changes.
