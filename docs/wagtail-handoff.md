@@ -114,6 +114,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 ### where_next (`blocks/where_next.njk`)
 - "Where to Next?": three image links (only the large one carries the gold arrow, as in Figma), and the "Explore Our School" menu with up to two `outline-dark` buttons. `current` adds the gold dot and `aria-current`. In Wagtail it should come from the page tree, so the current page highlights itself.
 - Menu links are 27 tall under a fine pointer and 44 on touch.
+- The three image links rise 35px and fade in like the other cards, each on its own trigger as it comes into view (`data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"`), so they arrive one after another down the page: the top right card, the large one, then the bottom right. They aren't one group because the two small cards sit in their own column, and a group would also start the lower ones while still off screen.
 
 ### article (`blocks/article.njk`)
 - Heading and intro at 822 wide, a 1032 photo, then the quote and body at 826 wide. Intro paragraphs are 25 apart and body paragraphs 28, as in Figma.

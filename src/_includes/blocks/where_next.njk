@@ -4,7 +4,7 @@
       <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="where-next__outline">{{ value.title_line_2 }}</span></h2>
       {% for card in value.cards %}
       {% if loop.first %}
-      <a class="where-next__card where-next__card--lead" href="{{ card.url | default('#') }}" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+      <a class="where-next__card where-next__card--lead" href="{{ card.url | default('#') }}" data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed">
         {% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}
         <span class="where-next__title">{{ card.title }}</span>
         <span class="where-next__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
@@ -14,7 +14,7 @@
       <div class="where-next__side">
         {% for card in value.cards %}
         {% if not loop.first %}
-        <a class="where-next__card" href="{{ card.url | default('#') }}" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+        <a class="where-next__card" href="{{ card.url | default('#') }}" data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed">
           {% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}
           <span class="where-next__title">{{ card.title }}</span>
         </a>
