@@ -123,10 +123,11 @@ export function initPromos() {
   });
 }
 
-// data-hero-fold: an inner hero gives up this block's height so the two share the first screen (_hero.less)
+// data-hero-fold: an inner hero gives up this block's text, with its top padding mirrored below, so the two share the first screen (_hero.less)
 export function initHeroFold() {
-  const sizes = new ResizeObserver((entries) => entries.forEach(({ target, borderBoxSize }) => {
-    target.previousElementSibling.style.setProperty("--hero-fold", `${borderBoxSize[0].blockSize}px`);
+  const sizes = new ResizeObserver((entries) => entries.forEach(({ target, contentBoxSize }) => {
+    const pad = parseFloat(getComputedStyle(target).paddingTop);
+    target.previousElementSibling.style.setProperty("--hero-fold", `${contentBoxSize[0].blockSize + 2 * pad}px`);
   }));
   document.querySelectorAll("[data-hero-fold]").forEach((block) => {
     if (block.previousElementSibling?.classList.contains("hero--inner")) sizes.observe(block);

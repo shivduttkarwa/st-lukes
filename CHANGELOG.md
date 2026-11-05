@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-05 — Inner hero gives up only the lead's text
+- The inner hero no longer gives up the page lead's whole height to fit both in one screen, only its text with the lead's 50px top padding mirrored below it. The lead's bottom padding (104, the gap before the next block) counted too, so 100–118px of empty navy took photo from the hero: on Leadership and Staff at 1918 × 874 the photo was 505 tall, 58% of the screen against Figma's 69%. Now it is 562 (64%), and on every page and screen the photo gains 50–57px. Measured on Leadership and Staff, Principal's Welcome and Extra Blocks at 1918 × 874, 1920 × 945, 1440 × 900, 1536 × 711, 1366 × 768 and 1280 × 720: the whole lead text is on screen with 44–52px of navy above it and 48–58px below. Leadership and Staff's photo is 61–67% of the screen, the other two 68–73%.
+
 ## 2026-11-05 — Inner hero titles both come in from the left
 - On Leadership and Staff, Principal's Welcome, Contact and Extra Blocks, the second title row ("And Staff") now slides in from the left like the first, 0.3s behind it. It came from the right edge and crossed nearly the whole window to reach its place on the left (about 1,800px at 1920). Recorded at 1920 × 945: line 1 enters at x −522 and line 2 at x −500 300ms later, both landing at 111, the same place as before.
 
