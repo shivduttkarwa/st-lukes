@@ -1,4 +1,5 @@
 .news-grid {
+  position: relative;
   display: grid;
   gap: 40 * @px 6 * @px;
   @media (min-width: @bp-md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -13,7 +14,8 @@
   flex-direction: column;
   align-items: flex-start;
   gap: 17 * @px;
-  &[hidden] { display: none; }
+  &[hidden],
+  &.is-hidden { display: none; }
   h3 {
     .type-news-card-title();
     position: relative;

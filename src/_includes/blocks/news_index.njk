@@ -20,5 +20,6 @@
     <div class="news-grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for card in value.stories %}{% include "snippets/news-card.njk" %}{% endfor %}
     </div>
+    <p class="news-index__empty" data-news-empty hidden>{{ value.no_results }}</p>
   </div>
 </section>

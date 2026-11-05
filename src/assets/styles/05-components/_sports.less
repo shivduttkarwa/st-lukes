@@ -64,7 +64,8 @@
     padding: 20 * @px;
     overflow: hidden;
     color: var(--color-white);
-    &[hidden] { display: none; }
+    &[hidden],
+    &.is-hidden { display: none; }
     &::after {
       content: "";
       position: absolute;

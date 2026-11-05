@@ -87,6 +87,7 @@
           }
         ],
         "search_label": "Search",
+        "no_results": "No stories match your search. Try another word or category.",
         "stories": [
           {
             "tag": "Community",
@@ -402,7 +403,9 @@
           "width": 1440,
           "height": 826
         },
-        "video": { "src": "/assets/video/cta.mp4" }
+        "video": {
+          "src": "/assets/video/cta.mp4"
+        }
       }
     }
   ]

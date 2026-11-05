@@ -1,9 +1,6 @@
 import { Anim } from "./anim.js";
 import { initMenuSearch } from "./search.js";
 import { gsap } from "gsap";
-import { Flip } from "gsap/Flip";
-
-gsap.registerPlugin(Flip);
 
 export function lockScroll(lock) {
   const root = document.documentElement;
@@ -89,18 +86,58 @@ export function initAccordions() {
   });
 }
 
-// a filter change: the pressed fill glides to the new tab, cards that stay slide over, leavers fade away and newcomers rise in
-export function initFilters() {
+function filterable(cards, settle) {
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const grid = cards[0]?.parentElement;
+  // hidden cards carry a class, not the attribute: Bootstrap makes [hidden] !important, which a leaving card must lift to fade out
+  const hide = (card, on) => card.classList.toggle("is-hidden", on);
+  const shown = (card) => !card.classList.contains("is-hidden");
+  cards.forEach((card) => { if (card.hidden) { card.hidden = false; hide(card, true); } });
+  let change = null;
+  return (shows) => {
+    const count = cards.filter(shows).length;
+    if (cards.every((card) => shown(card) === shows(card))) return count;
+    if (still.matches || !grid) {
+      cards.forEach((card) => hide(card, !shows(card)));
+      settle();
+      return count;
+    }
+    change?.progress(1);
+    // a card still playing its scroll reveal would carry on under the change
+    gsap.killTweensOf(cards);
+    // the set on screen fades out, the new set fades in where it belongs, and the grid's height eases between them
+    const out = cards.filter(shown);
+    const into = cards.filter(shows);
+    const height = grid.offsetHeight;
+    cards.forEach((card) => hide(card, !into.includes(card)));
+    const to = grid.offsetHeight;
+    cards.forEach((card) => hide(card, !out.includes(card)));
+    gsap.set(grid, { height, overflow: "clip" });
+    change = gsap.timeline({
+      onComplete: () => {
+        into.forEach((card) => card.classList.add("is-revealed"));
+        // visibility stays: the reveal guard hides a reveal without its inline value
+        gsap.set(into, { clearProps: "transform,opacity" });
+        gsap.set(grid, { clearProps: "height,overflow" });
+        settle();
+      },
+    })
+      .to(out, { autoAlpha: 0, duration: 0.2, ease: "power1.out" })
+      .call(() => cards.forEach((card) => hide(card, !into.includes(card))))
+      .to(grid, { height: to, duration: 0.45, ease: "power2.inOut" }, 0.15)
+      .fromTo(into, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: { amount: 0.15 }, snap: { y: 1 }, immediateRender: false }, 0.2);
+    return count;
+  };
+}
+
+export function initFilters() {
   document.querySelectorAll("[data-filter-scope]").forEach((scope) => {
     const tabs = [...scope.querySelectorAll("[data-filter]")];
-    const cards = [...scope.querySelectorAll("[data-filter-groups]")];
-    const grid = cards[0]?.parentElement;
     const list = scope.querySelector("[data-filter-tabs]");
-    // hidden cards carry a class, not the attribute: Bootstrap makes [hidden] !important, which a leaving card must lift to fade out
-    const hide = (card, on) => card.classList.toggle("is-hidden", on);
-    const shown = (card) => !card.classList.contains("is-hidden");
-    cards.forEach((card) => { if (card.hidden) { card.hidden = false; hide(card, true); } });
+    const filter = filterable([...scope.querySelectorAll("[data-filter-groups]")], () => {
+      scope.querySelectorAll("[data-slider]").forEach((slider) => slider.swiper?.update());
+      window.Anim?.refresh();
+    });
     const pressed = () => tabs.find((tab) => tab.getAttribute("aria-pressed") === "true");
     const mark = (tab) => {
       if (!list || !tab) return;
@@ -112,11 +149,6 @@ export function initFilters() {
     window.addEventListener("resize", () => {
       if (list?.classList.contains("has-marker")) mark(pressed());
     });
-    const settle = () => {
-      scope.querySelectorAll("[data-slider]").forEach((slider) => slider.swiper?.update());
-      window.Anim?.refresh();
-    };
-    let change = null;
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const last = pressed();
@@ -129,33 +161,7 @@ export function initFilters() {
         tabs.forEach((other) => other.setAttribute("aria-pressed", String(other === tab)));
         mark(tab);
         const group = tab.dataset.filter;
-        const shows = (card) => group === "all" || card.dataset.filterGroups.split(" ").includes(group);
-        if (still.matches || !grid) {
-          cards.forEach((card) => hide(card, !shows(card)));
-          return settle();
-        }
-        change?.progress(1);
-        const height = grid.offsetHeight;
-        // a card whose own reveal hasn't played yet comes in with the newcomers instead of arriving unseen
-        cards.forEach((card) => { if (!card.classList.contains("is-revealed")) hide(card, true); });
-        const state = Flip.getState(cards, { simple: true });
-        cards.forEach((card) => hide(card, !shows(card)));
-        change = Flip.from(state, {
-          duration: 0.6,
-          ease: "power2.inOut",
-          stagger: 0.02,
-          absoluteOnLeave: true,
-          onEnter: (els) => gsap.fromTo(els, { autoAlpha: 0, y: 30, scale: 0.96 }, { autoAlpha: 1, y: 0, scale: 1, duration: 0.6, ease: "power2.out", stagger: 0.05, delay: 0.15 }),
-          onLeave: (els) => gsap.to(els, { autoAlpha: 0, scale: 0.94, duration: 0.3, ease: "power1.in" }),
-          onComplete: () => {
-            cards.forEach((card) => { if (shown(card)) card.classList.add("is-revealed"); });
-            gsap.set(cards, { clearProps: "display,position,top,left,width,height" });
-            // visibility stays: the reveal guard hides a reveal without its inline value
-            gsap.set(cards.filter(shown), { clearProps: "transform,opacity" });
-            settle();
-          },
-        });
-        change.add(gsap.fromTo(grid, { height }, { height: grid.offsetHeight, duration: 0.6, ease: "power2.inOut", clearProps: "height" }), 0);
+        filter((card) => group === "all" || card.dataset.filterGroups.split(" ").includes(group));
       });
     });
   });
@@ -165,18 +171,27 @@ export function initNewsFilter() {
   document.querySelectorAll("[data-news-filter]").forEach((root) => {
     const category = root.querySelector("[data-news-category]");
     const search = root.querySelector("[data-news-search]");
-    const cards = root.querySelectorAll("[data-news-tag]");
+    const empty = root.querySelector("[data-news-empty]");
+    const filter = filterable([...root.querySelectorAll("[data-news-tag]")], () => window.Anim?.refresh());
+    let typing = null;
     const apply = () => {
+      clearTimeout(typing);
       const term = search.value.trim().toLowerCase();
-      cards.forEach((card) => {
-        const matches = !category.value || card.dataset.newsTag === category.value;
-        card.hidden = !matches || !card.textContent.toLowerCase().includes(term);
-      });
-      window.Anim?.refresh();
+      const count = filter((card) => (!category.value || card.dataset.newsTag === category.value) && card.textContent.toLowerCase().includes(term));
+      if (!empty || empty.hidden === count > 0) return;
+      empty.hidden = count > 0;
+      if (!empty.hidden) gsap.fromTo(empty, { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, duration: 0.5, delay: 0.3, ease: "power2.out", clearProps: "transform" });
     };
     category.addEventListener("change", apply);
-    search.addEventListener("input", apply);
-    root.querySelector("form").addEventListener("submit", (e) => e.preventDefault());
+    // the search waits for a pause in typing, so the grid moves once
+    search.addEventListener("input", () => {
+      clearTimeout(typing);
+      typing = setTimeout(apply, 250);
+    });
+    root.querySelector("form").addEventListener("submit", (e) => {
+      e.preventDefault();
+      apply();
+    });
   });
 }
 
