@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-05 — Testimonial cards play St Luke's footage
+- Sarina and Elsie in "Hear from our community" now play the school's own footage from the Figma file instead of the two Wikimedia Commons interviews, which are removed from the project (with the credit they needed). Sarina plays the Wellbeing Week film, reusing the Student Wellbeing pillar card's `pillar-wellbeing.mp4` so the browser downloads it once; Elsie plays the athletics carnival, `testimonial-athletics.mp4`, a centred portrait crop of Figma's landscape `.mov` (688 × 1062, 9s, H.264 at 30fps, 2.7 MB). Both are silent (the film's audio track is silence, −91 dB), so the play button runs them without sound. The project loses 32.6 MB of video and gains 2.7 MB.
+- The live site (stlukes.nsw.edu.au) has no student testimonial videos to use instead: the homepage and ten likely pages carry one video, the homepage banner's silent background loop on Vimeo.
+
 ## 2026-11-05 — Flat pages for upload, lab left out
 - `dist/` is now flat like the other cutups: `our-school.html`, `contact.html` and the rest sit beside `index.html` and `assets/`, instead of a folder per page. Every internal link points at the `.html` file (menu, quick links, footer, search rows, the News Story back links) and the logo links to `index.html`, so the pages also open straight from disk. The staging addresses change to `…/websites/stlukes/our-school.html`.
 - The three `lab/` test pages are no longer in the production build; `npm run dev` still serves them.
