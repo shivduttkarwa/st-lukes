@@ -4,7 +4,7 @@
       <div class="news-index__filters">
         {% for filter in value.filters %}
         <div class="news-index__filter select" data-select>
-          <select name="{{ filter.name }}" aria-label="{{ filter.label }}"{% if filter.name == "category" %} data-news-category{% endif %}>
+          <select name="{{ filter.name }}" aria-label="{{ filter.label }}" data-news-field="{{ filter.name }}">
             <option value="">{{ filter.label }}</option>
             {% for option in filter.options %}<option>{{ option }}</option>{% endfor %}
           </select>

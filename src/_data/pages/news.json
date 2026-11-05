@@ -64,7 +64,11 @@
           {
             "name": "age",
             "label": "Age",
-            "options": []
+            "options": [
+              "Early Learning",
+              "Junior School",
+              "Senior School"
+            ]
           },
           {
             "name": "category",
@@ -83,7 +87,15 @@
           {
             "name": "year",
             "label": "Year group",
-            "options": []
+            "options": [
+              "Pre-K & Kindergarten",
+              "Years 1–2",
+              "Years 3–4",
+              "Years 5–6",
+              "Years 7–8",
+              "Years 9–10",
+              "Years 11–12"
+            ]
           }
         ],
         "search_label": "Search",
@@ -91,6 +103,20 @@
         "stories": [
           {
             "tag": "Community",
+            "ages": [
+              "Early Learning",
+              "Junior School",
+              "Senior School"
+            ],
+            "years": [
+              "Pre-K & Kindergarten",
+              "Years 1–2",
+              "Years 3–4",
+              "Years 5–6",
+              "Years 7–8",
+              "Years 9–10",
+              "Years 11–12"
+            ],
             "title": "Thank to our amazing volunteers for our ‘An Evening for Our Stars’ event",
             "url": "#",
             "image": {
@@ -102,6 +128,13 @@
           },
           {
             "tag": "Service",
+            "ages": [
+              "Senior School"
+            ],
+            "years": [
+              "Years 9–10",
+              "Years 11–12"
+            ],
             "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
             "url": "#",
             "image": {
@@ -113,6 +146,12 @@
           },
           {
             "tag": "Talented Athlete Program",
+            "ages": [
+              "Senior School"
+            ],
+            "years": [
+              "Years 11–12"
+            ],
             "title": "Congratulations Mila G, Under 18 Girls winner at Hurley Bells Beach Juniors",
             "url": "#",
             "image": {
@@ -124,6 +163,20 @@
           },
           {
             "tag": "Whole School",
+            "ages": [
+              "Early Learning",
+              "Junior School",
+              "Senior School"
+            ],
+            "years": [
+              "Pre-K & Kindergarten",
+              "Years 1–2",
+              "Years 3–4",
+              "Years 5–6",
+              "Years 7–8",
+              "Years 9–10",
+              "Years 11–12"
+            ],
             "title": "celebrating ST LUKE'S DAY and Mrs Donnan’s remarkable 30 years",
             "url": "#",
             "image": {
@@ -135,6 +188,19 @@
           },
           {
             "tag": "GlobalCitizen",
+            "ages": [
+              "Junior School",
+              "Senior School"
+            ],
+            "years": [
+              "Pre-K & Kindergarten",
+              "Years 1–2",
+              "Years 3–4",
+              "Years 5–6",
+              "Years 7–8",
+              "Years 9–10",
+              "Years 11–12"
+            ],
             "title": "Stephanie Sinclair, recognised at the NSW HALT ceremony",
             "url": "#",
             "image": {
@@ -146,6 +212,12 @@
           },
           {
             "tag": "Junior School",
+            "ages": [
+              "Junior School"
+            ],
+            "years": [
+              "Years 5–6"
+            ],
             "title": "students represent at the SchoolAid Kids Ambassador Team (KAT) Program",
             "url": "#",
             "image": {
@@ -157,6 +229,13 @@
           },
           {
             "tag": "Performing Arts",
+            "ages": [
+              "Senior School"
+            ],
+            "years": [
+              "Years 9–10",
+              "Years 11–12"
+            ],
             "title": "Stage Band takes the stage at the annual Manly Jazz Festival on Sunday",
             "url": "#",
             "image": {
@@ -168,6 +247,12 @@
           },
           {
             "tag": "Service",
+            "ages": [
+              "Senior School"
+            ],
+            "years": [
+              "Years 9–10"
+            ],
             "title": "Year 10 Ambassadors host raise money for Indigenous Literacy Foundation (ILF)",
             "url": "#",
             "image": {
@@ -179,6 +264,12 @@
           },
           {
             "tag": "HSC Music",
+            "ages": [
+              "Senior School"
+            ],
+            "years": [
+              "Years 11–12"
+            ],
             "title": "Year 12 Students perform for the 2026 HSC Music Soiree",
             "url": "#",
             "image": {

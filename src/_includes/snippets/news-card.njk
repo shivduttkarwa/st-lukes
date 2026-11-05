@@ -1,4 +1,4 @@
-<a class="news-card" href="{{ card.url | default('#') }}" data-news-tag="{{ card.tag }}">
+<a class="news-card" href="{{ card.url | default('#') }}" data-news-tag="{{ card.tag }}"{% if card.ages %} data-news-age="{{ card.ages | join('|') }}"{% endif %}{% if card.years %} data-news-year="{{ card.years | join('|') }}"{% endif %}>
   {% set img = card.image %}{% set cls = "news-card__img" %}{% include "snippets/image.njk" %}
   <p class="news-card__tag"><span aria-hidden="true">#</span>{{ card.tag }}</p>
   <h3>{{ card.title }}</h3>

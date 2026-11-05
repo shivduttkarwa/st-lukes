@@ -244,10 +244,10 @@ blocks:
     figma: "20169:14009"
     template: blocks/news_index.njk   # card markup in snippets/news-card.njk
     fields:
-      filters: ListBlock(StructBlock(name, label, options))   # server-side in Wagtail; only category has values here
+      filters: ListBlock(StructBlock(name, label, options))   # server-side in Wagtail: age (Early Learning, Junior School, Senior School), category, year (Pre-K & Kindergarten, then pairs of years to Years 11–12); sample values
       search_label: CharBlock
       no_results: CharBlock   # shown when the filters and search match no story
-      stories: the NewsPage queryset   # tag, title, url, image fill-818x568
+      stories: the NewsPage queryset   # tag, ages, years, title, url, image fill-818x568; ages and years are lists (a story can belong to several)
 
   article_hero:
     figma: "20169:14108 (ground), 20169:14109 (photo, meta, title)"

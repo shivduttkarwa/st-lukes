@@ -23,6 +23,7 @@ export function initDevicePixel() {
 
 export function initPlatform() {
   if (/Windows.*Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("is-windows-chrome");
+  if (/Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("has-glass-lens");
 }
 
 export function initDisclosures() {
@@ -169,20 +170,22 @@ export function initFilters() {
 
 export function initNewsFilter() {
   document.querySelectorAll("[data-news-filter]").forEach((root) => {
-    const category = root.querySelector("[data-news-category]");
+    const fields = [...root.querySelectorAll("[data-news-field]")];
     const search = root.querySelector("[data-news-search]");
+    // a card holds its category in data-news-tag, and its stages and years as data-news-age / data-news-year, split on |
+    const valuesOf = (card, field) => (card.dataset[field === "category" ? "newsTag" : `news${field[0].toUpperCase()}${field.slice(1)}`] || "").split("|");
     const empty = root.querySelector("[data-news-empty]");
     const filter = filterable([...root.querySelectorAll("[data-news-tag]")], () => window.Anim?.refresh());
     let typing = null;
     const apply = () => {
       clearTimeout(typing);
       const term = search.value.trim().toLowerCase();
-      const count = filter((card) => (!category.value || card.dataset.newsTag === category.value) && card.textContent.toLowerCase().includes(term));
+      const count = filter((card) => fields.every((select) => !select.value || valuesOf(card, select.dataset.newsField).includes(select.value)) && card.textContent.toLowerCase().includes(term));
       if (!empty || empty.hidden === count > 0) return;
       empty.hidden = count > 0;
       if (!empty.hidden) gsap.fromTo(empty, { autoAlpha: 0, y: 15 }, { autoAlpha: 1, y: 0, duration: 0.5, delay: 0.3, ease: "power2.out", clearProps: "transform" });
     };
-    category.addEventListener("change", apply);
+    fields.forEach((select) => select.addEventListener("change", apply));
     // the search waits for a pause in typing, so the grid moves once
     search.addEventListener("input", () => {
       clearTimeout(typing);

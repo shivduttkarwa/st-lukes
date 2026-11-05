@@ -1,3 +1,5 @@
+import { liquidGlass } from "./glass.js";
+
 const TYPEAHEAD_RESET = 500;
 
 const faceOf = (control) => control.closest("[data-select]")?.querySelector("[role='combobox']") || control;
@@ -36,6 +38,8 @@ function buildSelect(root, index) {
   const icon = root.querySelector(".icon");
   if (icon) toggle.append(icon);
 
+  const menu = document.createElement("div");
+  menu.className = "select__menu";
   const list = document.createElement("ul");
   list.className = "select__list";
   list.id = `${id}-list`;
@@ -46,20 +50,75 @@ function buildSelect(root, index) {
     row.className = "select__option";
     row.id = `${id}-option-${i}`;
     row.setAttribute("role", "option");
+    if (!option.value && i === 0) row.classList.add("select__option--all");
     row.textContent = option.textContent;
+    const check = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+    check.setAttribute("class", "select__check");
+    check.setAttribute("aria-hidden", "true");
+    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
+    use.setAttribute("href", "#icon-check");
+    check.append(use);
+    row.append(check);
     list.append(row);
     return row;
   });
 
   select.tabIndex = -1;
   select.setAttribute("aria-hidden", "true");
-  root.append(toggle, list);
+  const bar = document.createElement("span");
+  bar.className = "select__bar";
+  bar.setAttribute("aria-hidden", "true");
+  const thumb = document.createElement("span");
+  thumb.className = "select__thumb";
+  bar.append(thumb);
+  menu.append(list, bar);
+  const shade = document.createElement("span");
+  shade.className = "select__shade";
+  root.append(toggle, shade, menu);
   root.classList.add("is-ready");
+  root.style.setProperty("--select-head", `${toggle.offsetHeight}px`);
 
   let active = 0;
   let typed = "";
   let typedAt = 0;
   const isOpen = () => root.classList.contains("is-open");
+  // a list taller than the menu scrolls under a slim bar of our own, in a gutter inside the glass, clear of its corners
+  const edges = () => {
+    const room = list.scrollHeight - list.clientHeight;
+    menu.classList.toggle("has-scroll", room > 1);
+    if (room <= 1) return;
+    const track = bar.clientHeight;
+    const size = Math.max(28, (track * list.clientHeight) / list.scrollHeight);
+    thumb.style.height = `${size}px`;
+    thumb.style.transform = `translateY(${((track - size) * list.scrollTop) / room}px)`;
+  };
+  list.addEventListener("scroll", edges, { passive: true });
+  thumb.addEventListener("pointerdown", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    thumb.setPointerCapture(e.pointerId);
+    const startY = e.clientY;
+    const startTop = list.scrollTop;
+    const ratio = (list.scrollHeight - list.clientHeight) / Math.max(1, bar.clientHeight - thumb.offsetHeight);
+    const move = (ev) => { list.scrollTop = startTop + (ev.clientY - startY) * ratio; };
+    const up = () => {
+      bar.classList.remove("is-dragging");
+      thumb.removeEventListener("pointermove", move);
+      thumb.removeEventListener("pointerup", up);
+      thumb.removeEventListener("pointercancel", up);
+    };
+    bar.classList.add("is-dragging");
+    thumb.addEventListener("pointermove", move);
+    thumb.addEventListener("pointerup", up);
+    thumb.addEventListener("pointercancel", up);
+  });
+  bar.addEventListener("pointerdown", (e) => {
+    if (e.target !== bar) return;
+    e.preventDefault();
+    const box = bar.getBoundingClientRect();
+    const share = (e.clientY - box.top - thumb.offsetHeight / 2) / Math.max(1, box.height - thumb.offsetHeight);
+    list.scrollTo({ top: Math.max(0, Math.min(1, share)) * (list.scrollHeight - list.clientHeight), behavior: "smooth" });
+  });
 
   const sync = () => {
     const current = select.options[select.selectedIndex];
@@ -82,7 +141,17 @@ function buildSelect(root, index) {
     if (isOpen()) return;
     const box = toggle.getBoundingClientRect();
     const below = window.innerHeight - box.bottom;
-    root.classList.toggle("is-above", below < list.scrollHeight && box.top > below);
+    // the menu takes its side while folded, with no transition, so it unfolds from the toggle and not from where it last was
+    menu.style.transition = shade.style.transition = "none";
+    root.classList.toggle("is-above", below < menu.offsetHeight && box.top > below);
+    // a list wider than its toggle lines up with the toggle's right edge where it would cross the page gutter
+    const gutter = parseFloat(getComputedStyle(root.closest(".container") || document.body).paddingRight) || 0;
+    root.classList.toggle("is-end", box.left + menu.offsetWidth > document.documentElement.clientWidth - gutter);
+    edges();
+    root.style.setProperty("--select-head", `${toggle.offsetHeight}px`);
+    liquidGlass(menu, shade);
+    void menu.offsetWidth;
+    menu.style.transition = shade.style.transition = "";
     root.classList.add("is-open");
     toggle.setAttribute("aria-expanded", "true");
     setActive(start ?? Math.max(0, options.indexOf(select.options[select.selectedIndex])));
@@ -124,7 +193,12 @@ function buildSelect(root, index) {
     PageUp: () => active - 5,
   };
 
-  toggle.addEventListener("click", () => (isOpen() ? close() : open()));
+  toggle.addEventListener("click", () => {
+    if (isOpen()) return close();
+    open();
+    // a pointer opens the menu with nothing highlighted, as Apple's do; the arrow keys still start from the chosen row
+    rows.forEach((row) => row.classList.remove("is-active"));
+  });
   toggle.addEventListener("blur", close);
   toggle.addEventListener("keydown", (e) => {
     if (e.key === "Tab") {
@@ -161,10 +235,10 @@ function buildSelect(root, index) {
   });
 
   // the list never takes focus, so the toggle's blur only fires when the reader really leaves
-  list.addEventListener("mousedown", (e) => e.preventDefault());
+  menu.addEventListener("mousedown", (e) => e.preventDefault());
   list.addEventListener("pointermove", (e) => {
     const i = rows.indexOf(e.target.closest("[role='option']"));
-    if (i > -1 && i !== active) {
+    if (i > -1 && !rows[i].classList.contains("is-active")) {
       active = i;
       rows.forEach((row, n) => row.classList.toggle("is-active", n === i));
     }
