@@ -77,12 +77,165 @@
           "width": 1044,
           "height": 1394
         },
-        "words": {
-          "src": "/assets/images/our-school/values-words.svg",
-          "alt": "St Luke’s students are resourceful, reflective, relational, restorative + resilient, showing kindness, grace, humility, justice, compassion & joy",
-          "width": 506,
-          "height": 747
-        },
+        "lines": [
+          {
+            "shift": "centre",
+            "words": [
+              {
+                "text": "St Luke’s",
+                "size": "73",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "Students",
+                "size": "75",
+                "outline": true,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "centre",
+            "words": [
+              {
+                "text": "Are",
+                "size": "67",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "Resourceful,",
+                "size": "88",
+                "outline": true,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "left",
+            "words": [
+              {
+                "text": "Reflective",
+                "size": "120",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "right",
+            "words": [
+              {
+                "text": "Relational",
+                "size": "96",
+                "outline": true,
+                "wide": true,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "left",
+            "words": [
+              {
+                "text": "Restorative",
+                "size": "107",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "+",
+                "size": "75",
+                "outline": true,
+                "wide": false,
+                "align": "centre"
+              }
+            ]
+          },
+          {
+            "shift": "far-right",
+            "words": [
+              {
+                "text": "Resilient",
+                "size": "131",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "far-left",
+            "words": [
+              {
+                "text": "Showing",
+                "size": "53",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "Kindness",
+                "size": "73",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "far-left",
+            "words": [
+              {
+                "text": "Grace,",
+                "size": "73",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "Humility,",
+                "size": "73",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          },
+          {
+            "shift": "far-right",
+            "words": [
+              {
+                "text": "Justice,\nCompassion",
+                "size": "50",
+                "outline": false,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "&",
+                "size": "107",
+                "outline": true,
+                "wide": false,
+                "align": "baseline"
+              },
+              {
+                "text": "Joy",
+                "size": "107",
+                "outline": true,
+                "wide": false,
+                "align": "baseline"
+              }
+            ]
+          }
+        ],
         "button": {
           "text": "View our Graduate Profile",
           "url": "#",
@@ -243,7 +396,9 @@
           "width": 1440,
           "height": 826
         },
-        "video": { "src": "/assets/video/cta.mp4" }
+        "video": {
+          "src": "/assets/video/cta.mp4"
+        }
       }
     }
   ]

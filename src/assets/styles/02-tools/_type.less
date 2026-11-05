@@ -209,6 +209,16 @@
   @media (min-width: @bp-lg) { font-size: 40 * @px; }
 }
 
+// the values collage: Sanshand at -1%, sized in design px against the collage's own 506 width, so the composition scales as one
+@values-px: (100cqi / 506);
+.type-values-word(@size) {
+  .type-sans();
+  line-height: 0.95;
+  letter-spacing: -0.01em;
+  font-size: @size * @values-px;
+}
+.type-values-word-wide() { letter-spacing: 0.03em; }
+
 // the quote's name and year: Body 1 at -1%
 .type-collage-cite() {
   .type-myriad();

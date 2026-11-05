@@ -163,7 +163,14 @@ blocks:
     template: blocks/values_collage.njk
     fields:
       image: ImageChooserBlock(required)   # fill-1044x1394
-      words: ImageChooserBlock(required)   # an SVG of the word collage; alt carries the sentence
+      lines: ListBlock(StructBlock)   # the word collage, one entry per line, each centred
+        shift: ChoiceBlock(far-left, left, centre, right, far-right, default=centre)   # nudges the line 20 / 10 design px off centre
+        words: ListBlock(StructBlock)
+          text: TextBlock(required)   # a line break stacks the word, right-aligned (Justice, / Compassion)
+          size: ChoiceBlock(50, 53, 67, 73, 75, 88, 96, 107, 120, 131)   # Figma px at the 506-wide collage
+          outline: BooleanBlock(default=False)
+          wide: BooleanBlock(default=False)   # +3% tracking instead of -1% (Relational)
+          align: ChoiceBlock(baseline, centre, default=baseline)   # centre sits the word on the line's capitals (the +)
       button: StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(outline))
 
   faq:

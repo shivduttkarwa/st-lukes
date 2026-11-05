@@ -5,10 +5,10 @@
       <div class="story-body__section">
         <div class="story-body__text">
           <h2 data-anim="split" data-anim-type="lines">{{ section.title }}</h2>
-          <div data-anim="reveal" data-anim-type="fade-up">{{ section.body | safe }}</div>
+          <div data-anim-group="fade-up" data-anim-scroll="timed">{{ section.body | safe }}</div>
         </div>
         {% if section.quote %}
-        <blockquote class="story-body__quote" data-anim="reveal" data-anim-type="fade-up">
+        <blockquote class="story-body__quote" data-anim="reveal" data-anim-type="fade-up" data-anim-scroll="timed">
           <p>“{{ section.quote.text }}”</p>
           <footer><cite>{{ section.quote.name }}</cite><span>{{ section.quote.role }}</span></footer>
         </blockquote>

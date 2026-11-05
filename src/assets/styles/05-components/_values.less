@@ -34,11 +34,52 @@
   }
 
   &__words {
-    position: relative;
-    top: 1 * @px;
-    display: block;
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
     width: 506 * @px;
     max-width: 100%;
-    height: auto;
+    margin: 0;
+    color: var(--color-gold);
+  }
+
+  &__line {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: last baseline;
+    gap: 12 * @values-px;
+    // spacing sits on the lines: container units on the collage itself would read the window, not the collage
+    margin-top: 12 * @values-px;
+    &:last-child { margin-bottom: 19 * @values-px; }
+    &--far-left { left: -20 * @values-px; }
+    &--left { left: -10 * @values-px; }
+    &--right { left: 10 * @values-px; }
+    &--far-right { left: 20 * @values-px; }
+  }
+
+  &__word {
+    white-space: pre;
+    text-align: right;
+    text-box: trim-both cap alphabetic;
+    // where text-box is missing (Firefox) the same trim as margins: Sanshand's cap height and baseline at this line height
+    @supports not (text-box: trim-both cap alphabetic) { margin-block: -0.089em -0.161em; }
+    &--50 { .type-values-word(50); }
+    &--53 { .type-values-word(53); }
+    &--67 { .type-values-word(67); }
+    &--73 { .type-values-word(73); }
+    &--75 { .type-values-word(75); }
+    &--88 { .type-values-word(88); }
+    &--96 { .type-values-word(96); }
+    &--107 { .type-values-word(107); }
+    &--120 { .type-values-word(120); }
+    &--131 { .type-values-word(131); }
+    // Figma strokes these 2px outside the glyph, twice the shared outline's, and the stroke scales with the collage
+    &--outline {
+      .outline-text();
+      -webkit-text-stroke-width: 4 * @values-px;
+    }
+    &--wide { .type-values-word-wide(); }
+    &--centre { align-self: center; }
   }
 }

@@ -2,18 +2,18 @@
   <div class="article__inner">
     <div class="article__intro">
       <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
-      <div data-anim="reveal" data-anim-type="fade-up">{{ value.intro | safe }}</div>
+      <div data-anim-group="fade-up" data-anim-scroll="timed">{{ value.intro | safe }}</div>
     </div>
     {% if value.image %}
-    <figure class="article__figure" data-anim="reveal" data-anim-type="fade-up">
+    <figure class="article__figure" data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
       {% set img = value.image %}{% set cls = "article__img" %}{% include "snippets/image.njk" %}
     </figure>
     {% endif %}
     <div class="article__rest">
       {% if value.quote %}
-      <blockquote class="article__quote" data-anim="reveal" data-anim-type="fade-up"><p>“{{ value.quote }}”</p></blockquote>
+      <blockquote class="article__quote"><p data-anim="split" data-anim-type="lines">“{{ value.quote }}”</p></blockquote>
       {% endif %}
-      <div class="article__body" data-anim="reveal" data-anim-type="fade-up">{{ value.body | safe }}</div>
+      <div class="article__body" data-anim-group="fade-up" data-anim-scroll="timed">{{ value.body | safe }}</div>
     </div>
   </div>
 </section>

@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-05 — Values collage is editable text, rising line by line; article photo glides, quote rises line by line
+- Principal's Welcome: the word collage ("St Luke's students are resourceful…") is live text instead of Figma's outlined SVG, so the words can be edited in Wagtail: a list of lines, each a list of words with a Figma size, outline on or off, a stack (a line break), and `shift`, `align` and `wide` for the designer's touches. It scales with its own width like the SVG did. Checked against Figma's render at 1440 × 900: every line within 4 design px across and 3 down (Resilient 8), 744 tall against 747, outline strokes at full gold and Figma's width. `values-words.svg` is removed.
+- Each line of the collage fades up 15px with the scroll as it comes into view, about one more line per wheel notch. Stepped through at 1440 × 900: no line starts before it is on screen.
+- The article's photo glides in like the other frames, wiping open from the left while the image slides 24% and settles from 106%, over 1.5s; sampled at 0.05, 0.3, 0.7 and 1.2s, the wipe stood at 13%, 49%, 85% and 99%.
+- The article's quote ("The Christian faith underpins…") rises line by line with the scroll like a section title, instead of fading up as one block.
+
+## 2026-11-05 — Article copy fades up paragraph by paragraph
+- Principal's Welcome and the news stories: each paragraph of the intro and body now fades up on its own 0.7s clock as it comes into view, and the photo and quotes play on the clock too. The intro and the body were single reveals tied to the scroll, so a body of six paragraphs rose as one block when its top came in, and the whole-pixel lift stepped with the scroll, which stuttered at a slow scroll.
+
 ## 2026-11-05 — Card captions stop shivering as cards rise
 - Every card that rises 35px on the way in (Where to Next, sliders, campus, contact and staff cards) now moves in whole pixels and lands at 70% of its fade. The rise eased out over its full 0.7s, spending its last 0.2s under half a pixel a frame, and a caption on a card re-blended its edges on each of those frames, a visible shiver on the Where to Next captions. Recorded on the Where to Next lead card at 1440 × 900: every frame sits on a whole pixel and the card is still at 0.49s while its fade runs to 0.7s.
 

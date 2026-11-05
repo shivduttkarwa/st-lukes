@@ -121,12 +121,16 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 
 ### article (`blocks/article.njk`)
 - Heading and intro at 822 wide, a 1032 photo, then the quote and body at 826 wide. Intro paragraphs are 25 apart and body paragraphs 28, as in Figma.
+- The intro and body rich text carry `data-anim-group="fade-up" data-anim-scroll="timed"`, so every paragraph (or list, or heading) in them fades up on its own 0.7s clock as it comes into view, and the quote's lines rise with the scroll like a section title's (`data-anim="split" data-anim-type="lines"` on its `p`; the gold rule stays put). The photo glides in like the site's other frames (`data-anim-type="glide-right" data-anim-scroll="timed"` on the `figure`, which clips): it wipes open from the left while the image slides 24% and settles from 106% over 1.5s. As single reveals scrubbed to the scroll, the whole body rose at once when its top came in, so the lower paragraphs had already played by the time the reader reached them, and the whole-pixel lift stepped with the scroll, which stuttered at a slow scroll.
 
 ### photo_strip (`blocks/photo_strip.njk`)
 - A centred Swiper on the shared `slider.js`, with `data-slider-start` setting the first centred slide. There is no loop: the arrows dim at the ends. Slides keep their photo's shape at a fixed height, so renditions decide the width: 1665 x 1080, 1441 x 952 and 1424 x 1090 here. Add a `srcset`; the phone audit flags them as about 2x too wide.
 
 ### values_collage (`blocks/values_collage.njk`)
-- The photo and the word collage. The words are Figma's vector export with the text outlined (`values-words.svg`), so they scale exactly, with the sentence in the `alt`. Changing a word means a new export.
+- The photo and the word collage. The collage is live Sanshand text, so editors change the words in Wagtail: `lines` is a list of lines, each a list of words with a Figma size, outline on or off, and two small options (fields in `blocks.yaml`). Each line is a centred flex row (`.values__line`), its words aligned on their last baseline, 12 design px apart, and `shift` nudges a line 10 or 20 design px off centre, as the designer staggered them. A line break in a word stacks it, right-aligned, with its last row on the line's baseline (Justice, / Compassion beside & Joy). `align: centre` sits a word on the line's capitals (the + after Restorative); `wide` gives +3% tracking (Relational).
+- Sizing: the collage is 506 design px wide (`max-width: 100%`) and a size container, and every size, gap and stroke inside it is in `@values-px`, 1/506 of its width (`02-tools/_type.less`), so the whole composition scales as one, like the SVG it replaces, from 506 at 1440 down to 285 on a 320 phone. The spacing sits on the lines, not the collage: container units on the container itself read the window. Words are trimmed to their caps and baseline (`text-box: trim-both cap alphabetic`, with the same trim as negative margins where `text-box` is missing), so the lines are 12 design px apart whatever their sizes, and the first and last lines keep Figma's frame around the ink (12 above, 19 below). Outline words stroke 4 design px with the fill painted over the inner half, Figma's 2px outside the glyph.
+- Checked against Figma's render of node 20262:22076 at 1440 × 900: every line's ink within 4 design px of Figma across and within 3 down (Resilient 8), the collage 744 tall against Figma's 747, and the outline strokes 3px at full gold where they were 2px at 75% with the shared outline style.
+- Each line fades up 15px with the scroll as it comes into view (`data-anim-group="fade-up"` on `.values__words` makes each line its own reveal), so the cascade follows the reader down the 744px collage: about one more line per wheel notch, two or three in motion at once. As one sequence the whole collage finished within 40% of a window height, before its last lines were on screen.
 
 ### faq (`blocks/faq.njk`)
 - `initAccordions()` in `ui.js`: one open at a time, the panel animates on `grid-template-rows`, and the arrow turns 180. A closed panel is `visibility: hidden`, so its button leaves the tab order. A row with no `answer` renders a disabled button.
@@ -155,7 +159,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 - The news story hero: the royal band with an inset photo, gold tag, date and centred title.
 
 ### story_body (`blocks/story_body.njk`)
-- Sections of heading, rich text and an optional quote, then the share links and back button. Share links are `#` for now: in Wagtail point them at each network's share URL with the page address.
+- Sections of heading, rich text and an optional quote, then the share links and back button. The rich text is a timed `fade-up` group like the article's, one paragraph at a time as it comes into view, and the quote is timed too. Share links are `#` for now: in Wagtail point them at each network's share URL with the page address.
 
 ### photo_strip captions
 - `captioned: true` (News Story, `20262:21004`) removes the top padding, adds each image's `caption` under it and uses Figma's position for the left arrow, 11.5 further out.
