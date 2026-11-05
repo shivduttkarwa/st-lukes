@@ -110,6 +110,8 @@ const LINES = {
   rise: { y: 0, duration: 0.42, ease: whole("power1.out", LIFT), force3D: false },
   fade: { autoAlpha: 1, duration: 0.75, ease: "power1.out" },
   stagger: 0.15,
+  // a title that follows the scroll runs over a longer range with its lines further apart, so a wheel flick still shows them one by one
+  scrolled: { stagger: 0.3, distance: 0.4 },
 };
 
 // Scroll tiers start once the element's top is this far up the viewport; data-anim-start overrides it
@@ -234,7 +236,7 @@ function initScroll(opts) {
 // already on screen when created plays in time after the entrance, even below its start line (the
 // copy under a short hero), as does one whose range the page is too short to scroll through. data-anim-scroll="timed" keeps a step on the clock
 // (the staggered slider wipes, which scrubbing makes feel rushed). data-anim-distance sets the range as a share of the window height.
-function scrollStep(el, animation, hold) {
+function scrollStep(el, animation, hold, distance = SCRUB.distance) {
   let tl = null;
   let reached = 0;
   const timeline = () => (tl ||= gsap.timeline({ paused: true }).add(animation(), hold));
@@ -250,7 +252,7 @@ function scrollStep(el, animation, hold) {
     if (onScreen()) playNow(st);
     return;
   }
-  const range = () => window.innerHeight * number(el, variant(el, "data-anim-distance"), SCRUB.distance);
+  const range = () => window.innerHeight * number(el, variant(el, "data-anim-distance"), distance);
   const st = ScrollTrigger.create({
     trigger: el,
     start: `clamp(${startOf(el)})`,
@@ -285,7 +287,7 @@ function play(el, step, entrance, scroll, hold = orderOf(el) * DEFAULTS.stagger)
     entrance.push({ order: orderOf(el), lead: leadOf(el), ...step });
     return;
   }
-  const create = () => scrollStep(el, step.animation, hold + titleHold(el));
+  const create = () => scrollStep(el, step.animation, hold + titleHold(el), step.distance);
   // a title already on screen is split with the entrance's own, before anything moves
   if (step.prepare && el.getBoundingClientRect().top < window.innerHeight) create.prepare = step.prepare;
   scroll.push(create);
@@ -487,7 +489,9 @@ function setupSplits(root, entrance, scroll) {
   scoped(root, '[data-anim="split"]').forEach((el) => {
     bind(el);
     const count = Math.max(1, Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)) || 1);
-    titleDurations.set(el, LINES.fade.duration + LINES.stagger * (count - 1));
+    const onClock = tierOf(el) === HERO || immediate || attr(el, "data-anim-scroll") === "timed";
+    const stagger = number(el, variant(el, "data-anim-stagger"), onClock ? LINES.stagger : LINES.scrolled.stagger);
+    titleDurations.set(el, LINES.fade.duration + stagger * (count - 1));
     const build = () => {
       const html = el.innerHTML;
       // a paragraph or a title's row is split inside itself, so the layout around it never changes
@@ -513,6 +517,7 @@ function setupSplits(root, entrance, scroll) {
     play(el, {
       deferred: true,
       duration: titleDurations.get(el),
+      distance: LINES.scrolled.distance,
       prepare: () => { built = build(); },
       animation: () => {
         const lines = built || build();
@@ -525,8 +530,8 @@ function setupSplits(root, entrance, scroll) {
           splits.delete(el);
         };
         const tl = gsap.timeline({ onComplete })
-          .to(lines, { ...LINES.fade, stagger: LINES.stagger }, 0)
-          .to(lines, { ...LINES.rise, stagger: LINES.stagger }, 0);
+          .to(lines, { ...LINES.fade, stagger }, 0)
+          .to(lines, { ...LINES.rise, stagger }, 0);
         const landed = tl.duration() - (LINES.fade.duration - LINES.rise.duration);
         followers.get(el)?.forEach((follower) => tl.add(revealStep(follower).animation(), landed));
         return tl;

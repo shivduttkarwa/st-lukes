@@ -29,10 +29,10 @@
     </div>
   </figure>
 
-  <blockquote class="collage__quote" data-anim="reveal" data-anim-type="fade-up">
-    <p class="collage__mark" aria-hidden="true">“</p>
-    <p class="collage__words">{{ value.quote.text }}</p>
-    <footer class="collage__cite"><cite>{{ value.quote.name }}</cite><span>{{ value.quote.role }}</span></footer>
+  <blockquote class="collage__quote">
+    <p class="collage__mark" aria-hidden="true" data-anim="reveal" data-anim-type="fade-up">“</p>
+    <p class="collage__words" data-anim="split" data-anim-type="lines">{{ value.quote.text }}</p>
+    <footer class="collage__cite" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title><cite>{{ value.quote.name }}</cite><span>{{ value.quote.role }}</span></footer>
   </blockquote>
 
   <a class="collage__social" href="{{ value.social.url | default('#') }}" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
