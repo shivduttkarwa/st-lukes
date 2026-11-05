@@ -66,6 +66,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 | Gold button on a card, on hover (learning, testimonial, campus and child-page cards) | fades in over 0.35s while it grows from 80% over 0.6s, and goes in 0.35s | `.card-arrow()` on the button and `.card-arrow-shown()` in the card's hover state, both inside `(hover: hover)` |
 | Curved caption on a circle | travels from the top of the circle to its place | `data-anim="reveal" data-anim-type="orbit" data-anim-scroll="timed"` on the `svg` |
 | Hero | the page's own entrance (`data-anim-tier="hero"`), see each hero below | |
+| Hero title rows | glide in from the window edge over 1s, 0.3s apart; what follows starts at the title's `data-anim-landed` (1.35, or 0.75 on the landing-page hero). The `power2.out` curve is stopped at 85% (`landing()` in `anim.js`), so a row lands at about half a pixel a frame instead of creeping its last 3px over 12 frames, which made the large text shimmer | `data-anim-item="enter-left"` / `"enter-right"` in a `data-anim="sequence"` title |
 | Copy on the first screen beside a hero (the homepage hero's statement, the page lead under an inner hero) | fades up as one block in the entrance, after the title and header | `data-anim="reveal" data-anim-type="fade-up" data-anim-tier="hero"` with `data-anim-order` from 2; large copy (the page lead) takes `fade-up-held`, which eases smoothly to the end |
 
 ## Blocks
@@ -80,7 +81,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 
 ### page_hero (`blocks/page_hero.njk`)
 - The landing-page hero (Our School): the homepage hero's frame, height, shade, header and Display 1 title, through the same `.hero` styles with a `hero--page` modifier. Fields in `blocks.yaml`.
-- The title rows sit inset rather than bleeding: line 1 starts 92 in, line 2 ends 66 in. The entrance reads top down: the eyebrow fades up first (`data-anim-order="-1"`), the title rows slide in from the canvas edges as it settles (`data-anim-lead="0.2"` on the `h1`), like the homepage title (`enter-left` / `enter-right`), and the header comes in while the second row is still gliding (`data-anim-landed="0.9"` on the `h1`; it was 1.6).
+- The title rows sit inset rather than bleeding: line 1 starts 92 in, line 2 ends 66 in. The entrance reads top down: the eyebrow fades up first (`data-anim-order="-1"`), the title rows slide in from the canvas edges as it settles (`data-anim-lead="0.2"` on the `h1`), like the homepage title (`enter-left` / `enter-right`), and the header comes in while the second row is still gliding (`data-anim-landed="0.75"` on the `h1`).
 - The eyebrow (Heading 5) keeps its spaces as typed (`white-space: pre`); Figma has two between "Our" and "School".
 - The image is drawn at Figma's crop (118.33% × 119.47% of the frame at −8.33%, −0.73%), so renditions are that shape: 1900 × 1083 here (`fill-1900x1083`, plus 1280 and 768 for the `srcset`). It has no parallax, because the crop leaves no photo above the frame for it to move into.
 
