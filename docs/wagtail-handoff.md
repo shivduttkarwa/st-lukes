@@ -58,7 +58,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 | Eyebrow, lead, body copy, a lone button, a box | fades up 15px | `data-anim="reveal" data-anim-type="fade-up"` |
 | Button under a statement | follows the statement's last line | add `data-anim-after-title` |
 | Buttons, tabs or rows in a set | fade up in turn | `data-anim-group="fade-up"` |
-| Cards (sliders, grids, campus cards) | rise 35px, 75ms apart, on the clock | `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"`, or `data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"` on a single card |
+| Cards (sliders, grids, campus cards) | rise 35px in whole pixels, landing at 70% of the fade so captions never shiver, 75ms apart, on the clock | `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"`, or `data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"` on a single card |
 | Slider arrows, a button in a title row | fade | `data-anim="reveal" data-anim-type="fade"` |
 | Photo or video frame beside copy | glides in from its side, on the clock | `data-anim-type="glide-right"` (frame on the left) or `glide-left` (frame on the right), `data-anim-scroll="timed"` |
 | Logos | fade in turn | `data-anim-group="fade"` |
@@ -117,7 +117,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 ### where_next (`blocks/where_next.njk`)
 - "Where to Next?": three image links (only the large one carries the gold arrow, as in Figma), and the "Explore Our School" menu with up to two `outline-dark` buttons. `current` adds the gold dot and `aria-current`. In Wagtail it should come from the page tree, so the current page highlights itself.
 - Menu links are 27 tall under a fine pointer and 44 on touch.
-- The three image links rise 35px and fade in like the other cards, each on its own trigger as it comes into view (`data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"`), so they arrive one after another down the page: the top right card, the large one, then the bottom right. They aren't one group because the two small cards sit in their own column, and a group would also start the lower ones while still off screen.
+- The block plays as one sequence: the title rises line by line on the clock (`data-anim-scroll="timed"` on the `h2`), and as its last line lands the three image links rise 35px and fade in one after another, the large one, then the top right, then the bottom right (`data-anim="sequence" data-anim-type="rise" data-anim-scroll="timed" data-anim-stagger="0.25" data-anim-delay="0.55"` on `.where-next__grid`, `data-anim-item` on each link). It starts when the grid's top is 85% down the window, with the title. At 1440 × 900 the bottom right card is still below the window when its turn comes about 1s later, so a reader who scrolls on sees it rise and one who stops short finds it in place. Below 992 the links stack and `data-anim-mobile="each"` lets each rise on its own trigger as it comes into view, after the title; keep `data-anim-scroll="timed"` on the links for that.
 
 ### article (`blocks/article.njk`)
 - Heading and intro at 822 wide, a 1032 photo, then the quote and body at 826 wide. Intro paragraphs are 25 apart and body paragraphs 28, as in Figma.

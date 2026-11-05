@@ -42,6 +42,7 @@ const SWING = { x: 20, y: -25, rotation: 18, ease: "power3.out" };
 // moves in whole pixels so every line steps on the same frame
 const LIFT = 15;
 const DROP = 24;
+const RISE = 35;
 const whole = (ease, distance) => {
   const curve = gsap.parseEase(ease);
   return (progress) => Math.round(curve(progress) * distance) / distance;
@@ -78,7 +79,8 @@ const REVEAL = {
   "fade":       { from: { autoAlpha: 0 },                       to: { autoAlpha: 1 } },
   "fade-soft":  { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.5, ease: "power1.out" } }, // header items
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
-  "rise":       { from: { y: 35, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // slider and campus cards: opacity and position only, nothing repaints
+  // cards: the rise lands in whole pixels under the fade, so a caption never re-blends at a fraction of a pixel as the card settles
+  "rise":       { from: { y: RISE, autoAlpha: 0 },              to: { autoAlpha: 1, ease: "power2.out", keyframes: { "70%": { y: 0, ease: whole("power2.out", RISE) }, ease: "none" } } },
   "rise-far":   { from: { y: 60, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // the pillars' left photos, tuned against their parallax
   "orbit":      { from: { rotation: fromTop, transformOrigin: "50% 50%", autoAlpha: 0 }, to: { rotation: 0, autoAlpha: 1, duration: 1.6, ease: "power2.inOut" } }, // a circle's curved label travels down to its place
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
