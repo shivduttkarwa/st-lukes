@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-05 — Card buttons come and go alike
+- The gold arrow on the homepage campus cards and the Our School child-page cards now comes in like the learning cards' button: it fades in over 0.35s while it grows from 80% over 0.6s on a held layer, and fades and shrinks back over 0.35s. They only faded. All three, and the testimonial cards that share the learning card, use one pair of mixins (`.card-arrow()` / `.card-arrow-shown()` in `_mixins.less`). Measured at 1440: identical transitions on all three, and under reduced motion the campus and child-page arrows appear at once.
+- No other block shows a button or text on hover: Where Next's arrow is always shown, and the rest of the site's hovers are colour changes.
+
+## 2026-11-05 — Child-page cards open smoothly, staggered
+- On Our School, a child-page card's description now opens like the learning cards: the title slides up first and the description follows 80ms later as it fades in, and on the way out the description leaves first. The text grew its row in the layout (`grid-template-rows` 0fr → 1fr), which relaid the page on every frame of the hover (37 layouts) and stepped the title a whole pixel at a time. Now the text is laid out but invisible, the title and text sit pushed down by its height (`data-entry-more`, `initEntryCards()`), and both slide with `translate` on held layers: no layouts during the hover. The slide takes 1s, where the learning cards take 0.6s: the text here is 146px tall against their 77px at 1440, so at 0.6s it moved twice as fast.
+- At rest the title of a card with a description sat 6px above the card's padding, the text's top padding left in the closed row. It now sits on the padding, as Figma's closed cards (`20420:28104`). The open position is unchanged and matches Figma's open card (`20420:28065`).
+
 ## 2026-11-03 — Inner hero and page lead share the first screen
 - On Leadership and Staff, Principal's Welcome and Extra Blocks, the inner hero and the page lead under it now fill exactly one screen, as they do in Figma (772 + 350 at 1440). The hero was capped at the full window height, so on most screens it filled the window alone and the lead started below the fold. Now the hero gives up the lead's height, measured by `initHeroFold()`, and never grows past Figma's 772: at 1440 × 1200 it is Figma exactly. Measured on all three pages: 711 of 711 at 1536 × 711 (125%), 945 of 945 at 1920 × 945, 900 of 900 at 1440 × 900. The title stays at least 75px clear of the logo, and the hero's floor drops from 560 to 400 design px only when a lead follows it. Phones are unchanged.
 

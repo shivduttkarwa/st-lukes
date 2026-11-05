@@ -150,21 +150,11 @@
   }
 
   @media (hover: hover) {
-    &__arrow {
-      opacity: 0;
-      scale: 0.8;
-      transition: opacity var(--duration-base) ease, scale var(--duration-base) var(--ease-settle);
-      will-change: transform;
-    }
+    &__arrow { .card-arrow(); }
     &:hover &__arrow,
     &:focus-visible &__arrow,
     &:has(:focus-visible) &__arrow,
-    &.is-open &__arrow {
-      opacity: 1;
-      scale: none;
-      transition-duration: var(--duration-base), var(--duration-slow);
-      transition-timing-function: ease, var(--ease-out);
-    }
+    &.is-open &__arrow { .card-arrow-shown(); }
 
     // the text is laid out but invisible, and each line sits pushed down by its height (--entry-more, from initEntryCards()).
     // On hover they slide up on held layers, title first, and back in reverse; grown in layout they stepped a whole

@@ -127,7 +127,6 @@
     border-radius: 50%;
     background: var(--color-gold);
     color: var(--color-navy);
-    transition: opacity var(--duration-base) ease;
     .icon {
       width: 24 * @px;
       height: 24 * @px;
@@ -135,9 +134,9 @@
   }
 
   @media (hover: hover) {
-    &__arrow { opacity: 0; }
+    &__arrow { .card-arrow(); }
     &:hover &__arrow,
-    &:focus-visible &__arrow { opacity: 1; }
+    &:focus-visible &__arrow { .card-arrow-shown(); }
   }
 }
 

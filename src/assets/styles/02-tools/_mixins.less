@@ -144,3 +144,18 @@
     &:hover { background: var(--color-gold-deep); }
   }
 }
+
+// the gold button a card shows on hover; call both inside (hover: hover)
+.card-arrow() {
+  opacity: 0;
+  scale: 0.8;
+  transition: opacity var(--duration-base) ease, scale var(--duration-base) var(--ease-settle);
+  will-change: transform;
+}
+
+.card-arrow-shown() {
+  opacity: 1;
+  scale: none;
+  transition-duration: var(--duration-base), var(--duration-slow);
+  transition-timing-function: ease, var(--ease-out);
+}

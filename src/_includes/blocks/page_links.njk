@@ -7,7 +7,7 @@
         {% if card.video %}<video class="page-links__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
         <span class="page-links__body">
           <span class="page-links__title">{{ card.title }}</span>
-          {% if card.text %}<span class="page-links__more"><span class="page-links__text">{{ card.text }}</span></span>{% endif %}
+          {% if card.text %}<span class="page-links__more" data-entry-more><span class="page-links__text">{{ card.text }}</span></span>{% endif %}
         </span>
         <span class="page-links__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow-corner"></use></svg></span>
       </a>

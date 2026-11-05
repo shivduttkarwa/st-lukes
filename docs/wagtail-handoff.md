@@ -60,6 +60,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 | Photo or video frame beside copy | glides in from its side, on the clock | `data-anim-type="glide-right"` (frame on the left) or `glide-left` (frame on the right), `data-anim-scroll="timed"` |
 | Logos | fade in turn | `data-anim-group="fade"` |
 | Stat number | counts up from 0 | `data-anim="counter" data-anim-scroll="timed"`, `data-anim-count` on the number |
+| Gold button on a card, on hover (learning, testimonial, campus and child-page cards) | fades in over 0.35s while it grows from 80% over 0.6s, and goes in 0.35s | `.card-arrow()` on the button and `.card-arrow-shown()` in the card's hover state, both inside `(hover: hover)` |
 | Curved caption on a circle | travels from the top of the circle to its place | `data-anim="reveal" data-anim-type="orbit" data-anim-scroll="timed"` on the `svg` |
 | Hero | the page's own entrance (`data-anim-tier="hero"`), see each hero below | |
 
@@ -87,7 +88,8 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 - The tile's foot is covered by whatever follows it, as in Figma: 2px by `page_links`, 1px by `feature_rows`. The following block needs `position: relative` to paint over it.
 
 ### page_links (`blocks/page_links.njk`)
-- Child-page cards, two per row from 768 up. Each card is one link; on hover the optional `text` opens, the shade deepens and the gold arrow fades in. On touch the arrow is always shown and the text stays closed. An optional `video` plays muted on hover.
+- Child-page cards, two per row from 768 up. Each card is one link; on hover the optional `text` opens, the shade deepens and the gold arrow fades in, growing from 80% like the learning cards' (`.card-arrow()`). On touch the arrow is always shown and the text stays closed. An optional `video` plays muted on hover.
+- The text opens like the learning cards: it is laid out but invisible, and the title and text sit pushed down by its height (`data-entry-more`, measured by `initEntryCards()`). On hover each slides up on its own held layer over 1s, the title first and the text 80ms later as it fades in, and back in reverse. The text travels about twice as far as on a learning card, so 1s against their 0.6s keeps the speed alike. Keep the attribute in the template.
 
 ### feature_rows (`blocks/feature_rows.njk`)
 - The Alternative landing page's alternating rows: a photo flush to the window edge beside a heading, copy and a solid button. Odd rows have the photo on the left and even rows on the right, by position (`loop.index % 2` → `forloop.counter|divisibleby:2`), through CSS and the glide direction only. Below 992 each row stacks with the photo first; phone layout interpreted.
@@ -193,7 +195,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 ### campuses (`blocks/campuses.njk`)
 - "Two campuses / one school": two title lines (the second drawn as a gold outline), up to two outline buttons, a rich-text lead, and two campus cards side by side from 992 (stacked below).
 - The cards come in like the slider cards: a 35px rise and fade, on the clock, 75ms apart (`data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"` on `.campuses__grid`).
-- Each card is one link: image (`fill-1234x820`, decorative), shade, name, detail, and a gold arrow. From the prototype's hover state (`Bayview / Dee Why Campus Animation`): on hover the video plays over the image and the arrow fades in. On touch the arrow is always shown, and the video never plays.
+- Each card is one link: image (`fill-1234x820`, decorative), shade, name, detail, and a gold arrow. From the prototype's hover state (`Bayview / Dee Why Campus Animation`): on hover the video plays over the image and the arrow fades in, growing from 80% like the learning cards' (`.card-arrow()`). On touch the arrow is always shown, and the video never plays.
 - The outline title uses `-webkit-text-stroke` with a navy fill painted over it (`paint-order: stroke fill`), which leaves Figma's 1px outside stroke. It assumes the navy background.
 
 ### learning (`blocks/learning.njk`)
