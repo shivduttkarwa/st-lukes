@@ -23,6 +23,15 @@ function textBox(el) {
   return range.getBoundingClientRect();
 }
 
+function cssPx(value, parent) {
+  const probe = document.createElement("div");
+  probe.style.cssText = `position:absolute;visibility:hidden;width:${value}`;
+  parent.append(probe);
+  const px = probe.getBoundingClientRect().width;
+  probe.remove();
+  return px;
+}
+
 function play(root, loader, title, media) {
   const rows = Array.from(title.querySelectorAll(".hero__line"));
   const finish = () => {
@@ -37,7 +46,14 @@ function play(root, loader, title, media) {
       const size = parseFloat(getComputedStyle(title).fontSize);
       const boxes = rows.map(textBox);
       const y = height / 2 - (boxes[0].top + boxes[1].bottom) / 2;
-      const x = boxes.map((box, i) => width / 2 + ROWS[i] * size - (box.left + box.right) / 2);
+      const edge = cssPx("var(--preloader-edge)", loader);
+      const centred = boxes.map((box, i) => width / 2 + ROWS[i] * size - (box.left + box.right) / 2);
+      const left = Math.min(...boxes.map((box, i) => box.left + centred[i]));
+      const right = Math.max(...boxes.map((box, i) => box.right + centred[i]));
+      // Figma's pair is nudged inside the edges, or where it is wider than the screen the rows sit flush left and right within them
+      const x = right - left > width - 2 * edge
+        ? [edge - boxes[0].left, width - edge - boxes[1].right]
+        : centred.map((cx) => cx + Math.max(0, edge - left) - Math.max(0, right - (width - edge)));
       // the rings start growing at first paint (CSS); the rows follow them by RINGS_LEAD however late the script runs
       const ring = loader.querySelector("circle").getAnimations()[0];
       const delay = ring?.startTime == null ? RINGS_LEAD : Math.max(0, RINGS_LEAD - (document.timeline.currentTime - ring.startTime) / 1000);

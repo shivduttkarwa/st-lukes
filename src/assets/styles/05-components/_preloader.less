@@ -1,6 +1,10 @@
 @preloader-rings: 750 * @px;
+// Figma's 750 is 92% of its 813 high screen; a shorter or narrower one keeps that share, so no ring leaves it
+@preloader-rings-fit: 92svmin;
 
 .preloader {
+  // preloader.js keeps the centred title this far inside the screen
+  --preloader-edge: @gutter-sm;
   position: fixed;
   top: 0;
   bottom: 0;
@@ -17,8 +21,8 @@
   .is-preloading & { display: grid; }
 
   &__rings {
-    width: @preloader-rings;
-    height: @preloader-rings;
+    width: ~"min(@{preloader-rings}, @{preloader-rings-fit})";
+    height: ~"min(@{preloader-rings}, @{preloader-rings-fit})";
     max-width: none;
     overflow: visible;
     fill: none;

@@ -14,6 +14,8 @@
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("anim-reduced");
     {% if p and p.preloader %}
     if (!d.classList.contains("anim-reduced")) {
+      // a reload would otherwise land mid-page after the preloader has measured the hero at the top
+      history.scrollRestoration = "manual";
       d.classList.add("is-preloading");
       setTimeout(function () { if (!d.hasAttribute("data-preloader-live")) d.classList.remove("is-preloading"); }, 5000);
     }
