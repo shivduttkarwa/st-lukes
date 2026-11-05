@@ -276,43 +276,65 @@ export function initForms() {
       return control.validity.valid ? "" : control.dataset.invalid || control.dataset.error || control.validationMessage;
     };
 
-    const check = (control) => {
-      const text = messageFor(control);
-      const error = document.getElementById(control.getAttribute("aria-describedby"));
-      control.closest("[data-field]")?.classList.toggle("has-error", !!text);
-      if (text) faceOf(control).setAttribute("aria-invalid", "true");
-      else faceOf(control).removeAttribute("aria-invalid");
-      if (error) {
-        error.textContent = text;
-        error.hidden = !text;
-      }
-      return !text;
+    // like the browser's own validation, only the first problem shows, in a bubble under its field; it goes once the field
+    // is put right, steps aside while the field is left, and the next problem shows on the next send
+    let flagged = null;
+    const errorOf = (control) => document.getElementById(control.getAttribute("aria-describedby"));
+    const say = (control, text) => {
+      const error = errorOf(control);
+      if (error) (error.querySelector("[data-error-text]") || error).textContent = text;
     };
-
-    const hasError = (control) => control.closest("[data-field]")?.classList.contains("has-error");
+    const bubble = (control, on) => {
+      const error = errorOf(control);
+      if (!error) return;
+      clearTimeout(error.leaving);
+      if (on) {
+        error.hidden = false;
+        requestAnimationFrame(() => requestAnimationFrame(() => error.classList.add("is-shown")));
+        return;
+      }
+      error.classList.remove("is-shown");
+      error.leaving = setTimeout(() => { error.hidden = true; }, 250);
+    };
+    const unflag = (control) => {
+      control.closest("[data-field]")?.classList.remove("has-error");
+      faceOf(control).removeAttribute("aria-invalid");
+      bubble(control, false);
+      if (flagged === control) flagged = null;
+    };
+    const flag = (control) => {
+      if (flagged && flagged !== control) unflag(flagged);
+      flagged = control;
+      control.closest("[data-field]")?.classList.add("has-error");
+      faceOf(control).setAttribute("aria-invalid", "true");
+      say(control, messageFor(control));
+      bubble(control, true);
+    };
 
     controls.forEach((control) => {
       const recheck = () => {
-        if (hasError(control)) check(control);
+        if (control !== flagged) return;
+        if (!messageFor(control)) unflag(control);
+        else say(control, messageFor(control));
       };
       control.addEventListener("input", recheck);
-      control.addEventListener("change", () => check(control));
-      control.addEventListener("blur", () => {
-        if (control.value) check(control);
-      });
+      control.addEventListener("change", recheck);
+      faceOf(control).addEventListener("blur", () => { if (control === flagged) bubble(control, false); });
+      faceOf(control).addEventListener("focus", () => { if (control === flagged) bubble(control, true); });
     });
 
     form.addEventListener("submit", (e) => {
       if (success) success.hidden = true;
-      const invalid = controls.filter((control) => !check(control));
-      if (invalid.length) {
+      const invalid = controls.find((control) => messageFor(control));
+      if (invalid) {
         e.preventDefault();
-        faceOf(invalid[0]).focus();
-        window.Anim?.refresh();
+        flag(invalid);
+        faceOf(invalid).focus();
         return;
       }
       if (form.getAttribute("action") !== "#") return;
       e.preventDefault();
+      if (flagged) unflag(flagged);
       form.reset();
       if (success) success.hidden = false;
       window.Anim?.refresh();

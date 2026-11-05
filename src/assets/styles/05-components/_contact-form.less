@@ -1,9 +1,5 @@
+@contact-error-gap: 10 * @px;
 @contact-field-line: 1 * @px solid var(--color-navy);
-
-.contact-field-active(@colour) {
-  border-bottom-color: @colour;
-  box-shadow: 0 1px 0 @colour;
-}
 
 .contact-form {
   display: grid;
@@ -71,6 +67,7 @@
   }
 
   &__field {
+    position: relative;
     display: flex;
     flex-direction: column;
     grid-column: 1 / -1;
@@ -103,9 +100,8 @@
         color: var(--color-navy-tint);
         opacity: 1;
       }
-      &:focus { .contact-field-active(var(--color-royal)); }
+      &:focus { outline: 0; }
     }
-    &.has-error :is(input, select, textarea, .select__toggle) { .contact-field-active(var(--color-error)); }
     textarea {
       display: block;
       height: 115 * @px;
@@ -116,10 +112,78 @@
 
   &__field--half { grid-column: span 1; }
 
+  // the active line grows out from the middle over the field's own 1px line, in royal, and stays while the field is flagged.
+  // It sits on a wrapper because an input can't carry a pseudo-element, and autofill strips an input's backgrounds
+  &__control,
+  &__select {
+    position: relative;
+    display: block;
+    &::after {
+      content: "";
+      position: absolute;
+      right: 0;
+      bottom: -1 * @px;
+      left: 0;
+      height: 2 * @px;
+      background: var(--color-royal);
+      transform: scaleX(0);
+      transition: transform var(--duration-slow) var(--ease-in-out);
+      pointer-events: none;
+    }
+  }
+
+  &__control:focus-within::after,
+  &__select:focus-within::after,
+  &__select.is-open::after { transform: scaleX(1); }
+
+  &__field.has-error &__control::after,
+  &__field.has-error &__select::after { transform: scaleX(1); }
+
+  // like the browser's own message, one at a time and floating under its field: a royal pill with a gold alert
   &__error {
     .type-body-4();
-    margin: 3 * @px 0 0;
-    color: var(--color-error);
+    position: absolute;
+    top: calc(100% + @contact-error-gap);
+    left: 0;
+    z-index: 5;
+    display: flex;
+    align-items: center;
+    gap: 8 * @px;
+    width: max-content;
+    max-width: 100%;
+    margin: 0;
+    padding: 9 * @px 16 * @px 9 * @px 10 * @px;
+    border-radius: var(--radius-pill);
+    background: var(--color-royal);
+    box-shadow: 0 8 * @px 20 * @px -10 * @px var(--color-popup-shade);
+    color: var(--color-white);
+    font-weight: 600;
+    opacity: 0;
+    translate: 0 (-4 * @px);
+    transition: opacity var(--duration-fast) ease, translate var(--duration-base) var(--ease-out);
+    pointer-events: none;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -5 * @px;
+      left: 20 * @px;
+      width: 11 * @px;
+      height: 11 * @px;
+      border-radius: 2 * @px 0 0;
+      background: inherit;
+      rotate: 45deg;
+    }
+    &.is-shown {
+      opacity: 1;
+      translate: 0 0;
+    }
+    .icon {
+      flex: none;
+      --alert-mark: var(--color-royal);
+      width: 18 * @px;
+      height: 18 * @px;
+      color: var(--color-gold);
+    }
   }
 
   .select.is-open + &__error { visibility: hidden; }
@@ -149,11 +213,7 @@
         height: 28 * @px;
         min-height: 0;
       }
-      &:focus-visible {
-        outline: 0;
-        .contact-field-active(var(--color-royal));
-      }
-      &[aria-expanded="true"] { .contact-field-active(var(--color-royal)); }
+      &:focus-visible { outline: 0; }
     }
     .select__value.is-placeholder { color: var(--color-navy-tint); }
     .icon {
@@ -165,4 +225,10 @@
       pointer-events: none;
     }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact-form__error,
+  .contact-form__control::after,
+  .contact-form__select::after { transition: none; }
 }

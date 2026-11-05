@@ -21,11 +21,11 @@
             <svg class="icon" aria-hidden="true"><use href="#icon-angle-down"></use></svg>
           </div>
           {% elif field.type == "textarea" %}
-          <textarea id="contact-{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" rows="4" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}"></textarea>
+          <span class="contact-form__control"><textarea id="contact-{{ field.name }}" name="{{ field.name }}" placeholder="{{ field.placeholder }}" rows="4" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}"></textarea></span>
           {% else %}
-          <input id="contact-{{ field.name }}" name="{{ field.name }}" type="{{ field.type }}" placeholder="{{ field.placeholder }}" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}"{% if field.invalid %} data-invalid="{{ field.invalid }}"{% endif %}{% if field.pattern %} pattern="{{ field.pattern }}"{% endif %}>
+          <span class="contact-form__control"><input id="contact-{{ field.name }}" name="{{ field.name }}" type="{{ field.type }}" placeholder="{{ field.placeholder }}" required aria-describedby="contact-{{ field.name }}-error" data-error="{{ field.error }}"{% if field.invalid %} data-invalid="{{ field.invalid }}"{% endif %}{% if field.pattern %} pattern="{{ field.pattern }}"{% endif %}></span>
           {% endif %}
-          <p class="contact-form__error" id="contact-{{ field.name }}-error" hidden></p>
+          <p class="contact-form__error" id="contact-{{ field.name }}-error" hidden><svg class="icon" aria-hidden="true"><use href="#icon-alert"></use></svg><span data-error-text></span></p>
         </div>
         {% endfor %}
       </div>
