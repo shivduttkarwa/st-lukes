@@ -65,6 +65,8 @@ const fromTop = (i, el) => {
 // Every preset fades (autoAlpha) so the CSS FOUC guard works uniformly.
 const REVEAL = {
   "fade-up":    { from: { y: LIFT, autoAlpha: 0 },              to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power1.out", LIFT) }, ease: "none" } } },
+  // large copy on the first screen: the lift glides on a held layer and lands under the fade, so nothing creeps once the text is solid
+  "fade-up-held": { from: { y: LIFT, autoAlpha: 0, force3D: true }, to: { autoAlpha: 1, duration: 0.8, force3D: true, keyframes: { "55%": { y: 0, ease: "power1.out" }, ease: "none" } } },
   "fade":       { from: { autoAlpha: 0 },                       to: { autoAlpha: 1 } },
   "fade-soft":  { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.5, ease: "power1.out" } }, // header items
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
