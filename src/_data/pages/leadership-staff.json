@@ -58,7 +58,7 @@
           {
             "name": "Geoff Lancaster",
             "role": "Principal",
-            "groups": "executive",
+            "groups": "executive council corporation",
             "image": {
               "src": "/assets/images/our-school/staff/1.webp",
               "alt": "",
@@ -69,7 +69,7 @@
           {
             "name": "David Chilton",
             "role": "Head of Ministry and Service",
-            "groups": "executive",
+            "groups": "executive council corporation",
             "image": {
               "src": "/assets/images/our-school/staff/2.webp",
               "alt": "",
@@ -80,7 +80,7 @@
           {
             "name": "Scott Bedingfield",
             "role": "Deputy Principal",
-            "groups": "executive",
+            "groups": "executive council",
             "image": {
               "src": "/assets/images/our-school/staff/3.webp",
               "alt": "",
@@ -91,7 +91,7 @@
           {
             "name": "Jane Hughes",
             "role": "Business Manager",
-            "groups": "executive",
+            "groups": "executive council",
             "image": {
               "src": "/assets/images/our-school/staff/4.webp",
               "alt": "",
@@ -102,7 +102,7 @@
           {
             "name": "Jennifer Pollock",
             "role": "Deputy, Academic Strategy",
-            "groups": "executive",
+            "groups": "executive corporation",
             "image": {
               "src": "/assets/images/our-school/staff/5.webp",
               "alt": "",
@@ -113,7 +113,7 @@
           {
             "name": "Mark Liddell",
             "role": "Head of Learning and Innovation",
-            "groups": "executive",
+            "groups": "executive directors",
             "image": {
               "src": "/assets/images/our-school/staff/6.webp",
               "alt": "",
@@ -124,7 +124,7 @@
           {
             "name": "Alana Koch",
             "role": "Head of Wellbeing",
-            "groups": "executive",
+            "groups": "executive directors",
             "image": {
               "src": "/assets/images/our-school/staff/7.webp",
               "alt": "",
@@ -135,7 +135,7 @@
           {
             "name": "Kathryn McDonald",
             "role": "Head of Senior School",
-            "groups": "executive",
+            "groups": "executive directors",
             "image": {
               "src": "/assets/images/our-school/staff/8.webp",
               "alt": "",
@@ -146,7 +146,7 @@
           {
             "name": "Tammy Paterson",
             "role": "Head of Junior School Dee Why",
-            "groups": "executive",
+            "groups": "executive directors",
             "image": {
               "src": "/assets/images/our-school/staff/9.webp",
               "alt": "",
@@ -157,7 +157,7 @@
           {
             "name": "Peter Scott",
             "role": "Head of Junior School Bayview",
-            "groups": "executive",
+            "groups": "executive directors",
             "image": {
               "src": "/assets/images/our-school/staff/10.webp",
               "alt": "",
@@ -168,7 +168,7 @@
           {
             "name": "Rob Currer",
             "role": "Dean of Students (7-9)",
-            "groups": "executive",
+            "groups": "directors",
             "image": {
               "src": "/assets/images/our-school/staff/11.webp",
               "alt": "",
@@ -179,7 +179,7 @@
           {
             "name": "Gaby Smith",
             "role": "Dean of Students (10-12)",
-            "groups": "executive",
+            "groups": "directors",
             "image": {
               "src": "/assets/images/our-school/staff/12.webp",
               "alt": "",
@@ -190,7 +190,7 @@
           {
             "name": "Ross Andersen",
             "role": "Assistant Head of Junior School Dee Why",
-            "groups": "executive",
+            "groups": "directors",
             "image": {
               "src": "/assets/images/our-school/staff/13.webp",
               "alt": "",
@@ -201,7 +201,7 @@
           {
             "name": "Rebecca Willis",
             "role": "Assistant Head of Junior School Bayview",
-            "groups": "executive",
+            "groups": "directors",
             "image": {
               "src": "/assets/images/our-school/staff/14.webp",
               "alt": "",
@@ -212,7 +212,7 @@
           {
             "name": "Elizabeth Little",
             "role": "Executive Assistant to the Principal, Ex-Officio",
-            "groups": "executive",
+            "groups": "council corporation",
             "image": {
               "src": "/assets/images/our-school/staff/15.webp",
               "alt": "",

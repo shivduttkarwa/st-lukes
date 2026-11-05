@@ -11,14 +11,34 @@
   }
 
   &__tabs {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 10 * @px;
     margin-bottom: 25 * @px;
+    // from the first filter change the pressed fill is this marker: initFilters() places it with --marker-* and it glides between tabs
+    &.has-marker::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: var(--marker-w);
+      height: var(--marker-h);
+      translate: var(--marker-x) var(--marker-y);
+      border-radius: var(--radius-pill);
+      background: var(--color-royal);
+      transition: translate var(--duration-base) var(--ease-in-out), width var(--duration-base) var(--ease-in-out), height var(--duration-base) var(--ease-in-out);
+    }
+    // with the marker a tab has no fill of its own, and none to fade: the old fill would linger as a ghost under the marker
+    &.has-marker .staff__tab {
+      background: none;
+      transition: color var(--duration-base) ease, border-color var(--duration-base) ease;
+    }
   }
 
   &__tab {
     .type-heading-6();
+    position: relative;
     min-height: var(--tap-size);
     padding: 8 * @px 25 * @px 12 * @px;
     border: 1 * @px solid var(--color-navy-tint);
@@ -37,6 +57,7 @@
   }
 
   &__grid {
+    position: relative;
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 32 * @px 6 * @px;
@@ -49,7 +70,8 @@
 
   &__card {
     padding-bottom: 6 * @px;
-    &[hidden] { display: none; }
+    &[hidden],
+    &.is-hidden { display: none; }
   }
 
   &__img {
@@ -74,4 +96,8 @@
       color: var(--color-black-75);
     }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .staff__tabs.has-marker::before { transition: none; }
 }

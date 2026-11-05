@@ -1,14 +1,14 @@
 <section class="staff" data-filter-scope>
   <div class="container">
     <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
-    <div class="staff__tabs" data-anim-group="fade-up">
+    <div class="staff__tabs" data-anim-group="rise-soft" data-anim-scroll="timed" data-filter-tabs>
       {% for tab in value.tabs %}
       <button class="staff__tab" type="button" data-filter="{{ tab.slug }}" aria-pressed="{% if tab.slug == value.active %}true{% else %}false{% endif %}">{{ tab.label }}</button>
       {% endfor %}
     </div>
     <div class="staff__grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for person in value.people %}
-      <article class="staff__card" data-filter-groups="{{ person.groups }}">
+      <article class="staff__card" data-filter-groups="{{ person.groups }}"{% if value.active and value.active != "all" and value.active not in person.groups %} hidden{% endif %}>
         {% set img = person.image %}{% set cls = "staff__img" %}{% include "snippets/image.njk" %}
         <div class="staff__body">
           <h3>{{ person.name }}</h3>
