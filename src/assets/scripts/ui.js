@@ -49,18 +49,41 @@ export function initDisclosures() {
   });
 }
 
+// panels move in whole pixels: an eased height that creeps under a pixel a frame leaves every row below shimmering as it settles
 export function initAccordions() {
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  const ease = "cubic-bezier(0.4, 0, 0.2, 1)";
   document.querySelectorAll("[data-accordion]").forEach((root) => {
     const items = [...root.querySelectorAll("[data-accordion-item]")];
+    const move = (item, open, from) => {
+      const panel = item.querySelector("[data-accordion-panel]");
+      if (!panel || still.matches) return null;
+      const content = panel.firstElementChild;
+      gsap.killTweensOf([panel, content]);
+      gsap.set(panel, { height: "auto", visibility: "visible" });
+      const to = open ? panel.offsetHeight : 0;
+      if (open && !from) gsap.set(content, { opacity: 0 });
+      return gsap.timeline({ onComplete: () => gsap.set([panel, content], { clearProps: "height,visibility,opacity" }) })
+        .fromTo(panel, { height: from }, { height: to, duration: 0.6, ease, snap: { height: 1 } }, 0)
+        .to(content, open ? { opacity: 1, duration: 0.45, ease: "power1.out" } : { opacity: 0, duration: 0.25, ease: "power1.in" }, open ? 0.15 : 0);
+    };
     items.forEach((item) => {
       item.querySelector("[aria-expanded]").addEventListener("click", () => {
         const open = !item.classList.contains("is-open");
-        items.forEach((other) => {
-          const on = open && other === item;
+        // heights are read before any class changes, so a row caught mid-move carries on from where it is
+        const changes = items
+          .map((other) => ({ other, on: open && other === item, from: other.querySelector("[data-accordion-panel]")?.offsetHeight ?? 0 }))
+          .filter(({ other, on }) => on !== other.classList.contains("is-open"));
+        changes.forEach(({ other, on }) => {
           other.classList.toggle("is-open", on);
           other.querySelector("[aria-expanded]").setAttribute("aria-expanded", String(on));
         });
-        setTimeout(() => window.Anim?.refresh(), 700);
+        const tl = gsap.timeline({ onComplete: () => window.Anim?.refresh() });
+        changes.forEach(({ other, on, from }) => {
+          const step = move(other, on, from);
+          if (step) tl.add(step, 0);
+        });
+        if (!tl.getChildren().length) window.Anim?.refresh();
       });
     });
   });

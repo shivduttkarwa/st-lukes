@@ -1,5 +1,12 @@
 @faq-gap: 6 * @px;
 
+// the arrow turns through a registered angle on its <use>, as the menu's do: a transform transition rides a GPU layer and wobbles, then jumps as it lands
+@property --faq-turn {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
 .faq {
   padding: (64 * @px + @faq-gap) 0 64 * @px;
   background: var(--color-white);
@@ -111,27 +118,29 @@
       width: 32 * @px;
       height: 26 * @px;
       margin-left: 7 * @px;
+    }
+    use {
+      transform: rotate(var(--faq-turn));
       transform-origin: 40.625% 50%;
-      transition: transform var(--duration-slow) var(--ease-out);
+      transition: --faq-turn var(--duration-slow) var(--ease-settle);
     }
   }
 
   &__item.is-open &__icon {
     color: var(--color-royal);
-    svg { transform: rotate(180deg); }
+    use { --faq-turn: 180deg; }
   }
 
+  // initAccordions() eases the height between these
   &__panel {
-    display: grid;
-    grid-template-rows: 0fr;
+    height: 0;
+    overflow: hidden;
     visibility: hidden;
-    transition: grid-template-rows var(--duration-slow) var(--ease-out), visibility 0s linear var(--duration-slow);
   }
 
   &__item.is-open &__panel {
-    grid-template-rows: 1fr;
+    height: auto;
     visibility: visible;
-    transition-delay: 0s;
   }
 
   &__answer {
@@ -139,8 +148,6 @@
     flex-direction: column;
     align-items: flex-start;
     gap: 20 * @px;
-    min-height: 0;
-    overflow: hidden;
     p {
       .type-body-2();
       position: relative;
@@ -157,7 +164,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .faq__panel,
   .faq__icon,
-  .faq__icon svg { transition: none; }
+  .faq__icon use { transition: none; }
 }

@@ -19,7 +19,7 @@
           </button>
         </h3>
         {% if item.answer %}
-        <div class="faq__panel">
+        <div class="faq__panel" data-accordion-panel>
           <div class="faq__answer">
             <p>{{ item.answer }}</p>
             {% set btn = item.button %}{% set plain = true %}{% include "snippets/button.njk" %}

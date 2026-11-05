@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-05 — FAQ rows all answer, open smoothly, arrows turn like the menu's
+- Contact and Principal's Welcome: every FAQ row now has an answer and a button (Maps & Transport, How to Apply, Book a Tour, Christian Foundation, Why Choose St Luke's), written from the site's own copy for the client to replace. Only the first had one, so the other five were disabled.
+- Opening a row no longer stutters. The panel eased on `grid-template-rows` with a sharp ease-out that spent its last 0.3s creeping under a pixel a frame, so the question text and the rows below settled through fractional positions. It now eases in whole pixels on the menu's settle curve over 0.6s, with the answer fading in. Recorded frame by frame at 1440 × 900: every height whole, the moving question always on the same sub-pixel phase, and the row above closing in step.
+- The arrow turns like the menu arrows: a registered angle on the SVG's `<use>` instead of a transform transition on the SVG, which rode a GPU layer, wobbled while turning and jumped as it landed.
+
 ## 2026-11-05 — Values collage is editable text, rising line by line; article photo glides, quote rises line by line
 - Principal's Welcome: the word collage ("St Luke's students are resourceful…") is live text instead of Figma's outlined SVG, so the words can be edited in Wagtail: a list of lines, each a list of words with a Figma size, outline on or off, a stack (a line break), and `shift`, `align` and `wide` for the designer's touches. It scales with its own width like the SVG did. Checked against Figma's render at 1440 × 900: every line within 4 design px across and 3 down (Resilient 8), 744 tall against 747, outline strokes at full gold and Figma's width. `values-words.svg` is removed.
 - Each line of the collage fades up 15px with the scroll as it comes into view, about one more line per wheel notch. Stepped through at 1440 × 900: no line starts before it is on screen.

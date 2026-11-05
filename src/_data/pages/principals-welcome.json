@@ -262,19 +262,44 @@
             }
           },
           {
-            "question": "Where are the St Luke’s campuses located?"
+            "question": "Where are the St Luke’s campuses located?",
+            "answer": "St Luke’s has two campuses on Sydney’s Northern Beaches, at Bayview and Dee Why.",
+            "button": {
+              "text": "Maps & Transport",
+              "url": "#"
+            }
           },
           {
-            "question": "How do I enrol my child at St Luke’s?"
+            "question": "How do I enrol my child at St Luke’s?",
+            "answer": "Enrolment is by application date, so there’s no entrance exam. Places for 2028 are now open, from the Cottage to Year 12.",
+            "button": {
+              "text": "How to Apply",
+              "url": "#"
+            }
           },
           {
-            "question": "Can I visit the school before applying?"
+            "question": "Can I visit the school before applying?",
+            "answer": "Yes. Families are welcome to book a tour of either campus before they apply.",
+            "button": {
+              "text": "Book a Tour",
+              "url": "#"
+            }
           },
           {
-            "question": "Is St Luke’s a Christian school?"
+            "question": "Is St Luke’s a Christian school?",
+            "answer": "Yes. St Luke’s is an independent Anglican school, and the Christian faith underpins and informs the work of the School.",
+            "button": {
+              "text": "Christian Foundation",
+              "url": "#"
+            }
           },
           {
-            "question": "What makes St Luke’s different?"
+            "question": "What makes St Luke’s different?",
+            "answer": "St Luke’s is a community where everyone is known, where academic rigour, Christian character and genuine care meet the distinctive spirit of the Northern Beaches.",
+            "button": {
+              "text": "Why Choose St Luke’s",
+              "url": "#"
+            }
           }
         ]
       }
