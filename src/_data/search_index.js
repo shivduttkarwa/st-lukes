@@ -17,14 +17,14 @@ export default function () {
   };
 
   const pages = fs.readdirSync(dir).filter((name) => name.endsWith(".json")).map((name) => ({ key: name.replace(".json", ""), data: readJson(new URL(name, dir)) }));
-  const builtUrls = new Set(pages.map(({ key }) => (key === "home" ? "/" : `/${key}/`)));
+  const builtUrls = new Set(pages.map(({ key }) => (key === "home" ? "/index.html" : `/${key}.html`)));
 
   pages.forEach(({ key, data }) => {
     const hero = data.body.find((block) => block.type.endsWith("hero"));
     add({
       title: data.seo.title.split(" | ")[0],
       text: data.seo.description,
-      url: key === "home" ? "/" : `/${key}/`,
+      url: key === "home" ? "/index.html" : `/${key}.html`,
       image: hero?.value.image,
     });
   });

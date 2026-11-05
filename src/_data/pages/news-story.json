@@ -43,7 +43,7 @@
         "share_label": "Share this article",
         "back": {
           "text": "All Articles",
-          "url": "/news/"
+          "url": "/news.html"
         }
       }
     },
@@ -97,7 +97,7 @@
         "title": "Explore more Stories",
         "button": {
           "text": "Back to All News",
-          "url": "/news/",
+          "url": "/news.html",
           "style": "outline-navy"
         },
         "stories": [

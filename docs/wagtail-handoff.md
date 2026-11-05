@@ -33,6 +33,9 @@ Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`,
 - The menu header never scrolls: from `lg` only the result rows scroll while search results show, and below `lg` everything under the header scrolls. The panel carries `data-lenis-prevent`, because Lenis, stopped while the menu is open, otherwise cancels wheel and touch scrolling inside it.
 - Below `lg` the panel is full width and submenus open as accordions; the thumbnail is hidden. Phone layout is interpreted until the designer's mobile frames arrive.
 
+### Favicon (`partials/head.njk`)
+- The crest: `crest.svg` for browsers that take an SVG icon, `favicon.ico` (16, 32 and 48, rendered from it) for the rest, and `apple-touch-icon.png` (180, the crest on the logo box's royal) for phone home screens, all in `assets/icons/`. Copy the three `<link>` tags into the base template's head.
+
 ### Footer (`partials/footer.njk`)
 - Site chrome from `site.footer` and `site.socials` (fields in `blocks.yaml` under settings). It has:
   - the portrait logo (the header's `crest.svg` and `wordmark.svg` at 181 wide), and the statement;

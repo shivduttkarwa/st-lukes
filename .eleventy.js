@@ -33,6 +33,8 @@ export default function (eleventyConfig) {
     return (this.page.outputPath || "").endsWith(".html") ? relativeUrls(content, this.page.url) : content;
   });
 
+  if (PROD) eleventyConfig.ignores.add("src/lab/**");
+
   eleventyConfig.on("eleventy.before", compileCss);
   eleventyConfig.addWatchTarget("src/assets/styles/");
   eleventyConfig.addWatchTarget("dist/assets/js/");

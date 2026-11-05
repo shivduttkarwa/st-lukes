@@ -8,7 +8,7 @@ npm run dev      # http://localhost:3000, live reload; also on the Wi-Fi address
 npm run build    # production build → dist/
 ```
 
-The build writes every URL relative to its page, so `dist/` runs from any folder with no prefix. Staging: upload the contents of `dist/` to `websites/stlukes/` for https://cim-staging.au/websites/stlukes.
+The build writes every URL relative to its page, so `dist/` runs from any folder with no prefix, or straight from disk. Pages are flat `<page>.html` files beside `index.html` and `assets/`; the `lab/` pages are only built by `npm run dev`. Staging: stop `npm run dev` first (it rewrites `dist/` while the build runs, and cleans it when it starts), run `npm run build`, then upload the contents of `dist/` to `websites/stlukes/` for https://cim-staging.au/websites/stlukes.
 
 - Rules: `CLAUDE.md`
 - Designer's brief: `docs/design-guidelines.md`
