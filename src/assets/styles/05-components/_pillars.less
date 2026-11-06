@@ -126,10 +126,15 @@
 
   &__copy {
     display: flex;
+    flex-direction: column;
     align-items: flex-start;
     justify-content: space-between;
-    gap: 34 * @px;
+    gap: 20 * @px;
     margin-top: 5 * @px;
+    @media (min-width: @bp-lg) {
+      flex-direction: row;
+      gap: 34 * @px;
+    }
     p {
       .type-body-1();
       position: relative;

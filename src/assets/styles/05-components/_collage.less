@@ -102,7 +102,8 @@
     align-self: center;
     flex: none;
     width: @collage-stat;
-    height: @collage-stat;
+    max-width: calc(100% - var(--gutter) * 2);
+    aspect-ratio: 1;
     margin: 32 * @px 0 0;
     @media (min-width: @bp-lg) {
       grid-area: 3 / 1 / auto / span 3;

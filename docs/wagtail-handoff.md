@@ -19,6 +19,8 @@ Living document. Updated as blocks land; the Wagtail build reads this, `blocks.y
 
 Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`, `{% else %}` in a `for` → `{% empty %}`, `{% set %}` → `{% with %}`.
 
+Type scale on phones and tablets: below 992 the root is the browser's own size (`font-size: 100%` in `_base.less`), so a design px is a CSS px and the visitor's text-size setting applies. From 992 the fluid root takes over, unchanged. Body copy is 16px at 1.5 line height on phones (the `--leading-body` token, Figma's 1.4 from 992), lead copy 17–18px, and nothing reads under 12px. The home and landing hero titles fit the phone's content width (`type-display-1`). Inner-hero rows may wrap under 576, so a long CMS title can't run off the screen. Phone and tablet layouts are still interpreted, until the designer's mobile frames arrive.
+
 Links: no `href="#"` anywhere. A link whose `url` is empty renders as an `<a>` with no `href` (`{% if card.url %} href="{{ card.url }}"{% endif %}`), so it keeps its look but goes nowhere and drops out of the tab order. Keep that test in the Django templates and never use `|default:'#'`, which treats an empty string as missing and brings `#` back. Search leaves out menu pages with no `url`.
 
 ## Site chrome

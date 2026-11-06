@@ -58,8 +58,8 @@
     display: grid;
     gap: 6 * @px;
     margin-top: 48 * @px;
+    @media (min-width: @bp-md) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     @media (min-width: @bp-lg) {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       margin-top: 100 * @px;
     }
   }

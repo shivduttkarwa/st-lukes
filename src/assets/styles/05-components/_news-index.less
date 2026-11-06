@@ -31,8 +31,10 @@
 
   &__filters {
     display: flex;
+    flex: 1 1 100%;
     flex-wrap: wrap;
     gap: 6 * @px;
+    @media (min-width: @bp-lg) { flex: 0 1 auto; }
   }
 
   &__filter {

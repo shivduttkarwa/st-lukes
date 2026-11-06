@@ -122,16 +122,18 @@
     }
   }
 
+  // a tablet held sideways is too narrow for the notice beside the title's first row, so it sits above the title
   &__notice {
     order: 1;
     margin: 0 0 32 * @px;
     @media (min-width: @bp-lg) {
       position: absolute;
       right: 48 * @px;
-      bottom: 67 * @px;
+      bottom: 148 * @px;
       width: 361 * @px;
       margin: 0;
     }
+    @media (min-width: @bp-xl) { bottom: 67 * @px; }
   }
 }
 
@@ -177,6 +179,9 @@
   .hero__line {
     margin-left: 0;
     text-box: trim-both cap alphabetic;
+    white-space: normal;
+    text-wrap: balance;
+    @media (min-width: @bp-sm) { white-space: nowrap; }
   }
 
   .hero__line--outline { .outline-text-clear(); }

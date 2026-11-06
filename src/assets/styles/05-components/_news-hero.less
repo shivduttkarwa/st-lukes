@@ -55,9 +55,10 @@
 
   &__feature {
     position: relative;
-    aspect-ratio: 667 / 410;
+    aspect-ratio: 1;
     margin-inline: var(--gutter);
     overflow: hidden;
+    @media (min-width: @bp-md) { aspect-ratio: 667 / 410; }
     @media (min-width: @bp-lg) {
       grid-area: 1 / 2;
       margin: 0;

@@ -110,6 +110,12 @@
     gap: 20 * @px;
   }
 
+  // on phones the quick links run in two columns under the campuses
+  &__col:last-child {
+    grid-column: 1 / -1;
+    @media (min-width: @bp-md) { grid-column: auto; }
+  }
+
   h2 {
     .type-heading-6();
     position: relative;
@@ -188,6 +194,14 @@
 
   &__links {
     .reset-list();
+    align-self: stretch;
+    columns: 2;
+    column-gap: 24 * @px;
+    @media (min-width: @bp-md) {
+      align-self: auto;
+      columns: auto;
+    }
+    li { break-inside: avoid; }
     a {
       .type-body-3-150();
       position: relative;

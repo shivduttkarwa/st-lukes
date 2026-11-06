@@ -7,11 +7,13 @@
   text-transform: uppercase;
 }
 
+// the hero lockup's rows never wrap, so on phones the type fits the content width: about 7em of row
 .type-display-1() {
   .type-poppins();
   line-height: 0.6;
   letter-spacing: -0.03em;
-  font-size: 48 * @px;
+  font-size: ~"calc((100vw - var(--gutter) * 2) / 7)";
+  @media (min-width: @bp-sm) { font-size: 72 * @px; }
   @media (min-width: @bp-md) { font-size: 80 * @px; }
   @media (min-width: @bp-lg) { font-size: 150 * @px; }
 }
@@ -44,7 +46,7 @@
   .type-poppins();
   line-height: 1.05;
   letter-spacing: -0.02em;
-  font-size: 36 * @px;
+  font-size: 32 * @px;
   @media (min-width: @bp-lg) { font-size: 60 * @px; }
 }
 
@@ -52,7 +54,7 @@
   .type-poppins();
   line-height: 0.9;
   letter-spacing: -0.03em;
-  font-size: 30 * @px;
+  font-size: 28 * @px;
   @media (min-width: @bp-lg) { font-size: 45 * @px; }
 }
 
@@ -61,7 +63,7 @@
   .type-poppins();
   line-height: 1.05;
   letter-spacing: -0.03em;
-  font-size: 30 * @px;
+  font-size: 28 * @px;
   @media (min-width: @bp-lg) { font-size: 45 * @px; }
 }
 
@@ -112,7 +114,7 @@
   .type-sans();
   line-height: 1.05;
   letter-spacing: -0.01em;
-  font-size: 30 * @px;
+  font-size: 26 * @px;
   @media (min-width: @bp-lg) { font-size: 45 * @px; }
 }
 
@@ -188,7 +190,7 @@
   letter-spacing: -0.03em;
   text-transform: uppercase;
   font-size: 60 * @px;
-  @media (min-width: @bp-md) { font-size: 100 * @px; }
+  @media (min-width: @bp-lg) { font-size: 100 * @px; }
 }
 
 // the collage stat has no named style: Sanshand 100 / 1.05, -5%
@@ -243,9 +245,10 @@
   font-weight: 400;
 }
 
+// body copy leads from the --leading-body token: 1.5 on phones, Figma's 1.4 from lg, so a block's own line-height still wins
 .type-body-1() {
   .type-myriad();
-  line-height: 1.4;
+  line-height: var(--leading-body);
   letter-spacing: 0;
   font-size: 18 * @px;
   @media (min-width: @bp-lg) { font-size: 20 * @px; }
@@ -253,15 +256,15 @@
 
 .type-body-2() {
   .type-myriad();
-  line-height: 1.4;
+  line-height: var(--leading-body);
   letter-spacing: -0.01em;
-  font-size: 16 * @px;
+  font-size: 17 * @px;
   @media (min-width: @bp-lg) { font-size: 18 * @px; }
 }
 
 .type-body-3() {
   .type-myriad();
-  line-height: 1.4;
+  line-height: var(--leading-body);
   letter-spacing: -0.01em;
   font-size: 16 * @px;
 }

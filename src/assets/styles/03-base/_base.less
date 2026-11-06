@@ -7,8 +7,9 @@
 
 html {
   --scrollbar-thumb: var(--color-navy-tint);
-  // 16px at the design's 1440 × 813 first view; a short laptop viewport scales down by height
-  font-size: ~"clamp(0.875rem, min(0.5rem + 0.5556vw, 0.4rem + 1.2svh), 1.1667rem)";
+  // phones and tablets read at the browser's own size; from lg 16px at the design's 1440 × 813 first view, a short laptop scaling down by height
+  font-size: 100%;
+  @media (min-width: @bp-lg) { font-size: ~"clamp(0.875rem, min(0.5rem + 0.5556vw, 0.4rem + 1.2svh), 1.1667rem)"; }
   scroll-behavior: smooth;
   overflow-x: clip;
   scrollbar-width: thin;

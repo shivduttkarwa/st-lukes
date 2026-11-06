@@ -1,4 +1,5 @@
 @page-link-arrow: 60 * @px;
+@page-link-arrow-gap: 16 * @px;
 @page-link-text: 453 * @px;
 @page-link-pad-sm: 20 * @px;
 @page-link-pad: 30 * @px;
@@ -63,6 +64,7 @@
     position: relative;
     display: flex;
     flex-direction: column;
+    @media (hover: none) { padding-right: ~"calc(max(var(--tap-size), @{page-link-arrow}) + @{page-link-arrow-gap})"; }
   }
 
   &__title {

@@ -47,9 +47,11 @@
 
   &__tab {
     .type-tab();
-    flex: 1 1 auto;
+    flex: 1 1 0;
     min-height: var(--tap-size);
-    padding: 19 * @px 12 * @px 21 * @px;
+    padding: 14 * @px 6 * @px 16 * @px;
+    text-wrap: balance;
+    @media (min-width: @bp-md) { padding: 19 * @px 12 * @px 21 * @px; }
     border: 0;
     // CSS tracks after the last letter too; Figma does not, so the label would sit 1px left
     text-indent: 0.12em;
