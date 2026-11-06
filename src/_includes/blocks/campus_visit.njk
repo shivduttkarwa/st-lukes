@@ -22,8 +22,8 @@
           </li>
           {% endfor %}
         </ul>
-        <a class="campus-visit__map" href="{{ campus.map_url }}" data-anim="reveal" data-anim-type="fade-up">
-          {% set img = campus.map %}{% set cls = "campus-visit__map-img" %}{% include "snippets/image.njk" %}
+        <a class="campus-visit__map"{% if campus.map_url %} href="{{ campus.map_url }}"{% endif %} target="_blank" rel="noopener" data-anim="reveal" data-anim-type="fade-up">
+          {% set img = campus.map %}{% set cls = "campus-visit__map-img" %}{% include "snippets/image.njk" %}<span class="visually-hidden"> (opens in a new tab)</span>
         </a>
       </article>
       {% endfor %}

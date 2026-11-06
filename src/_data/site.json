@@ -22,12 +22,12 @@
     },
     {
       "label": "Enrolments",
-      "url": "",
+      "url": "/contact.html",
       "children": [
         { "label": "How to Apply", "url": "/contact.html#contact-form", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Fees & Charges", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Scholarships", "url": "", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Book a Tour", "url": "https://enrol.stlukes.nsw.edu.au/events/", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
+        { "label": "Fees & Charges", "url": "/contact.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Scholarships", "url": "/contact.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Book a Tour", "url": "/contact.html#campuses", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
       ]
     },
     {
@@ -35,48 +35,48 @@
       "url": "/our-school.html",
       "children": [
         { "label": "Principal's Welcome", "url": "/principals-welcome.html", "image": { "src": "/assets/images/our-school/hero-principal-768.webp", "alt": "", "width": 768, "height": 412 } },
-        { "label": "Why Choose St Luke's", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Christian Foundation", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Why Choose St Luke's", "url": "/our-school.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Christian Foundation", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
         { "label": "Leadership & Staff", "url": "/leadership-staff.html", "image": { "src": "/assets/images/our-school/hero-leadership-768.webp", "alt": "", "width": 768, "height": 412 } },
-        { "label": "Strategic Plan", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Campus Masterplan 2029–2031", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Round Square Global Network", "url": "https://www.roundsquare.org/", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "History", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Acknowledgement of Country", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+        { "label": "Strategic Plan", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Campus Masterplan 2029–2031", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Round Square Global Network", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "History", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Acknowledgement of Country", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     },
     {
       "label": "Learning",
-      "url": "",
+      "url": "/extra-blocks.html",
       "children": [
-        { "label": "Early Learning", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Junior School", "url": "", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Senior School", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Co-curricular", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+        { "label": "Early Learning", "url": "/extra-blocks.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Junior School", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Senior School", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Co-curricular", "url": "/extra-blocks.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     },
     {
       "label": "Wellbeing",
-      "url": "",
+      "url": "/extra-blocks.html",
       "children": [
-        { "label": "Pastoral Care", "url": "", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Counselling", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Learning Support", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+        { "label": "Pastoral Care", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Counselling", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Learning Support", "url": "/extra-blocks.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     },
     {
       "label": "School Life",
-      "url": "",
+      "url": "/extra-blocks.html",
       "children": [
-        { "label": "Sport", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Music & Arts", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Outdoor Education", "url": "", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Service Learning", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
+        { "label": "Sport", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Music & Arts", "url": "/extra-blocks.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Outdoor Education", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Service Learning", "url": "/news.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
       ]
     },
     {
       "label": "Campuses",
-      "url": "",
+      "url": "/contact.html#campuses",
       "children": [
         { "label": "Senior Campus", "url": "/contact.html#campuses", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
         { "label": "Junior Campus", "url": "/contact.html#campuses", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
@@ -86,12 +86,12 @@
     },
     {
       "label": "Community",
-      "url": "",
+      "url": "/extra-blocks.html",
       "children": [
-        { "label": "Parents & Friends", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Alumni", "url": "", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Events", "url": "", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Giving", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+        { "label": "Parents & Friends", "url": "/extra-blocks.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
+        { "label": "Alumni", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Events", "url": "/news.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Giving", "url": "/extra-blocks.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     },
     {
@@ -99,22 +99,22 @@
       "url": "/news.html",
       "children": [
         { "label": "Latest News", "url": "/news.html", "image": { "src": "/assets/images/pages/feature-1.webp", "alt": "", "width": 1334, "height": 820 } },
-        { "label": "Newsletters", "url": "", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Media", "url": "", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+        { "label": "Newsletters", "url": "/news.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
+        { "label": "Media", "url": "/news-story.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     }
   ],
   "menu_links": [
-    { "label": "Parent Portal", "url": "https://portal.stlukes.nsw.edu.au/" },
-    { "label": "Work with Us", "url": "" },
+    { "label": "Parent Portal", "url": "/contact.html" },
+    { "label": "Work with Us", "url": "/leadership-staff.html" },
     { "label": "Visit Us", "url": "/contact.html#campuses" },
-    { "label": "Transport", "url": "" },
-    { "label": "Scholarships", "url": "" },
-    { "label": "Policies", "url": "" }
+    { "label": "Transport", "url": "/contact.html#campuses" },
+    { "label": "Scholarships", "url": "/contact.html" },
+    { "label": "Policies", "url": "/extra-blocks.html" }
   ],
   "quick_links_label": "Quick Links",
   "quick_links": [
-    { "label": "St Luke’s Portal", "url": "https://portal.stlukes.nsw.edu.au/" },
+    { "label": "St Luke’s Portal", "url": "" },
     { "label": "Make an Enquiry", "url": "/contact.html#contact-form" },
     { "label": "Employment", "url": "" },
     { "label": "Alumni", "url": "" },
@@ -123,13 +123,13 @@
     { "label": "News and Stories", "url": "/news.html" }
   ],
   "utility_links": [
-    { "label": "Tours", "url": "https://enrol.stlukes.nsw.edu.au/events/" },
+    { "label": "Tours", "url": "/contact.html" },
     { "label": "Enquire", "url": "/contact.html#contact-form" },
-    { "label": "Enrol", "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment" }
+    { "label": "Enrol", "url": "/our-school.html" }
   ],
   "socials": [
-    { "network": "facebook", "label": "Facebook", "url": "https://www.facebook.com/St-Lukes-Grammar-School-681445392045384" },
-    { "network": "instagram", "label": "Instagram", "url": "https://www.instagram.com/stlukesgrammarschool/" },
+    { "network": "facebook", "label": "Facebook", "url": "" },
+    { "network": "instagram", "label": "Instagram", "url": "" },
     { "network": "linkedin", "label": "LinkedIn", "url": "" }
   ],
   "popular_searches": [
@@ -142,16 +142,16 @@
   "footer": {
     "statement": "St Luke's Grammar School welcomes enrolment enquiries and applications, for both girls and boys, from Pre-Kindergarten to Year 12.",
     "intro": "St Luke’s is an independent Anglican, Pre-K to Year 12 co-educational school with two campuses Bayview and Dee Why, on Sydney’s Northern Beaches.",
-    "button": {"text": "Enrol Now", "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment"},
+    "button": {"text": "Enrol Now", "url": "/our-school.html"},
     "campuses": [
-      { "name": "Dee Why Campus", "years": "Cottage – Year 12", "address": "210 Headland Road,\nDee Why NSW 2099", "directions": "https://www.google.com/maps/search/?api=1&query=210+Headland+Road+Dee+Why+NSW+2099", "phones": [{"label": "Senior School", "number": "+61 2 9438 6200", "tel": "+61294386200"}, {"label": "Junior School", "number": "+61 2 9438 6250", "tel": "+61294386250"}] },
-      { "name": "Bayview Campus", "years": "Cottage – Year 6", "address": "1977 Pittwater Road,\nBayview NSW 2104", "directions": "https://www.google.com/maps/search/?api=1&query=1977+Pittwater+Road+Bayview+NSW+2104", "phones": [{"label": "Junior School", "number": "+61 2 9979 5755", "tel": "+61299795755"}] }
+      { "name": "Dee Why Campus", "years": "Cottage – Year 12", "address": "210 Headland Road,\nDee Why NSW 2099", "directions": "/contact.html#campuses", "phones": [{"label": "Senior School", "number": "+61 2 9438 6200", "tel": "+61294386200"}, {"label": "Junior School", "number": "+61 2 9438 6250", "tel": "+61294386250"}] },
+      { "name": "Bayview Campus", "years": "Cottage – Year 6", "address": "1977 Pittwater Road,\nBayview NSW 2104", "directions": "/contact.html#campuses", "phones": [{"label": "Junior School", "number": "+61 2 9979 5755", "tel": "+61299795755"}] }
     ],
     "quick_links_title": "Quick Links",
     "quick_links": [
       {"label": "How to Enrol", "url": "/contact.html#contact-form"},
-      {"label": "Portal Login", "url": "https://portal.stlukes.nsw.edu.au/"},
-      {"label": "Prospectus", "url": "https://heyzine.com/flip-book/9bb715e3fc.html"},
+      {"label": "Portal Login", "url": ""},
+      {"label": "Prospectus", "url": "/our-school.html"},
       {"label": "Term Dates", "url": ""},
       {"label": "Fee Schedule", "url": ""},
       {"label": "Alumni", "url": ""},

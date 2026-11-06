@@ -1,5 +1,21 @@
 # Changelog
 
+## 2026-11-06 — Every menu item opens a page; outside links only where they were before
+- Every item in the menu's submenus, and the six small menu links, now opens a built page that stands in for it in the demo, not always an exact match:
+  - Enrolments goes to Contact.
+  - The Our School topics go to Our School Alternative, which has a row on each.
+  - Learning, Wellbeing, School Life, Community and Policies go to Extra Blocks, the generic inner page.
+  - Service Learning, Events and Newsletters go to News List, and Media to News Story.
+  - Campuses, Visit Us and Transport go to Contact's campuses, and Work with Us to Leadership and Staff.
+- Search lists each of these items under its own name, linking to its stand-in. Before, any menu item pointing at a built page dropped out of search.
+- The outside links added earlier today are gone, because Figma gives none (a scan of the approved page found no hyperlinks and no open-link actions). The portal and prospectus links now go to Contact and Our School (or blank), and Round Square to Our School Alternative.
+- The header's Tours, Enquire and Enrol went to the same form. They now go to three different places, and so does every Book a Tour and Apply button across the site:
+  - Tours goes to the top of Contact, and Book a Tour to Contact's "Visit St Luke's" campuses section.
+  - Enquire stays on the enquiry form.
+  - Enrol and Apply go to Our School (on Our School itself, to the top of Contact).
+  Checked: Book a Tour lands on Visit St Luke's with the campus photos and details in place. Facebook and Instagram are left blank, and the footer's Directions go to Contact's campuses.
+- The partner logos and Contact's campus maps keep their outside links, as before. The maps now open in a new tab with "(opens in a new tab)" for screen readers, as the logos already did. Checked in the build: those 18 are the only outside links and all open in a new tab; every menu link has an address; nothing points at `#` or an empty address.
+
 ## 2026-11-06 — A link to a section opens straight onto it
 - Enquire (and every other link to `/contact.html#contact-form` or `#campuses`) opened the circle on Contact's hero, then smooth-scrolled fast down the page past blank sections to the form, which only then faded in. The root's smooth scroll (`_base.less` and Bootstrap) animated the browser's jump to the section from the top. The sections passed were still waiting to reveal, since nothing plays until the circle has opened.
 - Now the first frame waits for the section, the page is already on it when the circle starts, and the jump is instant. Chrome's own jump comes a frame after the first paint, so the head script makes it in `pagereveal`. What the circle opens onto simply shows (photo, title, text and form), as the circle is its entrance, and the sections below still reveal as they are scrolled to. At the top of a page nothing changes: the hero entrance plays after the circle as before. A reload or back/forward keeps the browser's restored scroll.

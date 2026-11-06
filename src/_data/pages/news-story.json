@@ -145,11 +145,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "https://enrol.stlukes.nsw.edu.au/events/"
+            "url": "/contact.html#campuses"
           },
           {
             "text": "Apply to Enrol",
-            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
+            "url": "/our-school.html",
             "style": "glass"
           }
         ],

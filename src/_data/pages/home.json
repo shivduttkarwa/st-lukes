@@ -29,7 +29,7 @@
             "width": 800,
             "height": 533
           },
-          "button": { "text": "Apply Now", "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment" }
+          "button": { "text": "Apply Now", "url": "/our-school.html" }
         }
       }
     },
@@ -93,7 +93,7 @@
             "image": { "src": "/assets/images/home/pillars-global-mind.webp", "alt": "Four junior students in blue blazers sitting together outdoors", "width": 1234, "height": 814 },
             "video": null,
             "logo": { "src": "/assets/images/home/round-square.svg", "alt": "Round Square", "width": 70, "height": 70 },
-            "button": { "text": "Read about Round Square", "url": "https://www.roundsquare.org/", "style": "outline" }
+            "button": { "text": "Read about Round Square", "url": "/our-school-alternative.html", "style": "outline" }
           }
         ]
       }
@@ -116,7 +116,7 @@
         "eyebrow": "Why choose St Luke’s Grammar",
         "title": "Everything families love about the Northern Beaches. Everything they expect from a leading school.",
         "buttons": [
-          { "text": "Apply to Enrol Today", "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment" },
+          { "text": "Apply to Enrol Today", "url": "/our-school.html" },
           { "text": "View Application Process", "url": "/contact.html#contact-form", "style": "outline" }
         ],
         "background": {
@@ -273,14 +273,14 @@
         "title_line_2": "Conversation",
         "follow_text": "Follow life at St Luke’s on social media",
         "posts": [
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null },
-          { "url": "https://www.instagram.com/stlukesgrammarschool/", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null }
+          { "url": "", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null },
+          { "url": "", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null }
         ]
       }
     },
@@ -290,8 +290,8 @@
         "title_line_1": "Start your",
         "title_line_2": "St Luke’s journey",
         "buttons": [
-          { "text": "Book a Tour", "url": "https://enrol.stlukes.nsw.edu.au/events/" },
-          { "text": "Apply to Enrol", "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment", "style": "glass" }
+          { "text": "Book a Tour", "url": "/contact.html#campuses" },
+          { "text": "Apply to Enrol", "url": "/our-school.html", "style": "glass" }
         ],
         "image": { "src": "/assets/images/home/cta-poster.webp", "alt": "", "width": 1440, "height": 826 },
         "video": { "src": "/assets/video/cta.mp4" }

@@ -17,7 +17,8 @@ export default function () {
   };
 
   const pages = fs.readdirSync(dir).filter((name) => name.endsWith(".json")).map((name) => ({ key: name.replace(".json", ""), data: readJson(new URL(name, dir)) }));
-  const builtUrls = new Set(pages.map(({ key }) => (key === "home" ? "/index.html" : `/${key}.html`)));
+  const titleOf = new Map(pages.map(({ key, data }) => [key === "home" ? "/index.html" : `/${key}.html`, data.seo.title.split(" | ")[0]]));
+  const same = (a, b) => a.toLowerCase().replace(/&/g, "and") === b.toLowerCase().replace(/&/g, "and");
 
   pages.forEach(({ key, data }) => {
     const hero = data.body.find((block) => block.type.endsWith("hero"));
@@ -35,11 +36,13 @@ export default function () {
       .forEach((block) => block.value.stories.forEach((story) => add({ title: story.title, text: `News and stories: ${story.tag}`, url: story.url, image: story.image })));
   });
 
-  // pages that exist only in the menu so far: their section stands in for a description
+  // pages that exist only in the menu so far (linked to a stand-in page for the demo): their section stands in for a
+  // description. The Home submenu and a child that is a built page itself are already in.
   const site = readJson(new URL("./site.json", import.meta.url));
   site.nav.forEach((section) => {
+    if (section.url === "/index.html") return;
     (section.children || [])
-      .filter((child) => child.url && !builtUrls.has(child.url))
+      .filter((child) => child.url && !same(child.label, titleOf.get(child.url) || ""))
       .forEach((child) => add({ title: child.label, text: section.label, url: child.url, image: child.image }));
   });
 

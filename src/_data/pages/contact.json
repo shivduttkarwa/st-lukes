@@ -47,7 +47,7 @@
               },
               {
                 "text": "Book a Tour",
-                "url": "https://enrol.stlukes.nsw.edu.au/events/"
+                "url": "#campuses"
               }
             ]
           },
@@ -67,7 +67,7 @@
             "links": [
               {
                 "text": "Current Families",
-                "url": "https://portal.stlukes.nsw.edu.au/"
+                "url": "#contact-form"
               }
             ]
           },
@@ -278,7 +278,7 @@
             "answer": "Yes. Families are welcome to book a tour of either campus before they apply.",
             "button": {
               "text": "Book a Tour",
-              "url": "https://enrol.stlukes.nsw.edu.au/events/"
+              "url": "#campuses"
             }
           },
           {
@@ -370,7 +370,7 @@
             },
             {
               "label": "Round Square",
-              "url": "https://www.roundsquare.org/"
+              "url": "/our-school-alternative.html"
             },
             {
               "label": "History",
@@ -389,7 +389,7 @@
             },
             {
               "text": "Apply Today to Enrol",
-              "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
+              "url": "/our-school.html",
               "style": "outline-dark"
             }
           ]
@@ -404,11 +404,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "https://enrol.stlukes.nsw.edu.au/events/"
+            "url": "#campuses"
           },
           {
             "text": "Apply to Enrol",
-            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
+            "url": "/our-school.html",
             "style": "glass"
           }
         ],

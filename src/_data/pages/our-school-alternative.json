@@ -61,7 +61,7 @@
             "width": 592,
             "height": 592
           },
-          "url": "https://www.instagram.com/stlukesgrammarschool/",
+          "url": "",
           "label": "St Luke's on Instagram"
         }
       }
@@ -165,7 +165,7 @@
             },
             "button": {
               "text": "Explore Round Square",
-              "url": "https://www.roundsquare.org/"
+              "url": ""
             }
           },
           {
@@ -207,11 +207,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "https://enrol.stlukes.nsw.edu.au/events/"
+            "url": "/contact.html#campuses"
           },
           {
             "text": "Apply to Enrol",
-            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
+            "url": "/our-school.html",
             "style": "glass"
           }
         ],
