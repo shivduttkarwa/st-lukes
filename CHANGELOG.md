@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-06 — Phone sliders, promo video and pillar reveals
+- Promo videos (home intro, Our School): the still is an `<img>` under the videos, and neither video has a poster. The muted loop fades in over 0.6s once it plays, and the pill's video starts over the still. iPhone Safari blinked as it swapped a poster for the first frame.
+- Pillars below 992: the right-hand photos rise like the left ones (`data-anim-type-mobile="rise-far"`). On desktop they still only fade under their parallax.
+- Sliders: once a slider is within a screen of view, its lazy photos load and decode, so a slide no longer arrives blank on iPhone.
+- News slider and News List hero:
+  - Going back crossfades like going forward. Swiper's 3D transform on slides on iOS and Android made each slide its own layer, drawing the new story under the old one. Stacked slides drop it.
+  - The story text changes like a split slider. The old lines leave the way the slider travels and the new ones arrive from 0.4s: each line moves over 0.7s and fades over 0.6s from 0.1s later, the lines 0.1s apart, on ease-in-out. The text travels 45px on desktop and 20px below 992, in whole device pixels without GPU layers, so small text doesn't snap as it lands.
+  - A change asked for mid-swap waits for the swap to finish, then plays (the latest wins).
+  - Autoplay pauses only for hover and keyboard focus, so a clicked dot or arrow no longer stops it for good.
+
 ## 2026-11-06 — Phone hero and header
 - Preloader back to how it was: the home title is again 42px on phones and 70px from 768, and the preloader keeps the title 18px inside the screen, so the staggered LOCAL HEART. / GLOBAL MIND. lockup plays as before. Sizing the title to the screen width had pushed both rows flush and lost the stagger.
 - Home hero below 992 fills the first screen down to GLOBAL MIND. with 32px of air (48 on tablets), so the intro starts below the fold. The inner and landing heroes keep 80% of the screen.

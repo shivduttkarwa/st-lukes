@@ -66,9 +66,17 @@
   }
 
   &__slider {
+    --story-dir: 1;
+    --story-shift: @news-shift-sm;
+    @media (min-width: @bp-lg) { --story-shift: @news-shift; }
     height: 100%;
+    &.is-back { --story-dir: -1; }
     .swiper-wrapper { display: grid; }
-    .swiper-slide { grid-area: 1 / 1; }
+    // Swiper gives slides a 3D transform on iOS and Android, making each its own layer, so going back drew the new story under the old
+    .swiper-slide {
+      grid-area: 1 / 1;
+      transform: none;
+    }
   }
 
   &__story {
@@ -131,24 +139,29 @@
   &__story.swiper-slide-active &__media,
   &__story.swiper-slide-active &__copy { z-index: 2; }
 
-  &__tag { --news-hero-step: 0; }
-  &__title { --news-hero-step: 1; }
+  &__tag { --story-in: 0; --story-back: 1; }
+  &__title { --story-in: 1; --story-back: 0; }
+  &__tag,
+  &__title { --story-out: var(--story-in); }
+  &__slider.is-back &__tag,
+  &__slider.is-back &__title { --story-out: var(--story-back); }
 
   &__tag,
-  &__title,
+  &__title { translate: 0 ~"round(var(--story-y), var(--device-px, 1px))"; }
+
   &__img { will-change: transform; }
 
   &__story.is-leaving {
     animation: story-leave @news-swap linear;
-    .news-hero__copy { animation: story-hold @news-out linear; }
+    .news-hero__copy { animation: story-hold @news-swap linear; }
     .news-hero__tag,
-    .news-hero__title { animation: story-text-out @news-text-out var(--ease-settle) calc(var(--news-hero-step) * @news-step-out) both; }
+    .news-hero__title { .story-text-leave(); }
     .news-hero__img { animation: story-photo-out @news-swap var(--ease-in-out-soft) both; }
   }
 
   &__story.is-entering {
     .news-hero__tag,
-    .news-hero__title { animation: story-text-in @news-text-in var(--ease-out) calc(@news-out + var(--news-hero-step) * @news-step-in) both; }
+    .news-hero__title { .story-text-arrive(); }
     .news-hero__media { animation: story-photo-in @news-swap var(--ease-in-out-soft) both; }
     .news-hero__img { animation: story-photo-settle @news-swap var(--ease-in-out-soft) both; }
   }

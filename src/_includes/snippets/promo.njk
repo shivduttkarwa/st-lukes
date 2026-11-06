@@ -1,10 +1,7 @@
-{% if promo.video %}
-<video class="promo__poster" src="{{ promo.video.src }}" poster="{{ promo.image.src }}" muted loop playsinline preload="none" data-ambient="view" aria-hidden="true"></video>
-{% else %}
 {% set img = promo.image %}{% set cls = "promo__poster" %}{% include "snippets/image.njk" %}
-{% endif %}
 {% if promo.video %}
-<video class="promo__video" data-src="{{ promo.video.src }}" poster="{{ promo.image.src }}" controls playsinline preload="none" hidden></video>
+<video class="promo__preview" src="{{ promo.video.src }}" muted loop playsinline preload="none" data-ambient="view" aria-hidden="true"></video>
+<video class="promo__video" data-src="{{ promo.video.src }}" controls playsinline preload="none" hidden></video>
 {% endif %}
 <button class="promo__play" type="button"{% if not promo.video %} disabled{% endif %}>
   <span class="promo__play-icon"><svg class="icon" aria-hidden="true"><use href="#icon-play"></use></svg></span>

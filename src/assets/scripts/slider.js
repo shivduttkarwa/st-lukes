@@ -21,7 +21,8 @@ function autoplay(swiper, scope, delay) {
   swiper.on("slideChangeTransitionEnd", arm);
   scope.addEventListener("pointerenter", () => set("hover", true));
   scope.addEventListener("pointerleave", () => set("hover", false));
-  scope.addEventListener("focusin", () => set("focus", true));
+  // only keyboard focus holds it: a clicked dot or arrow keeps focus, which stopped autoplay for good after a manual change
+  scope.addEventListener("focusin", (event) => set("focus", event.target.matches(":focus-visible")));
   scope.addEventListener("focusout", () => set("focus", false));
   new IntersectionObserver(([entry]) => set("view", !entry.isIntersecting)).observe(swiper.el);
 }
@@ -72,6 +73,18 @@ function shrinkOnSpeed(swiper) {
 
 // data-slider-mode="stack": slides overlap and CSS swaps them, keyed to is-leaving on the old one and is-entering on the new
 function stack(swiper) {
+  // a change asked for mid-swap waits for the swap's animations to finish, then plays (the latest wins): cutting a swap
+  // short snapped its photo and text to their ends
+  let busy = false;
+  let queued = null;
+  const go = swiper.slideTo.bind(swiper);
+  swiper.slideTo = (index, speed, runCallbacks, internal) => {
+    if (busy && !internal) {
+      queued = index;
+      return false;
+    }
+    return go(index, speed, runCallbacks, internal);
+  };
   const mark = (slide, name) => {
     swiper.slides.forEach((each) => each.classList.remove(name));
     if (!slide) return;
@@ -79,8 +92,23 @@ function stack(swiper) {
     slide.classList.add(name);
   };
   swiper.on("slideChange", () => {
-    mark(swiper.slides[swiper.previousIndex], "is-leaving");
-    mark(swiper.slides[swiper.activeIndex], "is-entering");
+    const leaving = swiper.slides[swiper.previousIndex];
+    const entering = swiper.slides[swiper.activeIndex];
+    // is-back: the text leaves downwards and arrives from above (_news.less)
+    swiper.el.classList.toggle("is-back", swiper.activeIndex < swiper.previousIndex);
+    mark(leaving, "is-leaving");
+    mark(entering, "is-entering");
+    const running = [leaving, entering]
+      .flatMap((slide) => (slide ? slide.getAnimations({ subtree: true }) : []))
+      .filter((animation) => animation.effect?.getComputedTiming().endTime !== Infinity);
+    if (!running.length) return;
+    busy = true;
+    Promise.all(running.map((animation) => animation.finished.catch(() => {}))).then(() => {
+      busy = false;
+      const next = queued;
+      queued = null;
+      if (next !== null && next !== swiper.activeIndex) swiper.slideTo(next);
+    });
   });
 }
 
@@ -122,6 +150,15 @@ export function initSliders() {
         },
       },
     });
+    // Safari loads a lazy photo only once it is on screen, so a slide arrived blank and its photo popped in
+    new IntersectionObserver((entries, watch) => {
+      if (!entries[0].isIntersecting) return;
+      watch.disconnect();
+      el.querySelectorAll('img[loading="lazy"]').forEach((img) => {
+        img.loading = "eager";
+        img.decode().catch(() => {});
+      });
+    }, { rootMargin: "100% 0px" }).observe(el);
     if (stacked) stack(swiper);
     if (delay && !still.matches) autoplay(swiper, scope, delay);
     if (!single && !still.matches) shrinkOnSpeed(swiper);

@@ -17,9 +17,17 @@
   }
 
   &__poster,
+  &__preview,
   &__video {
     .cover();
     object-fit: cover;
+  }
+
+  // the still stays underneath and the looping preview fades in once it plays: iOS blinks as it swaps a poster for the first frame
+  &__preview {
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+    &.is-live { opacity: 1; }
   }
 
   &__play {
@@ -79,7 +87,11 @@
 
   &.is-playing {
     &::after,
-    .promo__poster,
+    .promo__preview,
     .promo__play { visibility: hidden; }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .promo__preview { transition: none; }
 }
