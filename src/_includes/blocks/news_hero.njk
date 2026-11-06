@@ -7,12 +7,12 @@
     <p data-anim="reveal" data-anim-type="fade-up" data-anim-tier="hero" data-anim-order="1">{{ value.lead }}</p>
   </div>
 
-  <div class="news-hero__feature" data-slider-scope data-anim="reveal" data-anim-type="fade" data-anim-tier="hero" data-anim-order="1">
-    <div class="swiper news-hero__slider" data-slider data-slider-mode="fade">
+  <div class="news-hero__feature" data-slider-scope data-anim="reveal" data-anim-type="glide-left" data-anim-tier="hero" data-anim-order="1">
+    <div class="swiper news-hero__slider" data-slider data-slider-mode="stack">
       <div class="swiper-wrapper">
         {% for story in value.stories %}
         <a class="swiper-slide news-hero__story"{% if story.url %} href="{{ story.url }}"{% endif %}>
-          {% set img = story.image %}{% set cls = "news-hero__img" %}{% if loop.first %}{% set loading = "eager" %}{% endif %}{% include "snippets/image.njk" %}
+          <span class="news-hero__media">{% set img = story.image %}{% set cls = "news-hero__img" %}{% if loop.first %}{% set loading = "eager" %}{% endif %}{% include "snippets/image.njk" %}</span>
           <span class="news-hero__copy">
             <span class="news-hero__tag"><span aria-hidden="true">#</span>{{ story.tag }}</span>
             <span class="news-hero__title">{{ story.title }}</span>

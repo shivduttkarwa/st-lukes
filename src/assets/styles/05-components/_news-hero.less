@@ -64,7 +64,11 @@
     }
   }
 
-  &__slider { height: 100%; }
+  &__slider {
+    height: 100%;
+    .swiper-wrapper { display: grid; }
+    .swiper-slide { grid-area: 1 / 1; }
+  }
 
   &__story {
     position: relative;
@@ -73,13 +77,22 @@
     height: 100%;
     padding: 20 * @px;
     color: var(--color-white);
+    visibility: hidden;
+    &.swiper-slide-active { visibility: visible; }
+    @media (min-width: @bp-lg) { padding: 30 * @px; }
+  }
+
+  &__media {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    overflow: hidden;
     &::after {
       content: "";
       position: absolute;
       inset: 0;
       background: var(--gradient-news-feature);
     }
-    @media (min-width: @bp-lg) { padding: 30 * @px; }
   }
 
   &__img {
@@ -110,6 +123,32 @@
     position: relative;
     top: -0.1em;
     white-space: pre-line;
+  }
+
+  // the story swap is the homepage News one (_news.less): same keyframes and timings
+  &__story.swiper-slide-active &__media,
+  &__story.swiper-slide-active &__copy { z-index: 2; }
+
+  &__tag { --news-hero-step: 0; }
+  &__title { --news-hero-step: 1; }
+
+  &__tag,
+  &__title,
+  &__img { will-change: transform; }
+
+  &__story.is-leaving {
+    animation: story-leave @news-swap linear;
+    .news-hero__copy { animation: story-hold @news-out linear; }
+    .news-hero__tag,
+    .news-hero__title { animation: story-text-out @news-text-out var(--ease-settle) calc(var(--news-hero-step) * @news-step-out) both; }
+    .news-hero__img { animation: story-photo-out @news-swap var(--ease-in-out-soft) both; }
+  }
+
+  &__story.is-entering {
+    .news-hero__tag,
+    .news-hero__title { animation: story-text-in @news-text-in var(--ease-out) calc(@news-out + var(--news-hero-step) * @news-step-in) both; }
+    .news-hero__media { animation: story-photo-in @news-swap var(--ease-in-out-soft) both; }
+    .news-hero__img { animation: story-photo-settle @news-swap var(--ease-in-out-soft) both; }
   }
 
   &__nav {
@@ -209,4 +248,10 @@
   }
 
   &__link { .social-button(var(--color-white), var(--color-navy), var(--color-gold), var(--color-navy)); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .news-hero__story.is-leaving,
+  .news-hero__story.is-leaving *,
+  .news-hero__story.is-entering * { animation: none; }
 }

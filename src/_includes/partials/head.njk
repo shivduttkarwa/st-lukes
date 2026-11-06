@@ -13,6 +13,22 @@
   (function (d) {
     d.classList.add("anim-ready");
     if (matchMedia("(prefers-reduced-motion: reduce)").matches) d.classList.add("anim-reduced");
+    // a link to a section opens on it: the first frame waits for the section and is already there (the browser's own jump
+    // comes a frame later), with no smooth scroll down from the top past sections still waiting to reveal
+    var entry = performance.getEntriesByType && performance.getEntriesByType("navigation")[0];
+    if (location.hash.length > 1 && (!entry || entry.type === "navigate")) {
+      var expect = document.createElement("link");
+      expect.rel = "expect";
+      expect.setAttribute("href", location.hash);
+      expect.setAttribute("blocking", "render");
+      document.head.appendChild(expect);
+      d.style.scrollBehavior = "auto";
+      addEventListener("pagereveal", function () {
+        var target = document.getElementById(decodeURIComponent(location.hash.slice(1)));
+        if (target) target.scrollIntoView();
+      }, { once: true });
+      addEventListener("load", function () { d.style.scrollBehavior = ""; });
+    }
     {% if p and p.preloader %}
     if (!d.classList.contains("anim-reduced")) {
       // a reload would otherwise land mid-page after the preloader has measured the hero at the top

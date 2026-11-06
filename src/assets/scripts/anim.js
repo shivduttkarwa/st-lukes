@@ -139,8 +139,24 @@ const number = (el, name, fallback) => {
 };
 
 const tierOf = (el) => attr(el, "data-anim-tier", "default");
+// The screenful a page transition lands on below the top (a link to a section, or a page restored scrolled down): its
+// steps wait for the circle to open, which left it blank, so what is there simply shows. At the top the hero still enters.
+let arrivalView;
+const landedOn = (el) => {
+  if (arrivalView === undefined) {
+    const id = decodeURIComponent(location.hash.slice(1));
+    const target = id && document.getElementById(id);
+    const max = document.documentElement.scrollHeight - window.innerHeight;
+    const top = Math.min(window.scrollY || (target ? target.getBoundingClientRect().top + window.scrollY : 0), max);
+    arrivalView = top > 0 ? { top, bottom: top + window.innerHeight } : null;
+  }
+  if (!arrivalView) return false;
+  const box = el.getBoundingClientRect();
+  return box.height > 0 && box.top + window.scrollY < arrivalView.bottom && box.bottom + window.scrollY > arrivalView.top;
+};
 // data-anim-arrival="static": after a page transition (html.page-arrival) the transition was the entrance, so the element simply shows
-const arrived = (el) => attr(el, "data-anim-arrival") === "static" && document.documentElement.classList.contains("page-arrival");
+const arrived = (el) =>
+  document.documentElement.classList.contains("page-arrival") && (attr(el, "data-anim-arrival") === "static" || landedOn(el));
 const placed = (el) => {
   el.removeAttribute("data-anim");
   el.classList.add("is-revealed");
