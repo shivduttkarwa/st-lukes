@@ -1,5 +1,5 @@
 <a class="news-card"{% if card.url %} href="{{ card.url }}"{% endif %} data-news-tag="{{ card.tag }}"{% if card.ages %} data-news-age="{{ card.ages | join('|') }}"{% endif %}{% if card.years %} data-news-year="{{ card.years | join('|') }}"{% endif %}>
-  {% set img = card.image %}{% set cls = "news-card__img" %}{% include "snippets/image.njk" %}
+  <span class="news-card__media">{% set img = card.image %}{% set cls = "news-card__img" %}{% include "snippets/image.njk" %}</span>
   <p class="news-card__tag"><span aria-hidden="true">#</span>{{ card.tag }}</p>
   <h3>{{ card.title }}</h3>
 </a>

@@ -28,13 +28,23 @@
   @media (hover: hover) {
     &:hover h3 { color: var(--color-navy); }
   }
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    &:hover .news-card__img { scale: 1.04; }
+  }
+
+  &__media {
+    display: block;
+    width: 100%;
+    aspect-ratio: 409 / 284;
+    overflow: hidden;
+  }
 
   &__img {
     display: block;
     width: 100%;
-    height: auto;
-    aspect-ratio: 409 / 284;
+    height: 100%;
     object-fit: cover;
+    transition: scale var(--duration-slow) var(--ease-settle);
   }
 
   &__tag {
