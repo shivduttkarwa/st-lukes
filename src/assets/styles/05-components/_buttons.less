@@ -122,12 +122,17 @@
   --bs-btn-active-border-color: var(--color-navy);
 }
 
-// A one-device-pixel ring looks dim where it curves, so the round ends are drawn twice
+// rings are one whole device pixel, never zero at browser zoom below 100%
 .btn-outline,
 .btn-outline-navy,
 .btn-outline-dark {
   --btn-ring: ~"max(var(--device-px, 1px), round(down, 1px, var(--device-px, 1px)))";
   --bs-btn-border-width: var(--btn-ring);
+}
+
+// a thin gold ring looks faint where it curves, so its round ends are drawn twice; a navy ring would look heavy
+.btn-outline,
+.btn-outline-navy {
   position: relative;
 
   &::before,
