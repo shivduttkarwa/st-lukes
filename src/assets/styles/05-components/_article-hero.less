@@ -1,5 +1,9 @@
 @article-hero-tail: 47 * @px;
 @article-hero-foot: 39 * @px;
+@article-hero-top: 148 * @px;
+@article-hero-room: 180 * @px;
+@article-hero-most: 774 * @px;
+@article-hero-least: 400 * @px;
 
 .article-hero {
   position: relative;
@@ -10,7 +14,7 @@
     inset: 0 0 @article-hero-tail;
     background: var(--gradient-navy-to-blue);
   }
-  @media (min-width: @bp-lg) { padding: 148 * @px percentage((50 / 1440)) 4 * @px percentage((51 / 1440)); }
+  @media (min-width: @bp-lg) { padding: @article-hero-top percentage((50 / 1440)) 4 * @px percentage((51 / 1440)); }
 
   &__card {
     position: relative;
@@ -27,9 +31,11 @@
       inset: 0;
       background: var(--gradient-article-hero);
     }
+    // Figma's 1339 × 774 card is 53.75vw tall; a shorter window keeps the whole card in the first screen, with 32 of air below
     @media (min-width: @bp-lg) {
       align-items: center;
-      aspect-ratio: 1339 / 774;
+      height: ~"min(53.75vw, @{article-hero-most}, calc(100svh - @{article-hero-room}))";
+      min-height: @article-hero-least;
       padding: 0 0 @article-hero-foot;
     }
   }
