@@ -87,7 +87,7 @@ export function initAccordions() {
   });
 }
 
-function filterable(cards, settle) {
+function filterable(cards, settle, place = 0) {
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");
   const grid = cards[0]?.parentElement;
   const slider = grid?.closest("[data-slider]");
@@ -107,13 +107,16 @@ function filterable(cards, settle) {
   };
   let change = null;
   let queued = null;
-  const apply = (shows) => {
+  // order is the chosen tab's place in the row: a slider's cards move the way the row was travelled
+  const apply = (shows, order = place) => {
     const count = cards.filter(shows).length;
     // a slider's change always finishes; the latest choice made during it plays next
     if (slider && change?.isActive()) {
-      queued = shows;
+      queued = [shows, order];
       return count;
     }
+    const step = order < place ? -1 : 1;
+    place = order;
     if (cards.every((card) => shown(card) === shows(card))) return count;
     if (still.matches || !grid) {
       cards.forEach((card) => hide(card, !shows(card)));
@@ -159,12 +162,14 @@ function filterable(cards, settle) {
           settle();
           const next = queued;
           queued = null;
-          if (next) apply(next);
+          if (next) apply(...next);
         },
       });
+      // the leading card moves first, so none slides into a neighbour still showing
+      const from = step < 0 ? "end" : "start";
       change
-        .to(ghosts, { xPercent: -25, autoAlpha: 0, duration: 0.45, ease: "power2.in", stagger: 0.06 }, 0)
-        .fromTo(arriving, { xPercent: 35, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.9, ease: "power3.out", stagger: 0.08 }, 0.3);
+        .to(ghosts, { xPercent: -25 * step, autoAlpha: 0, duration: 0.45, ease: "power2.in", stagger: { each: 0.06, from } }, 0)
+        .fromTo(arriving, { xPercent: 35 * step, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.9, ease: "power3.out", stagger: { each: 0.08, from } }, 0.3);
       return count;
     }
     // the set on screen fades out, the new set fades in where it belongs, and the grid's height eases between them
@@ -198,7 +203,7 @@ export function initFilters() {
     const filter = filterable([...scope.querySelectorAll("[data-filter-groups]")], () => {
       scope.querySelectorAll("[data-slider]").forEach((slider) => slider.swiper?.update());
       window.Anim?.refresh();
-    });
+    }, tabs.findIndex((tab) => tab.getAttribute("aria-pressed") === "true"));
     const pressed = () => tabs.find((tab) => tab.getAttribute("aria-pressed") === "true");
     // the tab's layout box without its reveal transform, snapped as drawn: offset* rounding left a thin marker a pixel off
     const snap = (value) => Math.round(value * devicePixelRatio) / devicePixelRatio;
@@ -231,7 +236,7 @@ export function initFilters() {
         tabs.forEach((other) => other.setAttribute("aria-pressed", String(other === tab)));
         mark(tab);
         const group = tab.dataset.filter;
-        filter((card) => group === "all" || card.dataset.filterGroups.split(" ").includes(group));
+        filter((card) => group === "all" || card.dataset.filterGroups.split(" ").includes(group), tabs.indexOf(tab));
       });
     });
   });

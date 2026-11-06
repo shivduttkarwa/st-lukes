@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-06 — Media and text blocks enter in reading order
+- Extra Blocks' two media and text rows: each piece of text followed the scroll from its own start line, and the heading's lines take longer to play out, so the paragraph started before the heading's last line and, on a quick scroll, the note started before the heading had landed. The paragraph, the buttons and the note now join the heading's own timeline, starting as its last line lands, 0.15s apart. The two buttons now rise as one row instead of one by one.
+- On phones the photo sits above the text but waited for the heading below it, so it glided in last. It now plays as it scrolls in.
+- Checked in headless Chrome at 1440 (both rows) and 375, scrolling 25, 40 and 80px a step: heading lines, paragraph, buttons, note, starting and landing in that order every time; on phones the photo comes first.
+
+## 2026-11-06 — Sports tab cards move the way the tabs were travelled
+- Choosing a tab to the right still sends the old cards off to the left and brings the new set in from the right. Choosing a tab to the left now mirrors it: the old cards slide off to the right and the new set comes in from the left. Each side starts from its leading edge, rightmost first when moving right, so no card slides into a neighbour still showing. A choice queued during a change takes its direction from the set on screen when it plays. Checked in headless Chrome at 1440: Whole to Senior moves the old cards to −102px and brings the new ones from +144px, leftmost first; Senior to Junior moves them to +103px and from −144px, rightmost first.
+
 ## 2026-11-06 — Sports tabs slide between sets; sport cards have a hover
 - Extra Blocks' sports tabs now change the cards. The sample has eight sports: Junior and Senior each get their own set (Basketball is in both), and Whole School shows all of them. Cards outside the tab chosen on load start hidden, and their photos start loading once the block is within a screen of view, so none arrives blank.
 - Changing tab slides the cards on screen off to the left as they fade, 60ms apart, over 0.45s. The new set, from the slider's first card, slides in from the right, 80ms apart, over 0.9s, easing out. It starts 0.3s in, as the old cards finish fading, so the two only cross while both are faint and no blank moment opens between them. The old cards are copies left where they stood, since a card can be in both sets. A choice made mid-change plays once the change ends, and dragging is held until then. Under reduced motion the set swaps at once. Grid filters (staff, News List) keep their fade.
