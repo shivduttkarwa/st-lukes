@@ -5,6 +5,7 @@
 - Home hero below 992 fills the first screen down to GLOBAL MIND. with 32px of air (48 on tablets), so the intro starts below the fold. The inner and landing heroes keep 80% of the screen.
 - The home title's rows end off the window edges below 992, as on desktop, instead of inside the gutter.
 - Phone and tablet header: the logo box (now 80 × 94) on the left, Quick Links and the menu button on the right. At 16px the pill had grown into the centred logo. The pill has a set width up to 176, label left and arrow right, and its dropdown opens right-aligned under it, the same width, clear of the logo.
+- The home hero photo reaches further up and is 17% taller below 992, its foot still at the hero's bottom, so the students sit about 45px higher on a phone, clear of the statement. The navy shade under the title is the desktop one.
 - Desktop unchanged.
 
 ## 2026-11-06 — Phones and tablets: readable type and polished layouts; desktop untouched

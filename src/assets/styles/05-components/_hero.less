@@ -41,12 +41,17 @@
     --parallax-from: 0%;
     --parallax-to: 15%;
     position: absolute;
-    top: -17.64%;
+    // on phones the photo reaches further up, still meeting the hero's foot, so the students sit above the text
+    top: -37.64%;
     left: 0;
     width: 100%;
-    height: 118%;
+    height: 138%;
     object-fit: cover;
     object-position: 50% 60%;
+    @media (min-width: @bp-lg) {
+      top: -17.64%;
+      height: 118%;
+    }
   }
 
   &__shade {
