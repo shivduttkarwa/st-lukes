@@ -56,9 +56,9 @@
     text-align: center;
     h1 {
       .type-article-headline();
-      margin: 0;
+      // cap and baseline trim as margins: Safari trims the title's split lines differently, so the title jumped as it rose
+      margin: -0.09em 0 -0.1em;
       color: var(--color-white);
-      text-box: trim-both cap alphabetic;
     }
   }
 

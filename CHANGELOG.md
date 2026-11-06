@@ -1,5 +1,15 @@
 # Changelog
 
+## 2026-11-06 — News Story entrance, phone sequencing and smoother lifts
+- News Story hero: the tag and date now fade up first, then the title rises line by line, then the header. The title used to go first and the tag and date came in above it afterwards. They glide on a held layer (`fade-up-held`), so they no longer snap as they land. The title's lines glide the same way (`LINES.held` in `anim.js`, used by any hero-tier split): their 15px rise had moved in whole pixels, so at 60px the last few pixels ticked in one at a time while the line was already 50–80% visible, which read as the title shifting. Now the rise is smooth and over by the time the text is solid.
+- News Story hero on iPhone: the title's first line and the tag and date no longer drop and spring back as the title comes in. The title was trimmed to its caps and baseline with `text-box`, and Safari trimmed the title differently while it was split into lines. The card holds the title from the bottom, so the first line and the tag and date moved until the split ended. The same trim is now negative margins (`-0.09em` top, `-0.1em` bottom, measured from Chrome's trim). The title sits within 0.06px of where it was, and is the same height split or not.
+- Every lift (fade-up, card rise, header drop, title lines) moves in whole device pixels instead of whole CSS pixels. On a 3× phone a 15px lift had moved in 3-device-pixel hops, which read as stutter. It now takes 45 steps. Screens at 1× are unchanged.
+- Phones: copy that plays on the clock now starts as its section title's last line lands, and never before the copy above it. Before, it waited a fixed time worked out at load, so at an ordinary scroll speed a second paragraph could start before the first. The News Story section headings and "Explore more Stories" heading and button play on the clock below 992 (new `data-anim-scroll-mobile`), so each section reads in order.
+- Where to Next? below 992: each card fades up 15px as it comes into view, instead of only fading.
+
+## 2026-11-06 — Phone footer centred
+- Below 768 the upper footer is centred too: the crest, statement, intro and Enrol Now button, both campuses and Quick Links. From 768 it is unchanged.
+
 ## 2026-11-06 — Phone footer bar centred
 - Below 768 the footer's social icons, affiliation logos, copyright line and legal links are centred. The logos had wrapped ragged to the left. From 768 the bar is unchanged.
 

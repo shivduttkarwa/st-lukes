@@ -4,7 +4,7 @@
       {% for section in value.sections %}
       <div class="story-body__section">
         <div class="story-body__text">
-          <h2 data-anim="split" data-anim-type="lines">{{ section.title }}</h2>
+          <h2 data-anim="split" data-anim-type="lines" data-anim-scroll-mobile="timed">{{ section.title }}</h2>
           <div data-anim-group="fade-up" data-anim-scroll="timed">{{ section.body | safe }}</div>
         </div>
         {% if section.quote %}

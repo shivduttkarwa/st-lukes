@@ -63,7 +63,7 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 | Eyebrow, lead, body copy, a lone button, a box | fades up 15px | `data-anim="reveal" data-anim-type="fade-up"` |
 | Button under a statement | follows the statement's last line | add `data-anim-after-title` |
 | Buttons, tabs or rows in a set | fade up in turn | `data-anim-group="fade-up"` |
-| Cards (sliders, grids, campus cards) | rise 35px in whole pixels, landing at 70% of the fade so captions never shiver, 75ms apart, on the clock | `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"`, or `data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"` on a single card |
+| Cards (sliders, grids, campus cards) | rise 35px in whole device pixels, landing at 70% of the fade so captions never shiver, 75ms apart, on the clock | `data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075"`, or `data-anim="reveal" data-anim-type="rise" data-anim-scroll="timed"` on a single card |
 | Slider arrows, a button in a title row | fade | `data-anim="reveal" data-anim-type="fade"` |
 | Photo or video frame beside copy | glides in from its side, on the clock | `data-anim-type="glide-right"` (frame on the left) or `glide-left` (frame on the right), `data-anim-scroll="timed"` |
 | Logos | fade in turn | `data-anim-group="fade"` |
@@ -73,6 +73,8 @@ Every page uses the homepage's motion, by what an element is, not where it sits.
 | Hero | the page's own entrance (`data-anim-tier="hero"`), see each hero below | |
 | Hero title rows | glide in from the window edge over 1s, 0.3s apart; what follows starts at the title's `data-anim-landed` (1.35, or 0.75 on the landing-page hero). The `power2.out` curve is stopped at 85% (`landing()` in `anim.js`), so a row lands at about half a pixel a frame instead of creeping its last 3px over 12 frames, which made the large text shimmer | `data-anim-item="enter-left"` / `"enter-right"` in a `data-anim="sequence"` title |
 | Copy on the first screen beside a hero (the homepage hero's statement, the page lead under an inner hero) | fades up as one block in the entrance, after the title and header | `data-anim="reveal" data-anim-type="fade-up" data-anim-tier="hero"` with `data-anim-order` from 2; large copy (the page lead) takes `fade-up-held`, which eases smoothly to the end |
+
+Every lift (`fade-up`, `rise`, `drop-soft`, a title's lines) moves in whole device pixels (`whole()` in `anim.js`), so a 3× phone sees 45 steps over a 15px lift, not three-pixel hops. Below 992, copy on the clock (`data-anim-scroll="timed"`) starts as its section title's last line lands and never before the copy above it, however fast the reader scrolls (`titleWait()`). A title whose copy is timed plays on the clock there too: `data-anim-scroll-mobile="timed"` on the `h2`.
 
 ### Page transition
 
@@ -137,7 +139,7 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
 ### where_next (`blocks/where_next.njk`)
 - "Where to Next?": three image links (only the large one carries the gold arrow, as in Figma), and the "Explore Our School" menu with up to two `outline-dark` buttons. `current` adds the gold dot and `aria-current`. In Wagtail it should come from the page tree, so the current page highlights itself.
 - Menu links are 27 tall under a fine pointer and 44 on touch.
-- The block plays as one sequence: the title rises line by line on the clock (`data-anim-scroll="timed"` on the `h2`), and as its second line comes in, the three image links fade in where they stand (no movement) over 1s, 0.15s apart: the large one, then the top right, then the bottom right (`data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4"` on `.where-next__grid`, `data-anim-item data-anim-duration="1"` on each link). It starts when the grid's top is 85% down the window, with the title. Below 992 the links stack and `data-anim-mobile="each"` lets each fade in on its own trigger as it comes into view, after the title; keep `data-anim-scroll="timed"` on the links for that.
+- The block plays as one sequence: the title rises line by line on the clock (`data-anim-scroll="timed"` on the `h2`), and as its second line comes in, the three image links fade in where they stand (no movement) over 1s, 0.15s apart: the large one, then the top right, then the bottom right (`data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4"` on `.where-next__grid`, `data-anim-item data-anim-duration="1"` on each link). It starts when the grid's top is 85% down the window, with the title. Below 992 the links stack and `data-anim-mobile="each"` lets each fade up 15px on its own trigger as it comes into view, after the title (`data-anim-type-mobile="fade-up"` on the grid); keep `data-anim-scroll="timed"` on the links for that.
 
 ### article (`blocks/article.njk`)
 - Heading and intro at 822 wide, a 1032 photo, then the quote and body at 826 wide. Intro paragraphs are 25 apart and body paragraphs 28, as in Figma.
@@ -179,15 +181,18 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
 ### article_hero (`blocks/article_hero.njk`)
 - The news story hero: the royal band with an inset photo, gold tag, date and centred title.
 - From `lg` the photo card fits the first screen. It is Figma's 1339 × 774 shape (53.75vw tall) where the window allows, no taller than Figma's 774 design px. A shorter window takes it down to the window height less the 148 above and 32 of air below, so the whole card, tag, date and title show on arrival. It never goes below 400. The photo crops to fill, and the copy stays at the card's foot.
+- Entrance in reading order: the tag and date fade up first on a held layer (`fade-up-held`, `data-anim-order="-1"`, as the landing-page eyebrow), then the title rises line by line (order 0), then the header. A hero-tier split's lines glide on held layers too (`LINES.held` in `anim.js`): smooth, over by the time the text is solid, where a section title's whole-pixel lift made this 60px headline tick into place.
+- The title is trimmed to its caps and baseline with margins (`-0.09em` / `-0.1em`), not `text-box`: Safari trims a `text-box` title differently once it is split into lines, so on iPhone the first line and the tag and date dropped and sprang back as the title rose. Don't put `text-box` on an element that is itself `data-anim="split"`.
 
 ### story_body (`blocks/story_body.njk`)
-- Sections of heading, rich text and an optional quote, then the share links and back button. The rich text is a timed `fade-up` group like the article's, one paragraph at a time as it comes into view, and the quote is timed too. Share links reuse `site.socials`, which have no address yet, so they go nowhere: in Wagtail point them at each network's share URL with `page.full_url`, in a new tab.
+- Sections of heading, rich text and an optional quote, then the share links and back button. The rich text is a timed `fade-up` group like the article's, one paragraph at a time as it comes into view, and the quote is timed too. Below 992 the section headings play on the clock as well (`data-anim-scroll-mobile="timed"`), so each section reads heading, paragraphs, quote in order. Share links reuse `site.socials`, which have no address yet, so they go nowhere: in Wagtail point them at each network's share URL with `page.full_url`, in a new tab.
 
 ### photo_strip captions
 - `captioned: true` (News Story, `20262:21004`) removes the top padding, adds each image's `caption` under it and uses Figma's position for the left arrow, 11.5 further out.
 
 ### author_card (`blocks/author_card.njk`), related_stories (`blocks/related_stories.njk`)
 - The royal author box, and "Explore more Stories" with three `news-card` snippets. Both are News Story blocks.
+- Below 992 the "Explore more Stories" heading and its button play on the clock (`data-anim-scroll-mobile="timed"`), so the cards, already timed, rise after them.
 
 ### sports_tabs (`blocks/sports_tabs.njk`)
 - Heading, tabs and a card slider (`slider.js`, overflow visible to the right). Tabs use `initFilters()`; `data-filter-tabs` gives them the gliding bar (`--marker-*`, as on the staff filter, drawn over the tabs). Inside a slider, `filterable()` copies the cards on screen where they stand and returns the slider to its first card. The copies slide off to the left as they fade, staggered, and 0.3s in the new set slides in from the right, also staggered. A tab to the left of the current one mirrors this, and the leading card moves first either way. A choice made mid-change waits for it to end. Hidden cards carry `is-hidden`; cards outside `active` render `hidden` on load, and their lazy photos switch to eager once the block is within a screen of view. On hover the photo zooms to 104% and the arrow nudges up-right. Figma doesn't say which sports belong to which tab, so the eight sample cards are split between Junior and Senior (Basketball in both), and Whole School shows all of them.

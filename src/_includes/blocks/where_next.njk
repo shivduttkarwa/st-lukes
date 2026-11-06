@@ -1,6 +1,6 @@
 <section class="where-next{% if value.tight %} where-next--tight{% endif %}{% if value.flush %} where-next--flush{% endif %}">
   <div class="container">
-    <div class="where-next__grid" data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4" data-anim-mobile="each">
+    <div class="where-next__grid" data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4" data-anim-mobile="each" data-anim-type-mobile="fade-up">
       <h2 data-anim="split" data-anim-type="lines" data-anim-scroll="timed"><span>{{ value.title_line_1 }}</span> <span class="where-next__outline">{{ value.title_line_2 }}</span></h2>
       {% for card in value.cards %}
       {% if loop.first %}

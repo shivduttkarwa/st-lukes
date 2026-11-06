@@ -39,13 +39,16 @@ const SWING = { x: 20, y: -25, rotation: 18, ease: "power3.out" };
 
 // Copy is drawn on whole pixels, so a lift eased as slowly as the fade arrives as separate 1px hops after the copy looks
 // still, and stacked paragraphs take them at different moments. The lift therefore lands early, under the fade, and
-// moves in whole pixels so every line steps on the same frame
+// moves in whole device pixels so every line steps on the same frame (whole CSS pixels hop 3 at a time on a phone)
 const LIFT = 15;
 const DROP = 24;
 const RISE = 35;
 const whole = (ease, distance) => {
   const curve = gsap.parseEase(ease);
-  return (progress) => Math.round(curve(progress) * distance) / distance;
+  return (progress) => {
+    const steps = distance * window.devicePixelRatio;
+    return Math.round(curve(progress) * steps) / steps;
+  };
 };
 
 // A long glide's last pixels creep under a pixel a frame, and large text shimmers as they do; this keeps the curve but
@@ -114,6 +117,11 @@ const LINES = {
   stagger: 0.15,
   // a title that follows the scroll runs over a longer range with its lines further apart, so a wheel flick still shows them one by one
   scrolled: { stagger: 0.3, distance: 0.4 },
+  // a hero headline's whole-pixel ticks read as the title shifting, so its lines glide on held layers, as fade-up-held
+  held: {
+    from: { y: LIFT, autoAlpha: 0, force3D: true },
+    rise: { y: 0, duration: 0.44, ease: "power1.out", force3D: true },
+  },
 };
 
 // Scroll tiers start once the element's top is this far up the viewport; data-anim-start overrides it
@@ -169,7 +177,7 @@ const orderOf = (el, fallback = 0) =>
   phone.matches && el.hasAttribute("data-anim-order-mobile")
     ? number(el, "data-anim-order-mobile", fallback)
     : number(el, "data-anim-order", fallback);
-// A `-mobile` twin wins below 992: a scrubbed step's start, end or scrub, a step's type or lead, a sequence's stagger
+// A `-mobile` twin wins below 992: a scrubbed step's start, end or scrub, a step's type, lead or scroll mode, a sequence's stagger
 const variant = (el, name) =>
   phone.matches && el.hasAttribute(`${name}-mobile`) ? `${name}-mobile` : name;
 // null where the markup names no lead: the entrance timeline then picks its own (see playEntrance)
@@ -237,6 +245,21 @@ function titleHold(el) {
   return run * gsap.utils.clamp(0, 1, share);
 }
 
+// On phones timed copy starts as its title's last line lands, and never before the copy above it, however fast the scroll
+const begins = new WeakMap(); // element -> when its scroll step starts
+const copyStarts = new WeakMap(); // split -> when the latest copy after it starts
+function titleWait(el, hold) {
+  const title = titlesFirst(el) && titleFor(el);
+  if (!title) return hold;
+  const now = gsap.ticker.time;
+  const landed = title.classList.contains("is-revealed")
+    ? now
+    : (begins.get(title) ?? now) + (titleDurations.get(title) || 0) - (LINES.fade.duration - LINES.rise.duration);
+  const start = Math.max(Math.max(now, landed) + hold, (copyStarts.get(title) ?? -Infinity) + number(el, "data-anim-stagger", DEFAULTS.stagger));
+  copyStarts.set(title, start);
+  return start - now;
+}
+
 // data-anim-after-title: a reveal that joins the timeline of the title before it, starting as its last line lands,
 // so it can never beat the title however fast the reader scrolls
 const followers = new WeakMap(); // split -> the reveals that join it
@@ -263,14 +286,19 @@ function initScroll(opts) {
 function scrollStep(el, animation, hold, distance = SCRUB.distance) {
   let tl = null;
   let reached = 0;
-  const timeline = () => (tl ||= gsap.timeline({ paused: true }).add(animation(), hold));
+  const timeline = () => {
+    if (tl) return tl;
+    const at = typeof hold === "function" ? hold() : hold;
+    begins.set(el, gsap.ticker.time + at);
+    return (tl = gsap.timeline({ paused: true }).add(animation(), at));
+  };
   const onScreen = () => el.getBoundingClientRect().top < window.innerHeight;
   const playNow = (st) => {
     st.kill();
     triggers.delete(el);
     afterEntrance(() => timeline().play());
   };
-  if (attr(el, "data-anim-scroll") === "timed") {
+  if (attr(el, variant(el, "data-anim-scroll")) === "timed") {
     const st = ScrollTrigger.create({ trigger: el, start: startOf(el), once: true, onEnter: playNow });
     triggers.set(el, st);
     if (onScreen()) playNow(st);
@@ -311,7 +339,8 @@ function play(el, step, entrance, scroll, hold = orderOf(el) * DEFAULTS.stagger)
     entrance.push({ order: orderOf(el), lead: leadOf(el), ...step });
     return;
   }
-  const create = () => scrollStep(el, step.animation, hold + titleHold(el), step.distance);
+  const timed = attr(el, variant(el, "data-anim-scroll")) === "timed";
+  const create = () => scrollStep(el, step.animation, timed ? () => titleWait(el, hold) : hold + titleHold(el), step.distance);
   // a title already on screen is split with the entrance's own, before anything moves
   if (step.prepare && el.getBoundingClientRect().top < window.innerHeight) create.prepare = step.prepare;
   scroll.push(create);
@@ -515,8 +544,9 @@ function setupSplits(root, entrance, scroll) {
     if (arrived(el)) return placed(el);
     bind(el);
     const count = Math.max(1, Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)) || 1);
-    const onClock = tierOf(el) === HERO || immediate || attr(el, "data-anim-scroll") === "timed";
+    const onClock = tierOf(el) === HERO || immediate || attr(el, variant(el, "data-anim-scroll")) === "timed";
     const stagger = number(el, variant(el, "data-anim-stagger"), onClock ? LINES.stagger : LINES.scrolled.stagger);
+    const { from, rise } = tierOf(el) === HERO ? LINES.held : LINES;
     titleDurations.set(el, LINES.fade.duration + stagger * (count - 1));
     const build = () => {
       const html = el.innerHTML;
@@ -536,7 +566,7 @@ function setupSplits(root, entrance, scroll) {
         el.innerHTML = html;
         el.style.whiteSpace = "";
       });
-      gsap.set(split.lines, LINES.from);
+      gsap.set(split.lines, from);
       return split.lines;
     };
     let built = null;
@@ -557,8 +587,8 @@ function setupSplits(root, entrance, scroll) {
         };
         const tl = gsap.timeline({ onComplete })
           .to(lines, { ...LINES.fade, stagger }, 0)
-          .to(lines, { ...LINES.rise, stagger }, 0);
-        const landed = tl.duration() - (LINES.fade.duration - LINES.rise.duration);
+          .to(lines, { ...rise, stagger }, 0);
+        const landed = tl.duration() - (LINES.fade.duration - rise.duration);
         followers.get(el)?.forEach((follower) => tl.add(revealStep(follower).animation(), landed));
         return tl;
       },
