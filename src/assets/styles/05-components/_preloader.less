@@ -4,7 +4,8 @@
 
 .preloader {
   // preloader.js keeps the centred title this far inside the screen
-  --preloader-edge: @gutter-sm;
+  --preloader-edge: 18 * @px;
+  @media (min-width: @bp-lg) { --preloader-edge: @gutter-sm; }
   position: fixed;
   top: 0;
   bottom: 0;

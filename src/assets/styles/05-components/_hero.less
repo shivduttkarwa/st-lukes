@@ -3,6 +3,9 @@
 @hero-title-bleed: 0.1em;
 // the title overhangs the hero by 82 at 1440; the cap keeps that plus 32 of air inside the first screen
 @hero-fold-room: 114 * @px;
+// below lg the home hero fills the first screen down to the title's last row and some air, so the intro starts below the fold
+@hero-fold-room-sm: 56 * @px;
+@hero-fold-room-md: 88 * @px;
 @page-hero-eyebrow-x: 99 * @px;
 @page-hero-eyebrow-y: 155 * @px;
 @page-hero-row-1: 92 * @px;
@@ -14,10 +17,12 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  min-height: 80svh;
+  --hero-least: ~"calc(100svh - @{hero-fold-room-sm})";
+  min-height: var(--hero-least);
   padding: var(--header-height) 0 0;
   color: var(--color-white);
   background: var(--color-navy);
+  @media (min-width: @bp-md) { --hero-least: ~"calc(100svh - @{hero-fold-room-md})"; }
   @media (min-width: @bp-lg) {
     display: block;
     height: ~"min(56.46vw, calc(100svh - @{hero-fold-room}))";
@@ -91,10 +96,11 @@
     }
   }
 
+  // the rows run past the inner gutter to bleed off the window edges, as on desktop
   &__line {
     display: block;
     white-space: nowrap;
-    margin-left: -@hero-title-bleed;
+    margin-left: ~"calc(-1 * var(--gutter) - @{hero-title-bleed})";
     @media (min-width: @bp-lg) { margin-left: -(15 * @px); }
   }
 
@@ -102,7 +108,7 @@
     color: var(--color-white);
     text-align: right;
     margin-left: 0;
-    margin-right: -@hero-title-bleed;
+    margin-right: ~"calc(-1 * var(--gutter) - @{hero-title-bleed})";
     @media (min-width: @bp-lg) { margin-right: -(15 * @px); }
   }
 
@@ -143,6 +149,9 @@
 @inner-hero-lead: 296 * @px;
 @inner-hero-least: 400 * @px;
 @inner-hero-most: 772 * @px;
+
+.hero--inner,
+.hero--page { --hero-least: 80svh; }
 
 .hero--inner {
   // Figma's 772 in design px follows the root, which scales with the window's height too, so a wide screen keeps Figma's fold

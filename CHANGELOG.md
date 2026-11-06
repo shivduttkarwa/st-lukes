@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-06 — Phone hero and header
+- Preloader back to how it was: the home title is again 42px on phones and 70px from 768, and the preloader keeps the title 18px inside the screen, so the staggered LOCAL HEART. / GLOBAL MIND. lockup plays as before. Sizing the title to the screen width had pushed both rows flush and lost the stagger.
+- Home hero below 992 fills the first screen down to GLOBAL MIND. with 32px of air (48 on tablets), so the intro starts below the fold. The inner and landing heroes keep 80% of the screen.
+- The home title's rows end off the window edges below 992, as on desktop, instead of inside the gutter.
+- Phone and tablet header: the logo box (now 80 × 94) on the left, Quick Links and the menu button on the right. At 16px the pill had grown into the centred logo. The pill has a set width up to 176, label left and arrow right, and its dropdown opens right-aligned under it, the same width, clear of the logo.
+- Desktop unchanged.
+
 ## 2026-11-06 — Phones and tablets: readable type and polished layouts; desktop untouched
 - Text on phones and tablets was small because the fluid root never went below 14px, so Figma's 16px body copy rendered at 14px on every screen under about 1080 wide. Below 992 the root is now the browser's own size (16px, and it follows the visitor's text-size setting). That puts body copy at 16px, as recommended for phone reading (Apple's body text is 17pt, Android's 16sp) and big enough that iOS doesn't zoom form fields. Body copy also moves to 1.5 line height below 992. From 992 the fluid root is unchanged.
 - Phone heading sizes: H1 32, H2 and section titles 28, the footer statement 26. The home and landing hero titles fit the content width (about 7em a row), so "GLOBAL MIND." no longer runs off a 320 screen. Inner-hero rows wrap under 576 rather than overflow.

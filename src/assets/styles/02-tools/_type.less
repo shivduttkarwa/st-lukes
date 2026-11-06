@@ -7,14 +7,12 @@
   text-transform: uppercase;
 }
 
-// the hero lockup's rows never wrap, so on phones the type fits the content width: about 7em of row
 .type-display-1() {
   .type-poppins();
   line-height: 0.6;
   letter-spacing: -0.03em;
-  font-size: ~"calc((100vw - var(--gutter) * 2) / 7)";
-  @media (min-width: @bp-sm) { font-size: 72 * @px; }
-  @media (min-width: @bp-md) { font-size: 80 * @px; }
+  font-size: 42 * @px;
+  @media (min-width: @bp-md) { font-size: 70 * @px; }
   @media (min-width: @bp-lg) { font-size: 150 * @px; }
 }
 
