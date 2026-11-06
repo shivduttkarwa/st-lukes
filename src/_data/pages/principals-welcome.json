@@ -238,7 +238,7 @@
         ],
         "button": {
           "text": "View our Graduate Profile",
-          "url": "#",
+          "url": "",
           "style": "outline"
         }
       }
@@ -250,7 +250,7 @@
         "title": "You might\nbe wondering",
         "button": {
           "text": "View more FAQS",
-          "url": "#"
+          "url": ""
         },
         "questions": [
           {
@@ -258,7 +258,7 @@
             "answer": "St Luke’s Grammar School is a coeducational Anglican school offering education from Pre-Kindergarten through to Year 12 across its Dee Why and Bayview campuses.",
             "button": {
               "text": "View all Entry Points",
-              "url": "#"
+              "url": "/contact.html#contact-form"
             }
           },
           {
@@ -266,7 +266,7 @@
             "answer": "St Luke’s has two campuses on Sydney’s Northern Beaches, at Bayview and Dee Why.",
             "button": {
               "text": "Maps & Transport",
-              "url": "#"
+              "url": "/contact.html#campuses"
             }
           },
           {
@@ -274,7 +274,7 @@
             "answer": "Enrolment is by application date, so there’s no entrance exam. Places for 2028 are now open, from the Cottage to Year 12.",
             "button": {
               "text": "How to Apply",
-              "url": "#"
+              "url": "/contact.html#contact-form"
             }
           },
           {
@@ -282,7 +282,7 @@
             "answer": "Yes. Families are welcome to book a tour of either campus before they apply.",
             "button": {
               "text": "Book a Tour",
-              "url": "#"
+              "url": "https://enrol.stlukes.nsw.edu.au/events/"
             }
           },
           {
@@ -290,7 +290,7 @@
             "answer": "Yes. St Luke’s is an independent Anglican school, and the Christian faith underpins and informs the work of the School.",
             "button": {
               "text": "Christian Foundation",
-              "url": "#"
+              "url": ""
             }
           },
           {
@@ -298,7 +298,7 @@
             "answer": "St Luke’s is a community where everyone is known, where academic rigour, Christian character and genuine care meet the distinctive spirit of the Northern Beaches.",
             "button": {
               "text": "Why Choose St Luke’s",
-              "url": "#"
+              "url": ""
             }
           }
         ]
@@ -313,7 +313,7 @@
         "cards": [
           {
             "title": "Why Choose St Luke's",
-            "url": "#",
+            "url": "",
             "image": {
               "src": "/assets/images/our-school/next-1.webp",
               "alt": "",
@@ -323,7 +323,7 @@
           },
           {
             "title": "Christian Foundation",
-            "url": "#",
+            "url": "",
             "image": {
               "src": "/assets/images/our-school/next-2.webp",
               "alt": "",
@@ -333,7 +333,7 @@
           },
           {
             "title": "Leadership & Staff",
-            "url": "#",
+            "url": "/leadership-staff.html",
             "image": {
               "src": "/assets/images/our-school/next-3.webp",
               "alt": "",
@@ -348,51 +348,51 @@
           "links": [
             {
               "label": "Principal's Welcome",
-              "url": "#"
+              "url": "/principals-welcome.html"
             },
             {
               "label": "Why Choose St Luke's",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Christian Foundation",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Leadership & Staff",
-              "url": "#",
+              "url": "/leadership-staff.html",
               "current": true
             },
             {
               "label": "Strategic Plan",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Campus Masterplan 2029–2031",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Round Square",
-              "url": "#"
+              "url": "https://www.roundsquare.org/"
             },
             {
               "label": "History",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Acknowledgement of Country",
-              "url": "#"
+              "url": ""
             }
           ],
           "buttons": [
             {
               "text": "Make an Enquiry",
-              "url": "#",
+              "url": "/contact.html#contact-form",
               "style": "outline-dark"
             },
             {
               "text": "Apply Today to Enrol",
-              "url": "#",
+              "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
               "style": "outline-dark"
             }
           ]
@@ -407,11 +407,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "#"
+            "url": "https://enrol.stlukes.nsw.edu.au/events/"
           },
           {
             "text": "Apply to Enrol",
-            "url": "#",
+            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
             "style": "glass"
           }
         ],

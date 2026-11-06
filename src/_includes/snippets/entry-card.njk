@@ -1,7 +1,7 @@
 {% if player and card.video %}
 <article class="entry entry--player swiper-slide" data-hover-video data-video-card>
 {% else %}
-<a class="entry swiper-slide" href="{{ card.url | default('#') }}"{% if card.video %} data-hover-video{% endif %}>
+<a class="entry swiper-slide"{% if card.url %} href="{{ card.url }}"{% endif %}{% if card.video %} data-hover-video{% endif %}>
 {% endif %}
   {% set img = card.image %}{% set cls = "entry__img" %}{% include "snippets/image.njk" %}
   {% if card.video %}<video class="entry__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}

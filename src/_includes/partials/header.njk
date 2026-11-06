@@ -8,7 +8,7 @@
         </button>
         <ul class="quick-links__panel" id="quick-links-panel">
           {% for item in site.quick_links %}
-          <li><a href="{{ item.url }}">{{ item.label }}</a></li>
+          <li><a{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
           {% endfor %}
         </ul>
       </div>
@@ -21,7 +21,7 @@
     </div>
     <div class="site-header__tools" data-anim-item="drop-soft">
       {% for item in site.utility_links %}
-      <a class="site-header__link" href="{{ item.url }}">{{ item.label }}</a>
+      <a class="site-header__link"{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a>
       {% endfor %}
       <button class="site-header__menu" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="site-menu" data-menu-open>
         <span class="menu-icon" aria-hidden="true"></span>

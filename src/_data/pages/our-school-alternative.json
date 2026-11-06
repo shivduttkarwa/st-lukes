@@ -26,7 +26,7 @@
         "statement": "<p>A community where everyone is known, where Christian values are lived through everyday actions, and where academic ambition goes hand in hand with genuine care. Discover the people, purpose and Northern Beaches spirit that make our school what it is.</p>",
         "button": {
           "text": "Welcome from our Principal, Mr Geoff Lancaster",
-          "url": "#"
+          "url": "/principals-welcome.html"
         },
         "portrait": {
           "src": "/assets/images/our-school/portrait.webp",
@@ -61,7 +61,7 @@
             "width": 592,
             "height": 592
           },
-          "url": "#",
+          "url": "https://www.instagram.com/stlukesgrammarschool/",
           "label": "St Luke's on Instagram"
         }
       }
@@ -81,7 +81,7 @@
             },
             "button": {
               "text": "Welcome from our Principal, Mr Geoff Lancaster",
-              "url": "#"
+              "url": "/principals-welcome.html"
             }
           },
           {
@@ -95,7 +95,7 @@
             },
             "button": {
               "text": "Discover Why St Luke’s",
-              "url": "#"
+              "url": ""
             }
           },
           {
@@ -109,7 +109,7 @@
             },
             "button": {
               "text": "Explore Our Christian Foundation",
-              "url": "#"
+              "url": ""
             }
           },
           {
@@ -123,7 +123,7 @@
             },
             "button": {
               "text": "Meet Our People",
-              "url": "#"
+              "url": "/leadership-staff.html"
             }
           },
           {
@@ -137,7 +137,7 @@
             },
             "button": {
               "text": "Explore Our Strategic Plan",
-              "url": "#"
+              "url": ""
             }
           },
           {
@@ -151,7 +151,7 @@
             },
             "button": {
               "text": "Explore the Masterplan",
-              "url": "#"
+              "url": ""
             }
           },
           {
@@ -165,7 +165,7 @@
             },
             "button": {
               "text": "Explore Round Square",
-              "url": "#"
+              "url": "https://www.roundsquare.org/"
             }
           },
           {
@@ -179,7 +179,7 @@
             },
             "button": {
               "text": "Discover Our Story",
-              "url": "#"
+              "url": ""
             }
           },
           {
@@ -193,7 +193,7 @@
             },
             "button": {
               "text": "Our Commitment to Reconciliation",
-              "url": "#"
+              "url": ""
             }
           }
         ]
@@ -207,11 +207,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "#"
+            "url": "https://enrol.stlukes.nsw.edu.au/events/"
           },
           {
             "text": "Apply to Enrol",
-            "url": "#",
+            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
             "style": "glass"
           }
         ],

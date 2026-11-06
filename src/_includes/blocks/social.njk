@@ -10,7 +10,7 @@
     <div class="social__slider swiper" data-slider data-slider-gap="6">
       <div class="swiper-wrapper" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
         {% for post in value.posts %}
-        <a class="social__tile swiper-slide" href="{{ post.url | default('#') }}"{% if post.video %} data-hover-video{% endif %}>{% set img = post.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}{% if post.video %}<video class="social__video" data-src="{{ post.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}</a>
+        <a class="social__tile swiper-slide"{% if post.url %} href="{{ post.url }}"{% endif %}{% if post.video %} data-hover-video{% endif %}>{% set img = post.image %}{% set cls = "social__img" %}{% include "snippets/image.njk" %}{% if post.video %}<video class="social__video" data-src="{{ post.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}</a>
         {% endfor %}
       </div>
     </div>
@@ -18,7 +18,7 @@
       <p class="social__follow">{{ value.follow_text }}</p>
       <ul class="social__links">
         {% for item in site.socials %}
-        <li><a class="social__link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+        <li><a class="social__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
         {% endfor %}
       </ul>
     </div>

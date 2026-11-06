@@ -21,11 +21,11 @@
         <p>{{ value.share_label }}</p>
         <ul>
           {% for item in site.socials %}
-          <li><a class="story-body__link" href="{{ item.url }}" aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+          <li><a class="story-body__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
           {% endfor %}
         </ul>
       </div>
-      <a class="btn btn-outline-navy story-body__back" href="{{ value.back.url | default('#') }}" data-anim="reveal" data-anim-type="fade-up"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{{ value.back.text }}</a>
+      <a class="btn btn-outline-navy story-body__back"{% if value.back.url %} href="{{ value.back.url }}"{% endif %} data-anim="reveal" data-anim-type="fade-up"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{{ value.back.text }}</a>
     </div>
   </div>
 </section>

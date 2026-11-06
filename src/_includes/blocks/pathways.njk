@@ -14,7 +14,7 @@
       <div class="pathways__track" data-marquee="{% if loop.index0 % 2 %}right{% else %}left{% endif %}">
         <ul class="pathways__list">
           {% for logo in row.logos %}
-          <li><a href="{{ logo.url | default('#') }}" target="_blank" rel="noopener"><img src="{{ logo.image.src }}" alt="{{ logo.name }}" width="{{ logo.image.width }}" height="{{ logo.image.height }}" loading="lazy" decoding="async"><span class="visually-hidden"> (opens in a new tab)</span></a></li>
+          <li><a{% if logo.url %} href="{{ logo.url }}"{% endif %} target="_blank" rel="noopener"><img src="{{ logo.image.src }}" alt="{{ logo.name }}" width="{{ logo.image.width }}" height="{{ logo.image.height }}" loading="lazy" decoding="async"><span class="visually-hidden"> (opens in a new tab)</span></a></li>
           {% endfor %}
         </ul>
       </div>

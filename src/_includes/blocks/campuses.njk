@@ -11,7 +11,7 @@
     </div>
     <div class="campuses__grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for campus in value.campuses %}
-      <a class="campus" href="{{ campus.url | default('#') }}"{% if campus.video %} data-hover-video{% endif %}>
+      <a class="campus"{% if campus.url %} href="{{ campus.url }}"{% endif %}{% if campus.video %} data-hover-video{% endif %}>
         {% set img = campus.image %}{% set cls = "campus__img" %}{% include "snippets/image.njk" %}
         {% if campus.video %}<video class="campus__video" data-src="{{ campus.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
         <span class="campus__info">

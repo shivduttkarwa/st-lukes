@@ -49,7 +49,7 @@
         "cards": [
           {
             "title": "Mountain biking",
-            "url": "#",
+            "url": "",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
@@ -60,7 +60,7 @@
           },
           {
             "title": "Basketball",
-            "url": "#",
+            "url": "",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-2.webp",
@@ -71,7 +71,7 @@
           },
           {
             "title": "Surfing",
-            "url": "#",
+            "url": "",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-3.webp",
@@ -82,7 +82,7 @@
           },
           {
             "title": "Rock climbing",
-            "url": "#",
+            "url": "",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
@@ -103,7 +103,7 @@
         "buttons": [
           {
             "text": "Learn more",
-            "url": "#",
+            "url": "",
             "style": "outline-navy"
           }
         ],
@@ -125,11 +125,11 @@
         "buttons": [
           {
             "text": "Primary Action",
-            "url": "#"
+            "url": ""
           },
           {
             "text": "Secondary Action",
-            "url": "#",
+            "url": "",
             "style": "outline-navy"
           }
         ],
@@ -151,7 +151,7 @@
         "cards": [
           {
             "title": "Why Choose St Luke's",
-            "url": "#",
+            "url": "",
             "image": {
               "src": "/assets/images/our-school/next-1.webp",
               "alt": "",
@@ -161,7 +161,7 @@
           },
           {
             "title": "Christian Foundation",
-            "url": "#",
+            "url": "",
             "image": {
               "src": "/assets/images/our-school/next-2.webp",
               "alt": "",
@@ -171,7 +171,7 @@
           },
           {
             "title": "Leadership & Staff",
-            "url": "#",
+            "url": "/leadership-staff.html",
             "image": {
               "src": "/assets/images/our-school/next-3.webp",
               "alt": "",
@@ -186,51 +186,51 @@
           "links": [
             {
               "label": "Principal's Welcome",
-              "url": "#"
+              "url": "/principals-welcome.html"
             },
             {
               "label": "Why Choose St Luke's",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Christian Foundation",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Leadership & Staff",
-              "url": "#",
+              "url": "/leadership-staff.html",
               "current": true
             },
             {
               "label": "Strategic Plan",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Campus Masterplan 2029–2031",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Round Square",
-              "url": "#"
+              "url": "https://www.roundsquare.org/"
             },
             {
               "label": "History",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Acknowledgement of Country",
-              "url": "#"
+              "url": ""
             }
           ],
           "buttons": [
             {
               "text": "Make an Enquiry",
-              "url": "#",
+              "url": "/contact.html#contact-form",
               "style": "outline-dark"
             },
             {
               "text": "Apply Today to Enrol",
-              "url": "#",
+              "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
               "style": "outline-dark"
             }
           ]
@@ -245,11 +245,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "#"
+            "url": "https://enrol.stlukes.nsw.edu.au/events/"
           },
           {
             "text": "Apply to Enrol",
-            "url": "#",
+            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
             "style": "glass"
           }
         ],

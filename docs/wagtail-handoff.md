@@ -19,6 +19,8 @@ Living document. Updated as blocks land; the Wagtail build reads this, `blocks.y
 
 Nunjucks → Django differences to expect: `loop.index0` → `forloop.counter0`, `{% else %}` in a `for` → `{% empty %}`, `{% set %}` → `{% with %}`.
 
+Links: no `href="#"` anywhere. A link whose `url` is empty renders as an `<a>` with no `href` (`{% if card.url %} href="{{ card.url }}"{% endif %}`), so it keeps its look but goes nowhere and drops out of the tab order. Keep that test in the Django templates and never use `|default:'#'`, which treats an empty string as missing and brings `#` back. Search leaves out menu pages with no `url`.
+
 ## Site chrome
 
 ### Header and menu (`partials/header.njk`, `partials/menu.njk`)
@@ -169,7 +171,7 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
 - The news story hero: the royal band with an inset photo, gold tag, date and centred title.
 
 ### story_body (`blocks/story_body.njk`)
-- Sections of heading, rich text and an optional quote, then the share links and back button. The rich text is a timed `fade-up` group like the article's, one paragraph at a time as it comes into view, and the quote is timed too. Share links are `#` for now: in Wagtail point them at each network's share URL with the page address.
+- Sections of heading, rich text and an optional quote, then the share links and back button. The rich text is a timed `fade-up` group like the article's, one paragraph at a time as it comes into view, and the quote is timed too. Share links reuse `site.socials`, so for now they open the school's profiles: in Wagtail point them at each network's share URL with `page.full_url`.
 
 ### photo_strip captions
 - `captioned: true` (News Story, `20262:21004`) removes the top padding, adds each image's `caption` under it and uses Figma's position for the left arrow, 11.5 further out.
@@ -281,7 +283,7 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
 - Our School Alternative rows 2, 3, 5 and 8: larger photos. Figma only holds 700 × 425 versions, shown about 20% enlarged at 1440.
 - Homepage intro: the promo video. The static build uses the clip from the Figma frame (`assets/video/intro-promo.mp4`: H.264, 1426 × 546, 14.7s, no sound, 4 MB). Swap in the full film if the client has one with sound.
 - CTA banner video: Figma's file is 720 × 720 (`assets/video/cta.mp4`), stretched to fill 1440 × 826, so it plays soft. Ask for a full-size version. It runs on the seven pages where Figma has it (not the two Our School pages, which use a photo).
-- Homepage pathways: the website address for each of the 16 logos (all `#` for now).
+- Links: every button points at a built page, a section of Contact (`#contact-form` for enquiries, `#campuses` for campuses, visits and maps), or an outside address the school's current site already uses: Apply and Enrol go to `enrol.stlukes.nsw.edu.au/student/enrolment`, Book a Tour and Tours to `enrol.stlukes.nsw.edu.au/events/`, the portal links and Current Families to `portal.stlukes.nsw.edu.au`, Prospectus to the school's Heyzine flipbook, Round Square to `roundsquare.org`, Facebook and Instagram to the school's pages and Directions to Google Maps. Confirm these with the client. Links to pages not built yet have an empty `url`: Why Choose St Luke's, Christian Foundation, Strategic Plan, Campus Masterplan, History, Acknowledgement of Country, the Learning, Wellbeing, School Life and Community pages, results, graduate profile, facilities, transport, co-curricular and TAP, testimonials, FAQs, newsletters and media. Links the school's site has only as old pages or PDFs also have an empty `url`: Term Dates, Fees, Scholarships, Employment, Alumni, Giving and Policies. So do LinkedIn (the school's site lists none), the footer's Design credit and the Extra Blocks sample buttons. Fill each in when its page exists.
 - Homepage learning: short descriptions for Junior School, Senior School, HSC and NAPLAN Results, School Services and Support, and Our Facilities (Figma only has Cottage's). The last two cards' meta lines repeat "Pre-K (Ages 3-5)" in Figma, which looks like a placeholder.
 - Homepage campuses: the Bayview detail line reads "210 Headland Road, Dee Why" in Figma: check the address with the client.
 - Homepage "Who we are": the Student Wellbeing hover video is a 51s 1080p film with its sound removed (`pillar-wellbeing.mp4`, 26 MB). Confirm with the client that it's the right clip for a hover.

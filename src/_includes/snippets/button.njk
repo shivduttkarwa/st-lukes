@@ -1,1 +1,1 @@
-{% if btn and btn.text %}<a class="btn btn-{{ btn.style | default('primary') }}" href="{{ btn.url | default('#') }}">{{ btn.text }}{% if not plain %}<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{% endif %}</a>{% endif %}
+{% if btn and btn.text %}<a class="btn btn-{{ btn.style | default('primary') }}"{% if btn.url %} href="{{ btn.url }}"{% endif %}>{{ btn.text }}{% if not plain %}<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{% endif %}</a>{% endif %}

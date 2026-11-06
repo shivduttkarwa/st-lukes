@@ -14,7 +14,7 @@
           {
             "tag": "student leadeers",
             "title": "new student leadership team enjoy\ntwo day Retreat at North Curl Curl",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/feature-1.webp",
               "alt": "Staff and students smiling around a table on a retreat",
@@ -25,7 +25,7 @@
           {
             "tag": "Service",
             "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/feature-2.webp",
               "alt": "Students with shovels working together on a building site",
@@ -36,7 +36,7 @@
           {
             "tag": "Talented Athlete Program",
             "title": "Congratulations Mila G, Under 18 Girls winner at Hurley Bells Beach Juniors",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/feature-3.webp",
               "alt": "A young surfer lifted by her friends on the beach, holding her board",
@@ -118,7 +118,7 @@
               "Years 11–12"
             ],
             "title": "Thank to our amazing volunteers for our ‘An Evening for Our Stars’ event",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-1.webp",
               "alt": "Three staff members smiling together at an evening event",
@@ -136,7 +136,7 @@
               "Years 11–12"
             ],
             "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-2.webp",
               "alt": "Students with shovels working together on a building site",
@@ -153,7 +153,7 @@
               "Years 11–12"
             ],
             "title": "Congratulations Mila G, Under 18 Girls winner at Hurley Bells Beach Juniors",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-3.webp",
               "alt": "A young surfer lifted by her friends on the beach, holding her board",
@@ -178,7 +178,7 @@
               "Years 11–12"
             ],
             "title": "celebrating ST LUKE'S DAY and Mrs Donnan’s remarkable 30 years",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-4.webp",
               "alt": "Staff holding bouquets on a stage",
@@ -202,7 +202,7 @@
               "Years 11–12"
             ],
             "title": "Stephanie Sinclair, recognised at the NSW HALT ceremony",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-5.webp",
               "alt": "Two women smiling at an awards ceremony, one holding a medal",
@@ -219,7 +219,7 @@
               "Years 5–6"
             ],
             "title": "students represent at the SchoolAid Kids Ambassador Team (KAT) Program",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-6.webp",
               "alt": "A student in a blue blazer presenting beside a SchoolAid poster",
@@ -237,7 +237,7 @@
               "Years 11–12"
             ],
             "title": "Stage Band takes the stage at the annual Manly Jazz Festival on Sunday",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-7.webp",
               "alt": "A school stage band performing in a dark hall",
@@ -254,7 +254,7 @@
               "Years 9–10"
             ],
             "title": "Year 10 Ambassadors host raise money for Indigenous Literacy Foundation (ILF)",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-8.webp",
               "alt": "Older and younger students looking at picture books on a table",
@@ -271,7 +271,7 @@
               "Years 11–12"
             ],
             "title": "Year 12 Students perform for the 2026 HSC Music Soiree",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-9.webp",
               "alt": "Students playing saxophones on a dark stage",
@@ -290,7 +290,7 @@
         "follow_text": "Follow life at St Luke’s on social media",
         "posts": [
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-1.webp",
               "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion",
@@ -300,7 +300,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-2.webp",
               "alt": "Instagram post: Australian Snowsports Championships",
@@ -310,7 +310,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-3.webp",
               "alt": "Instagram post: HALT recognition",
@@ -320,7 +320,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: student leadership retreat",
@@ -330,7 +330,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: student leadership retreat",
@@ -340,7 +340,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: student leadership retreat",
@@ -350,7 +350,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-5.webp",
               "alt": "Instagram post from St Luke’s",
@@ -360,7 +360,7 @@
             "video": null
           },
           {
-            "url": "#",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
             "image": {
               "src": "/assets/images/home/social-6.webp",
               "alt": "Instagram post from St Luke’s",
@@ -382,7 +382,7 @@
         "cards": [
           {
             "title": "Why Choose St Luke's",
-            "url": "#",
+            "url": "",
             "image": {
               "src": "/assets/images/our-school/next-1.webp",
               "alt": "",
@@ -393,7 +393,7 @@
           },
           {
             "title": "Christian Foundation",
-            "url": "#",
+            "url": "",
             "image": {
               "src": "/assets/images/our-school/next-2.webp",
               "alt": "",
@@ -404,7 +404,7 @@
           },
           {
             "title": "Leadership & Staff",
-            "url": "#",
+            "url": "/leadership-staff.html",
             "image": {
               "src": "/assets/images/our-school/next-3.webp",
               "alt": "",
@@ -420,51 +420,51 @@
           "links": [
             {
               "label": "Principal's Welcome",
-              "url": "#"
+              "url": "/principals-welcome.html"
             },
             {
               "label": "Why Choose St Luke's",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Christian Foundation",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Leadership & Staff",
-              "url": "#",
+              "url": "/leadership-staff.html",
               "current": true
             },
             {
               "label": "Strategic Plan",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Campus Masterplan 2029–2031",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Round Square",
-              "url": "#"
+              "url": "https://www.roundsquare.org/"
             },
             {
               "label": "History",
-              "url": "#"
+              "url": ""
             },
             {
               "label": "Acknowledgement of Country",
-              "url": "#"
+              "url": ""
             }
           ],
           "buttons": [
             {
               "text": "Make an Enquiry",
-              "url": "#",
+              "url": "/contact.html#contact-form",
               "style": "outline-dark"
             },
             {
               "text": "Apply Today to Enrol",
-              "url": "#",
+              "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
               "style": "outline-dark"
             }
           ]
@@ -480,11 +480,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "#"
+            "url": "https://enrol.stlukes.nsw.edu.au/events/"
           },
           {
             "text": "Apply to Enrol",
-            "url": "#",
+            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
             "style": "glass"
           }
         ],

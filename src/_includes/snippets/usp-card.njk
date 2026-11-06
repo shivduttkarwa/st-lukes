@@ -7,5 +7,5 @@
     <h3>{{ card.title }}</h3>
     <p>{{ card.text }}</p>
   </div>
-  {% if card.link and card.link.text %}<a class="usp__link" href="{{ card.link.url | default('#') }}">{{ card.link.text }}<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>{% endif %}
+  {% if card.link and card.link.text %}<a class="usp__link"{% if card.link.url %} href="{{ card.link.url }}"{% endif %}>{{ card.link.text }}<svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></a>{% endif %}
 </article>

@@ -104,7 +104,7 @@
           {
             "tag": "Service",
             "title": "Senior students travel to Cambodia for an immersive LIGHT Tour experience",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-2.webp",
               "alt": "Students with shovels working together on a building site",
@@ -115,7 +115,7 @@
           {
             "tag": "Junior School",
             "title": "students represent at the SchoolAid Kids Ambassador Team (KAT) Program",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-6.webp",
               "alt": "A student in a blue blazer presenting beside a SchoolAid poster",
@@ -126,7 +126,7 @@
           {
             "tag": "Service",
             "title": "Year 10 Ambassadors host raise money for Indigenous Literacy Foundation (ILF)",
-            "url": "#",
+            "url": "/news-story.html",
             "image": {
               "src": "/assets/images/pages/story-8.webp",
               "alt": "Older and younger students looking at picture books on a table",
@@ -145,11 +145,11 @@
         "buttons": [
           {
             "text": "Book a Tour",
-            "url": "#"
+            "url": "https://enrol.stlukes.nsw.edu.au/events/"
           },
           {
             "text": "Apply to Enrol",
-            "url": "#",
+            "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment",
             "style": "glass"
           }
         ],

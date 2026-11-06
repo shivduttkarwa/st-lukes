@@ -32,14 +32,14 @@ export default function () {
   pages.forEach(({ data }) => {
     data.body
       .filter((block) => block.type === "news_hero" || block.type === "news_index")
-      .forEach((block) => block.value.stories.forEach((story) => add({ title: story.title, text: `News and stories: ${story.tag}`, url: story.url || "#", image: story.image })));
+      .forEach((block) => block.value.stories.forEach((story) => add({ title: story.title, text: `News and stories: ${story.tag}`, url: story.url, image: story.image })));
   });
 
   // pages that exist only in the menu so far: their section stands in for a description
   const site = readJson(new URL("./site.json", import.meta.url));
   site.nav.forEach((section) => {
     (section.children || [])
-      .filter((child) => !builtUrls.has(child.url))
+      .filter((child) => child.url && !builtUrls.has(child.url))
       .forEach((child) => add({ title: child.label, text: section.label, url: child.url, image: child.image }));
   });
 

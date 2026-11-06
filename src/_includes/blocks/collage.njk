@@ -35,7 +35,7 @@
     <footer class="collage__cite" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title><cite>{{ value.quote.name }}</cite><span>{{ value.quote.role }}</span></footer>
   </blockquote>
 
-  <a class="collage__social" href="{{ value.social.url | default('#') }}" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
+  <a class="collage__social"{% if value.social.url %} href="{{ value.social.url }}"{% endif %} data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
     {% set img = value.social.image %}{% set cls = "collage__social-img" %}{% include "snippets/image.njk" %}
     <svg class="collage__social-icon" aria-hidden="true"><use href="#icon-instagram"></use></svg>
     <span class="visually-hidden">{{ value.social.label }}</span>

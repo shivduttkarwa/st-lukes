@@ -9,7 +9,7 @@
       </form>
       <div class="menu__utility">
         {% for item in site.utility_links %}
-        <a class="menu__utility-link" href="{{ item.url }}"><span>{{ item.label }}</span></a>
+        <a class="menu__utility-link"{% if item.url %} href="{{ item.url }}"{% endif %}><span>{{ item.label }}</span></a>
         {% endfor %}
       </div>
       <button class="menu__close" type="button" aria-label="Close menu" data-menu-close><span class="menu-icon" aria-hidden="true"></span></button>
@@ -23,7 +23,7 @@
       <template data-search-index>
         {% for item in search_index %}
         <li>
-          <a class="menu__result" href="{{ item.url }}">
+          <a class="menu__result"{% if item.url %} href="{{ item.url }}"{% endif %}>
             <span class="menu__result-thumb"><img src="{{ item.image }}" alt="" width="192" height="144" loading="lazy" decoding="async"></span>
             <span class="menu__result-copy">
               <span class="menu__result-title">{{ item.title }}</span>
@@ -38,7 +38,7 @@
         <h2>Popular searches</h2>
         <ul class="menu__sub-list">
           {% for item in site.popular_searches %}
-          <li><a class="menu__sub-link" href="{{ item.url }}">{{ item.label }}</a></li>
+          <li><a class="menu__sub-link"{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
           {% endfor %}
         </ul>
       </div>
@@ -56,13 +56,13 @@
               <div class="menu__sub-inner">
                 <ul class="menu__sub-list">
                   {% for child in item.children %}
-                  <li><a class="menu__sub-link{% if loop.first %} is-current{% endif %}" href="{{ child.url }}"{% if child.image %} data-thumb="{{ child.image.src }}"{% endif %}>{{ child.label }}</a></li>
+                  <li><a class="menu__sub-link{% if loop.first %} is-current{% endif %}"{% if child.url %} href="{{ child.url }}"{% endif %}{% if child.image %} data-thumb="{{ child.image.src }}"{% endif %}>{{ child.label }}</a></li>
                   {% endfor %}
                 </ul>
               </div>
             </div>
             {% else %}
-            <a class="menu__link" href="{{ item.url }}">
+            <a class="menu__link"{% if item.url %} href="{{ item.url }}"{% endif %}>
               <span>{{ item.label }}</span>
               <svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg>
             </a>
@@ -76,12 +76,12 @@
       <div class="menu__foot">
         <ul class="menu__secondary">
           {% for item in site.menu_links %}
-          <li><a class="menu__secondary-link" href="{{ item.url }}">{{ item.label }}</a></li>
+          <li><a class="menu__secondary-link"{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
           {% endfor %}
         </ul>
         <ul class="menu__social">
           {% for item in site.socials %}
-          <li><a class="menu__social-link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+          <li><a class="menu__social-link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
           {% endfor %}
         </ul>
       </div>

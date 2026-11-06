@@ -11,7 +11,7 @@
     <div class="swiper news-hero__slider" data-slider data-slider-mode="fade">
       <div class="swiper-wrapper">
         {% for story in value.stories %}
-        <a class="swiper-slide news-hero__story" href="{{ story.url | default('#') }}">
+        <a class="swiper-slide news-hero__story"{% if story.url %} href="{{ story.url }}"{% endif %}>
           {% set img = story.image %}{% set cls = "news-hero__img" %}{% if loop.first %}{% set loading = "eager" %}{% endif %}{% include "snippets/image.njk" %}
           <span class="news-hero__copy">
             <span class="news-hero__tag"><span aria-hidden="true">#</span>{{ story.tag }}</span>
@@ -38,7 +38,7 @@
     </div>
     <ul class="news-hero__links">
       {% for item in site.socials %}
-      <li><a class="news-hero__link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+      <li><a class="news-hero__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
       {% endfor %}
     </ul>
   </div>

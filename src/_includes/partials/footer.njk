@@ -21,7 +21,7 @@
           <div class="site-footer__campus">
             <p class="site-footer__years">{{ campus.years }}</p>
             <address>{{ campus.address }}</address>
-            <a class="site-footer__directions" href="{{ campus.directions }}">Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
+            <a class="site-footer__directions"{% if campus.directions %} href="{{ campus.directions }}"{% endif %}>Directions<svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg></a>
           </div>
           {% for phone in campus.phones %}
           <p class="site-footer__phone"><strong>{{ phone.label }}</strong><a href="tel:{{ phone.tel }}">{{ phone.number }}</a></p>
@@ -31,7 +31,7 @@
         <nav class="site-footer__col" aria-label="{{ f.quick_links_title }}">
           <h2>{{ f.quick_links_title }}</h2>
           <ul class="site-footer__links">
-            {% for link in f.quick_links %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endfor %}
+            {% for link in f.quick_links %}<li><a{% if link.url %} href="{{ link.url }}"{% endif %}>{{ link.label }}</a></li>{% endfor %}
           </ul>
         </nav>
       </div>
@@ -50,7 +50,7 @@
     <div class="site-footer__bar">
       <ul class="site-footer__social">
         {% for item in site.socials %}
-        <li><a class="site-footer__social-link" href="{{ item.url }}" aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+        <li><a class="site-footer__social-link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
         {% endfor %}
       </ul>
       <ul class="site-footer__affiliations">
@@ -62,7 +62,7 @@
     <div class="site-footer__legal">
       <p><span>{{ f.copyright }}</span><span aria-hidden="true">·</span><span>{{ f.abn }}</span></p>
       <ul>
-        {% for link in f.legal_links %}<li><a href="{{ link.url }}">{{ link.label }}</a></li>{% endfor %}
+        {% for link in f.legal_links %}<li><a{% if link.url %} href="{{ link.url }}"{% endif %}>{{ link.label }}</a></li>{% endfor %}
       </ul>
     </div>
   </div>

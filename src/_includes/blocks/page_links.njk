@@ -2,7 +2,7 @@
   <div class="container">
     <div class="page-links__grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
       {% for card in value.cards %}
-      <a class="page-links__card" href="{{ card.url | default('#') }}"{% if card.video %} data-hover-video{% endif %}>
+      <a class="page-links__card"{% if card.url %} href="{{ card.url }}"{% endif %}{% if card.video %} data-hover-video{% endif %}>
         {% set img = card.image %}{% set cls = "page-links__img" %}{% include "snippets/image.njk" %}
         {% if card.video %}<video class="page-links__video" data-src="{{ card.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
         <span class="page-links__body">

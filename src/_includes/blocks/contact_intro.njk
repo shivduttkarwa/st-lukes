@@ -15,7 +15,7 @@
         <h3>{{ card.title }}</h3>
         <p>{{ card.text }}</p>
         <div class="contact-intro__links">
-          {% for link in card.links %}<a class="contact-intro__link" href="{{ link.url | default('#') }}">{{ link.text }}</a>{% endfor %}
+          {% for link in card.links %}<a class="contact-intro__link"{% if link.url %} href="{{ link.url }}"{% endif %}>{{ link.text }}</a>{% endfor %}
         </div>
       </article>
       {% endfor %}

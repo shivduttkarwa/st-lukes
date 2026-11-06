@@ -19,7 +19,7 @@
                 <h3>{{ story.title }}</h3>
                 <p>{{ story.excerpt }}</p>
               </div>
-              <a class="btn btn-primary btn-small" href="{{ story.url | default('#') }}">Read Full Story</a>
+              <a class="btn btn-primary btn-small"{% if story.url %} href="{{ story.url }}"{% endif %}>Read Full Story</a>
             </div>
             <div class="story__media">
               {% set img = story.image %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}

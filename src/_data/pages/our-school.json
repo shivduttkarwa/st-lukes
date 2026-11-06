@@ -24,7 +24,7 @@
       "type": "collage",
       "value": {
         "statement": "<p>A community where everyone is known, where Christian values are lived through everyday actions, and where academic ambition goes hand in hand with genuine care. Discover the people, purpose and Northern Beaches spirit that make our school what it is.</p>",
-        "button": { "text": "Welcome from our Principal, Mr Geoff Lancaster", "url": "#" },
+        "button": { "text": "Welcome from our Principal, Mr Geoff Lancaster", "url": "/principals-welcome.html" },
         "portrait": { "src": "/assets/images/our-school/portrait.webp", "alt": "A smiling young student in a nativity costume, waving", "width": 810, "height": 1004 },
         "video": {
           "title": "Faith lived through action",
@@ -35,7 +35,7 @@
         "quote": { "text": "Faith grows through everyday moments of kindness.", "name": "Student Name", "role": "Year 10" },
         "social": {
           "image": { "src": "/assets/images/our-school/instagram.webp", "alt": "Three students in wetsuits celebrating on a headland above the ocean", "width": 592, "height": 592 },
-          "url": "#",
+          "url": "https://www.instagram.com/stlukesgrammarschool/",
           "label": "St Luke's on Instagram"
         }
       }
@@ -44,15 +44,15 @@
       "type": "page_links",
       "value": {
         "cards": [
-          { "title": "Principal's Welcome", "text": "It is an exciting time to be a student at St Luke’s, and the School’s well-developed learning culture and agility to respond to evidence based innovations enable it to provide stimulating opportunities for our students inside and outside the classroom.", "url": "#", "image": { "src": "/assets/images/our-school/card-1.webp", "alt": "", "width": 1234, "height": 820 } },
-          { "title": "Why Choose St Luke's", "url": "#", "image": { "src": "/assets/images/our-school/card-2.webp", "alt": "", "width": 640, "height": 425 } },
-          { "title": "Christian Foundation", "url": "#", "image": { "src": "/assets/images/our-school/card-3.webp", "alt": "", "width": 640, "height": 425 } },
-          { "title": "Leadership and Staff", "url": "#", "image": { "src": "/assets/images/our-school/card-4.webp", "alt": "", "width": 1234, "height": 820 } },
-          { "title": "Strategic Plan", "url": "#", "image": { "src": "/assets/images/our-school/card-5.webp", "alt": "", "width": 640, "height": 425 } },
-          { "title": "Campus Masterplan\n2029–2031", "url": "#", "image": { "src": "/assets/images/our-school/card-6.webp", "alt": "", "width": 1234, "height": 820 } },
-          { "title": "Round Square", "url": "#", "image": { "src": "/assets/images/our-school/card-7.webp", "alt": "", "width": 1234, "height": 820 } },
-          { "title": "History and identity", "url": "#", "image": { "src": "/assets/images/our-school/card-8.webp", "alt": "", "width": 640, "height": 425 } },
-          { "title": "Acknowledgement\nof Country", "url": "#", "image": { "src": "/assets/images/our-school/card-9.webp", "alt": "", "width": 1234, "height": 820 } }
+          { "title": "Principal's Welcome", "text": "It is an exciting time to be a student at St Luke’s, and the School’s well-developed learning culture and agility to respond to evidence based innovations enable it to provide stimulating opportunities for our students inside and outside the classroom.", "url": "/principals-welcome.html", "image": { "src": "/assets/images/our-school/card-1.webp", "alt": "", "width": 1234, "height": 820 } },
+          { "title": "Why Choose St Luke's", "url": "", "image": { "src": "/assets/images/our-school/card-2.webp", "alt": "", "width": 640, "height": 425 } },
+          { "title": "Christian Foundation", "url": "", "image": { "src": "/assets/images/our-school/card-3.webp", "alt": "", "width": 640, "height": 425 } },
+          { "title": "Leadership and Staff", "url": "/leadership-staff.html", "image": { "src": "/assets/images/our-school/card-4.webp", "alt": "", "width": 1234, "height": 820 } },
+          { "title": "Strategic Plan", "url": "", "image": { "src": "/assets/images/our-school/card-5.webp", "alt": "", "width": 640, "height": 425 } },
+          { "title": "Campus Masterplan\n2029–2031", "url": "", "image": { "src": "/assets/images/our-school/card-6.webp", "alt": "", "width": 1234, "height": 820 } },
+          { "title": "Round Square", "url": "https://www.roundsquare.org/", "image": { "src": "/assets/images/our-school/card-7.webp", "alt": "", "width": 1234, "height": 820 } },
+          { "title": "History and identity", "url": "", "image": { "src": "/assets/images/our-school/card-8.webp", "alt": "", "width": 640, "height": 425 } },
+          { "title": "Acknowledgement\nof Country", "url": "", "image": { "src": "/assets/images/our-school/card-9.webp", "alt": "", "width": 1234, "height": 820 } }
         ]
       }
     },
@@ -62,8 +62,8 @@
         "title_line_1": "Start your",
         "title_line_2": "St Luke’s journey",
         "buttons": [
-          { "text": "Book a Tour", "url": "#" },
-          { "text": "Apply to Enrol", "url": "#", "style": "glass" }
+          { "text": "Book a Tour", "url": "https://enrol.stlukes.nsw.edu.au/events/" },
+          { "text": "Apply to Enrol", "url": "https://enrol.stlukes.nsw.edu.au/student/enrolment", "style": "glass" }
         ],
         "image": { "src": "/assets/images/our-school/cta.webp", "alt": "", "width": 1920, "height": 1102 },
         "video": null
