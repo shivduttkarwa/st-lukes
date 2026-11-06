@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-06 — Where to Next cards simply fade in
+- The three image links in Where to Next now just fade in where they stand, with no rise. Each takes 1s, they start 0.15s apart instead of 0.25, and they begin 0.4s after the title instead of 0.55, so they arrive as one group. Three versions were tried and dropped: each frame wiping open top to bottom while its photo settled, a fade with the old 35px rise, and a fade with each photo settling from 108%.
+
 ## 2026-11-06 — Every slider card opens a page
 - Cards in the homepage Learning, USPs, Testimonials and social sliders, News List's Instagram tiles and Extra Blocks' sport cards had no address (left blank, or emptied when the outside links came out). An unlinked card showed only the slider's grab cursor and did nothing when clicked. Each now opens a stand-in page for the demo:
   - The Learning cards go to Extra Blocks, and Our Facilities to Contact's campuses.

@@ -1,10 +1,10 @@
 <section class="where-next{% if value.tight %} where-next--tight{% endif %}{% if value.flush %} where-next--flush{% endif %}">
   <div class="container">
-    <div class="where-next__grid" data-anim="sequence" data-anim-type="rise" data-anim-scroll="timed" data-anim-stagger="0.25" data-anim-delay="0.55" data-anim-mobile="each">
+    <div class="where-next__grid" data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4" data-anim-mobile="each">
       <h2 data-anim="split" data-anim-type="lines" data-anim-scroll="timed"><span>{{ value.title_line_1 }}</span> <span class="where-next__outline">{{ value.title_line_2 }}</span></h2>
       {% for card in value.cards %}
       {% if loop.first %}
-      <a class="where-next__card where-next__card--lead"{% if card.url %} href="{{ card.url }}"{% endif %} data-anim-item data-anim-scroll="timed">
+      <a class="where-next__card where-next__card--lead"{% if card.url %} href="{{ card.url }}"{% endif %} data-anim-item data-anim-duration="1" data-anim-scroll="timed">
         {% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}
         <span class="where-next__title">{{ card.title }}</span>
         <span class="where-next__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>
@@ -14,7 +14,7 @@
       <div class="where-next__side">
         {% for card in value.cards %}
         {% if not loop.first %}
-        <a class="where-next__card"{% if card.url %} href="{{ card.url }}"{% endif %} data-anim-item data-anim-scroll="timed">
+        <a class="where-next__card"{% if card.url %} href="{{ card.url }}"{% endif %} data-anim-item data-anim-duration="1" data-anim-scroll="timed">
           {% set img = card.image %}{% set cls = "where-next__img" %}{% include "snippets/image.njk" %}
           <span class="where-next__title">{{ card.title }}</span>
         </a>
