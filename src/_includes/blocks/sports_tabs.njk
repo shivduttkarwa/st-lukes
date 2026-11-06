@@ -1,7 +1,7 @@
 <section class="sports" data-filter-scope>
   <div class="container">
     <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
-    <div class="sports__tabs" data-anim-group="fade-up">
+    <div class="sports__tabs" data-anim-group="fade-up" data-filter-tabs>
       {% for tab in value.tabs %}
       <button class="sports__tab" type="button" data-filter="{{ tab.slug }}" aria-pressed="{% if tab.slug == value.active %}true{% else %}false{% endif %}">{{ tab.label }}</button>
       {% endfor %}
@@ -9,7 +9,7 @@
     <div class="swiper sports__slider" data-slider data-slider-gap="6">
       <div class="swiper-wrapper" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">
         {% for card in value.cards %}
-        <a class="swiper-slide sports__card"{% if card.url %} href="{{ card.url }}"{% endif %} data-filter-groups="{{ card.groups }}">
+        <a class="swiper-slide sports__card"{% if card.url %} href="{{ card.url }}"{% endif %} data-filter-groups="{{ card.groups }}"{% if value.active and value.active not in card.groups %} hidden{% endif %}>
           {% set img = card.image %}{% set cls = "sports__img" %}{% include "snippets/image.njk" %}
           <span class="sports__title">{{ card.title }}</span>
           <span class="sports__arrow" aria-hidden="true"><svg class="icon"><use href="#icon-arrow"></use></svg></span>

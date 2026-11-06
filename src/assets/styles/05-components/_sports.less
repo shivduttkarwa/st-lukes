@@ -18,11 +18,31 @@
   }
 
   &__tabs {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     gap: 6 * @px;
     margin-bottom: 32 * @px;
     @media (min-width: @bp-lg) { margin-bottom: 44 * @px; }
+    &.has-marker::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      // over the tabs: their reveal leaves each one a transform, which would paint it over the bar
+      z-index: 1;
+      width: var(--marker-w);
+      height: var(--marker-h);
+      translate: var(--marker-x) var(--marker-y);
+      border-bottom: 3 * @px solid var(--color-royal);
+      pointer-events: none;
+      transition: translate var(--duration-base) var(--ease-in-out), width var(--duration-base) var(--ease-in-out), height var(--duration-base) var(--ease-in-out);
+    }
+    // under the marker a pressed tab keeps the light bar, or its old blue would fade out as a ghost
+    &.has-marker .sports__tab {
+      border-color: var(--color-royal-tint);
+      transition: color var(--duration-base) ease;
+    }
   }
 
   &__tab {
@@ -111,4 +131,15 @@
       height: 24 * @px;
     }
   }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    &__img { transition: scale var(--duration-slow) var(--ease-settle); }
+    &__arrow .icon { transition: transform var(--duration-base) var(--ease-settle); }
+    &__card:hover &__img { scale: 1.04; }
+    &__card:hover &__arrow .icon { transform: translate(3 * @px, -3 * @px); }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sports__tabs.has-marker::before { transition: none; }
 }

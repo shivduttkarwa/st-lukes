@@ -50,7 +50,7 @@
           {
             "title": "Mountain biking",
             "url": "/news.html",
-            "groups": "whole junior senior",
+            "groups": "whole senior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
               "alt": "",
@@ -72,7 +72,7 @@
           {
             "title": "Surfing",
             "url": "/news.html",
-            "groups": "whole junior senior",
+            "groups": "whole senior",
             "image": {
               "src": "/assets/images/pages/sport-3.webp",
               "alt": "",
@@ -81,14 +81,58 @@
             }
           },
           {
-            "title": "Rock climbing",
+            "title": "Swimming",
             "url": "/news.html",
-            "groups": "whole junior senior",
+            "groups": "whole junior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
               "alt": "",
               "width": 737,
               "height": 937
+            }
+          },
+          {
+            "title": "Rock climbing",
+            "url": "/news.html",
+            "groups": "whole senior",
+            "image": {
+              "src": "/assets/images/pages/sport-2.webp",
+              "alt": "",
+              "width": 820,
+              "height": 1042
+            }
+          },
+          {
+            "title": "Athletics",
+            "url": "/news.html",
+            "groups": "whole junior",
+            "image": {
+              "src": "/assets/images/pages/sport-3.webp",
+              "alt": "",
+              "width": 820,
+              "height": 1042
+            }
+          },
+          {
+            "title": "Rowing",
+            "url": "/news.html",
+            "groups": "whole senior",
+            "image": {
+              "src": "/assets/images/pages/sport-1.webp",
+              "alt": "",
+              "width": 737,
+              "height": 937
+            }
+          },
+          {
+            "title": "Netball",
+            "url": "/news.html",
+            "groups": "whole junior",
+            "image": {
+              "src": "/assets/images/pages/sport-2.webp",
+              "alt": "",
+              "width": 820,
+              "height": 1042
             }
           }
         ]

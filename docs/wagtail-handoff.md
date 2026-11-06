@@ -187,7 +187,7 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
 - The royal author box, and "Explore more Stories" with three `news-card` snippets. Both are News Story blocks.
 
 ### sports_tabs (`blocks/sports_tabs.njk`)
-- Heading, tabs and a card slider (`slider.js`, overflow visible to the right). Tabs use `initFilters()`, which also updates the slider and animates the change like the staff grid; hidden cards carry `is-hidden`. Figma doesn't say which sports belong to which tab, so all four cards are in every tab for now.
+- Heading, tabs and a card slider (`slider.js`, overflow visible to the right). Tabs use `initFilters()`; `data-filter-tabs` gives them the gliding bar (`--marker-*`, as on the staff filter, drawn over the tabs). Inside a slider, `filterable()` copies the cards on screen where they stand and returns the slider to its first card. The copies slide off to the left as they fade, staggered, and 0.3s in the new set slides in from the right, also staggered. A choice made mid-change waits for it to end. Hidden cards carry `is-hidden`; cards outside `active` render `hidden` on load, and their lazy photos switch to eager once the block is within a screen of view. On hover the photo zooms to 104% and the arrow nudges up-right. Figma doesn't say which sports belong to which tab, so the eight sample cards are split between Junior and Senior (Basketball in both), and Whole School shows all of them.
 
 ### media_text (`blocks/media_text.njk`)
 - One row: heading, rich text, up to two buttons, italic note and a photo flush to the window edge. `side` picks the photo's side. Below 992 the photo comes first.
@@ -282,7 +282,7 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
 - News List: options for Age and Year group. Figma's feature tag reads "student leadeers" and its first card "Thank to our amazing volunteers"; both are built as drawn and look like typos.
 - News List photo: Figma's side photo is a video fill, so the image is a still export.
 - News Story: the real author (Figma has "Example Name"), and captions for each photo (Figma repeats one placeholder).
-- Extra Blocks: which sports belong to which tab, and "Internal page headline", "Primary Action" and "Secondary Action" are Figma's sample copy. "Rock climbing" repeats the Mountain biking photo in Figma.
+- Extra Blocks: which sports belong to which tab, and "Internal page headline", "Primary Action" and "Secondary Action" are Figma's sample copy. Figma has photos for only three sports, so the eight sample cards reuse them.
 - Leadership and Staff: people for Directors, School Council and Anglican Schools Corporation. Figma only lists the Executive Team, so those tabs are empty for now. Larger portraits too: Figma holds 200 x 200, shown 305.
 - Principal's Welcome: answers for the last five FAQ rows (Figma only has the first, so the others can't open yet). A larger portrait: Figma holds 900 x 500, shown 1032 wide.
 - Principal's Welcome: Figma's menu highlights Leadership & Staff, copied from the other page. It is built as drawn; set `current` on Principal's Welcome, or let the page tree do it.

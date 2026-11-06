@@ -90,25 +90,84 @@ export function initAccordions() {
 function filterable(cards, settle) {
   const still = window.matchMedia("(prefers-reduced-motion: reduce)");
   const grid = cards[0]?.parentElement;
+  const slider = grid?.closest("[data-slider]");
   // hidden cards carry a class, not the attribute: Bootstrap makes [hidden] !important, which a leaving card must lift to fade out
   const hide = (card, on) => card.classList.toggle("is-hidden", on);
   const shown = (card) => !card.classList.contains("is-hidden");
   cards.forEach((card) => { if (card.hidden) { card.hidden = false; hide(card, true); } });
+  // a hidden card's lazy photo would only start loading as the card arrives
+  if (grid) new IntersectionObserver((entries, watch) => {
+    if (!entries[0].isIntersecting) return;
+    watch.disconnect();
+    cards.filter((card) => !shown(card)).forEach((card) => card.querySelectorAll('img[loading="lazy"]').forEach((img) => { img.loading = "eager"; }));
+  }, { rootMargin: "100% 0px" }).observe(grid);
+  const restart = () => {
+    slider?.swiper?.update();
+    slider?.swiper?.slideTo(0, 0);
+  };
   let change = null;
-  return (shows) => {
+  let queued = null;
+  const apply = (shows) => {
     const count = cards.filter(shows).length;
+    // a slider's change always finishes; the latest choice made during it plays next
+    if (slider && change?.isActive()) {
+      queued = shows;
+      return count;
+    }
     if (cards.every((card) => shown(card) === shows(card))) return count;
     if (still.matches || !grid) {
       cards.forEach((card) => hide(card, !shows(card)));
+      restart();
       settle();
       return count;
     }
     change?.progress(1);
     // a card still playing its scroll reveal would carry on under the change
     gsap.killTweensOf(cards);
-    // the set on screen fades out, the new set fades in where it belongs, and the grid's height eases between them
     const out = cards.filter(shown);
     const into = cards.filter(shows);
+    if (slider) {
+      const edge = document.documentElement.clientWidth;
+      const frame = slider.getBoundingClientRect();
+      const lane = grid.getBoundingClientRect();
+      // the leaving cards are copied where they stand, so the new set can start in before the last of them has gone
+      const ghosts = out.filter((card) => {
+        const box = card.getBoundingClientRect();
+        return box.right > 0 && box.left < edge;
+      }).map((card) => {
+        const ghost = card.cloneNode(true);
+        ghost.removeAttribute("data-anim");
+        ghost.removeAttribute("href");
+        ghost.setAttribute("aria-hidden", "true");
+        ghost.inert = true;
+        ghost.style.cssText = `position: absolute; left: ${lane.left - frame.left + card.offsetLeft}px; top: ${lane.top - frame.top + card.offsetTop}px; width: ${card.offsetWidth}px; height: ${card.offsetHeight}px; margin: 0; pointer-events: none;`;
+        slider.append(ghost);
+        return ghost;
+      });
+      cards.forEach((card) => hide(card, !into.includes(card)));
+      restart();
+      slider.swiper.allowTouchMove = false;
+      gsap.set(into, { x: 0, y: 0, xPercent: 0, autoAlpha: 1 });
+      const arriving = into.filter((card) => frame.left + card.offsetLeft < edge);
+      change = gsap.timeline({
+        onComplete: () => {
+          ghosts.forEach((ghost) => ghost.remove());
+          into.forEach((card) => card.classList.add("is-revealed"));
+          gsap.set(into, { clearProps: "transform,opacity" });
+          slider.swiper.allowTouchMove = true;
+          change = null;
+          settle();
+          const next = queued;
+          queued = null;
+          if (next) apply(next);
+        },
+      });
+      change
+        .to(ghosts, { xPercent: -25, autoAlpha: 0, duration: 0.45, ease: "power2.in", stagger: 0.06 }, 0)
+        .fromTo(arriving, { xPercent: 35, autoAlpha: 0 }, { xPercent: 0, autoAlpha: 1, duration: 0.9, ease: "power3.out", stagger: 0.08 }, 0.3);
+      return count;
+    }
+    // the set on screen fades out, the new set fades in where it belongs, and the grid's height eases between them
     const height = grid.offsetHeight;
     cards.forEach((card) => hide(card, !into.includes(card)));
     const to = grid.offsetHeight;
@@ -129,6 +188,7 @@ function filterable(cards, settle) {
       .fromTo(into, { autoAlpha: 0, y: 8 }, { autoAlpha: 1, y: 0, duration: 0.45, ease: "power2.out", stagger: { amount: 0.15 }, snap: { y: 1 }, immediateRender: false }, 0.2);
     return count;
   };
+  return apply;
 }
 
 export function initFilters() {
@@ -140,12 +200,21 @@ export function initFilters() {
       window.Anim?.refresh();
     });
     const pressed = () => tabs.find((tab) => tab.getAttribute("aria-pressed") === "true");
+    // the tab's layout box without its reveal transform, snapped as drawn: offset* rounding left a thin marker a pixel off
+    const snap = (value) => Math.round(value * devicePixelRatio) / devicePixelRatio;
     const mark = (tab) => {
       if (!list || !tab) return;
-      list.style.setProperty("--marker-x", `${tab.offsetLeft}px`);
-      list.style.setProperty("--marker-y", `${tab.offsetTop}px`);
-      list.style.setProperty("--marker-w", `${tab.offsetWidth}px`);
-      list.style.setProperty("--marker-h", `${tab.offsetHeight}px`);
+      const base = list.getBoundingClientRect();
+      const box = tab.getBoundingClientRect();
+      const { m41: dx, m42: dy } = new DOMMatrixReadOnly(getComputedStyle(tab).transform.replace("none", ""));
+      const left = base.left + scrollX;
+      const top = base.top + scrollY;
+      const x = box.left - dx + scrollX;
+      const y = box.top - dy + scrollY;
+      list.style.setProperty("--marker-x", `${snap(x) - snap(left)}px`);
+      list.style.setProperty("--marker-y", `${snap(y) - snap(top)}px`);
+      list.style.setProperty("--marker-w", `${snap(x + box.width) - snap(x)}px`);
+      list.style.setProperty("--marker-h", `${snap(y + box.height) - snap(y)}px`);
     };
     window.addEventListener("resize", () => {
       if (list?.classList.contains("has-marker")) mark(pressed());
