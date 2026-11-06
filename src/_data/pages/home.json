@@ -126,15 +126,15 @@
           "height": 1280
         },
         "cards": [
-          { "title": "Everyone is known here", "text": "We’re a genuine community where students are not a number.", "image": { "src": "/assets/images/home/usp-1.webp", "alt": "A teacher and two junior students working on a coding robot activity", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Community", "url": "" } },
-          { "title": "the spirit of the Northern Beaches", "text": "We work hard, we play hard,\nwe achieve well.", "image": { "src": "/assets/images/home/usp-2.webp", "alt": "Students in wetsuits with surfboards on the beach", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our 2025 HSC Results", "url": "" } },
-          { "title": "Top-ranked co-ed school in NSW", "text": "We’re consistently top-ranked non-selective co-educational school in NSW north of the harbour.", "image": { "src": "/assets/images/home/usp-3.webp", "alt": "Two senior students writing equations on a glass board", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our Graduate Profile", "url": "" } },
-          { "title": "Strong pastoral care with\nPERMA Framework", "text": "Our wellbeing framework is grounded in positive psychology (PERMA).", "image": { "src": "/assets/images/home/usp-4.webp", "alt": "A teacher sitting outdoors with four students in uniform", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Wellbeing Framework", "url": "" } },
-          { "title": "Authentic Christian faith", "text": "We live out an authentic Christian faith that is welcoming and inclusive, not exclusive.", "image": { "src": "/assets/images/home/usp-5.webp", "alt": "Students and young children smiling together on a grassy hill", "width": 800, "height": 800 }, "video": null, "link": { "text": "How we live out our Faith", "url": "" } },
-          { "title": "Personal attention, Huge co-curricular range", "text": "Small-school individualised learning combined with large-school co-curricular opportunities.", "image": { "src": "/assets/images/home/usp-6.webp", "alt": "A smiling student playing the cello in a school orchestra", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore Co-Curricular Opportunities", "url": "" } },
-          { "title": "~99% of Families are local Northern Beaches residents", "text": "We’ve got everything you would travel to the North Shore for without the commute.", "image": { "src": "/assets/images/home/usp-7.webp", "alt": "Students boarding a St Luke’s school bus", "width": 800, "height": 800 }, "video": null, "link": { "text": "View Transport and Bus Routes", "url": "" } },
-          { "title": "Exceptional sport and Athlete programs", "text": "Students can participate in State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": { "src": "/assets/video/usp-sport.mp4" }, "link": { "text": "See our Sporting Programs", "url": "" } },
-          { "title": "A growing modern campus", "text": "We’re building a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031) as part of our Masterplan.", "image": { "src": "/assets/images/home/usp-9.webp", "alt": "Students gathered on the lawn in front of the campus buildings", "width": 381, "height": 381 }, "video": null, "link": { "text": "Browse the College Masterplan", "url": "" } }
+          { "title": "Everyone is known here", "text": "We’re a genuine community where students are not a number.", "image": { "src": "/assets/images/home/usp-1.webp", "alt": "A teacher and two junior students working on a coding robot activity", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Community", "url": "/extra-blocks.html" } },
+          { "title": "the spirit of the Northern Beaches", "text": "We work hard, we play hard,\nwe achieve well.", "image": { "src": "/assets/images/home/usp-2.webp", "alt": "Students in wetsuits with surfboards on the beach", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our 2025 HSC Results", "url": "/extra-blocks.html" } },
+          { "title": "Top-ranked co-ed school in NSW", "text": "We’re consistently top-ranked non-selective co-educational school in NSW north of the harbour.", "image": { "src": "/assets/images/home/usp-3.webp", "alt": "Two senior students writing equations on a glass board", "width": 800, "height": 800 }, "video": null, "link": { "text": "View our Graduate Profile", "url": "/principals-welcome.html" } },
+          { "title": "Strong pastoral care with\nPERMA Framework", "text": "Our wellbeing framework is grounded in positive psychology (PERMA).", "image": { "src": "/assets/images/home/usp-4.webp", "alt": "A teacher sitting outdoors with four students in uniform", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore our Wellbeing Framework", "url": "/extra-blocks.html" } },
+          { "title": "Authentic Christian faith", "text": "We live out an authentic Christian faith that is welcoming and inclusive, not exclusive.", "image": { "src": "/assets/images/home/usp-5.webp", "alt": "Students and young children smiling together on a grassy hill", "width": 800, "height": 800 }, "video": null, "link": { "text": "How we live out our Faith", "url": "/our-school-alternative.html" } },
+          { "title": "Personal attention, Huge co-curricular range", "text": "Small-school individualised learning combined with large-school co-curricular opportunities.", "image": { "src": "/assets/images/home/usp-6.webp", "alt": "A smiling student playing the cello in a school orchestra", "width": 800, "height": 800 }, "video": null, "link": { "text": "Explore Co-Curricular Opportunities", "url": "/extra-blocks.html" } },
+          { "title": "~99% of Families are local Northern Beaches residents", "text": "We’ve got everything you would travel to the North Shore for without the commute.", "image": { "src": "/assets/images/home/usp-7.webp", "alt": "Students boarding a St Luke’s school bus", "width": 800, "height": 800 }, "video": null, "link": { "text": "View Transport and Bus Routes", "url": "/contact.html#campuses" } },
+          { "title": "Exceptional sport and Athlete programs", "text": "Students can participate in State title-winning basketball teams, Australian-representative athletes, Talented Athlete Program (TAP).", "image": { "src": "/assets/images/home/usp-8.webp", "alt": "A student skiing down a slalom course", "width": 800, "height": 800 }, "video": { "src": "/assets/video/usp-sport.mp4" }, "link": { "text": "See our Sporting Programs", "url": "/extra-blocks.html" } },
+          { "title": "A growing modern campus", "text": "We’re building a new Senior Campus + Sports Complex on Pittwater Rd (2029–2031) as part of our Masterplan.", "image": { "src": "/assets/images/home/usp-9.webp", "alt": "Students gathered on the lawn in front of the campus buildings", "width": 381, "height": 381 }, "video": null, "link": { "text": "Browse the College Masterplan", "url": "/our-school-alternative.html" } }
         ]
       }
     },
@@ -172,12 +172,12 @@
         "title_line_1": "Learning",
         "title_line_2": "at St Luke’s",
         "cards": [
-          { "title": "Cottage", "meta": "Pre-K (Ages 3-5)", "text": "Discover our early learning program, daily experiences and nurturing environment at Bayview.", "url": "", "image": { "src": "/assets/images/home/learn-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Junior School", "meta": "Kindy - Year 6", "text": "Explore our Junior School curriculum, classroom life and the care that shapes each child.", "url": "", "image": { "src": "/assets/images/home/learn-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Senior School", "meta": "Years 7-12", "text": "See how our Senior School prepares students for the HSC and for life beyond school.", "url": "", "image": { "src": "/assets/images/home/learn-3.webp", "alt": "", "width": 700, "height": 1080 }, "video": { "src": "/assets/video/learning-senior-school.mp4" } },
-          { "title": "HSC and\nNAPLAN Results", "meta": "Pre-K to 12", "text": "Read our latest HSC and NAPLAN results and what they tell us about our students' learning.", "url": "", "image": { "src": "/assets/images/home/learn-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "School Services and Support", "meta": "Pre-K (Ages 3-5)", "text": "Find out about learning support, wellbeing services and the help available to every family.", "url": "", "image": { "src": "/assets/images/home/learn-5.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Our Facilities", "meta": "Pre-K (Ages 3-5)", "text": "Take a look around our classrooms, sporting grounds and creative spaces on both campuses.", "url": "", "image": { "src": "/assets/images/home/learn-6.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
+          { "title": "Cottage", "meta": "Pre-K (Ages 3-5)", "text": "Discover our early learning program, daily experiences and nurturing environment at Bayview.", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/learn-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Junior School", "meta": "Kindy - Year 6", "text": "Explore our Junior School curriculum, classroom life and the care that shapes each child.", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/learn-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Senior School", "meta": "Years 7-12", "text": "See how our Senior School prepares students for the HSC and for life beyond school.", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/learn-3.webp", "alt": "", "width": 700, "height": 1080 }, "video": { "src": "/assets/video/learning-senior-school.mp4" } },
+          { "title": "HSC and\nNAPLAN Results", "meta": "Pre-K to 12", "text": "Read our latest HSC and NAPLAN results and what they tell us about our students' learning.", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/learn-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "School Services and Support", "meta": "Pre-K (Ages 3-5)", "text": "Find out about learning support, wellbeing services and the help available to every family.", "url": "/extra-blocks.html", "image": { "src": "/assets/images/home/learn-5.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Our Facilities", "meta": "Pre-K (Ages 3-5)", "text": "Take a look around our classrooms, sporting grounds and creative spaces on both campuses.", "url": "/contact.html#campuses", "image": { "src": "/assets/images/home/learn-6.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
         ],
         "button": { "text": "Explore Learning at St Luke’s", "url": "", "style": "outline" }
       }
@@ -242,12 +242,12 @@
         "title_line_1": "Hear from",
         "title_line_2": "our community",
         "cards": [
-          { "title": "Sarina", "meta": "Year 10 Student", "url": "", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": { "src": "/assets/video/pillar-wellbeing.mp4" } },
-          { "title": "Elsie", "meta": "Year 10 Student", "url": "", "image": { "src": "/assets/images/home/hear-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": { "src": "/assets/video/testimonial-athletics.mp4" } },
-          { "title": "Jared", "meta": "Year 10 Student", "url": "", "image": { "src": "/assets/images/home/hear-3.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Ella", "meta": "Year 10 Student", "url": "", "image": { "src": "/assets/images/home/hear-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Milo", "meta": "Year 10 Student", "url": "", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
-          { "title": "Nina", "meta": "Year 10 Student", "url": "", "image": { "src": "/assets/images/home/hear-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
+          { "title": "Sarina", "meta": "Year 10 Student", "url": "/news-story.html", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": { "src": "/assets/video/pillar-wellbeing.mp4" } },
+          { "title": "Elsie", "meta": "Year 10 Student", "url": "/news-story.html", "image": { "src": "/assets/images/home/hear-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": { "src": "/assets/video/testimonial-athletics.mp4" } },
+          { "title": "Jared", "meta": "Year 10 Student", "url": "/news-story.html", "image": { "src": "/assets/images/home/hear-3.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Ella", "meta": "Year 10 Student", "url": "/news-story.html", "image": { "src": "/assets/images/home/hear-4.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Milo", "meta": "Year 10 Student", "url": "/news-story.html", "image": { "src": "/assets/images/home/hear-1.webp", "alt": "", "width": 800, "height": 1236 }, "video": null },
+          { "title": "Nina", "meta": "Year 10 Student", "url": "/news-story.html", "image": { "src": "/assets/images/home/hear-2.webp", "alt": "", "width": 800, "height": 1236 }, "video": null }
         ],
         "button": { "text": "Hear more from our Community", "url": "", "style": "outline-navy" }
       }
@@ -273,14 +273,14 @@
         "title_line_2": "Conversation",
         "follow_text": "Follow life at St Luke’s on social media",
         "posts": [
-          { "url": "", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null },
-          { "url": "", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null }
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-1.webp", "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-2.webp", "alt": "Instagram post: Australian Snowsports Championships", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-3.webp", "alt": "Instagram post: HALT recognition", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-4.webp", "alt": "Instagram post: student leadership retreat", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-5.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null },
+          { "url": "/news-story.html", "image": { "src": "/assets/images/home/social-6.webp", "alt": "Instagram post from St Luke’s", "width": 352, "height": 469 }, "video": null }
         ]
       }
     },

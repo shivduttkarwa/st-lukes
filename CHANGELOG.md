@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-06 — Every slider card opens a page
+- Cards in the homepage Learning, USPs, Testimonials and social sliders, News List's Instagram tiles and Extra Blocks' sport cards had no address (left blank, or emptied when the outside links came out). An unlinked card showed only the slider's grab cursor and did nothing when clicked. Each now opens a stand-in page for the demo:
+  - The Learning cards go to Extra Blocks, and Our Facilities to Contact's campuses.
+  - The USP links go to the matching menu stand-in: Extra Blocks, Principal's Welcome for the Graduate Profile, Our School Alternative for Faith and the Masterplan, and Contact's campuses for Transport.
+  - The testimonial cards without a video and every Instagram tile go to News Story.
+  - The sport cards go to News List.
+- Checked on Home: every card link in all five sliders shows the pointer over the grab cursor. A plain click on the Junior School card opens Extra Blocks, so a click is not taken for a drag.
+
 ## 2026-11-06 — Every menu item opens a page; outside links only where they were before
 - Every item in the menu's submenus, and the six small menu links, now opens a built page that stands in for it in the demo, not always an exact match:
   - Enrolments goes to Contact.

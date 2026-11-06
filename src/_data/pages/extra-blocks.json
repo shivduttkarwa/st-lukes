@@ -49,7 +49,7 @@
         "cards": [
           {
             "title": "Mountain biking",
-            "url": "",
+            "url": "/news.html",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
@@ -60,7 +60,7 @@
           },
           {
             "title": "Basketball",
-            "url": "",
+            "url": "/news.html",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-2.webp",
@@ -71,7 +71,7 @@
           },
           {
             "title": "Surfing",
-            "url": "",
+            "url": "/news.html",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-3.webp",
@@ -82,7 +82,7 @@
           },
           {
             "title": "Rock climbing",
-            "url": "",
+            "url": "/news.html",
             "groups": "whole junior senior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
