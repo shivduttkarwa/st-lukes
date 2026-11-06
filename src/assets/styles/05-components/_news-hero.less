@@ -78,7 +78,8 @@
     padding: 20 * @px;
     color: var(--color-white);
     visibility: hidden;
-    &.swiper-slide-active { visibility: visible; }
+    // inherit, not visible: a visible slide would show through the frame while its entrance still hides it
+    &.swiper-slide-active { visibility: inherit; }
     @media (min-width: @bp-lg) { padding: 30 * @px; }
   }
 
