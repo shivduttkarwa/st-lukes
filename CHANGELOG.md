@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-06 — Preloader title holds the centre on phones
+- The LOCAL HEART. / GLOBAL MIND. rows stay on the rings' centre while they hold. They were measured once and fixed, so a phone's toolbar showing or hiding, or a scroll before the lock, left them above or below the centre on some loads. They now follow the centre until they leave for the hero.
+- The jump to the top before measuring is instant. The page's smooth scrolling had made it glide, so the rows were measured mid-scroll.
+
 ## 2026-11-06 — Phone sliders, promo video and pillar reveals
 - Promo videos (home intro, Our School): the still is an `<img>` under the videos, and neither video has a poster. The muted loop fades in over 0.6s once it plays, and the pill's video starts over the still. iPhone Safari blinked as it swapped a poster for the first frame.
 - Pillars below 992: the right-hand photos rise like the left ones (`data-anim-type-mobile="rise-far"`). On desktop they still only fade under their parallax.
