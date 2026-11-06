@@ -1,0 +1,83 @@
+// The page transition (transition.js and the pagereveal script in partials/head.njk): the page that is leaving recedes into
+// navy while the next one opens in a circle from the centre, as the preloader opens; its hero entrance follows
+@vt-leave: 0.5s;
+@vt-open: 1.2s;
+@vt-recede: 0.94;
+@vt-pass: 1.06;
+// a circle's percentage radius is measured against the diagonal over root two, so 71% reaches the corners exactly
+@vt-radius: 71%;
+@vt-crop: 1 * @px;
+
+@view-transition {
+  navigation: auto;
+}
+
+.site-header { view-transition-name: site-header; }
+
+// the header the transition carries over is in place before any script runs
+html.page-arrival.anim-ready:not(.anim-reduced) {
+  [data-anim][data-anim-arrival="static"],
+  [data-anim][data-anim-arrival="static"] [data-anim-item] { visibility: visible; }
+}
+
+::view-transition {
+  background: var(--color-navy);
+}
+
+::view-transition-group(*) {
+  animation-duration: @vt-open;
+  animation-timing-function: var(--ease-in-out-soft);
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  mix-blend-mode: normal;
+}
+
+// a page's snapshot includes its scrollbar's place, painted blank: the box of the page that leaves stops that far short
+// (--page-scrollbar, from the head script) and a pixel more, and crops it, so no pale strip recedes with the page
+::view-transition-old(root) {
+  width: calc(100% - var(--page-scrollbar, 0px) - @vt-crop);
+  height: 100%;
+  overflow: clip;
+  object-fit: none;
+  object-position: left top;
+  animation: vt-leave @vt-leave var(--ease-in-out-soft) both;
+}
+
+::view-transition-new(root) {
+  animation: vt-open @vt-open var(--ease-in-out-soft) both;
+}
+
+html:active-view-transition-type(back)::view-transition-old(root) {
+  animation-name: vt-leave-back;
+}
+
+@keyframes vt-leave {
+  to {
+    opacity: 0;
+    transform: scale(@vt-recede);
+  }
+}
+
+@keyframes vt-leave-back {
+  to {
+    opacity: 0;
+    transform: scale(@vt-pass);
+  }
+}
+
+@keyframes vt-open {
+  from { clip-path: circle(0% at 50% 50%); }
+  to { clip-path: circle(@vt-radius at 50% 50%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
+
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) { animation: none !important; }
+}

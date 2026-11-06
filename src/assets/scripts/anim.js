@@ -139,6 +139,12 @@ const number = (el, name, fallback) => {
 };
 
 const tierOf = (el) => attr(el, "data-anim-tier", "default");
+// data-anim-arrival="static": after a page transition (html.page-arrival) the transition was the entrance, so the element simply shows
+const arrived = (el) => attr(el, "data-anim-arrival") === "static" && document.documentElement.classList.contains("page-arrival");
+const placed = (el) => {
+  el.removeAttribute("data-anim");
+  el.classList.add("is-revealed");
+};
 const startOf = (el) => attr(el, "data-anim-start", TIER_START[tierOf(el)] || TIER_START.default);
 // below lg; asked as a media query because reading window.innerWidth forces a layout every time
 const phone = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(max-width: 991.98px)") : { matches: false };
@@ -416,6 +422,7 @@ function setupReveals(root, entrance, scroll) {
       el.removeAttribute("data-anim");
       return;
     }
+    if (arrived(el)) return placed(el);
     bind(el);
     const preset = presetOf(el);
     gsap.set(el, preset.from);
@@ -489,6 +496,7 @@ function breakBefore(target, { node, offset }) {
 
 function setupSplits(root, entrance, scroll) {
   scoped(root, '[data-anim="split"]').forEach((el) => {
+    if (arrived(el)) return placed(el);
     bind(el);
     const count = Math.max(1, Math.round(el.getBoundingClientRect().height / parseFloat(getComputedStyle(el).lineHeight)) || 1);
     const onClock = tierOf(el) === HERO || immediate || attr(el, "data-anim-scroll") === "timed";
@@ -548,7 +556,7 @@ function setupSplits(root, entrance, scroll) {
 function setupSequences(root, entrance, scroll) {
   scoped(root, '[data-anim="sequence"]').forEach((el) => {
     bind(el);
-    if (attr(el, "data-anim-arrival") === "static" && document.documentElement.classList.contains("page-arrival")) {
+    if (arrived(el)) {
       el.classList.add("is-revealed");
       return;
     }

@@ -8,6 +8,7 @@
 <link rel="icon" href="/assets/icons/crest.svg" type="image/svg+xml">
 <link rel="apple-touch-icon" href="/assets/icons/apple-touch-icon.png">
 <link rel="stylesheet" href="/assets/css/main.css">
+<link rel="expect" href="#site-menu" blocking="render">
 <script>
   (function (d) {
     d.classList.add("anim-ready");
@@ -20,6 +21,37 @@
       setTimeout(function () { if (!d.hasAttribute("data-preloader-live")) d.classList.remove("is-preloading"); }, 5000);
     }
     {% endif %}
+    // the arriving side of the page transition (transition.js), before the first frame: the entrance is the transition
+    addEventListener("pagereveal", function (e) {
+      var t = e.viewTransition;
+      if (!t) return;
+      d.classList.add("page-arrival");
+      d.classList.remove("is-preloading");
+      if (self.navigation && navigation.activation && navigation.activation.navigationType === "traverse") t.types.add("back");
+      d.querySelectorAll("[data-vt-named]").forEach(function (el) {
+        el.style.viewTransitionName = "";
+        el.removeAttribute("data-vt-named");
+      });
+      // a page left from the open menu had no scrollbar thumb, so this one's waits for the circle to land and fades in
+      try {
+        if (sessionStorage.getItem("page-thumb") === "hidden") {
+          d.style.setProperty("--scrollbar-thumb", "transparent");
+          t.finished.then(function () { d.style.removeProperty("--scrollbar-thumb"); }, function () { d.style.removeProperty("--scrollbar-thumb"); });
+        }
+      } catch (err) {}
+      window.pageArrival = t.finished;
+    });
+    // the page left hands on its scrollbar's width, so the transition can crop the blank strip out of its snapshot, and
+    // whether its thumb was showing (read on every reveal: a page brought back by the back button is not loaded again)
+    addEventListener("pageswap", function () {
+      try {
+        sessionStorage.setItem("page-scrollbar", Math.ceil(innerWidth - d.getBoundingClientRect().width) + "px");
+        sessionStorage.setItem("page-thumb", d.classList.contains("is-locked") || d.classList.contains("is-preloading") ? "hidden" : "shown");
+      } catch (err) {}
+    });
+    addEventListener("pagereveal", function () {
+      try { d.style.setProperty("--page-scrollbar", sessionStorage.getItem("page-scrollbar") || "0px"); } catch (err) {}
+    });
     addEventListener("load", function () {
       setTimeout(function () { if (!d.hasAttribute("data-anim-live")) d.classList.remove("anim-ready"); }, 800);
     });
