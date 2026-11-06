@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-06 — Phone footer bar centred
+- Below 768 the footer's social icons, affiliation logos, copyright line and legal links are centred. The logos had wrapped ragged to the left. From 768 the bar is unchanged.
+
 ## 2026-11-06 — Preloader title holds the centre on phones
 - The LOCAL HEART. / GLOBAL MIND. rows stay on the rings' centre while they hold. They were measured once and fixed, so a phone's toolbar showing or hiding, or a scroll before the lock, left them above or below the centre on some loads. They now follow the centre until they leave for the hero.
 - The jump to the top before measuring is instant. The page's smooth scrolling had made it glide, so the rows were measured mid-scroll.
