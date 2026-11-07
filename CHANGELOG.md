@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-07 — Every block animates in view and in order
+- Audited all nine pages headless at 390 × 844 and 1440 × 900, scrolling at reading speed and logging each title, paragraph, image, button, card and list item: whether it was still or already finished when it came on screen, and whether anything lower in a block started before something above it.
+- Fixed: the Contact intro text now fades up a paragraph at a time and the contact form a field at a time, with its Send button on its own; the home news feature's panel, button and photo each reveal as they come into view; the Our School collage button no longer finishes off screen on phones (a follower of a title already on the first screen keeps its own trigger); the Leadership and Principal's Welcome lead text is a scroll reveal on phones, where it sat below the fold during the entrance; the home stats labels fade in with their counters; the News Story and Principal's Welcome photo strips rise in like the other sliders; the News List cards follow the scroll on phones; and the staff tabs and cards follow the scroll at every size, so they come in top to bottom on desktop too.
+- Left as they are: the home USPs and testimonial sliders on desktop rise as a row when their tops reach the start line, so the text at the foot of a 640px card is already still when it comes on screen; the footer has no entrance; banner backgrounds stay still.
+
 ## 2026-11-07 — Staff cards keep up with a fast scroll
 - Leadership and Staff: after a fast scroll, the profile cards on screen are all in within half a second. Before, the cards near the bottom of the window stayed blank until the next scroll, because they only started 15% up the window. On phones every card on screen also waited about 1.3s behind the section title. The cards now start as they enter the window and no longer wait for the title on phones. Below 992 the title, filter tabs and cards all follow the scroll from the same start line, 15% up the window, so they come in row by row from the top and each rise is on screen and never lags a fast scroll. Measured headless at 1440 × 900 and 390 × 844.
 

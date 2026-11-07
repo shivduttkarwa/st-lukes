@@ -4,12 +4,12 @@
       <h2 data-anim="split" data-anim-type="lines">{{ value.title_line_1 }} <span class="news__outline">{{ value.title_line_2 }}</span></h2>
       {% if value.button %}<div data-anim="reveal" data-anim-type="fade">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>{% endif %}
     </div>
-    <div class="news__feature" data-slider-scope data-anim="reveal" data-anim-type="fade-up">
+    <div class="news__feature" data-slider-scope>
       <div class="news__slider swiper" data-slider data-slider-mode="stack" data-slider-autoplay="4000">
         <div class="swiper-wrapper">
           {% for story in value.stories %}
           <article class="story swiper-slide"{% if story.video %} data-hover-video{% endif %}>
-            <div class="story__panel">
+            <div class="story__panel" data-anim="reveal" data-anim-type="fade-up">
               <div class="story__copy">
                 {% if story.tags %}
                 <ul class="story__tags">
@@ -19,9 +19,9 @@
                 <h3>{{ story.title }}</h3>
                 <p>{{ story.excerpt }}</p>
               </div>
-              <a class="btn btn-primary btn-small"{% if story.url %} href="{{ story.url }}"{% endif %}>Read Full Story</a>
+              <a class="btn btn-primary btn-small"{% if story.url %} href="{{ story.url }}"{% endif %} data-anim="reveal" data-anim-type="fade-up">Read Full Story</a>
             </div>
-            <div class="story__media">
+            <div class="story__media" data-anim="reveal" data-anim-type="fade">
               {% set img = story.image %}{% set cls = "story__img" %}{% include "snippets/image.njk" %}
               {% if story.video %}<video class="story__video" data-src="{{ story.video.src }}" muted loop playsinline preload="none" aria-hidden="true"></video>{% endif %}
             </div>

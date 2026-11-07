@@ -3,7 +3,7 @@
     <div class="contact-intro__top">
       <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
       <div class="contact-intro__lead">
-        <div class="contact-intro__text" data-anim="reveal" data-anim-type="fade-up">{{ value.text | safe }}</div>
+        <div class="contact-intro__text" data-anim-group="fade-up" data-anim-scroll="timed">{{ value.text | safe }}</div>
         <div class="contact-intro__actions" data-anim-group="fade-up">
           {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
         </div>

@@ -7,8 +7,8 @@
       <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
       <p data-anim="reveal" data-anim-type="fade-up">{{ value.text }}</p>
     </div>
-    <form class="contact-form__form" action="#" method="post" data-validate data-anim="reveal" data-anim-type="fade-up">
-      <div class="contact-form__fields">
+    <form class="contact-form__form" action="#" method="post" data-validate>
+      <div class="contact-form__fields" data-anim-group="fade-up">
         {% for field in value.fields %}
         <div class="contact-form__field{% if field.half %} contact-form__field--half{% endif %}" data-field>
           <label for="contact-{{ field.name }}">{{ field.label }}</label>
@@ -29,7 +29,7 @@
         </div>
         {% endfor %}
       </div>
-      <button class="btn btn-primary" type="submit">{{ value.button }}</button>
+      <button class="btn btn-primary" type="submit" data-anim="reveal" data-anim-type="fade-up">{{ value.button }}</button>
       <p class="contact-form__success" role="status" data-form-success hidden>{{ value.success }}</p>
     </form>
   </div>

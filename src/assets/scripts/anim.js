@@ -148,7 +148,7 @@ const number = (el, name, fallback) => {
   return Number.isNaN(value) ? fallback : value;
 };
 
-const tierOf = (el) => attr(el, "data-anim-tier", "default");
+const tierOf = (el) => attr(el, variant(el, "data-anim-tier"), "default");
 // The screenful a page transition lands on below the top (a link to a section, or a page restored scrolled down): its
 // steps wait for the circle to open, which left it blank, so what is there simply shows. At the top the hero still enters.
 let arrivalView;
@@ -494,7 +494,9 @@ function setupReveals(root, entrance, scroll) {
     }
 
     const title = el.hasAttribute("data-anim-after-title") && titleFor(el);
-    if (title && title.hasAttribute(BOUND)) {
+    // a title on the first screen plays at once, so a follower still below the screen keeps its own trigger instead of finishing out of sight
+    const below = (node) => node.getBoundingClientRect().top >= window.innerHeight;
+    if (title && title.hasAttribute(BOUND) && !(below(el) && !below(title))) {
       followers.set(title, [...(followers.get(title) || []), el]);
       return;
     }
