@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-07 — Our School collage parallax
+- The collage on Our School and Our School Alternative moves in three depths from 992 up: the portrait and the gold stat circle rise ahead of the scroll, the video drifts behind it, and the circle slides over the video's corner. Each piece is back on its Figma spot as it crosses the middle of the window. The portrait used to drift ±5% on its own and now rises ±14%. Phones keep a ±5% portrait drift, now rising with the others. Reduced motion stays still.
+- The Our School hero photo now drifts down as the hero scrolls away, the same as the homepage hero: still at the top of the page, then 15% of its height by the time the hero has left.
+
 ## 2026-11-07 — Tablets and iPad landscape: side-by-side rows and a 2 × 2 stats grid
 - Home stats between 992 and 1199 (an iPad held sideways) ran one per row at the desktop's 100px numbers, so the four stats took a whole screen of navy with most of each row empty. They now sit two per row from 768 up, at the phone's 72px ring and 60px number until 1200, where Figma's 100px size and 2 × 2 grid take over as before. Desktop is unchanged.
 - Where to Next between 992 and 1199: the title wrapped onto two rows but its box was held to one, so "TO NEXT?" was cut off by the cards below. The box is now a minimum height below 1200 and the fixed height only from 1200, where the title fits on one row. Desktop is unchanged pixel for pixel.

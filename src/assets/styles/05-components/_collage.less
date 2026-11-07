@@ -65,11 +65,15 @@
 
   // the frame drifts rather than the photo inside it, so Figma's crop holds without a zoom
   &__layer {
-    --parallax-from: -5%;
-    --parallax-to: 5%;
+    --parallax-from: 5%;
+    --parallax-to: -5%;
     position: absolute;
     inset: 0;
     will-change: transform;
+    @media (min-width: @bp-lg) {
+      --parallax-from: 14%;
+      --parallax-to: -14%;
+    }
   }
 
   &__frame {
@@ -86,18 +90,25 @@
   }
 
   &__video {
-    --promo-shade: var(--gradient-video);
-    --promo-play-x: @collage-play-x;
-    --promo-play-y: @collage-play-y;
+    --parallax-from: -6%;
+    --parallax-to: 6%;
     margin: @collage-gap-sm var(--gutter) 0 0;
-    aspect-ratio: 821 / 514;
     @media (min-width: @bp-lg) {
       grid-area: 2 / 1;
       margin: @collage-video-top 0 0;
     }
   }
 
+  &__promo {
+    --promo-shade: var(--gradient-video);
+    --promo-play-x: @collage-play-x;
+    --promo-play-y: @collage-play-y;
+    aspect-ratio: 821 / 514;
+  }
+
   &__stat {
+    --parallax-from: 20%;
+    --parallax-to: -20%;
     position: relative;
     align-self: center;
     flex: none;

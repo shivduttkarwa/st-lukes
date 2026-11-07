@@ -7,23 +7,25 @@
   </div>
 
   <div class="collage__portrait" data-anim-parallax-trigger>
-    <div class="collage__layer" data-anim="parallax" data-anim-centered data-anim-speed="5">
+    <div class="collage__layer" data-anim="parallax" data-anim-centered data-anim-reverse data-anim-speed="14" data-anim-speed-mobile="5">
       <div class="collage__frame" data-anim="reveal" data-anim-type="glide-left" data-anim-scroll="timed">
         {% set img = value.portrait %}{% set cls = "collage__portrait-img" %}{% include "snippets/image.njk" %}
       </div>
     </div>
   </div>
 
-  <div class="promo collage__video" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
-    {% set promo = value.video %}{% include "snippets/promo.njk" %}
+  <div class="collage__video" data-anim="parallax" data-anim-parallax-trigger data-anim-centered data-anim-speed="6" data-anim-snap data-anim-disable-mobile>
+    <div class="promo collage__promo" data-promo data-anim="reveal" data-anim-type="glide-right" data-anim-scroll="timed">
+      {% set promo = value.video %}{% include "snippets/promo.njk" %}
+    </div>
   </div>
 
-  <figure class="collage__stat" data-anim="counter" data-anim-scroll="timed">
+  <figure class="collage__stat" data-anim="parallax" data-anim-parallax-trigger data-anim-centered data-anim-reverse data-anim-speed="20" data-anim-snap data-anim-disable-mobile>
     <svg class="collage__path" viewBox="0 0 338 338" aria-hidden="true" focusable="false" data-anim="reveal" data-anim-type="orbit" data-anim-scroll="timed">
       <path id="collage-stat-path" d="M 338 169 A 169 169 0 1 1 0 169 A 169 169 0 1 1 338 169" fill="none"></path>
       <text font-size="30" dy="11"><textPath href="#collage-stat-path" startOffset="40.53%" text-anchor="middle">{{ value.stat.caption }}</textPath></text>
     </svg>
-    <div class="collage__circle">
+    <div class="collage__circle" data-anim="counter" data-anim-scroll="timed">
       <p class="collage__value" data-anim-count>{{ value.stat.value }}</p>
       <figcaption class="collage__label" data-anim="reveal" data-anim-type="fade" data-anim-scroll="timed"><span class="visually-hidden">{{ value.stat.caption }} </span>{{ value.stat.label }}</figcaption>
     </div>
