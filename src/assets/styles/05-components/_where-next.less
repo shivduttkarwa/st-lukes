@@ -34,9 +34,10 @@
       span { text-box: trim-both cap alphabetic; }
       @media (min-width: @bp-lg) {
         grid-area: 1 / 1;
-        height: 53 * @px;
+        min-height: 53 * @px;
         margin-bottom: 45 * @px;
       }
+      @media (min-width: @bp-xl) { height: 53 * @px; }
     }
   }
 
