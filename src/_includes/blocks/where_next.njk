@@ -31,7 +31,7 @@
           <li><a class="where-next__link{% if link.current %} is-current{% endif %}"{% if link.url %} href="{{ link.url }}"{% endif %}{% if link.current %} aria-current="page"{% endif %} data-press><span>{{ link.label }}</span></a></li>
           {% endfor %}
         </ul>
-        <div class="where-next__actions">
+        <div class="where-next__actions" data-anim-group="fade-up" data-anim-media="(max-width: 991.98px)">
           {% for btn in value.menu.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
         </div>
       </div>

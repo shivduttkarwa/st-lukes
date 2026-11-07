@@ -171,7 +171,7 @@ const placed = (el) => {
   el.removeAttribute("data-anim");
   el.classList.add("is-revealed");
 };
-const startOf = (el) => attr(el, "data-anim-start", TIER_START[tierOf(el)] || TIER_START.default);
+const startOf = (el) => attr(el, variant(el, "data-anim-start"), TIER_START[tierOf(el)] || TIER_START.default);
 // below lg; asked as a media query because reading window.innerWidth forces a layout every time
 const phone = typeof window !== "undefined" && window.matchMedia ? window.matchMedia("(max-width: 991.98px)") : { matches: false };
 // data-anim-order-mobile reorders an entrance step where the phone layout stacks things differently
@@ -406,10 +406,10 @@ function hurryOnScroll(tl) {
   hurry();
 }
 
-// data-anim-group -> tag direct children as staggered reveals (auto ordering); its data-anim-scroll and
-// data-anim-stagger pass to them
+// data-anim-group -> tag direct children as staggered reveals (auto ordering); its scroll mode, stagger,
+// data-anim-media and start line pass to them
 const groupItems = new WeakMap(); // a group's item -> all of that group's items
-const PASSED = ["data-anim-scroll", "data-anim-stagger", "data-anim-media"];
+const PASSED = ["data-anim-scroll", "data-anim-scroll-mobile", "data-anim-stagger", "data-anim-media", "data-anim-start", "data-anim-start-mobile"];
 
 function expandGroups(root) {
   scoped(root, "[data-anim-group]").forEach((group) => {
