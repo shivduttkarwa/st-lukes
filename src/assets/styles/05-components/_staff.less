@@ -39,13 +39,18 @@
   &__tab {
     .type-heading-6();
     position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 46 * @px;
     min-height: var(--tap-size);
-    padding: 8 * @px 25 * @px 12 * @px;
+    padding: 0 25 * @px;
     border: 1 * @px solid var(--color-navy-tint);
     border-radius: var(--radius-pill);
     background: none;
     color: var(--color-royal);
     transition: color var(--duration-base) ease, background-color var(--duration-base) ease, border-color var(--duration-base) ease;
+    span { text-box: trim-both cap alphabetic; }
     &[aria-pressed="true"] {
       border-color: var(--color-royal);
       background: var(--color-royal);

@@ -1,6 +1,6 @@
 <section class="where-next{% if value.tight %} where-next--tight{% endif %}{% if value.flush %} where-next--flush{% endif %}">
   <div class="container">
-    <div class="where-next__grid" data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4" data-anim-mobile="each" data-anim-type-mobile="fade-up">
+    <div class="where-next__grid" data-anim="sequence" data-anim-type="fade" data-anim-scroll="timed" data-anim-stagger="0.15" data-anim-delay="0.4" data-anim-mobile="each" data-anim-type-mobile="rise">
       <h2 data-anim="split" data-anim-type="lines" data-anim-scroll="timed"><span>{{ value.title_line_1 }}</span> <span class="where-next__outline">{{ value.title_line_2 }}</span></h2>
       {% for card in value.cards %}
       {% if loop.first %}
@@ -26,9 +26,9 @@
     <div class="where-next__menu" data-anim="reveal" data-anim-type="fade-up">
       <h2><span>{{ value.menu.title_line_1 }}</span> <span class="where-next__menu-outline">{{ value.menu.title_line_2 }}</span></h2>
       <div class="where-next__row">
-        <ul class="where-next__links">
+        <ul class="where-next__links" data-anim-group="from-left-soft" data-anim-media="(max-width: 991.98px)">
           {% for link in value.menu.links %}
-          <li><a class="where-next__link{% if link.current %} is-current{% endif %}"{% if link.url %} href="{{ link.url }}"{% endif %}{% if link.current %} aria-current="page"{% endif %}><span>{{ link.label }}</span></a></li>
+          <li><a class="where-next__link{% if link.current %} is-current{% endif %}"{% if link.url %} href="{{ link.url }}"{% endif %}{% if link.current %} aria-current="page"{% endif %} data-press><span>{{ link.label }}</span></a></li>
           {% endfor %}
         </ul>
         <div class="where-next__actions">

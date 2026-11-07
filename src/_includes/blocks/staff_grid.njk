@@ -3,7 +3,7 @@
     <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
     <div class="staff__tabs" data-anim-group="rise-soft" data-anim-scroll="timed" data-filter-tabs>
       {% for tab in value.tabs %}
-      <button class="staff__tab" type="button" data-filter="{{ tab.slug }}" aria-pressed="{% if tab.slug == value.active %}true{% else %}false{% endif %}">{{ tab.label }}</button>
+      <button class="staff__tab" type="button" data-filter="{{ tab.slug }}" aria-pressed="{% if tab.slug == value.active %}true{% else %}false{% endif %}"><span>{{ tab.label }}</span></button>
       {% endfor %}
     </div>
     <div class="staff__grid" data-anim-group="rise" data-anim-scroll="timed" data-anim-stagger="0.075">

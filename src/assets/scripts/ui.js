@@ -221,14 +221,19 @@ export function initFilters() {
       list.style.setProperty("--marker-w", `${snap(x + box.width) - snap(x)}px`);
       list.style.setProperty("--marker-h", `${snap(y + box.height) - snap(y)}px`);
     };
+    // once the tabs wrap the marker would cut across rows, so each tab fades its own fill instead
+    const wraps = () => tabs.some((tab) => tab.offsetTop !== tabs[0].offsetTop);
     window.addEventListener("resize", () => {
-      if (list?.classList.contains("has-marker")) mark(pressed());
+      if (!list?.classList.contains("has-marker")) return;
+      if (wraps()) list.classList.remove("has-marker");
+      else mark(pressed());
     });
     tabs.forEach((tab) => {
       tab.addEventListener("click", () => {
         const last = pressed();
         if (tab === last) return;
-        if (list && !list.classList.contains("has-marker")) {
+        if (list && wraps()) list.classList.remove("has-marker");
+        else if (list && !list.classList.contains("has-marker")) {
           mark(last);
           list.classList.add("has-marker");
           void list.offsetWidth; // the marker is drawn under the last tab before it moves
@@ -240,6 +245,17 @@ export function initFilters() {
       });
     });
   });
+}
+
+// touch has no hover, so a tapped [data-press] link keeps its hover look while the next page loads
+export function initPress() {
+  document.addEventListener("click", (event) => {
+    const link = event.target.closest("[data-press][href]");
+    if (!link) return;
+    link.classList.add("is-pressed");
+    setTimeout(() => link.classList.remove("is-pressed"), 1500);
+  });
+  window.addEventListener("pageshow", () => document.querySelectorAll(".is-pressed").forEach((link) => link.classList.remove("is-pressed")));
 }
 
 export function initNewsFilter() {

@@ -82,6 +82,8 @@ const REVEAL = {
   "fade":       { from: { autoAlpha: 0 },                       to: { autoAlpha: 1 } },
   "fade-soft":  { from: { autoAlpha: 0 },                       to: { autoAlpha: 1, duration: 0.5, ease: "power1.out" } }, // header items
   "rise-soft":  { from: { y: 14, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, duration: 0.55, ease: "power2.out" } }, // the quick links below lg
+  // the Explore links below lg come in the way their hover moves, landing in whole pixels under the fade
+  "from-left-soft": { from: { x: -18, autoAlpha: 0 },          to: { autoAlpha: 1, ease: "power2.out", keyframes: { "70%": { x: 0, ease: whole("power2.out", 18) }, ease: "none" } } },
   // cards: the rise lands in whole pixels under the fade, so a caption never re-blends at a fraction of a pixel as the card settles
   "rise":       { from: { y: RISE, autoAlpha: 0 },              to: { autoAlpha: 1, ease: "power2.out", keyframes: { "70%": { y: 0, ease: whole("power2.out", RISE) }, ease: "none" } } },
   "rise-far":   { from: { y: 60, autoAlpha: 0 },                to: { y: 0, autoAlpha: 1, ease: "power2.out" } }, // the pillars' left photos, tuned against their parallax
@@ -407,7 +409,7 @@ function hurryOnScroll(tl) {
 // data-anim-group -> tag direct children as staggered reveals (auto ordering); its data-anim-scroll and
 // data-anim-stagger pass to them
 const groupItems = new WeakMap(); // a group's item -> all of that group's items
-const PASSED = ["data-anim-scroll", "data-anim-stagger"];
+const PASSED = ["data-anim-scroll", "data-anim-stagger", "data-anim-media"];
 
 function expandGroups(root) {
   scoped(root, "[data-anim-group]").forEach((group) => {

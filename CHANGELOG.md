@@ -1,5 +1,10 @@
 # Changelog
 
+## 2026-11-07 — Staff tabs, Where to Next and Explore links
+- Leadership and Staff filter tabs: the label is centred in its pill at every size. It sat about 2px high on desktop and off centre on phones, because the pill's padding was uneven to offset the font. Where the tabs wrap onto two rows, the blue fill now fades from tab to tab instead of gliding across the rows.
+- Where to Next below 992: each photo rises 35px as it comes into view, like the site's other photos, instead of the quick 15px fade-up.
+- Explore Our School links: below 992 they slide in from the left one by one as they scroll into view, and a tap shows the gold dot and slide (as hover does) and holds it while the next page loads.
+
 ## 2026-11-07 — Our School collage parallax
 - The collage on Our School and Our School Alternative moves in three depths from 992 up: the portrait and the gold stat circle rise ahead of the scroll, the video drifts behind it, and the circle slides over the video's corner. Each piece is back on its Figma spot as it crosses the middle of the window. The portrait used to drift ±5% on its own and now rises ±14%. Phones keep a ±5% portrait drift, now rising with the others. Reduced motion stays still.
 - The Our School hero photo now drifts down as the hero scrolls away, the same as the homepage hero: still at the top of the page, then 15% of its height by the time the hero has left.
