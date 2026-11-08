@@ -78,7 +78,7 @@ blocks:
     template: blocks/page_links.njk
     fields:
       cards: ListBlock(StructBlock, min_num=1)   # two per row from 768 up
-        title: CharBlock(required)   # a line break is kept
+        title: CharBlock(required)   # a line break is kept; a soft hyphen (U+00AD) marks where a word too long for a phone card may break
         text: TextBlock   # opens on hover
         url: PageChooserBlock or URLBlock
         image: ImageChooserBlock(required)   # decorative, fill-1234x820
@@ -166,7 +166,8 @@ blocks:
       lines: ListBlock(StructBlock)   # the word collage, one entry per line, each centred
         shift: ChoiceBlock(far-left, left, centre, right, far-right, default=centre)   # nudges the line 20 / 10 design px off centre
         words: ListBlock(StructBlock)
-          text: TextBlock(required)   # a line break stacks the word, right-aligned (Justice, / Compassion)
+          text: CharBlock(required)
+          above: CharBlock   # a row stacked over the word, right-aligned, 53 at +1.5% (Justice, over Compassion)
           size: ChoiceBlock(50, 53, 67, 73, 75, 88, 96, 107, 120, 131)   # Figma px at the 506-wide collage
           outline: BooleanBlock(default=False)
           wide: BooleanBlock(default=False)   # +3% tracking instead of -1% (Relational)

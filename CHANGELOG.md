@@ -1,5 +1,12 @@
 # Changelog
 
+## 2026-11-07 — Desktop audit against Figma
+- Compared all nine pages with their Figma frames at 1440, section by section: heights, text line positions and a pixel diff. Seven pages land within 6px of Figma's height with every section starting on the same pixel.
+- Leadership and Staff: the Executive Team tab shows all 15 profiles, as Figma does. Five of them were only tagged for the other tabs, so the tab showed 10 and the page ran 461px short; it is now Figma's 6338.
+- Principal's Welcome values: "Justice," is 53 with +1.5% tracking over "Compassion" at 50, as Figma sets it; both were 50. The stacked row is a new `above` field on a word, replacing the line break in `text`.
+- Home stats: the counters take their 0.1s stagger from `data-anim-group` on the list, not a loop counter in the template. A group child with its own `data-anim` now keeps it and only takes its place in the order.
+- Phones: the Discover "Explore our Talented Athlete Program (TAP)" button wraps inside its pill below about 360px instead of running off the screen. The Our School "Acknowledgement of Country" card breaks "Acknowl-edgement" where it doesn't fit, instead of running under the arrow and off the card (up to about 414px and around 768–830). A Where to Next link that wraps, as "Acknowledgement of Country" does on phones, has 1.15 leading instead of 0.9; a one-line label is unchanged.
+
 ## 2026-11-07 — Every block animates in view and in order
 - Audited all nine pages headless at 390 × 844 and 1440 × 900, scrolling at reading speed and logging each title, paragraph, image, button, card and list item: whether it was still or already finished when it came on screen, and whether anything lower in a block started before something above it.
 - Fixed: the Contact intro text now fades up a paragraph at a time and the contact form a field at a time, with its Send button on its own; the home news feature's panel, button and photo each reveal as they come into view; the Our School collage button no longer finishes off screen on phones (a follower of a title already on the first screen keeps its own trigger); the Leadership and Principal's Welcome lead text is a scroll reveal on phones, where it sat below the fold during the entrance; the home stats labels fade in with their counters; the News Story and Principal's Welcome photo strips rise in like the other sliders; the News List cards follow the scroll on phones; and the staff tabs and cards follow the scroll at every size, so they come in top to bottom on desktop too.

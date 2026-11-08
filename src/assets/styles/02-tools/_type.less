@@ -218,6 +218,10 @@
   font-size: @size * @values-px;
 }
 .type-values-word-wide() { letter-spacing: 0.03em; }
+.type-values-word-lead() {
+  font-size: 53 * @values-px;
+  letter-spacing: 0.015em;
+}
 
 // the quote's name and year: Body 1 at -1%
 .type-collage-cite() {
@@ -371,11 +375,11 @@
   @media (min-width: @bp-lg) { font-size: 30 * @px; }
 }
 
-// the internal page menu links have no named style: Poppins SemiBold 16 / 0.9, caps
+// the internal page menu links have no named style: Poppins SemiBold 16, caps; Figma's 0.9 leading is trimmed away on one line, so 1.15 only opens up a label that wraps on a phone
 .type-next-link() {
   font-family: var(--font-display);
   font-weight: 600;
-  line-height: 0.9;
+  line-height: 1.15;
   letter-spacing: 0;
   text-transform: uppercase;
   font-size: 16 * @px;

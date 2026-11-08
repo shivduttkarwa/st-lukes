@@ -7,7 +7,7 @@
       <p class="values__words" data-anim-group="fade-up">
         {% for line in value.lines %}
         <span class="values__line values__line--{{ line.shift | default('centre') }}">
-          {% for word in line.words %}<span class="values__word values__word--{{ word.size }}{% if word.outline %} values__word--outline{% endif %}{% if word.wide %} values__word--wide{% endif %}{% if word.align == 'centre' %} values__word--centre{% endif %}">{{ word.text }}</span> {% endfor %}
+          {% for word in line.words %}<span class="values__word values__word--{{ word.size }}{% if word.outline %} values__word--outline{% endif %}{% if word.wide %} values__word--wide{% endif %}{% if word.align == 'centre' %} values__word--centre{% endif %}">{% if word.above %}<span class="values__above">{{ word.above }}</span>{% endif %}{{ word.text }}</span> {% endfor %}
         </span>
         {% endfor %}
       </p>

@@ -213,7 +213,8 @@
             "shift": "far-right",
             "words": [
               {
-                "text": "Justice,\nCompassion",
+                "text": "Compassion",
+                "above": "Justice,",
                 "size": "50",
                 "outline": false,
                 "wide": false,

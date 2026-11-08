@@ -419,7 +419,12 @@ function expandGroups(root) {
       getComputedStyle(child).display === "contents" ? Array.from(child.children) : [child]
     );
     items.forEach((child, i) => {
-      if (child.hasAttribute("data-anim") || child.hasAttribute("data-anim-item")) return; // an item belongs to its sequence
+      if (child.hasAttribute("data-anim-item")) return; // an item belongs to its sequence
+      // a child with its own animation (the stats counters) keeps it and only takes its place in the order
+      if (child.hasAttribute("data-anim")) {
+        if (!child.hasAttribute("data-anim-order")) child.setAttribute("data-anim-order", String(i));
+        return;
+      }
       child.setAttribute("data-anim", "reveal");
       child.setAttribute("data-anim-type", type);
       PASSED.forEach((name) => {
