@@ -1,5 +1,9 @@
 # Changelog
 
+## 2026-11-08 — Contact form bubbles and menu
+- A field's error bubble and the open Category menu sit over the fields below. The reveal left a transform on every field, so the next label (Email under First Name) and the Message field drew over them.
+- First and Last Name bubbles stay on one line on phones: they can run across both columns, and Last Name's grows leftwards from its right edge. All six fit on one line at 320, 375 and 430.
+
 ## 2026-11-07 — Desktop audit against Figma
 - Compared all nine pages with their Figma frames at 1440, section by section: heights, text line positions and a pixel diff. Seven pages land within 6px of Figma's height with every section starting on the same pixel.
 - Leadership and Staff: the Executive Team tab shows all 15 profiles, as Figma does. Five of them were only tagged for the other tabs, so the tab showed 10 and the page ran 461px short; it is now Figma's 6338.

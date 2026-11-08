@@ -1,4 +1,5 @@
 @contact-error-gap: 10 * @px;
+@contact-fields-gap: 20 * @px;
 @contact-field-line: 1 * @px solid var(--color-navy);
 
 .contact-form {
@@ -62,17 +63,19 @@
   &__fields {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 20 * @px;
+    gap: @contact-fields-gap;
     width: 100%;
   }
 
   &__field {
     position: relative;
+    z-index: 0;
     display: flex;
     flex-direction: column;
     grid-column: 1 / -1;
     gap: 3 * @px;
     min-width: 0;
+    transition: z-index 0s var(--duration-slow);
     label {
       .type-body-2-semibold();
       position: relative;
@@ -111,6 +114,13 @@
   }
 
   &__field--half { grid-column: span 1; }
+
+  // the reveal leaves a transform on each field, so one with a bubble or open list sits above the fields after it until the list folds away
+  &__field:has(> &__error:not([hidden])),
+  &__field:has(.select.is-open) {
+    z-index: 1;
+    transition-delay: 0s;
+  }
 
   // the active line grows out from the middle over the field's own 1px line, in royal, and stays while the field is flagged.
   // It sits on a wrapper because an input can't carry a pseudo-element, and autofill strips an input's backgrounds
@@ -186,6 +196,17 @@
     }
   }
 
+  &__field--half &__error { max-width: calc(200% + @contact-fields-gap); }
+
+  &__field--half + &__field--half &__error {
+    right: 0;
+    left: auto;
+    &::before {
+      right: 20 * @px;
+      left: auto;
+    }
+  }
+
   .select.is-open + &__error { visibility: hidden; }
 
   &__success {
@@ -228,6 +249,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .contact-form__field,
   .contact-form__error,
   .contact-form__control::after,
   .contact-form__select::after { transition: none; }
