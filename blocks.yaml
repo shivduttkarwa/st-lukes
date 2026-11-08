@@ -219,7 +219,7 @@ blocks:
       image: ImageChooserBlock(required)   # fill-1280x1527
       title: CharBlock(required)
       text: TextBlock   # line breaks apply from 992 up
-      fields: a Wagtail form page's fields (text, email, tel, select, textarea); half = two to a row; error = message when empty; invalid = message when the format is wrong; pattern = optional regex
+      fields: a Wagtail form page's fields (text, email, tel, select, textarea); half = two to a row; error = message when empty; invalid = message when the format is wrong; pattern = optional regex, which browsers compile with the v flag, so ( ) [ ] { } / - | need a backslash inside a [class]
       button: CharBlock   # the submit label
       success: CharBlock   # shown after a valid send
 

@@ -205,7 +205,7 @@
             "placeholder": "example@gmail.com",
             "error": "Please enter your phone number",
             "invalid": "Please enter a valid phone number",
-            "pattern": "[0-9+() \\-]{8,}"
+            "pattern": "[0-9+\\(\\) \\-]{8,}"
           },
           {
             "type": "select",
