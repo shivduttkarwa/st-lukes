@@ -1,5 +1,13 @@
 # Changelog
 
+## 2026-11-08 — Smoother scrolling on every device
+- The CTA title no longer stalls the scroll above the footer. Its outlined second line is cut out by an SVG filter, and while the line rose with the scroll it was re-filtered on the CPU every frame. The line now sits on its own GPU layer for as long as it is split (`.outline-text-clear()`), so the filter is drawn by the compositor. Measured headless at 1920 × 945 on Our School, scrolling into the CTA: 8 frames over 34ms with a worst of 217ms, now at most 2 with none in the rise. The same mixin covers the Discover and Learning titles.
+- Wheel and trackpad scrolling eases out with a lerp (0.09) instead of a fixed 1.2s glide: one wheel notch settles quickly, a flick glides out, and the feel is the same at 60 and 120Hz. Touch scrolling stays native.
+- Phones: the reveals are no longer all re-measured when the address bar collapses mid-scroll (ScrollTrigger `ignoreMobileResize`).
+- The news sliders hold a GPU layer only for the story on screen and the two swapping, not for every photo and video in the slider.
+- Every background video (hero, CTA, Discover, Our School banner) pauses once it leaves the screen and resumes when it returns, as the promo and pillar videos already did. `data-ambient` alone does this now; `data-ambient="view"` is gone.
+- Lazy photos are decoded once they are within a screen of view (`initEagerPhotos()` in `ui.js`), so no frame waits on a decode as a photo scrolls in. The sliders already did this for their own photos.
+
 ## 2026-11-08 — Contact form bubbles and menu
 - A field's error bubble and the open Category menu sit over the fields below. The reveal left a transform on every field, so the next label (Email under First Name) and the Message field drew over them.
 - First and Last Name bubbles stay on one line on phones: they can run across both columns, and Last Name's grows leftwards from its right edge. All six fit on one line at 320, 375 and 430.

@@ -402,8 +402,8 @@ export function initVideoCards() {
   document.addEventListener("keydown", (event) => { if (event.key === "Escape" && open) close(open); });
 }
 
-// background videos autoplay muted; data-ambient="view" ones play only while on screen, once their reveal has landed
-// and while their promo isn't playing; under reduced motion they hold on their first frame. is-live marks one that has
+// background videos play muted only while on screen, once their reveal has landed and while their promo isn't
+// playing; under reduced motion they hold on their first frame. is-live marks one that has
 // started, for a fade-in over its still
 const ambientStill = window.matchMedia("(prefers-reduced-motion: reduce)");
 const ambientOnScreen = new WeakSet();
@@ -432,11 +432,24 @@ function syncAmbient(video) {
   if (ambientStill.matches) {
     video.pause();
     video.currentTime = 0;
-  } else if (video.dataset.ambient === "view" && (!ambientOnScreen.has(video) || video.closest(".is-playing") || revealing(video))) {
+  } else if (!ambientOnScreen.has(video) || video.closest(".is-playing") || revealing(video)) {
     video.pause();
   } else {
     video.play().catch(() => {});
   }
+}
+
+// a lazy photo is decoded once it is within a screen of view, so no frame waits on its decode as it scrolls in
+export function initEagerPhotos() {
+  const photos = Array.from(document.querySelectorAll('img[loading="lazy"]'));
+  if (!photos.length) return;
+  const near = new IntersectionObserver((entries) => entries.forEach(({ target, isIntersecting }) => {
+    if (!isIntersecting) return;
+    near.unobserve(target);
+    target.loading = "eager";
+    target.decode().catch(() => {});
+  }), { rootMargin: "100% 0px" });
+  photos.forEach((img) => near.observe(img));
 }
 
 export function initAmbientVideos() {
@@ -449,8 +462,8 @@ export function initAmbientVideos() {
   }), { threshold: 0.3 });
   videos.forEach((video) => {
     video.addEventListener("playing", () => video.classList.add("is-live"), { once: true });
-    if (video.dataset.ambient === "view") view.observe(video);
-    syncAmbient(video);
+    view.observe(video);
+    if (ambientStill.matches) syncAmbient(video);
   });
   ambientStill.addEventListener("change", () => videos.forEach(syncAmbient));
 }

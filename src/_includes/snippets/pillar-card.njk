@@ -3,7 +3,7 @@
     <div class="pillars__layer">
       <div class="pillars__frame">
         {% set img = card.image %}{% set cls = "pillars__img" %}{% include "snippets/image.njk" %}
-        {% if card.video %}<video class="pillars__video" src="{{ card.video.src }}" muted loop playsinline preload="none" data-ambient="view" aria-hidden="true"></video>{% endif %}
+        {% if card.video %}<video class="pillars__video" src="{{ card.video.src }}" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>{% endif %}
       </div>
     </div>
   </div>

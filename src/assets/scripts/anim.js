@@ -27,7 +27,7 @@ const DEFAULTS = {
   spread: 0.6, // the longest a batch of staggered reveals may run in total
   entranceLead: 0.4, // an entrance step starts this long before the previous one ends
   titleLead: 0.6, // the step after a hero title: its last line reads as landed this long before it stops fading, so no pause
-  lenis: { duration: 1.2, smoothWheel: true, wheelMultiplier: 0.8, touchMultiplier: 1.5 },
+  lenis: { lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.8 },
 };
 
 // Scroll reveals follow the scroll forwards only: they run from their start line over this share of the
@@ -271,6 +271,7 @@ const splits = new WeakMap(); // element -> puts its markup back while split
 const entrances = new WeakMap(); // root -> its entrance timeline
 
 function initScroll(opts) {
+  ScrollTrigger.config({ ignoreMobileResize: true });
   lenis = new Lenis({ ...DEFAULTS.lenis, ...(opts.lenis || {}) });
   lenis.on("scroll", ScrollTrigger.update);
   gsap.ticker.add((t) => lenis.raf(t * 1000));

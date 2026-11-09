@@ -1,6 +1,6 @@
 {% set img = promo.image %}{% set cls = "promo__poster" %}{% include "snippets/image.njk" %}
 {% if promo.video %}
-<video class="promo__preview" src="{{ promo.video.src }}" muted loop playsinline preload="none" data-ambient="view" aria-hidden="true"></video>
+<video class="promo__preview" src="{{ promo.video.src }}" muted loop playsinline preload="none" data-ambient aria-hidden="true"></video>
 <video class="promo__video" data-src="{{ promo.video.src }}" controls playsinline preload="none" hidden></video>
 {% endif %}
 <button class="promo__play" type="button"{% if not promo.video %} disabled{% endif %}>

@@ -228,8 +228,12 @@
   p,
   .btn { translate: 0 ~"round(var(--story-y), var(--device-px, 1px))"; }
 
-  &__img,
-  &__video { will-change: transform; }
+  &.swiper-slide-active &__img,
+  &.swiper-slide-active &__video,
+  &.is-leaving &__img,
+  &.is-leaving &__video,
+  &.is-entering &__img,
+  &.is-entering &__video { will-change: transform; }
 
   // the old panel stays on top, clear, so both sets of text show over the new panel's blue as they cross
   &.is-leaving {

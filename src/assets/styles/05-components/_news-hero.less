@@ -149,7 +149,9 @@
   &__tag,
   &__title { translate: 0 ~"round(var(--story-y), var(--device-px, 1px))"; }
 
-  &__img { will-change: transform; }
+  &__story.swiper-slide-active &__img,
+  &__story.is-leaving &__img,
+  &__story.is-entering &__img { will-change: transform; }
 
   &__story.is-leaving {
     animation: story-leave @news-swap linear;
