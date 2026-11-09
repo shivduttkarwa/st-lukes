@@ -81,9 +81,9 @@
             }
           },
           {
-            "title": "Swimming",
+            "title": "Rock climbing",
             "url": "/news.html",
-            "groups": "whole junior",
+            "groups": "whole senior",
             "image": {
               "src": "/assets/images/pages/sport-1.webp",
               "alt": "",
@@ -92,9 +92,9 @@
             }
           },
           {
-            "title": "Rock climbing",
+            "title": "Swimming",
             "url": "/news.html",
-            "groups": "whole senior",
+            "groups": "whole junior",
             "image": {
               "src": "/assets/images/pages/sport-2.webp",
               "alt": "",

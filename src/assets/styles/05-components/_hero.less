@@ -152,21 +152,30 @@
 @inner-hero-foot: 33 * @px;
 @inner-hero-raise: 27 * @px;
 @inner-hero-lead: 296 * @px;
+@inner-hero-intro: 281 * @px;
 @inner-hero-least: 400 * @px;
 @inner-hero-most: 772 * @px;
+@inner-hero-room: (1024 - 772) * @px;
 
 .hero--inner,
 .hero--page { --hero-least: 80svh; }
 
 .hero--inner {
   // Figma's 772 in design px follows the root, which scales with the window's height too, so a wide screen keeps Figma's fold
-  @media (min-width: @bp-lg) { height: ~"min(53.61vw, @{inner-hero-most}, calc(100svh - var(--hero-fold, 0px)))"; }
+  @media (min-width: @bp-lg) { height: ~"min(53.61vw, @{inner-hero-most}, calc(100svh - min(var(--hero-fold, 0px), var(--hero-fold-most, 100svh))))"; }
 
-  // a page lead's text shares the first screen; its bottom padding may fall below. initHeroFold() measures it, Figma's is 296
-  &:has(+ .page-lead) {
-    --hero-fold: @inner-hero-lead;
+  &:has(+ [data-hero-fold]) {
     @media (min-width: @bp-lg) { min-height: @inner-hero-least; }
   }
+
+  // a page lead's text shares the first screen, but never takes more than the 252 Figma's 1440 × 1024 screen leaves under the hero
+  &:has(+ .page-lead) {
+    --hero-fold: @inner-hero-lead;
+    --hero-fold-most: @inner-hero-room;
+  }
+
+  // the contact intro's buttons clear the fold, so on Figma's 1440 × 1024 screen the hero is 743, not 772
+  &:has(+ .contact-intro) { --hero-fold: @inner-hero-intro; }
 
   // held to Figma's top edge: a hero shorter than 772 loses the bottom of the photo, under the shade, not the faces
   .hero__img,

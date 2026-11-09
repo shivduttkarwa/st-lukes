@@ -1,5 +1,14 @@
 # Changelog
 
+## 2026-11-09 — Desktop audit against Figma
+- Compared all nine pages with their Figma frames on the designer's screen, 1440 × 1024 (the size of Figma's screen frames, such as the preloader and the main menu): a full-page pixel diff, a vertical drift scan and a flat-colour check. Section tops line up to the pixel on every page and no flat area differs in tint.
+- Leadership and Staff: at 1440 × 1024 the hero was 728 tall, not Figma's 772, so the whole page sat 44px high. Its lead is the tallest, and the hero shrank to fit all of it on the first screen. The hero now gives up at most the 252px Figma leaves under it on that screen, so the lead runs below the fold as it does in Figma. On a shorter laptop the hero still shrinks with the window. Principal's Welcome and Extra Blocks, whose leads fit, are unchanged at every height.
+- Contact: the intro's buttons are no longer cut at the bottom of the first screen. Figma cuts them on its 1440 × 1024 screen, but the client asked for them to show whole. The hero gives up just enough room for the heading, text and buttons, with 6px to spare: 743 on a 1440 × 1024 screen, 619 at 900 tall, and Figma's 772 from 1053 tall. `data-hero-fold` now takes a selector for the part of a block that has to clear the fold.
+- Contact FAQ: everything in it sat 1px low (the list rule, the eyebrow, the title and every question). The flush padding is 0 at the top and 100 below, as Figma has it.
+- Contact Visit: the Dee Why phone numbers start where Figma has them. Figma puts two spaces after "Junior School:" and "Senior School:", and the second one is now a no-break space in the label.
+- Extra Blocks sports: the fourth card is Rock climbing, as in Figma, and Swimming moves to fifth.
+- Home pathways: the UTS Sport logo is 64 wide, Figma's slot, so the five logos after it in the second row are back on Figma's x. They were 3px right. The restored left stroke of the U stays.
+
 ## 2026-11-09 — Home logo click
 - Clicking the logo on the home page no longer sometimes leaves the hero title stuck at the top under the header. When the page loaded fast enough, the preloader started before the page transition took over. The transition then hid the loader, so the title rows were centred on an empty box at the top of the screen. The preloader now waits for the first frame, by which time the browser has said whether a transition is arriving, and steps aside if one is.
 

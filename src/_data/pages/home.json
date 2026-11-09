@@ -207,7 +207,7 @@
             "logos": [
               { "name": "ADF Careers", "url": "https://www.adfcareers.gov.au/", "image": { "src": "/assets/images/logos/adf-careers.svg", "width": 92, "height": 47 } },
               { "name": "MEGT", "url": "https://www.megt.com.au/", "image": { "src": "/assets/images/logos/megt.png", "width": 109, "height": 83 } },
-              { "name": "UTS Sport", "url": "https://www.activateuts.com.au/sport/intervarsity-sport", "image": { "src": "/assets/images/logos/uts-sport.png", "width": 66, "height": 43 } },
+              { "name": "UTS Sport", "url": "https://www.activateuts.com.au/sport/intervarsity-sport", "image": { "src": "/assets/images/logos/uts-sport.png", "width": 64, "height": 42 } },
               { "name": "American Summers", "url": "https://www.americansummers.com/", "image": { "src": "/assets/images/logos/american-summers.png", "width": 116, "height": 56 } },
               { "name": "Multiplex", "url": "https://www.multiplex.global/", "image": { "src": "/assets/images/logos/multiplex.png", "width": 146, "height": 28 } },
               { "name": "Master Builders Australia", "url": "https://www.masterbuilders.com.au/", "image": { "src": "/assets/images/logos/master-builders.png", "width": 164, "height": 41 } },

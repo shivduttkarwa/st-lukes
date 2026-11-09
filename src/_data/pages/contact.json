@@ -140,13 +140,13 @@
               },
               {
                 "icon": "phone",
-                "label": "Junior School:",
+                "label": "Junior School: ",
                 "text": "+61 2 9438 6250",
                 "url": "tel:+61294386250"
               },
               {
                 "icon": "phone",
-                "label": "Senior School:",
+                "label": "Senior School: ",
                 "text": "+61 2 9438 6200",
                 "url": "tel:+61294386200"
               }

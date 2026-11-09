@@ -312,14 +312,21 @@ export function initPromos() {
   });
 }
 
-// data-hero-fold: an inner hero gives up this block's text, with its top padding mirrored below, so the two share the first screen (_hero.less)
+// data-hero-fold: an inner hero gives up this block's text with its top padding mirrored below, or, given a selector, just that part
+// with the gap above the block mirrored below it, so they share the first screen (_hero.less)
 export function initHeroFold() {
   const sizes = new ResizeObserver((entries) => entries.forEach(({ target, contentBoxSize }) => {
-    const pad = parseFloat(getComputedStyle(target).paddingTop);
-    target.previousElementSibling.style.setProperty("--hero-fold", `${contentBoxSize[0].blockSize + 2 * pad}px`);
+    const block = target.closest("[data-hero-fold]");
+    const style = getComputedStyle(block);
+    const fold = target === block
+      ? contentBoxSize[0].blockSize + 2 * parseFloat(style.paddingTop)
+      : target.getBoundingClientRect().bottom - block.getBoundingClientRect().top + 2 * parseFloat(style.marginTop);
+    block.previousElementSibling.style.setProperty("--hero-fold", `${fold}px`);
   }));
   document.querySelectorAll("[data-hero-fold]").forEach((block) => {
-    if (block.previousElementSibling?.classList.contains("hero--inner")) sizes.observe(block);
+    if (!block.previousElementSibling?.classList.contains("hero--inner")) return;
+    const part = block.dataset.heroFold ? block.querySelector(block.dataset.heroFold) : block;
+    if (part) sizes.observe(part);
   });
 }
 
