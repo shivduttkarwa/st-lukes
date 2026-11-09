@@ -96,7 +96,8 @@ function play(root, loader, title, media) {
   });
 }
 
-// Resolves just before the title lands in the hero, so Anim's hero entrance (its `after`) follows it
+// Resolves just before the title lands in the hero, so Anim's hero entrance (its `after`) follows it, or with the page
+// transition when one arrives instead
 export function initPreloader() {
   const root = document.documentElement;
   const loader = document.querySelector("[data-preloader]");
@@ -108,8 +109,15 @@ export function initPreloader() {
     return null;
   }
   root.setAttribute("data-preloader-live", "");
-  // the preloader moves the title itself, so Anim must leave it alone
-  title.removeAttribute("data-anim");
-  const media = briefly(mediaReady(hero), 4000);
-  return briefly(document.fonts?.ready ?? Promise.resolve(), 1500).then(() => play(root, loader, title, media));
+  // a transition's pagereveal can still follow DOMContentLoaded and takes the entrance over; it has fired by the first frame
+  return new Promise((resolve) => requestAnimationFrame(resolve)).then(() => {
+    if (!root.classList.contains("is-preloading")) {
+      loader.remove();
+      return window.pageArrival;
+    }
+    // the preloader moves the title itself, so Anim must leave it alone
+    title.removeAttribute("data-anim");
+    const media = briefly(mediaReady(hero), 4000);
+    return briefly(document.fonts?.ready ?? Promise.resolve(), 1500).then(() => play(root, loader, title, media));
+  });
 }

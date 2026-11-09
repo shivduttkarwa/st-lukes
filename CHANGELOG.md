@@ -1,5 +1,8 @@
 # Changelog
 
+## 2026-11-09 — Home logo click
+- Clicking the logo on the home page no longer sometimes leaves the hero title stuck at the top under the header. When the page loaded fast enough, the preloader started before the page transition took over. The transition then hid the loader, so the title rows were centred on an empty box at the top of the screen. The preloader now waits for the first frame, by which time the browser has said whether a transition is arriving, and steps aside if one is.
+
 ## 2026-11-08 — Smoother scrolling on every device
 - The CTA title no longer stalls the scroll above the footer. Its outlined second line is cut out by an SVG filter, and while the line rose with the scroll it was re-filtered on the CPU every frame. The line now sits on its own GPU layer for as long as it is split (`.outline-text-clear()`), so the filter is drawn by the compositor. Measured headless at 1920 × 945 on Our School, scrolling into the CTA: 8 frames over 34ms with a worst of 217ms, now at most 2 with none in the rise. The same mixin covers the Discover and Learning titles.
 - Wheel and trackpad scrolling eases out with a lerp (0.09) instead of a fixed 1.2s glide: one wheel notch settles quickly, a flick glides out, and the feel is the same at 60 and 120Hz. Touch scrolling stays native.
