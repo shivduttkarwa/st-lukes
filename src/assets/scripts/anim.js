@@ -33,7 +33,8 @@ const DEFAULTS = {
 
 // Scroll reveals follow the scroll forwards only: they run from their start line over this share of the
 // viewport, trailing the scroll by `smooth` seconds, and stay revealed once they reach the end.
-const SCRUB = { distance: 0.28, smooth: 0.4 };
+// On phones a flick jumps a reveal to its end, so it catches up no faster than `rate` times its own pace instead of popping in.
+const SCRUB = { distance: 0.28, smooth: 0.4, rate: 1 };
 
 // `swing-in` (the Mina Wylie photo) swings down from the top right: start as % of its own width / height, and the turn in degrees
 const SWING = { x: 20, y: -25, rotation: 18, ease: "power3.out" };
@@ -226,9 +227,10 @@ function afterEntrance(play) {
 }
 
 // On phones a section's copy follows its title: the nearest split before it in the same `main > *` block.
-// An ancestor with data-anim-titles-first="off" switches that off (the home page, choreographed per block).
+// An ancestor with data-anim-titles-first="off" switches that off (the home page, choreographed per block), except for data-anim-after-title.
 const titleDurations = new WeakMap(); // split -> how long its animation runs
-const titlesFirst = (el) => phone.matches && !el.closest('[data-anim-titles-first="off"]');
+const titlesFirst = (el) =>
+  phone.matches && (el.hasAttribute("data-anim-after-title") || !el.closest('[data-anim-titles-first="off"]'));
 function titleFor(el) {
   const section = el.closest("main > *");
   if (!section) return null;
@@ -326,7 +328,10 @@ function scrollStep(el, animation, hold, distance = SCRUB.distance) {
         self.kill();
         triggers.delete(el);
       }
-      if (progress > timeline().progress()) gsap.to(tl, { progress, duration: SCRUB.smooth, ease: "power2.out", overwrite: true });
+      if (progress <= timeline().progress()) return;
+      const behind = (progress - tl.progress()) * tl.duration();
+      const duration = phone.matches ? Math.max(SCRUB.smooth, behind / SCRUB.rate) : SCRUB.smooth;
+      gsap.to(tl, { progress, duration, ease: "power2.out", overwrite: true });
     },
   });
   triggers.set(el, st);
@@ -516,9 +521,11 @@ function setupReveals(root, entrance, scroll) {
     }
 
     const title = el.hasAttribute("data-anim-after-title") && titleFor(el);
-    // a title on the first screen plays at once, so a follower still below the screen keeps its own trigger instead of finishing out of sight
+    // a title on the first screen plays at once, so a follower still below the screen keeps its own trigger instead of finishing out of sight;
+    // a timed follower (data-anim-scroll-mobile="timed" where phones stack it far under its title) waits for the title from its own start line
     const below = (node) => node.getBoundingClientRect().top >= window.innerHeight;
-    if (title && title.hasAttribute(BOUND) && !(below(el) && !below(title))) {
+    const timed = attr(el, variant(el, "data-anim-scroll")) === "timed";
+    if (title && title.hasAttribute(BOUND) && !timed && !(below(el) && !below(title))) {
       followers.set(title, [...(followers.get(title) || []), el]);
       return;
     }

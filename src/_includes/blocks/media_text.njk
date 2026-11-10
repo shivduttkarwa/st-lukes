@@ -1,13 +1,13 @@
 <section class="media-text media-text--{{ value.side | default('right') }}" data-anim-titles-first="off">
   <div class="media-text__body">
-    <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
-    <div class="media-text__copy" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{{ value.body | safe }}</div>
+    <h2 data-anim="split" data-anim-type="lines" data-anim-scroll-mobile="timed">{{ value.title }}</h2>
+    <div class="media-text__copy" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title data-anim-scroll-mobile="timed">{{ value.body | safe }}</div>
     {% if value.buttons %}
-    <div class="media-text__actions" data-anim-group="fade-up" data-anim-after-title>
+    <div class="media-text__actions" data-anim-group="fade-up" data-anim-after-title data-anim-scroll-mobile="timed">
       {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
     </div>
     {% endif %}
-    {% if value.note %}<p class="media-text__note" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{{ value.note }}</p>{% endif %}
+    {% if value.note %}<p class="media-text__note" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title data-anim-scroll-mobile="timed">{{ value.note }}</p>{% endif %}
   </div>
   <div class="media-text__frame" data-anim="reveal" data-anim-type="{% if value.side == 'left' %}glide-right{% else %}glide-left{% endif %}" data-anim-scroll="timed">
     {% set img = value.image %}{% set cls = "media-text__img" %}{% include "snippets/image.njk" %}
