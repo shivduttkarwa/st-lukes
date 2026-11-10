@@ -1,0 +1,11 @@
+<div class="quick-links{% if quick_class %} {{ quick_class }}{% endif %}" data-disclosure>
+  <button class="quick-links__toggle" type="button" aria-expanded="false" aria-controls="{{ quick_id }}">
+    <span data-label="{{ site.quick_links_label }}">{{ site.quick_links_label }}</span>
+    <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
+  </button>
+  <ul class="quick-links__panel" id="{{ quick_id }}">
+    {% for item in site.quick_links %}
+    <li><a{% if item.url %} href="{{ item.url }}"{% endif %}>{{ item.label }}</a></li>
+    {% endfor %}
+  </ul>
+</div>

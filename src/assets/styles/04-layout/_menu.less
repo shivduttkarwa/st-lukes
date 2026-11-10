@@ -145,7 +145,10 @@ html.is-locked {
     }
   }
 
+  // above the scrolling body, which the Quick Links dropdown opens over
   &__top {
+    position: relative;
+    z-index: 1;
     display: grid;
     grid-template-columns: 1fr auto;
     align-items: center;
@@ -214,11 +217,13 @@ html.is-locked {
     }
   }
 
+  // a phone held upright packs its links closer, so the Quick Links pill still fits beside them at 390
   &__utility {
     display: flex;
     flex-wrap: wrap;
-    gap: 16 * @px 24 * @px;
+    gap: 16 * @px;
     grid-column: 1 / -1;
+    @media (min-width: @bp-sm) { gap: 16 * @px 24 * @px; }
     @media (min-width: @bp-lg) {
       flex: none;
       flex-wrap: nowrap;
@@ -262,9 +267,18 @@ html.is-locked {
     }
   }
 
+  // a phone held upright has no Quick Links in its header, so they drop down from the right of this row instead,
+  // filling what the links leave up to desktop's width, or a line of their own where the label won't fit
+  &__quick {
+    flex: 1 0 auto;
+    width: auto;
+    margin-left: auto;
+    @media (min-width: @bp-sm) { display: none; }
+  }
+
   // the narrow panel has no room for all three links beside the search field: the middle ones fold away with it
   @media (min-width: @bp-lg) {
-    &:not(.is-wide) &__utility-link:not(:first-child):not(:last-child) {
+    &:not(.is-wide) &__utility-link:not(:first-of-type):not(:last-of-type) {
       grid-template-columns: 0fr;
       margin-left: -@menu-utility-gap;
       opacity: 0;

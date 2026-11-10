@@ -11,6 +11,7 @@
         {% for item in site.utility_links %}
         <a class="menu__utility-link"{% if item.url %} href="{{ item.url }}"{% endif %}><span>{{ item.label }}</span></a>
         {% endfor %}
+        {% set quick_id = "menu-quick-links-panel" %}{% set quick_class = "quick-links--desktop quick-links--light menu__quick" %}{% include "snippets/quick-links.njk" %}
       </div>
       <button class="menu__close" type="button" aria-label="Close menu" data-menu-close><span class="menu-icon" aria-hidden="true"></span></button>
     </div>

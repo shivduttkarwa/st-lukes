@@ -4,6 +4,7 @@
 @quick-head: 54 * @px;
 @quick-list-top: 64 * @px;
 @quick-pad-x-sm: 16 * @px;
+@quick-shadow-room: 32 * @px;
 @quick-pad-x: 25 * @px;
 @quick-pad-y: 15 * @px;
 @quick-row: 26 * @px;
@@ -92,18 +93,15 @@
   &.is-instant *,
   &.is-instant *::before { transition: none !important; }
 
-  // phones and tablets: the logo on the left, Quick Links and the menu together on the right
   &__bar {
     position: relative;
     display: grid;
-    grid-template-columns: auto minmax(0, 1fr) auto;
-    grid-template-areas: "brand quick tools";
-    column-gap: 12 * @px;
+    grid-template-columns: 1fr auto 1fr;
+    grid-template-areas: "quick brand tools";
+    column-gap: 8 * @px;
     align-items: start;
     padding-inline: var(--gutter);
     @media (min-width: @bp-lg) {
-      grid-template-columns: 1fr auto 1fr;
-      grid-template-areas: "quick brand tools";
       column-gap: 0;
       padding-inline: @header-pad-x;
     }
@@ -111,11 +109,14 @@
 
   &__brand { grid-area: brand; }
 
+  // a phone held upright has no room beside the centred logo, so its Quick Links sit in the menu (menu__quick)
   &__quick {
     grid-area: quick;
     position: relative;
     z-index: 1;
+    display: none;
     padding-top: @header-top-sm;
+    @media (min-width: @bp-sm) { display: block; }
     @media (min-width: @bp-lg) { padding-top: @header-top; }
   }
 
@@ -131,14 +132,13 @@
     padding: 10 * @px;
     background: var(--color-royal);
     scale: 1;
-    transform-origin: top left;
+    transform-origin: top center;
     will-change: transform;
     transition: scale @stuck-morph;
     @media (min-width: @bp-lg) {
       width: 136 * @px;
       height: var(--header-height);
       padding: 18 * @px;
-      transform-origin: top center;
     }
   }
 
@@ -213,19 +213,16 @@
   }
 }
 
-// a set width as on desktop, up to the room between the logo and the menu button
 .quick-links {
   --quick-head: var(--tap-size);
   position: relative;
   width: 100%;
   max-width: @quick-width-sm;
-  margin-left: auto;
   transition: translate @stuck-morph;
   @media (min-width: @bp-lg) {
     --quick-head: @quick-head;
     width: fit-content;
     max-width: none;
-    margin-left: 0;
   }
 
   &__toggle {
@@ -273,7 +270,7 @@
     .reset-list();
     position: absolute;
     top: 0;
-    right: 0;
+    left: 0;
     width: max-content;
     min-width: 100%;
     // a phone held sideways is shorter than the list; the room under the toggle is a border so rows scroll below it, not behind it
@@ -290,8 +287,6 @@
     visibility: hidden;
     transition: clip-path var(--duration-slow) var(--ease-settle), opacity var(--duration-base) ease var(--duration-fast), visibility 0s linear var(--duration-slow);
     @media (min-width: @bp-lg) {
-      right: auto;
-      left: 0;
       padding: @quick-list-top @quick-pad-x @quick-pad-y;
       border-top: 0;
     }
@@ -321,6 +316,53 @@
     visibility: visible;
     transition-delay: 0s;
   }
+
+  // desktop's pill and card at desktop's sizes on any screen (the phone menu), 26px rows on touch included
+  &--desktop {
+    --quick-head: @quick-head;
+    max-width: @quick-width;
+  }
+
+  &--desktop &__toggle {
+    .type-heading-6-desktop();
+    gap: 16 * @px;
+    padding: 0 @quick-pad-x;
+  }
+
+  // Safari paints a transition of the registered --quick-turn at its end value at once, so the phone's chevron turns by `rotate`
+  &--desktop &__toggle .icon {
+    rotate: 0deg;
+    transition: rotate var(--duration-slow) var(--ease-settle);
+    use { transform: none; }
+  }
+
+  &--desktop.is-open &__toggle .icon { rotate: 180deg; }
+
+  // a list wider than a narrow pill may reach into the gutter, never off the screen
+  &--desktop &__panel {
+    max-width: ~"calc(100% + var(--gutter) / 2)";
+    padding: @quick-list-top @quick-pad-x @quick-pad-y;
+    border-top: 0;
+    a { min-height: @quick-row; }
+  }
+
+  // on a white panel (the phone menu): a pill tinted like the search field with a navy label, fading into the white card, and a
+  // subtle shadow on the card. That shadow is painted once on the card's own layer and the open clip reaches past it with
+  // concentric corners, so the unfold neither repaints nor cuts it
+  &--light &__toggle {
+    background: var(--color-black-5);
+    color: var(--color-navy);
+  }
+
+  &--light.is-open &__toggle { background-color: transparent; }
+
+  &--light &__panel {
+    border-radius: @quick-radius;
+    box-shadow: 0 8 * @px 24 * @px -8 * @px var(--color-popup-shade), 0 1 * @px 4 * @px var(--color-glass-shade-soft);
+    will-change: transform;
+  }
+
+  &--light.is-open &__panel { clip-path: inset(-@quick-shadow-room round (@quick-radius + @quick-shadow-room)); }
 }
 
 html.is-locked .site-header.is-stuck { right: var(--scrollbar-gutter, 0); }
@@ -337,5 +379,6 @@ html.is-locked .site-header.is-stuck { right: var(--scrollbar-gutter, 0); }
   .quick-links__toggle span,
   .quick-links__toggle span::after,
   .quick-links__toggle .icon use,
-  .quick-links__panel { transition: none; }
+  .quick-links__panel,
+  .quick-links--desktop .quick-links__toggle .icon { transition: none; }
 }

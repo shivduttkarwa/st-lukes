@@ -35,11 +35,12 @@ export function initDisclosures() {
       toggle.setAttribute("aria-expanded", String(open));
     };
     toggle.addEventListener("click", () => set(!root.classList.contains("is-open")));
+    // an open one takes Escape for itself, so inside the menu it closes before the menu does
     root.addEventListener("keydown", (e) => {
-      if (e.key === "Escape") {
-        set(false);
-        toggle.focus();
-      }
+      if (e.key !== "Escape" || !root.classList.contains("is-open")) return;
+      e.stopPropagation();
+      set(false);
+      toggle.focus();
     });
     document.addEventListener("click", (e) => {
       if (!root.contains(e.target)) set(false);
