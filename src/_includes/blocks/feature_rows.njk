@@ -1,4 +1,4 @@
-<section class="features">
+<section class="features" data-anim-titles-first="off">
   {% for row in value.rows %}
   <article class="features__row">
     <div class="features__frame" data-anim="reveal" data-anim-type="{% if loop.index % 2 %}glide-right{% else %}glide-left{% endif %}" data-anim-scroll="timed">
@@ -6,9 +6,9 @@
     </div>
     <div class="features__body">
       <h2 data-anim="split" data-anim-type="lines">{{ row.title }}</h2>
-      <p data-anim="reveal" data-anim-type="fade-up">{{ row.text }}</p>
+      <p data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{{ row.text }}</p>
       {% if row.button %}
-      <div data-anim="reveal" data-anim-type="fade-up">{% set btn = row.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
+      <div data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{% set btn = row.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>
       {% endif %}
     </div>
   </article>
