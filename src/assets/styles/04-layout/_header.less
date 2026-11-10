@@ -127,7 +127,7 @@
     justify-content: center;
     gap: 4 * @px;
     width: 80 * @px;
-    height: 94 * @px;
+    height: @logo-height-sm;
     padding: 10 * @px;
     background: var(--color-royal);
     scale: 1;
@@ -276,7 +276,13 @@
     right: 0;
     width: max-content;
     min-width: 100%;
-    padding: var(--tap-size) @quick-pad-x-sm 8 * @px;
+    // a phone held sideways is shorter than the list; the room under the toggle is a border so rows scroll below it, not behind it
+    max-height: calc(100svh - 2 * @header-top-sm);
+    padding: 0 @quick-pad-x-sm 8 * @px;
+    border-top: var(--tap-size) solid var(--color-white);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
     background: var(--color-white);
     color: var(--color-navy);
     clip-path: inset(0 0 calc(100% - var(--quick-head)) 0 round calc(var(--quick-head) / 2));
@@ -287,6 +293,7 @@
       right: auto;
       left: 0;
       padding: @quick-list-top @quick-pad-x @quick-pad-y;
+      border-top: 0;
     }
     a {
       .type-body-3();

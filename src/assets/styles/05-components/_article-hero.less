@@ -4,6 +4,8 @@
 @article-hero-room: 180 * @px;
 @article-hero-most: 774 * @px;
 @article-hero-least: 400 * @px;
+@article-hero-card-sm: 420 * @px;
+@article-hero-room-sm: 48 * @px;
 
 .article-hero {
   position: relative;
@@ -21,7 +23,8 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    min-height: 420 * @px;
+    // a phone held sideways keeps the title in the first screen, with 32 of air below
+    min-height: ~"min(@{article-hero-card-sm}, calc(100svh - var(--header-height) - @{article-hero-room-sm}))";
     padding: 20 * @px;
     overflow: hidden;
     color: var(--color-white);

@@ -6,6 +6,8 @@
 // below lg the home hero fills the first screen down to the title's last row and some air, so the intro starts below the fold
 @hero-fold-room-sm: 56 * @px;
 @hero-fold-room-md: 88 * @px;
+@hero-logo-air: 24 * @px;
+@hero-notice-width: 361 * @px;
 @page-hero-eyebrow-x: 99 * @px;
 @page-hero-eyebrow-y: 155 * @px;
 @page-hero-row-1: 92 * @px;
@@ -19,7 +21,8 @@
   justify-content: flex-end;
   --hero-least: ~"calc(100svh - @{hero-fold-room-sm})";
   min-height: var(--hero-least);
-  padding: var(--header-height) 0 0;
+  // a short screen fills the hero, so its top padding has to clear the logo, which hangs below the header bar
+  padding: (@logo-height-sm + @hero-logo-air) 0 0;
   color: var(--color-white);
   background: var(--color-navy);
   @media (min-width: @bp-md) { --hero-least: ~"calc(100svh - @{hero-fold-room-md})"; }
@@ -60,11 +63,18 @@
     background: var(--gradient-hero-top), var(--gradient-hero-bottom);
   }
 
+  // from sm the statement and the notice share a row above the title, as on desktop, so a phone held sideways fits the hero
   &__inner {
     position: relative;
     display: flex;
     flex-direction: column;
     padding: 0 var(--gutter);
+    @media (min-width: @bp-sm) {
+      flex-flow: row wrap;
+      align-items: flex-end;
+      justify-content: space-between;
+      column-gap: 24 * @px;
+    }
     @media (min-width: @bp-lg) {
       position: static;
       padding: 0;
@@ -75,6 +85,7 @@
     .type-heading-5();
     max-width: 286 * @px;
     margin: 0 0 24 * @px;
+    @media (min-width: @bp-sm) { margin-bottom: 32 * @px; }
     @media (min-width: @bp-lg) {
       position: absolute;
       left: 48 * @px;
@@ -92,6 +103,7 @@
     margin: 0;
     margin-bottom: -@hero-title-overhang;
     color: var(--color-gold);
+    @media (min-width: @bp-sm) { flex: 0 0 100%; }
     @media (min-width: @bp-lg) {
       position: absolute;
       left: 0;
@@ -137,11 +149,15 @@
   &__notice {
     order: 1;
     margin: 0 0 32 * @px;
+    @media (min-width: @bp-sm) {
+      flex: 1 1 0%;
+      max-width: @hero-notice-width;
+    }
     @media (min-width: @bp-lg) {
       position: absolute;
       right: 48 * @px;
       bottom: 148 * @px;
-      width: 361 * @px;
+      width: @hero-notice-width;
       margin: 0;
     }
     @media (min-width: @bp-xl) { bottom: 67 * @px; }
@@ -284,10 +300,11 @@
     display: block;
   }
 
+  // on a short screen it opens downwards over the title, as there is no room above the teaser under the header
   &__card {
     position: absolute;
+    top: 0;
     right: 0;
-    bottom: 0;
     z-index: 1;
     display: flex;
     flex-direction: column;
@@ -301,17 +318,24 @@
     visibility: hidden;
     transform: translateY(16 * @px);
     transition: opacity var(--duration-base) ease, transform var(--duration-slow) var(--ease-out), visibility 0s linear var(--duration-base);
+    @media (min-height: @bp-tall) {
+      top: auto;
+      bottom: 0;
+    }
     @media (min-width: @bp-lg) {
+      top: auto;
       right: -5 * @px;
       bottom: -35 * @px;
     }
   }
 
+  // the card opens upwards from the teaser, and on a short screen its photo would rise off the top of the page
   &__image {
-    display: block;
+    display: none;
     width: 100%;
     height: 212 * @px;
     object-fit: cover;
+    @media (min-height: @bp-tall) { display: block; }
   }
 
   &__eyebrow {
