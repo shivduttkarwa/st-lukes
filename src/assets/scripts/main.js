@@ -18,7 +18,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initMarquees();
   initAmbientVideos();
   // pagereveal has fired by the first frame, so an arrival's transition is known by then
-  const arrival = new Promise((resolve) => requestAnimationFrame(() => resolve(window.pageArrival)));
+  // a hero with nothing behind its copy enters as the circle opens, or the circle opens on a blank panel
+  const early = document.querySelector('[data-anim-arrival="early"]');
+  const arrival = new Promise((resolve) => requestAnimationFrame(() => resolve(early ? window.pageOpening : window.pageArrival)));
   Anim.init({ after: preloaded || arrival, afterMax: preloaded ? 10000 : 2000 });
   initDisclosures();
   initAccordions();
