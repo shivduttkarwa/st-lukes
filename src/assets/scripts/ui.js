@@ -247,13 +247,27 @@ export function initFilters() {
   });
 }
 
-// touch has no hover, so a tapped [data-press] link keeps its hover look while the next page loads
+// touch has no hover, so a tapped [data-press] link eases into its hover look and the page waits for it before leaving
 export function initPress() {
+  const touch = matchMedia("(hover: none)");
+  const still = matchMedia("(prefers-reduced-motion: reduce)");
   document.addEventListener("click", (event) => {
     const link = event.target.closest("[data-press][href]");
     if (!link) return;
     link.classList.add("is-pressed");
     setTimeout(() => link.classList.remove("is-pressed"), 1500);
+    const ownTab = !event.button && !event.metaKey && !event.ctrlKey && !event.shiftKey && !event.altKey && (!link.target || link.target === "_self");
+    if (!touch.matches || still.matches || event.defaultPrevented || !ownTab || link.classList.contains("is-current")) return;
+    event.preventDefault();
+    let gone = false;
+    const go = () => {
+      if (gone) return;
+      gone = true;
+      location.assign(link.href);
+    };
+    const label = link.querySelector("span");
+    label?.addEventListener("transitionend", (e) => e.propertyName === "transform" && go());
+    setTimeout(go, (parseFloat(getComputedStyle(link).getPropertyValue("--duration-base")) || 0.35) * 1000);
   });
   window.addEventListener("pageshow", () => document.querySelectorAll(".is-pressed").forEach((link) => link.classList.remove("is-pressed")));
 }

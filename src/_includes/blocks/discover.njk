@@ -9,8 +9,8 @@
   <div class="container">
     <div class="discover__content">
       <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="discover__outline">{{ value.title_line_2 }}</span></h2>
-      <p class="discover__lead" data-anim="reveal" data-anim-type="fade-up">{{ value.lead }}</p>
-      <div class="discover__actions" data-anim-group="fade-up">
+      <p class="discover__lead" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{{ value.lead }}</p>
+      <div class="discover__actions" data-anim-group="fade-up" data-anim-after-title>
         {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
       </div>
     </div>

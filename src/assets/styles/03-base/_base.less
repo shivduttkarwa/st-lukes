@@ -14,7 +14,8 @@ html {
   overflow-x: clip;
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) transparent;
-  transition: --scrollbar-thumb var(--duration-slow) ease;
+  // each frame of the fade restyles the whole page, which stalled the end of the preloader on a phone, where the thumb never shows
+  @media @fine { transition: --scrollbar-thumb var(--duration-slow) ease; }
   -webkit-text-size-adjust: 100%;
 }
 

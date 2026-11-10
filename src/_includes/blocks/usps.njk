@@ -5,11 +5,11 @@
         <div class="usps__intro">
           <p class="usps__eyebrow" data-anim="reveal" data-anim-type="fade-up">{{ value.eyebrow }}</p>
           <h2 data-anim="split" data-anim-type="lines">{{ value.title }}</h2>
-          <div class="usps__actions" data-anim-group="fade-up">
+          <div class="usps__actions" data-anim-group="fade-up" data-anim-after-title>
             {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
           </div>
         </div>
-        <div class="usps__nav" data-anim="reveal" data-anim-type="fade">
+        <div class="usps__nav" data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>
           <button class="usps__arrow usps__arrow--prev" type="button" aria-label="Previous" data-slider-prev><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
           <button class="usps__arrow" type="button" aria-label="Next" data-slider-next><svg class="icon" aria-hidden="true"><use href="#icon-arrow-corner"></use></svg></button>
         </div>

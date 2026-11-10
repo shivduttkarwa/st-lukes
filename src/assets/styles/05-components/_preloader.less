@@ -43,7 +43,8 @@
 }
 
 html.is-preloading {
-  --scrollbar-thumb: transparent;
+  // only where the thumb shows: changing it on the root restyles the whole page, a stall on a phone as the hole opens
+  @media @fine { --scrollbar-thumb: transparent; }
 
   .hero { z-index: auto; }
 

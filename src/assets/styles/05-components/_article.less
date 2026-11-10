@@ -1,4 +1,7 @@
 .article {
+  // the last paragraph ends 6 above the edge, and the next section would hide it as it rises in
+  position: relative;
+  z-index: 1;
   padding: 64 * @px var(--gutter) 6 * @px;
   background: var(--color-white);
   @media (min-width: @bp-lg) { padding-top: 104 * @px; }

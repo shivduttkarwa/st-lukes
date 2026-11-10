@@ -27,6 +27,7 @@ const DEFAULTS = {
   spread: 0.6, // the longest a batch of staggered reveals may run in total
   entranceLead: 0.4, // an entrance step starts this long before the previous one ends
   titleLead: 0.6, // the step after a hero title: its last line reads as landed this long before it stops fading, so no pause
+  follow: 0.15, // reveals that follow a title (data-anim-after-title) start this far apart, in page order
   lenis: { lerp: 0.09, smoothWheel: true, wheelMultiplier: 0.8 },
 };
 
@@ -263,7 +264,7 @@ function titleWait(el, hold) {
 }
 
 // data-anim-after-title: a reveal that joins the timeline of the title before it, starting as its last line lands,
-// so it can never beat the title however fast the reader scrolls
+// so it can never beat the title however fast the reader scrolls. Several follow one another in page order; on a group it marks every item
 const followers = new WeakMap(); // split -> the reveals that join it
 
 const triggers = new WeakMap(); // element -> its ScrollTrigger
@@ -410,7 +411,7 @@ function hurryOnScroll(tl) {
 // data-anim-group -> tag direct children as staggered reveals (auto ordering); its scroll mode, stagger,
 // data-anim-media and start line pass to them
 const groupItems = new WeakMap(); // a group's item -> all of that group's items
-const PASSED = ["data-anim-scroll", "data-anim-scroll-mobile", "data-anim-stagger", "data-anim-media", "data-anim-start", "data-anim-start-mobile"];
+const PASSED = ["data-anim-scroll", "data-anim-scroll-mobile", "data-anim-stagger", "data-anim-media", "data-anim-start", "data-anim-start-mobile", "data-anim-after-title"];
 
 function expandGroups(root) {
   scoped(root, "[data-anim-group]").forEach((group) => {
@@ -506,6 +507,8 @@ function setupReveals(root, entrance, scroll) {
       followers.set(title, [...(followers.get(title) || []), el]);
       return;
     }
+    // one that cannot join its title plays on the clock, where copy keeps to page order however fast the scroll
+    if (title) el.setAttribute("data-anim-scroll", "timed");
 
     play(el, revealStep(el), entrance, scroll, staggerHold(el));
   });
@@ -599,7 +602,7 @@ function setupSplits(root, entrance, scroll) {
           .to(lines, { ...LINES.fade, stagger }, 0)
           .to(lines, { ...rise, stagger }, 0);
         const landed = tl.duration() - (LINES.fade.duration - rise.duration);
-        followers.get(el)?.forEach((follower) => tl.add(revealStep(follower).animation(), landed));
+        followers.get(el)?.forEach((follower, i) => tl.add(revealStep(follower).animation(), landed + i * DEFAULTS.follow));
         return tl;
       },
     }, entrance, scroll);

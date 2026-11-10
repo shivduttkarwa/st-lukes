@@ -2,7 +2,7 @@
   <div class="container">
     <div class="news__head">
       <h2 data-anim="split" data-anim-type="lines">{{ value.title_line_1 }} <span class="news__outline">{{ value.title_line_2 }}</span></h2>
-      {% if value.button %}<div data-anim="reveal" data-anim-type="fade">{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>{% endif %}
+      {% if value.button %}<div data-anim="reveal" data-anim-type="fade-up" data-anim-after-title>{% set btn = value.button %}{% set plain = true %}{% include "snippets/button.njk" %}</div>{% endif %}
     </div>
     <div class="news__feature" data-slider-scope>
       <div class="news__slider swiper" data-slider data-slider-mode="stack" data-slider-autoplay="4000">

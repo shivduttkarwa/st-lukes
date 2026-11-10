@@ -33,9 +33,12 @@
 @menu-close-in: 450ms;
 
 html.is-locked {
-  --scrollbar-thumb: transparent;
   overflow: hidden;
-  padding-right: var(--scrollbar-gutter, 0);
+  // a phone has no scrollbar to make room for, and a var() switching on or off at the root restyles the whole page
+  @media @fine {
+    --scrollbar-thumb: transparent;
+    padding-right: var(--scrollbar-gutter, 0);
+  }
 }
 
 // registered properties animate on the main thread, so the arrow, the submenu fade and the result photos never snap off a GPU layer

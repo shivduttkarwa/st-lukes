@@ -9,7 +9,7 @@
   <div class="container">
     <div class="cta__content">
       <h2 data-anim="split" data-anim-type="lines"><span>{{ value.title_line_1 }}</span> <span class="cta__outline">{{ value.title_line_2 }}</span></h2>
-      <div class="cta__actions" data-anim-group="fade-up">
+      <div class="cta__actions" data-anim-group="fade-up" data-anim-after-title>
         {% for btn in value.buttons %}{% set plain = true %}{% include "snippets/button.njk" %}{% endfor %}
       </div>
     </div>

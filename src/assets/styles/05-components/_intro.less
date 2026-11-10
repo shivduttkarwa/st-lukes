@@ -3,12 +3,15 @@
 
 .intro {
   position: relative;
+  // below lg the photo's button ends on the section's edge, and the next section would hide it as it rises in
+  z-index: 1;
   display: grid;
   padding-top: 88 * @px;
   background: var(--color-navy);
   color: var(--color-white);
   @media (min-width: @bp-md) { padding-top: 120 * @px; }
   @media (min-width: @bp-lg) {
+    z-index: auto;
     grid-template-columns: minmax(0, 821fr) minmax(0, 111fr) minmax(0, 508fr);
     align-items: start;
     margin-bottom: -1 * @px;
