@@ -59,15 +59,18 @@ const landing = (ease, cut) => {
   const end = curve(cut);
   return (progress) => curve(progress * cut) / end;
 };
+// landing("power2.out", 0.85) is a cubic (GSAP's power2), so the compositor runs it as this Bézier to within 0.02px
+const LANDING_CURVE = "cubic-bezier(0.3333, 0.8529, 0.6667, 0.9808)";
 
 // A title row spans the whole title, so it starts with its text just past the screen edge, not its box, or the glide begins out of sight
+const OFF = 8; // it waits there already drawn, so a glyph's overhang or an outline's stroke must stay out of view
 const ink = (el) => {
   const range = document.createRange();
   range.selectNodeContents(el);
   return range.getBoundingClientRect();
 };
-const offLeft = (i, el) => -ink(el).right;
-const offRight = (i, el) => document.documentElement.clientWidth - ink(el).left;
+const offLeft = (i, el) => -ink(el).right - OFF;
+const offRight = (i, el) => document.documentElement.clientWidth - ink(el).left + OFF;
 
 // a textPath label on a circle that starts at 3 o'clock and runs clockwise starts out turned to 12 o'clock
 const fromTop = (i, el) => {
@@ -91,9 +94,9 @@ const REVEAL = {
   "orbit":      { from: { rotation: fromTop, transformOrigin: "50% 50%", autoAlpha: 0 }, to: { rotation: 0, autoAlpha: 1, duration: 1.6, ease: "power2.inOut" } }, // a circle's curved label travels down to its place
   "from-left":  { from: { x: "-15%", autoAlpha: 0 },            to: { x: "0%", autoAlpha: 1 } },
   "from-right": { from: { x: "15%", autoAlpha: 0 },             to: { x: "0%", autoAlpha: 1 } },
-  // solid from off the canvas, as the preloader title: visibility flips as the tween starts
-  "enter-right": { from: { x: offRight, visibility: "hidden" }, to: { x: 0, visibility: "inherit", duration: 1, ease: landing("power2.out", 0.85) } },
-  "enter-left":  { from: { x: offLeft, visibility: "hidden" },  to: { x: 0, visibility: "inherit", duration: 1, ease: landing("power2.out", 0.85) } },
+  // solid from off the canvas, as the preloader title, drawn on its layer (_animation.less) before it moves; in a sequence it glides on the compositor (`curve`)
+  "enter-right": { from: { x: offRight, visibility: "inherit" }, to: { x: 0, duration: 1, ease: landing("power2.out", 0.85) }, curve: LANDING_CURVE },
+  "enter-left":  { from: { x: offLeft, visibility: "inherit" },  to: { x: 0, duration: 1, ease: landing("power2.out", 0.85) }, curve: LANDING_CURVE },
   // 2D only: a GPU layer would shift the header text and change its sharpness as the drop ends
   "drop-soft":   { from: { y: -DROP, autoAlpha: 0, force3D: false }, to: { autoAlpha: 1, keyframes: { "57%": { y: 0, ease: whole("power2.out", DROP) }, ease: "none" } } },
   "nudge-right": { from: { x: 40, autoAlpha: 0 },               to: { x: 0, autoAlpha: 1 } },
@@ -351,8 +354,8 @@ function play(el, step, entrance, scroll, hold = orderOf(el) * DEFAULTS.stagger)
 }
 
 function playEntrance(steps, root) {
-  if (!steps.length) return;
-  const tl = gsap.timeline();
+  if (!steps.length) return null;
+  const tl = gsap.timeline({ paused: true });
   entrances.set(root, tl);
   let titleEnd = 0; // when the last hero title has finished splitting
   let landed = 0; // when the steps so far read as landed: data-anim-landed, or their end
@@ -381,9 +384,21 @@ function playEntrance(steps, root) {
   // scroll steps already in view follow as the last step lands, but never while a title is still rising;
   // phones waited for the whole entrance, a dead second between the header and the copy under the hero
   const lead = DEFAULTS.entranceLead;
-  if (root !== document) return;
+  if (root !== document) return tl;
   handoff = gsap.ticker.time + Math.max(0, tl.duration() - lead, titleEnd);
   hurryOnScroll(tl);
+  return tl;
+}
+
+// The entrance's clock starts on the tick after the scroll steps are built, or their setup shows as a jump in its first frame
+function startEntrance(tl) {
+  const built = gsap.ticker.time;
+  gsap.ticker.add(() => {
+    const late = gsap.ticker.time - built;
+    if (handoff) handoff += late;
+    held.forEach((call) => call.startTime(call.startTime() + late));
+    tl.play();
+  }, true);
 }
 
 // The reader's first scroll during the entrance starts every step still to come at once, in order, and the copy
@@ -609,6 +624,16 @@ function setupSplits(root, entrance, scroll) {
   });
 }
 
+// on the compositor, so a slow landing moves smoothly between pixels (Safari); the start stays inline beneath, as Chrome can drop the effect for a frame as it starts
+function glide(item, duration, curve, settle) {
+  const x = gsap.getProperty(item, "x");
+  const run = item.animate([{ transform: `translateX(${x}px)` }, { transform: "none" }], { duration: duration * 1000, easing: curve, fill: "forwards" });
+  run.finished.then(() => {
+    settle(item);
+    run.cancel();
+  }, () => {});
+}
+
 // data-anim="sequence": one timeline over the marked descendants, staggered in DOM order. An item
 // inherits the container's data-anim-type unless data-anim-item names a preset of its own.
 // Items are cleared on completion so their own hover transitions keep working afterwards.
@@ -655,7 +680,13 @@ function setupSequences(root, entrance, scroll) {
         });
         // an item settles as it lands so its text turns crisp; visibility waits for is-revealed or the CSS guard hides it
         const settle = (item) => gsap.set(item, { clearProps: "transform,opacity,transition" });
-        items.forEach((item, i) => tl.to(item, { ...toVars(presetFor(item), item), onComplete: () => settle(item) }, i * stagger));
+        items.forEach((item, i) => {
+          const preset = presetFor(item);
+          const vars = toVars(preset, item);
+          if (!preset.curve) return tl.to(item, { ...vars, onComplete: () => settle(item) }, i * stagger);
+          const at = i * stagger + vars.delay;
+          tl.call(() => glide(item, vars.duration, preset.curve, settle), [], at).to({}, { duration: vars.duration }, at);
+        });
         return tl;
       },
     }, entrance, scroll);
@@ -790,8 +821,9 @@ function prepareAll(root, opts = {}) {
   entrance.forEach((step) => step.prepare?.());
   scroll.forEach((create) => create.prepare?.());
   return () => {
-    playEntrance(entrance, root);
+    const tl = playEntrance(entrance, root);
     scroll.forEach((create) => create());
+    if (tl) startEntrance(tl);
   };
 }
 

@@ -19,6 +19,11 @@ html.anim-ready:not(.anim-reduced) [data-anim="progress"] { --anim-progress: 0; 
 
 [data-anim="reveal"][data-anim-type="nudge-right"] { will-change: transform, opacity; }
 
+// a title row keeps the layer it glides on: dropped as it lands, its repaint cost a frame of the row still gliding beside it
+@media (prefers-reduced-motion: no-preference) {
+  [data-anim-item^="enter-"] { will-change: transform; }
+}
+
 // card sliders: initSliders() sets each slide's scale from the drag speed every frame, and this eases it.
 // The layer is held so a slide draws the same way scaled and at rest; dropped at rest, its text jumped up to 0.5px on landing
 [data-slider]:not([data-slider-mode]) .swiper-slide {

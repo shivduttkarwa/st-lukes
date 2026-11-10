@@ -14,6 +14,8 @@ export function initTransitions() {
     const transition = e.viewTransition;
     if (!transition) return;
     if (e.activation?.navigationType === "traverse") transition.types.add("back");
+    // an arrival took the root out of the capture (head.njk); leaving, the page is captured whole
+    document.documentElement.style.viewTransitionName = "";
     // a header that is stuck, compact or under the open menu would crossfade out of step with the next page's resting
     // one, so it leaves with the page and the next header fades in on its own
     if (document.querySelector("[data-menu].is-open, .site-header.is-stuck")) {

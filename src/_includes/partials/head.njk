@@ -42,6 +42,11 @@
       var t = e.viewTransition;
       if (!t) return;
       d.classList.add("page-arrival");
+      // this page stays out of the capture and draws itself, live, beneath the old one as it opens (_transition.less);
+      // it takes its name back as it leaves (transition.js), to be captured as the page going
+      d.style.viewTransitionName = "none";
+      window.pageOpening = t.ready.then(null, function () {});
+      window.pageArrival = t.finished;
       d.classList.remove("is-preloading");
       if (self.navigation && navigation.activation && navigation.activation.navigationType === "traverse") t.types.add("back");
       d.querySelectorAll("[data-vt-named]").forEach(function (el) {
@@ -52,11 +57,9 @@
       try {
         if (sessionStorage.getItem("page-thumb") === "hidden") {
           d.style.setProperty("--scrollbar-thumb", "transparent");
-          t.finished.then(function () { d.style.removeProperty("--scrollbar-thumb"); }, function () { d.style.removeProperty("--scrollbar-thumb"); });
+          t.finished.then(function () { d.style.removeProperty("--scrollbar-thumb"); });
         }
       } catch (err) {}
-      window.pageArrival = t.finished;
-      window.pageOpening = t.ready.then(null, function () {});
     });
     // the page left hands on its scrollbar's width, so the transition can crop the blank strip out of its snapshot, and
     // whether its thumb was showing (read on every reveal: a page brought back by the back button is not loaded again)

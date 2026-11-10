@@ -1,11 +1,9 @@
 // The page transition (transition.js and the pagereveal script in partials/head.njk): the page that is leaving recedes into
-// navy while the next one opens in a circle from the centre, as the preloader opens; its hero entrance follows
+// navy while the next one opens through it in a circle from the centre, as the preloader opens; its hero entrance follows
 @vt-leave: 0.5s;
 @vt-open: 1.2s;
 @vt-recede: 0.94;
 @vt-pass: 1.06;
-// a circle's percentage radius is measured against the diagonal over root two, so 71% reaches the corners exactly
-@vt-radius: 71%;
 @vt-crop: 1 * @px;
 
 @view-transition {
@@ -20,18 +18,24 @@ html.page-arrival.anim-ready:not(.anim-reduced) {
   [data-anim][data-anim-arrival="static"] [data-anim-item] { visibility: visible; }
 }
 
-::view-transition {
-  background: var(--color-navy);
-}
-
 ::view-transition-group(*) {
   animation-duration: @vt-open;
   animation-timing-function: var(--ease-in-out-soft);
 }
 
-::view-transition-old(root),
-::view-transition-new(root) {
-  mix-blend-mode: normal;
+// Only the leaving page is captured (head.njk takes the arriving root out), so the next page draws itself beneath, live, as on
+// a fresh load: Safari draws motion inside a captured page badly. The old page and its navy open in a circle to show it; a stop
+// in percent runs to the farthest corner, so 100% clears the screen
+@property --vt-hole {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+::view-transition-group(root) {
+  background: var(--color-navy);
+  mask-image: radial-gradient(circle farthest-corner, transparent var(--vt-hole), var(--color-black) calc(var(--vt-hole) + @px));
+  animation: vt-open @vt-open var(--ease-in-out-soft) both;
 }
 
 // a page's snapshot includes its scrollbar's place, painted blank: the box of the page that leaves stops that far short
@@ -42,11 +46,8 @@ html.page-arrival.anim-ready:not(.anim-reduced) {
   overflow: clip;
   object-fit: none;
   object-position: left top;
+  mix-blend-mode: normal;
   animation: vt-leave @vt-leave var(--ease-in-out-soft) both;
-}
-
-::view-transition-new(root) {
-  animation: vt-open @vt-open var(--ease-in-out-soft) both;
 }
 
 html:active-view-transition-type(back)::view-transition-old(root) {
@@ -68,8 +69,7 @@ html:active-view-transition-type(back)::view-transition-old(root) {
 }
 
 @keyframes vt-open {
-  from { clip-path: circle(0% at 50% 50%); }
-  to { clip-path: circle(@vt-radius at 50% 50%); }
+  to { --vt-hole: 100%; }
 }
 
 @media (prefers-reduced-motion: reduce) {
