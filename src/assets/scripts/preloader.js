@@ -5,6 +5,8 @@ import { lockScroll } from "./ui.js";
 const ROWS = [-0.48, 0.837];
 const ENTER = { duration: 2.4, ease: "power2.out", stagger: 0.3 };
 const RINGS_LEAD = 0.7;
+// how long the hole takes to open: quicker below 992, as the page transition's circle (_transition.less)
+const HOLE = { wide: 2.4, phone: 1.6 };
 
 const briefly = (promise, ms) => Promise.race([promise, new Promise((resolve) => setTimeout(resolve, ms))]);
 const after = (seconds) => new Promise((resolve) => gsap.delayedCall(seconds, resolve));
@@ -46,6 +48,7 @@ function play(root, loader, title, media) {
       root.style.scrollBehavior = "";
       lockScroll(true);
       const { innerWidth: width, innerHeight: height } = window;
+      const wide = matchMedia("(min-width: 992px)").matches;
       const size = parseFloat(getComputedStyle(title).fontSize);
       const boxes = rows.map(textBox);
       const edge = cssPx("var(--preloader-edge)", loader);
@@ -72,18 +75,22 @@ function play(root, loader, title, media) {
       gsap.set(title, { visibility: "visible" });
       gsap.fromTo(rows, { x: (i) => (i ? width - boxes[i].left : -boxes[i].right) }, { x: (i) => x[i], ...ENTER, delay });
       Promise.all([after(delay + 1), media]).then(() => {
+        // a quicker hole brings the title's move and the hero entrance after it sooner, in the same order; the move keeps its pace
+        const hole = wide ? HOLE.wide : HOLE.phone;
+        const pace = hole / HOLE.wide;
+        const move = 1.4 * pace;
         gsap.timeline({
           onComplete: () => {
             gsap.set([title, ...rows], { clearProps: "all" });
             lockScroll(false);
           },
         })
-          .fromTo(loader, { "--preloader-hole": "0px" }, { "--preloader-hole": `${Math.hypot(width, height) / 2 + 2}px`, duration: 2.4, ease: "power2.inOut" })
-          .to(loader.firstElementChild, { opacity: 0.58, duration: 1.2, ease: "power1.out" }, 0)
-          .call(release, [], 1.4)
-          .to(rows, { x: 0, y: 0, duration: 1.6, ease: "power2.inOut" }, 1.4)
-          .call(resolve, [], 2.7)
-          .call(finish, [], 2.4);
+          .fromTo(loader, { "--preloader-hole": "0px" }, { "--preloader-hole": `${Math.hypot(width, height) / 2 + 2}px`, duration: hole, ease: "power2.inOut" })
+          .to(loader.firstElementChild, { opacity: 0.58, duration: 1.2 * pace, ease: "power1.out" }, 0)
+          .call(release, [], move)
+          .to(rows, { x: 0, y: 0, duration: 1.6, ease: "power2.inOut" }, move)
+          .call(resolve, [], move + 1.3)
+          .call(finish, [], hole);
       });
     } catch (err) {
       console.error("[preloader]", err);

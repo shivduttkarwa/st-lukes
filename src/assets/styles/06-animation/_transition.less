@@ -2,6 +2,7 @@
 // navy while the next one opens through it in a circle from the centre, as the preloader opens; its hero entrance follows
 @vt-leave: 0.5s;
 @vt-open: 1.2s;
+@vt-open-phone: 0.8s;
 @vt-recede: 0.94;
 @vt-pass: 1.06;
 @vt-crop: 1 * @px;
@@ -19,8 +20,9 @@ html.page-arrival.anim-ready:not(.anim-reduced) {
 }
 
 ::view-transition-group(*) {
-  animation-duration: @vt-open;
+  animation-duration: @vt-open-phone;
   animation-timing-function: var(--ease-in-out-soft);
+  @media (min-width: @bp-lg) { animation-duration: @vt-open; }
 }
 
 // Only the leaving page is captured (head.njk takes the arriving root out), so the next page draws itself beneath, live, as on
@@ -35,7 +37,8 @@ html.page-arrival.anim-ready:not(.anim-reduced) {
 ::view-transition-group(root) {
   background: var(--color-navy);
   mask-image: radial-gradient(circle farthest-corner, transparent var(--vt-hole), var(--color-black) calc(var(--vt-hole) + @px));
-  animation: vt-open @vt-open var(--ease-in-out-soft) both;
+  animation: vt-open @vt-open-phone var(--ease-in-out-soft) both;
+  @media (min-width: @bp-lg) { animation-duration: @vt-open; }
 }
 
 // a page's snapshot includes its scrollbar's place, painted blank: the box of the page that leaves stops that far short
