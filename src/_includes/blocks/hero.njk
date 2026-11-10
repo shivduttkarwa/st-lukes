@@ -5,8 +5,8 @@
     {% else %}
     <img class="hero__img" src="{{ value.image.src }}"{% if value.image.srcset %} srcset="{{ value.image.srcset }}" sizes="100vw"{% endif %} alt="" width="{{ value.image.width }}" height="{{ value.image.height }}" fetchpriority="high" decoding="async" data-anim="parallax" data-anim-start="top top">
     {% endif %}
-    <div class="hero__shade"></div>
   </div>
+  <div class="hero__shade" aria-hidden="true"></div>
 
   <div class="hero__inner">
     <p class="hero__statement" data-anim="reveal" data-anim-type="fade-up" data-anim-tier="hero" data-anim-order="2">{{ value.statement }}</p>
