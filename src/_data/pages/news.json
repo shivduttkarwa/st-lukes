@@ -382,7 +382,7 @@
         "cards": [
           {
             "title": "Why Choose St Luke's",
-            "url": "",
+            "url": "/our-school.html",
             "image": {
               "src": "/assets/images/our-school/next-1.webp",
               "alt": "",
@@ -393,7 +393,7 @@
           },
           {
             "title": "Christian Foundation",
-            "url": "",
+            "url": "/our-school-alternative.html",
             "image": {
               "src": "/assets/images/our-school/next-2.webp",
               "alt": "",
@@ -424,11 +424,11 @@
             },
             {
               "label": "Why Choose St Luke's",
-              "url": ""
+              "url": "/our-school.html"
             },
             {
               "label": "Christian Foundation",
-              "url": ""
+              "url": "/our-school-alternative.html"
             },
             {
               "label": "Leadership & Staff",
@@ -437,11 +437,11 @@
             },
             {
               "label": "Strategic Plan",
-              "url": ""
+              "url": "/our-school-alternative.html"
             },
             {
               "label": "Campus Masterplan 2029–2031",
-              "url": ""
+              "url": "/our-school-alternative.html"
             },
             {
               "label": "Round Square",
@@ -449,11 +449,11 @@
             },
             {
               "label": "History",
-              "url": ""
+              "url": "/our-school-alternative.html"
             },
             {
               "label": "Acknowledgement of Country",
-              "url": ""
+              "url": "/our-school-alternative.html"
             }
           ],
           "buttons": [

@@ -4,7 +4,7 @@
       {% for section in value.sections %}
       <div class="story-body__section">
         <div class="story-body__text">
-          <h2 data-anim="split" data-anim-type="lines" data-anim-scroll-mobile="timed">{{ section.title }}</h2>
+          <h2 data-anim="split" data-anim-type="lines" data-anim-scroll-mobile="timed" data-anim-titles-first="off">{{ section.title }}</h2>
           <div data-anim-group="fade-up" data-anim-scroll="timed">{{ section.body | safe }}</div>
         </div>
         {% if section.quote %}
@@ -16,16 +16,16 @@
       </div>
       {% endfor %}
     </div>
-    <div class="story-body__foot">
-      <div class="story-body__share" data-anim="reveal" data-anim-type="fade-up">
-        <p>{{ value.share_label }}</p>
+    <div class="story-body__foot" data-anim="sequence" data-anim-type="fade-up" data-anim-scroll="timed">
+      <div class="story-body__share">
+        <p data-anim-item>{{ value.share_label }}</p>
         <ul>
           {% for item in site.socials %}
-          <li><a class="story-body__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+          <li data-anim-item><a class="story-body__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
           {% endfor %}
         </ul>
       </div>
-      <a class="btn btn-outline-navy story-body__back"{% if value.back.url %} href="{{ value.back.url }}"{% endif %} data-anim="reveal" data-anim-type="fade-up"><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{{ value.back.text }}</a>
+      <a class="btn btn-outline-navy story-body__back"{% if value.back.url %} href="{{ value.back.url }}"{% endif %} data-anim-item><svg class="icon" aria-hidden="true"><use href="#icon-arrow"></use></svg>{{ value.back.text }}</a>
     </div>
   </div>
 </section>

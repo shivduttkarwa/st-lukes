@@ -1,6 +1,8 @@
 html.anim-ready:not(.anim-reduced) {
   [data-anim="reveal"],
   [data-anim="split"],
+  // a group's items only become reveals when the script starts, so until then they flashed on the first screen
+  [data-anim-group]:not([data-anim-media]) > :not([data-anim], [data-anim-item], .is-revealed),
   [data-anim="sequence"]:not(.is-revealed) [data-anim-item],
   [data-anim="sequence"][data-anim-items="children"]:not(.is-revealed) > * {
     visibility: hidden;

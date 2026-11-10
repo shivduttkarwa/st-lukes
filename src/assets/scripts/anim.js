@@ -378,9 +378,9 @@ function playEntrance(steps, root) {
         landed = Math.max(landed, titleEnd);
       });
     });
-  // scroll steps already in view follow as the last step, but never while a title is still rising;
-  // on phones they wait for the whole entrance, so the copy under a hero comes after its quick links
-  const lead = phone.matches ? 0 : DEFAULTS.entranceLead;
+  // scroll steps already in view follow as the last step lands, but never while a title is still rising;
+  // phones waited for the whole entrance, a dead second between the header and the copy under the hero
+  const lead = DEFAULTS.entranceLead;
   if (root !== document) return;
   handoff = gsap.ticker.time + Math.max(0, tl.duration() - lead, titleEnd);
   hurryOnScroll(tl);

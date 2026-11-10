@@ -132,6 +132,13 @@
     }
   }
 
+  // the cards are links: with a pointer the arrow shows on hover, on touch it stays as the cue
+  @media (hover: hover) {
+    &__arrow { .card-arrow(); }
+    &__card:hover &__arrow,
+    &__card:focus-visible &__arrow { .card-arrow-shown(); }
+  }
+
   &__menu {
     display: flex;
     flex-direction: column;
@@ -257,4 +264,8 @@
     @media (min-width: @bp-lg) { align-self: center; }
     .btn { @media (min-width: @bp-lg) { min-width: 215 * @px; } }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .where-next__arrow { transition: none; }
 }
