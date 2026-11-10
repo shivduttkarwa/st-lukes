@@ -29,7 +29,8 @@
       <div class="where-next__row">
         <ul class="where-next__links" data-anim-group="from-left-soft" data-anim-media="(max-width: 991.98px)">
           {% for link in value.menu.links %}
-          <li><a class="where-next__link{% if link.current %} is-current{% endif %}"{% if link.url %} href="{{ link.url }}"{% endif %}{% if link.current %} aria-current="page"{% endif %} data-press><span>{{ link.label }}</span></a></li>
+          {% set current = link.url and link.url == page.url %}
+          <li><a class="where-next__link{% if current %} is-current{% endif %}"{% if link.url %} href="{{ link.url }}"{% endif %}{% if current %} aria-current="page"{% endif %} data-press><span>{{ link.label }}</span></a></li>
           {% endfor %}
         </ul>
         <div class="where-next__actions" data-anim-group="fade-up" data-anim-scroll="timed" data-anim-media="(max-width: 991.98px)">

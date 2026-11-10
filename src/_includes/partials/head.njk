@@ -49,10 +49,6 @@
       window.pageArrival = t.finished;
       d.classList.remove("is-preloading");
       if (self.navigation && navigation.activation && navigation.activation.navigationType === "traverse") t.types.add("back");
-      d.querySelectorAll("[data-vt-named]").forEach(function (el) {
-        el.style.viewTransitionName = "";
-        el.removeAttribute("data-vt-named");
-      });
       // a page left from the open menu had no scrollbar thumb, so this one's waits for the circle to land and fades in
       try {
         if (sessionStorage.getItem("page-thumb") === "hidden") {

@@ -240,9 +240,10 @@
         transition: opacity var(--duration-base) ease;
       }
     }
-    &:not(.is-current):active,
+    // a tap's :active ended as the finger lifted, so the link snapped to its hover look, back, then eased in on the click
     &:not(.is-current).is-pressed {
       color: var(--color-royal);
+      transition: color var(--duration-base) ease;
       &::before { opacity: 1; }
       span { transform: translateX(18 * @px); }
     }

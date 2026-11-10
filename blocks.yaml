@@ -138,7 +138,7 @@ blocks:
       menu: StructBlock
         title_line_1: CharBlock
         title_line_2: CharBlock
-        links: ListBlock(StructBlock(label: CharBlock, url: URLBlock, current: BooleanBlock))   # three to a column; from the section's page tree in Wagtail
+        links: ListBlock(StructBlock(label: CharBlock, url: URLBlock))   # three to a column; from the section's page tree in Wagtail; the one whose url is this page's is marked current
         buttons: ListBlock(StructBlock(text: CharBlock, url: URLBlock, style: ChoiceBlock(outline-dark)), max_num=2)
 
   article:

@@ -11,9 +11,7 @@
   navigation: auto;
 }
 
-.site-header { view-transition-name: site-header; }
-
-// the header the transition carries over is in place before any script runs
+// the header is part of each page, so it leaves with the old one and the circle reveals the next, already in place before any script runs
 html.page-arrival.anim-ready:not(.anim-reduced) {
   [data-anim][data-anim-arrival="static"],
   [data-anim][data-anim-arrival="static"] [data-anim-item] { visibility: visible; }
