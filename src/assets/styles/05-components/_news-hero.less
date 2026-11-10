@@ -58,9 +58,13 @@
     aspect-ratio: 1;
     margin-inline: var(--gutter);
     overflow: hidden;
-    @media (min-width: @bp-md) { aspect-ratio: 667 / 410; }
+    @media (min-width: @bp-sm) {
+      aspect-ratio: 667 / 410;
+      max-height: calc(100svh - @slide-room-short);
+    }
     @media (min-width: @bp-lg) {
       grid-area: 1 / 2;
+      max-height: none;
       margin: 0;
     }
   }

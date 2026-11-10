@@ -94,10 +94,13 @@
       inset: 0;
       background: var(--gradient-sports);
     }
-    @media (min-width: @bp-md) {
-      width: 410 * @px;
-      padding: 30 * @px;
+    @media (min-width: @bp-sm) {
+      width: @slide-short;
+      max-height: calc(100svh - @slide-room-short);
     }
+    @media (min-width: @bp-md) { padding: 30 * @px; }
+    @media @slides-md { width: 410 * @px; }
+    @media (min-width: @bp-lg) { max-height: none; }
   }
 
   &__img {

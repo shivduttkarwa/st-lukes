@@ -1,4 +1,6 @@
 @strip-height-sm: 260 * @px;
+// on a phone held sideways the photos shrink with the screen's height, so a photo and its caption fit
+@strip-room-sm: 160 * @px;
 @strip-height: 545 * @px;
 @strip-pad-sm: 48 * @px;
 @strip-pad: 104 * @px;
@@ -8,6 +10,7 @@
 @strip-arrow-top-captioned: 290 * @px;
 
 .photo-strip {
+  --strip-h: ~"min(@{strip-height-sm}, calc(100svh - @{strip-room-sm}))";
   position: relative;
   padding: @strip-pad-sm 0 (@strip-pad-sm + 6 * @px);
   overflow: hidden;
@@ -40,7 +43,7 @@
     display: block;
     width: auto;
     max-width: 86vw;
-    height: @strip-height-sm;
+    height: var(--strip-h);
     object-fit: cover;
     @media (min-width: @bp-lg) {
       max-width: none;
@@ -51,7 +54,7 @@
   &__arrow {
     .slider-arrow(var(--color-navy), var(--color-gold));
     position: absolute;
-    top: @strip-pad-sm + (@strip-height-sm / 2);
+    top: calc(@strip-pad-sm + var(--strip-h) / 2);
     z-index: 2;
     background: var(--color-gold);
     box-shadow: none;
@@ -70,7 +73,7 @@
     @media (min-width: @bp-lg) { left: calc(50% - @strip-arrow-prev); }
   }
 
-  &--captioned &__arrow { top: (@strip-height-sm / 2); }
+  &--captioned &__arrow { top: calc(var(--strip-h) / 2); }
   @media (min-width: @bp-lg) {
     &--captioned &__arrow { top: @strip-arrow-top-captioned; }
     &--captioned &__arrow--prev { left: calc(50% - @strip-arrow-prev-captioned); }

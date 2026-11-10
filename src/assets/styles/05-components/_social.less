@@ -54,7 +54,12 @@
     height: auto;
     aspect-ratio: 352 / 469;
     overflow: hidden;
-    @media (min-width: @bp-md) { width: @social-tile; }
+    @media (min-width: @bp-sm) {
+      width: @slide-short;
+      max-height: calc(100svh - @slide-room-short);
+    }
+    @media @slides-md { width: @social-tile; }
+    @media (min-width: @bp-lg) { max-height: none; }
   }
 
   &__img { .img-cover(); }

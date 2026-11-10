@@ -1,4 +1,5 @@
 @learning-arrow: 50 * @px;
+@entry-arrow-gap: 12 * @px;
 @entry-card-sm: 300 * @px;
 @entry-card: 400 * @px;
 @entry-shade: 36.83%;
@@ -59,8 +60,15 @@
   padding: 24 * @px;
   overflow: hidden;
   color: var(--color-white);
-  @media (min-width: @bp-md) { width: @entry-card; }
-  @media (min-width: @bp-lg) { padding: 30 * @px; }
+  @media (min-width: @bp-sm) {
+    width: @slide-short;
+    max-height: calc(100svh - @slide-room-short);
+  }
+  @media @slides-md { width: @entry-card; }
+  @media (min-width: @bp-lg) {
+    max-height: none;
+    padding: 30 * @px;
+  }
 
   &__img,
   &__video {
@@ -91,6 +99,9 @@
     flex-direction: column;
     gap: 5 * @px;
     min-width: 0;
+    // on touch the arrow always shows, so below lg the title stops short of it
+    padding-right: ~"calc(max(var(--tap-size), @{learning-arrow}) + @{entry-arrow-gap})";
+    @media (min-width: @bp-lg) { padding-right: 0; }
   }
 
   h3 {

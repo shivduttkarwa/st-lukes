@@ -2,6 +2,8 @@
 @news-pad-sm: 24 * @px;
 @news-pad: 40 * @px;
 @news-gap: 6 * @px;
+// a narrower text column runs the title to five lines and puts the dots on the button
+@news-panel-least: 300 * @px;
 @news-swap: 1200ms;
 @news-swap-scale: 1.1;
 // the text changes like a split slider's: each line moves 45px over 0.7s and fades over 0.6s from 0.1s later, lines 0.1s apart;
@@ -94,6 +96,7 @@
     z-index: 2;
     display: flex;
     gap: 10 * @px;
+    @media (min-width: @bp-sm) { right: ~"calc(100% - max(@{news-panel-least}, 50% - @{news-gap} / 2) + @{news-pad-sm})"; }
     @media (min-width: @bp-lg) {
       right: calc(50% + 3 * @px + @news-pad);
       bottom: @news-pad;
@@ -129,11 +132,12 @@
   visibility: hidden;
   // inherit, not visible: a visible slide would show through the frame while its entrance still hides it
   &.swiper-slide-active { visibility: inherit; }
-  @media (min-width: @bp-lg) {
+  // from sm the text sits beside the photo as on desktop, as a phone held sideways is too short for one above the other
+  @media (min-width: @bp-sm) {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    min-height: 513 * @px;
+    grid-template-columns: minmax(@news-panel-least, 1fr) minmax(0, 1fr);
   }
+  @media (min-width: @bp-lg) { min-height: 513 * @px; }
 
   &__panel {
     position: relative;
@@ -186,7 +190,7 @@
     z-index: 1;
     overflow: hidden;
     aspect-ratio: 617 / 513;
-    @media (min-width: @bp-lg) { aspect-ratio: auto; }
+    @media (min-width: @bp-sm) { aspect-ratio: auto; }
   }
 
   &__img,

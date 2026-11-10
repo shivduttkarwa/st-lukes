@@ -9,6 +9,8 @@
 
 @px: 0.0625rem;
 @fine: ~"(hover: hover) and (pointer: fine)";
+// from sm the sliders' slides are compact, as for a phone held sideways, until a tablet held upright or a desktop
+@slides-md: ~"(min-width: @{bp-md}) and (min-height: @{bp-tall}), (min-width: @{bp-lg})";
 
 // Maths is not evaluated inside a custom property, so measures are LESS variables first.
 @gutter-sm: 20 * @px;
@@ -23,6 +25,8 @@
 @header-height-sm: 72 * @px;
 @header-height-lg: 160 * @px;
 @logo-height-sm: 94 * @px;
+@slide-short: 256 * @px;
+@slide-room-short: 48 * @px;
 @control-height: 64 * @px;
 @radius-pill: 360 * @px;
 

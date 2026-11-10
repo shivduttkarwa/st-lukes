@@ -1,14 +1,19 @@
 @usps-band: 345 * @px;
 @usps-media-lead: 146 * @px;
+@usps-top-sm: 72 * @px;
+@usps-body-gap-sm: 40 * @px;
 @usps-card-sm: 300 * @px;
 @usps-card: 400 * @px;
 
 .usps {
   position: relative;
-  padding-top: 72 * @px;
-  background: linear-gradient(180deg, var(--color-navy) 0, var(--color-royal) @usps-band);
+  padding-top: @usps-top-sm;
+  background: var(--color-royal);
   color: var(--color-white);
-  @media (min-width: @bp-lg) { padding-top: 232 * @px; }
+  @media (min-width: @bp-lg) {
+    padding-top: 232 * @px;
+    background: linear-gradient(180deg, var(--color-navy) 0, var(--color-royal) @usps-band);
+  }
 
   &__inner {
     position: relative;
@@ -17,11 +22,24 @@
   }
 
   &__head {
+    position: relative;
     display: flex;
     flex-wrap: wrap;
     align-items: flex-end;
     justify-content: space-between;
     gap: 24 * @px;
+    // below lg a short heading lets the photo's blue top start inside the 345 band, so the band ends where the photo begins
+    &::before {
+      content: "";
+      position: absolute;
+      top: -@usps-top-sm;
+      right: calc(-1 * var(--gutter));
+      bottom: @usps-media-lead - @usps-body-gap-sm;
+      left: calc(-1 * var(--gutter));
+      z-index: -1;
+      background: linear-gradient(180deg, var(--color-navy) 0, var(--color-royal) ~"min(@{usps-band}, 100%)");
+      @media (min-width: @bp-lg) { content: none; }
+    }
   }
 
   &__intro { max-width: 884 * @px; }
@@ -59,7 +77,7 @@
 
   &__body {
     position: relative;
-    margin-top: 40 * @px;
+    margin-top: @usps-body-gap-sm;
     padding-bottom: 72 * @px;
     @media (min-width: @bp-lg) {
       margin-top: 50 * @px;
@@ -96,12 +114,15 @@
   width: ~"round(@{usps-card-sm}, var(--device-px, 1px))";
   height: auto;
   background: var(--color-white);
-  @media (min-width: @bp-md) { width: ~"round(@{usps-card}, var(--device-px, 1px))"; }
+  @media @slides-md { width: ~"round(@{usps-card}, var(--device-px, 1px))"; }
 
+  // a phone held sideways keeps the phone card's width and a wider photo, so the card is about a screen tall
   &__media {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
+    @media (min-width: @bp-sm) { aspect-ratio: 16 / 9; }
+    @media @slides-md { aspect-ratio: 1; }
   }
 
   &__img { .img-cover(); }
