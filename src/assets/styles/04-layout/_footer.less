@@ -271,6 +271,32 @@
 
   &__outline { .outline-text-clear(var(--color-gold), 2); }
 
+  // a still marquee wraps rather than run off the screen; from 1440 it bleeds as Figma draws it
+  @media (prefers-reduced-motion: reduce) {
+    &__track {
+      width: auto;
+      margin-right: 20 * @px;
+      @media (min-width: @bp-lg) { margin-right: 94 * @px; }
+      @media (min-width: @design) {
+        width: max-content;
+        margin-right: 0;
+      }
+    }
+    &__phrase {
+      flex-shrink: 1;
+      flex-wrap: wrap;
+      min-width: 0;
+      white-space: normal;
+      @media (min-width: @bp-lg) { height: auto; }
+      @media (min-width: @design) {
+        flex-shrink: 0;
+        flex-wrap: nowrap;
+        height: 71 * @px;
+        white-space: nowrap;
+      }
+    }
+  }
+
   &__bar {
     display: flex;
     flex-wrap: wrap;

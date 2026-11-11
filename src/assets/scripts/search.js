@@ -1,4 +1,4 @@
-const normal = (text) => text.toLowerCase().replace(/[‘’]/g, "'").replace(/\s+/g, " ").trim();
+const normal = (text) => text.toLowerCase().replace(/[‘’]/g, "'").replace(/\u2060/g, "").replace(/\s+/g, " ").trim();
 
 // The rows are rendered into a <template> at build time and filtered here; in Wagtail the same <li> markup comes from the search view.
 export function initMenuSearch(menu, { closeItems, syncWide }) {

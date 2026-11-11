@@ -62,7 +62,7 @@
             "height": 592
           },
           "url": "",
-          "label": "St Luke's on Instagram"
+          "label": "St Luke's on Instagram"
         }
       }
     },
@@ -85,7 +85,7 @@
             }
           },
           {
-            "title": "Why Choose St Luke's",
+            "title": "Why Choose St Luke's",
             "text": "Discover what makes St Luke’s distinctive, from a community where every student is known to strong academic outcomes, individual support and opportunities across sport, performing arts and service. Learn how our Christian foundation, experienced teachers and Northern Beaches community help students build confidence, develop their strengths and prepare for life beyond school.",
             "image": {
               "src": "/assets/images/our-school/row-2.webp",
@@ -141,7 +141,7 @@
             }
           },
           {
-            "title": "Campus Masterplan 2029–2031",
+            "title": "Campus Masterplan 2029–⁠2031",
             "text": "Discover the vision for the future of St Luke’s, including planned improvements to learning environments, facilities and shared spaces. The campus masterplan reflects a commitment to providing contemporary places for students to learn, connect and pursue their interests, supporting the school’s evolving needs while preserving the strong relationships and community spirit at its heart.",
             "image": {
               "src": "/assets/images/our-school/row-6.webp",
@@ -203,7 +203,7 @@
       "type": "cta",
       "value": {
         "title_line_1": "Start your",
-        "title_line_2": "St Luke’s journey",
+        "title_line_2": "St Luke’s journey",
         "buttons": [
           {
             "text": "Book a Tour",

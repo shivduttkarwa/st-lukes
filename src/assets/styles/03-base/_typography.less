@@ -1,6 +1,9 @@
+// the longhand: the text-wrap shorthand would also reset a nowrap the heading inherits
 h1, h2, h3, h4, h5, h6 {
   margin: 0 0 0.5em;
   color: var(--color-heading);
+  text-wrap-style: pretty;
+  @media (min-width: @bp-xl) { text-wrap-style: auto; }
 }
 
 h1 { .type-h1(); }

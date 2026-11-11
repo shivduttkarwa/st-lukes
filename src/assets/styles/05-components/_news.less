@@ -95,8 +95,11 @@
     bottom: @news-pad-sm;
     z-index: 2;
     display: flex;
-    gap: 10 * @px;
-    @media (min-width: @bp-sm) { right: ~"calc(100% - max(@{news-panel-least}, 50% - @{news-gap} / 2) + @{news-pad-sm})"; }
+    gap: 6 * @px;
+    @media (min-width: @bp-sm) {
+      gap: 10 * @px;
+      right: ~"calc(100% - max(@{news-panel-least}, 50% - @{news-gap} / 2) + @{news-pad-sm})";
+    }
     @media (min-width: @bp-lg) {
       right: calc(50% + 3 * @px + @news-pad);
       bottom: @news-pad;

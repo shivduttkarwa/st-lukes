@@ -111,7 +111,7 @@
   display: flex;
   flex-direction: column;
   // whole device pixels: at a half-pixel width Chrome rounds the white card and its photo apart, a 1px white edge
-  width: ~"round(@{usps-card-sm}, var(--device-px, 1px))";
+  width: ~"round(min(@{usps-card-sm}, 100% - @{slide-peek-sm}), var(--device-px, 1px))";
   height: auto;
   background: var(--color-white);
   @media @slides-md { width: ~"round(@{usps-card}, var(--device-px, 1px))"; }

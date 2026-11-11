@@ -8,6 +8,9 @@
 @hero-fold-room-md: 88 * @px;
 @hero-logo-air: 24 * @px;
 @hero-notice-width: 361 * @px;
+@hero-notice-clear: (1440 - 361) * @px;
+@notice-card-width: 367 * @px;
+@notice-card-clear: (1440 - 367) * @px;
 @page-hero-eyebrow-x: 99 * @px;
 @page-hero-eyebrow-y: 155 * @px;
 @page-hero-row-1: 92 * @px;
@@ -163,7 +166,11 @@
       width: @hero-notice-width;
       margin: 0;
     }
-    @media (min-width: @bp-xl) { bottom: 67 * @px; }
+    // beside the title's first row it narrows on a window narrower than Figma's, rather than touch "HEART."
+    @media (min-width: @bp-xl) {
+      bottom: 67 * @px;
+      width: ~"min(@{hero-notice-width}, 100vw - @{hero-notice-clear})";
+    }
   }
 }
 
@@ -308,11 +315,11 @@
     position: absolute;
     top: 0;
     right: 0;
+    left: 0;
     z-index: 1;
     display: flex;
     flex-direction: column;
     gap: 10 * @px;
-    width: 367 * @px;
     max-width: calc(100vw - var(--gutter) * 2);
     padding: 15 * @px;
     background: var(--color-white);
@@ -325,10 +332,19 @@
       top: auto;
       bottom: 0;
     }
+    @media (min-width: @bp-sm) {
+      left: auto;
+      width: @notice-card-width;
+    }
+    // the card keeps clear of the title: above it where the notice sits above the title, beside it from xl
     @media (min-width: @bp-lg) {
       top: auto;
       right: -5 * @px;
+      bottom: 0;
+    }
+    @media (min-width: @bp-xl) {
       bottom: -35 * @px;
+      width: ~"min(@{notice-card-width}, 100vw - @{notice-card-clear})";
     }
   }
 

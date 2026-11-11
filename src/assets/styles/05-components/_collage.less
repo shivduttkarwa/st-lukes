@@ -8,7 +8,10 @@
 @collage-quote-x: 100 * @px;
 @collage-quote-w: 384 * @px;
 @collage-stat: 338 * @px;
-@collage-ring: 23 * @px;
+@collage-stat-sm: 220 * @px;
+// the circle's top just under the play button's foot, as the stat overlaps the video's corner on desktop
+@collage-stat-lift-sm: -31 * @px;
+@collage-ring: percentage((23 / 338));
 @collage-social: 296 * @px;
 @collage-play-x: 39 * @px;
 @collage-play-y: 66 * @px;
@@ -110,16 +113,17 @@
     --parallax-from: 20%;
     --parallax-to: -20%;
     position: relative;
-    align-self: center;
+    align-self: flex-end;
     flex: none;
-    width: @collage-stat;
+    width: @collage-stat-sm;
     max-width: calc(100% - var(--gutter) * 2);
     aspect-ratio: 1;
-    margin: 32 * @px 0 0;
+    margin: @collage-stat-lift-sm var(--gutter) 0 0;
     @media (min-width: @bp-lg) {
       grid-area: 3 / 1 / auto / span 3;
       align-self: start;
       justify-self: center;
+      width: @collage-stat;
       margin: @collage-stat-top 0 0;
     }
   }
@@ -144,8 +148,9 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20 * @px;
+    gap: 10 * @px;
     border-radius: 50%;
+    @media (min-width: @bp-lg) { gap: 20 * @px; }
     background: var(--color-gold);
     color: var(--color-navy);
     text-align: center;
@@ -160,13 +165,16 @@
   }
 
   &__label {
-    .type-body-3();
+    .type-body-4();
     position: relative;
     top: -0.0625em;
     left: -1 * @px;
-    width: 161 * @px;
     color: var(--color-text);
     white-space: pre-line;
+    @media (min-width: @bp-lg) {
+      .type-body-3();
+      width: 161 * @px;
+    }
   }
 
   &__quote {

@@ -1,3 +1,5 @@
+@sports-card-sm: 300 * @px;
+
 .sports {
   padding: 56 * @px 0;
   overflow: hidden;
@@ -80,7 +82,7 @@
     align-items: flex-end;
     justify-content: space-between;
     gap: 8 * @px;
-    width: 300 * @px;
+    width: ~"min(@{sports-card-sm}, 100% - @{slide-peek-sm})";
     height: auto;
     aspect-ratio: 410 / 521;
     padding: 20 * @px;

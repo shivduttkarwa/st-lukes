@@ -16,7 +16,17 @@
     }
   }
 
-  &__frame { overflow: hidden; }
+  &__frame {
+    overflow: hidden;
+    @media (min-width: @bp-sm) {
+      align-self: center;
+      width: percentage((409 / 617));
+    }
+    @media (min-width: @bp-lg) {
+      align-self: auto;
+      width: auto;
+    }
+  }
 
   &__img {
     display: block;

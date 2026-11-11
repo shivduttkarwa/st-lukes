@@ -1,5 +1,8 @@
 @news-hero-tail: 104 * @px;
 @news-arrow: 37.5 * @px;
+@news-nav-room: 96 * @px;
+@news-nav-air: 20 * @px;
+@news-copy: 476 * @px;
 
 .news-hero {
   position: relative;
@@ -120,9 +123,12 @@
     display: flex;
     flex-direction: column;
     gap: 12 * @px;
-    max-width: 476 * @px;
-    padding-right: 96 * @px;
-    @media (min-width: @bp-lg) { padding-right: 0; }
+    max-width: @news-copy;
+    padding-right: @news-nav-room;
+    @media (min-width: @bp-lg) {
+      max-width: ~"min(@{news-copy}, 100% - 2 * var(--tap-size) - @{news-nav-air})";
+      padding-right: 0;
+    }
   }
 
   &__tag {
@@ -136,7 +142,9 @@
     .type-heading-4();
     position: relative;
     top: -0.1em;
-    white-space: pre-line;
+    text-wrap: pretty;
+    @media (min-width: @bp-lg) { text-wrap: balance; }
+    @media (min-width: @bp-xl) { white-space: pre-line; }
   }
 
   // the story swap is the homepage News one (_news.less): same keyframes and timings

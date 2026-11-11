@@ -194,7 +194,7 @@
         "title_line_2": "to Next?",
         "cards": [
           {
-            "title": "Why Choose St Luke's",
+            "title": "Why Choose St Luke's",
             "url": "/our-school.html",
             "image": {
               "src": "/assets/images/our-school/next-1.webp",
@@ -233,7 +233,7 @@
               "url": "/principals-welcome.html"
             },
             {
-              "label": "Why Choose St Luke's",
+              "label": "Why Choose St Luke's",
               "url": "/our-school.html"
             },
             {
@@ -249,7 +249,7 @@
               "url": "/our-school-alternative.html"
             },
             {
-              "label": "Campus Masterplan 2029–2031",
+              "label": "Campus Masterplan 2029–⁠2031",
               "url": "/our-school-alternative.html"
             },
             {
@@ -284,7 +284,7 @@
       "type": "cta",
       "value": {
         "title_line_1": "Start your",
-        "title_line_2": "St Luke’s journey",
+        "title_line_2": "St Luke’s journey",
         "buttons": [
           {
             "text": "Book a Tour",

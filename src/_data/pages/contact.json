@@ -16,7 +16,7 @@
         },
         "video": null,
         "title_line_1": "Get in touch",
-        "title_line_2": "with St Luke’s",
+        "title_line_2": "with St Luke’s",
         "title_raised": true
       }
     },
@@ -87,7 +87,7 @@
     {
       "type": "campus_visit",
       "value": {
-        "title": "Visit St Luke’s",
+        "title": "Visit St Luke’s",
         "lead": "With campuses across Sydney’s Northern Beaches, St Luke’s is a place best experienced in person.",
         "campuses": [
           {
@@ -250,7 +250,7 @@
         },
         "questions": [
           {
-            "question": "What year levels does St Luke’s offer?",
+            "question": "What year levels does St Luke’s offer?",
             "answer": "St Luke’s Grammar School is a coeducational Anglican school offering education from Pre-Kindergarten through to Year 12 across its Dee Why and Bayview campuses.",
             "button": {
               "text": "View all Entry Points",
@@ -258,7 +258,7 @@
             }
           },
           {
-            "question": "Where are the St Luke’s campuses located?",
+            "question": "Where are the St Luke’s campuses located?",
             "answer": "St Luke’s has two campuses on Sydney’s Northern Beaches, at Bayview and Dee Why.",
             "button": {
               "text": "Maps & Transport",
@@ -266,7 +266,7 @@
             }
           },
           {
-            "question": "How do I enrol my child at St Luke’s?",
+            "question": "How do I enrol my child at St Luke’s?",
             "answer": "Enrolment is by application date, so there’s no entrance exam. Places for 2028 are now open, from the Cottage to Year 12.",
             "button": {
               "text": "How to Apply",
@@ -282,7 +282,7 @@
             }
           },
           {
-            "question": "Is St Luke’s a Christian school?",
+            "question": "Is St Luke’s a Christian school?",
             "answer": "Yes. St Luke’s is an independent Anglican school, and the Christian faith underpins and informs the work of the School.",
             "button": {
               "text": "Christian Foundation",
@@ -290,7 +290,7 @@
             }
           },
           {
-            "question": "What makes St Luke’s different?",
+            "question": "What makes St Luke’s different?",
             "answer": "St Luke’s is a community where everyone is known, where academic rigour, Christian character and genuine care meet the distinctive spirit of the Northern Beaches.",
             "button": {
               "text": "Why Choose St Luke’s",
@@ -309,7 +309,7 @@
         "title_line_2": "to Next?",
         "cards": [
           {
-            "title": "Why Choose St Luke's",
+            "title": "Why Choose St Luke's",
             "url": "/our-school.html",
             "image": {
               "src": "/assets/images/our-school/next-1.webp",
@@ -348,7 +348,7 @@
               "url": "/principals-welcome.html"
             },
             {
-              "label": "Why Choose St Luke's",
+              "label": "Why Choose St Luke's",
               "url": "/our-school.html"
             },
             {
@@ -364,7 +364,7 @@
               "url": "/our-school-alternative.html"
             },
             {
-              "label": "Campus Masterplan 2029–2031",
+              "label": "Campus Masterplan 2029–⁠2031",
               "url": "/our-school-alternative.html"
             },
             {
@@ -399,7 +399,7 @@
       "type": "cta",
       "value": {
         "title_line_1": "Start your",
-        "title_line_2": "St Luke’s journey",
+        "title_line_2": "St Luke’s journey",
         "buttons": [
           {
             "text": "Book a Tour",

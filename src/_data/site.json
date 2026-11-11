@@ -35,11 +35,11 @@
       "url": "/our-school.html",
       "children": [
         { "label": "Principal's Welcome", "url": "/principals-welcome.html", "image": { "src": "/assets/images/our-school/hero-principal-768.webp", "alt": "", "width": 768, "height": 412 } },
-        { "label": "Why Choose St Luke's", "url": "/our-school.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Why Choose St Luke's", "url": "/our-school.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
         { "label": "Christian Foundation", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
         { "label": "Leadership & Staff", "url": "/leadership-staff.html", "image": { "src": "/assets/images/our-school/hero-leadership-768.webp", "alt": "", "width": 768, "height": 412 } },
         { "label": "Strategic Plan", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Campus Masterplan 2029–2031", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
+        { "label": "Campus Masterplan 2029–⁠2031", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
         { "label": "Round Square Global Network", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
         { "label": "History", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
         { "label": "Acknowledgement of Country", "url": "/our-school-alternative.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
@@ -114,7 +114,7 @@
   ],
   "quick_links_label": "Quick Links",
   "quick_links": [
-    { "label": "St Luke’s Portal", "url": "" },
+    { "label": "St Luke’s Portal", "url": "" },
     { "label": "Make an Enquiry", "url": "/contact.html#contact-form" },
     { "label": "Employment", "url": "" },
     { "label": "Alumni", "url": "" },

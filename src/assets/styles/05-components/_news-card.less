@@ -1,3 +1,6 @@
+@news-card-title: 372 * @px;
+@news-card-title-share: percentage((372 / 409));
+
 .news-grid {
   position: relative;
   display: grid;
@@ -20,10 +23,11 @@
     .type-news-card-title();
     position: relative;
     top: -0.14em;
-    max-width: 372 * @px;
+    max-width: @news-card-title;
     margin: 0;
     color: var(--color-royal);
     transition: color var(--duration-fast) ease;
+    @media (min-width: @bp-sm) { max-width: ~"min(@{news-card-title}, @{news-card-title-share})"; }
   }
   @media (hover: hover) {
     &:hover h3 { color: var(--color-navy); }

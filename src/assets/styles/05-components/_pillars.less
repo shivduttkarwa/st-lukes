@@ -80,7 +80,13 @@
 
   &__card--2,
   &__card--3 {
+    @media (min-width: @bp-sm) { width: @pillars-narrow; }
+    @media (min-width: @bp-md) { width: 100%; }
     @media (min-width: @bp-lg) { width: @pillars-narrow; }
+  }
+
+  &__card--2 {
+    @media (min-width: @bp-sm) { align-self: flex-end; }
   }
 
   &__media {
