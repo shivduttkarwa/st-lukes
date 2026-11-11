@@ -32,6 +32,25 @@
 @menu-swap-scale: 1.1;
 @menu-close-in: 450ms;
 
+// the royal line fades in over the soft one
+.menu-row-line() {
+  &::before {
+    content: "";
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1;
+    height: 1px;
+    background: var(--color-royal);
+    opacity: 0;
+    transition: opacity var(--duration-slow) ease;
+  }
+  @media (hover: hover) {
+    &:hover::before { opacity: 1; }
+  }
+}
+
 html.is-locked {
   overflow: hidden;
   // a phone has no scrollbar to make room for, and a var() switching on or off at the root restyles the whole page
@@ -386,13 +405,10 @@ html.is-locked {
       left: 0;
       height: 1px;
       background: var(--color-line-soft);
-      transition: background-color var(--duration-base) ease;
     }
+    .menu-row-line();
     @media (hover: hover) {
-      &:hover {
-        color: var(--color-royal);
-        &::after { background: var(--color-royal); }
-      }
+      &:hover { color: var(--color-royal); }
     }
   }
 
@@ -498,8 +514,8 @@ html.is-locked {
       left: 0;
       height: 1px;
       background: var(--color-line-soft);
-      transition: background-color var(--duration-base) ease;
     }
+    .menu-row-line();
     .icon {
       flex: none;
       width: 22 * @px;
@@ -519,13 +535,12 @@ html.is-locked {
     @media (hover: hover) {
       &:hover {
         color: var(--color-royal);
-        &::after { background: var(--color-royal); }
         .icon { color: var(--color-royal); }
       }
     }
     &[aria-expanded="true"] {
       color: var(--color-royal);
-      &::after { background: var(--color-royal); }
+      &::before { opacity: 1; }
       .icon { color: var(--color-royal); }
       .icon use { --menu-turn: 90deg; }
     }

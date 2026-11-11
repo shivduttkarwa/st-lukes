@@ -1,0 +1,7 @@
+@dark-sections: ~".hero, .page-lead, .intro, .pillars, .stats, .usps, .campuses, .learning, .discover, .collage, .page-links, .features, .values, .cta";
+
+// the page under the sections is white, so where two dark ones meet off the device pixel grid a light line showed
+:is(@{dark-sections}) + :is(@{dark-sections}),
+main:has(> :is(@{dark-sections}):last-child) + .site-footer {
+  box-shadow: 0 calc(-1 * var(--device-px, 1px)) 0 var(--color-navy);
+}

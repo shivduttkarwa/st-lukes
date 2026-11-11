@@ -67,7 +67,7 @@
   }
 
   // outside the photo's clip and a hair under the navy below, or at a fractional pixel the photo and the page show through the seam
-  &:has(+ .intro, + .page-lead) &__shade { bottom: -1 * @px; }
+  &:has(+ :is(@{dark-sections})) &__shade { bottom: -1 * @px; }
 
   // from sm the statement and the notice share a row above the title, as on desktop, so a phone held sideways fits the hero
   &__inner {
