@@ -32,6 +32,8 @@
   }
 
   &__text {
+    --parallax-from: -8%;
+    --parallax-to: 8%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
@@ -178,6 +180,8 @@
   }
 
   &__quote {
+    --parallax-from: -16%;
+    --parallax-to: 16%;
     margin: 40 * @px 0 0;
     padding-inline: var(--gutter);
     @media (min-width: @bp-lg) {
@@ -215,14 +219,14 @@
     span { display: block; }
   }
 
+  // its foot sits under the next block, so it only rises from its Figma spot
   &__social {
-    position: relative;
-    display: block;
+    --parallax-from: 0%;
+    --parallax-to: -30%;
     align-self: flex-end;
     width: @collage-side-sm;
     margin-top: 40 * @px;
     aspect-ratio: 1;
-    overflow: hidden;
     @media (min-width: @bp-lg) {
       grid-area: 3 / 3;
       align-self: start;
@@ -230,6 +234,13 @@
       // Figma's card grid starts 2px above the tile's foot and covers it
       margin: @collage-row-3 0 -2 * @px;
     }
+  }
+
+  &__social-link {
+    position: relative;
+    display: block;
+    height: 100%;
+    overflow: hidden;
   }
 
   &__social-img {
