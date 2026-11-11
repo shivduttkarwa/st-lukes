@@ -47,6 +47,7 @@ Links: no `href="#"` anywhere. A link whose `url` is empty renders as an `<a>` w
 
 ### Favicon (`partials/head.njk`)
 - The crest: `crest.svg` for browsers that take an SVG icon, `favicon.ico` (16, 32 and 48, rendered from it) for the rest, and `apple-touch-icon.png` (180, the crest on the logo box's royal) for phone home screens, all in `assets/icons/`. Copy the three `<link>` tags into the base template's head.
+- Search engines: `head.njk` carries `<meta name="robots" content="noindex, nofollow">` so the staging copy stays out of search results. It is for the static build only: leave it out of the live base template, or the real site won't be indexed.
 
 ### Footer (`partials/footer.njk`)
 - Site chrome from `site.footer` and `site.socials` (fields in `blocks.yaml` under settings). It has:
