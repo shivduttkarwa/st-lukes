@@ -175,6 +175,10 @@
 }
 
 @notice-hover-delay: 200ms;
+// the slider cards' rise: a 0.7s fade, and the 35 lift lands at 70% of it
+@notice-rise: 35 * @px;
+@notice-fade: 0.7s;
+@notice-lift: 0.49s;
 @inner-hero-foot: 33 * @px;
 @inner-hero-raise: 27 * @px;
 @inner-hero-lead: 296 * @px;
@@ -326,8 +330,8 @@
     color: var(--color-text);
     opacity: 0;
     visibility: hidden;
-    transform: translateY(16 * @px);
-    transition: opacity var(--duration-base) ease, transform var(--duration-slow) var(--ease-out), visibility 0s linear var(--duration-base);
+    transform: translateY(@notice-rise);
+    transition: opacity var(--duration-base) ease, transform var(--duration-base) ease, visibility 0s linear var(--duration-base);
     @media (min-height: @bp-tall) {
       top: auto;
       bottom: 0;
@@ -383,7 +387,7 @@
       opacity: 1;
       visibility: visible;
       transform: none;
-      transition-delay: 0s;
+      transition: opacity @notice-fade var(--ease-rise), transform @notice-lift var(--ease-rise), visibility 0s;
     }
     .notice__teaser { opacity: 0; }
   }
@@ -394,6 +398,7 @@
         opacity: 1;
         visibility: visible;
         transform: none;
+        transition: opacity @notice-fade var(--ease-rise), transform @notice-lift var(--ease-rise), visibility 0s;
         transition-delay: @notice-hover-delay;
       }
       .notice__teaser {
@@ -402,4 +407,8 @@
       }
     }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .notice__card { transform: none; }
 }
