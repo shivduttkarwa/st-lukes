@@ -1,5 +1,9 @@
 @news-control-sm: 18 * @px;
 @news-control: 20 * @px;
+@news-filter: 200 * @px;
+@news-filter-first: 202 * @px;
+@news-filter-gap: 6 * @px;
+@news-filter-grow: 0.45s;
 
 .news-control-size() {
   font-size: ~"max(@{control-font-min}, @{news-control-sm})";
@@ -33,17 +37,25 @@
     display: flex;
     flex: 1 1 100%;
     flex-wrap: wrap;
-    gap: 6 * @px;
+    gap: @news-filter-gap;
     @media (min-width: @bp-lg) { flex: 0 1 auto; }
   }
 
+  // rows wrap on the fixed 160 minimum, never on a label, so a long choice only takes width from its row partner, and a
+  // pill alone on its row stays a half unless its label needs more; from lg a pill keeps Figma's 200 unless its label
+  // needs more (--select-fit, forms.js)
   &__filter {
     position: relative;
-    flex: 1 1 160 * @px;
+    flex: ~"max(160, var(--select-fit, 0)) 1 0%";
+    min-width: 160 * @px;
+    max-width: ~"max(50% - @{news-filter-gap} / 2, var(--select-fit, 0) * 1px)";
     @media (min-width: @bp-lg) {
-      flex: 0 0 200 * @px;
-      &:first-child { flex-basis: 202 * @px; }
+      flex: 0 0 ~"max(@{news-filter}, var(--select-fit, 0) * 1px)";
+      min-width: 0;
+      max-width: none;
+      &:first-child { flex-basis: ~"max(@{news-filter-first}, var(--select-fit, 0) * 1px)"; }
     }
+    &.is-fitted { transition: flex @news-filter-grow var(--ease-settle), max-width @news-filter-grow var(--ease-settle); }
     select,
     .select__toggle {
       .type-heading-6();
@@ -51,7 +63,8 @@
       appearance: none;
       width: 100%;
       min-height: var(--tap-size);
-      padding: 9 * @px 44 * @px 11 * @px 20 * @px;
+      padding: 10 * @px 44 * @px 10 * @px 20 * @px;
+      @media (min-width: @bp-lg) { padding: 9 * @px 44 * @px 11 * @px 20 * @px; }
       border: 1 * @px solid var(--color-royal);
       border-radius: var(--radius-pill);
       background: none;
@@ -108,4 +121,8 @@
       transform: translateY(-50%);
     }
   }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .news-index__filter.is-fitted { transition: none; }
 }

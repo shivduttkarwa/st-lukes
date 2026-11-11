@@ -1,6 +1,9 @@
 import { liquidGlass } from "./glass.js";
 
 const TYPEAHEAD_RESET = 500;
+const LABEL_OUT = 150;
+const LABEL_IN = 280;
+const LABEL_WAIT = 240;
 
 const faceOf = (control) => control.closest("[data-select]")?.querySelector("[role='combobox']") || control;
 
@@ -120,11 +123,38 @@ function buildSelect(root, index) {
     list.scrollTo({ top: Math.max(0, Math.min(1, share)) * (list.scrollHeight - list.clientHeight), behavior: "smooth" });
   });
 
+  // the toggle's width with its whole label showing, in px, so a filter can make room for a long choice and ease there
+  const fit = () => {
+    const text = document.createRange();
+    text.selectNodeContents(value);
+    root.style.setProperty("--select-fit", Math.ceil(toggle.offsetWidth - value.clientWidth + text.getBoundingClientRect().width));
+  };
+
+  const show = (text) => {
+    value.textContent = text;
+    value.classList.toggle("is-placeholder", !select.value);
+    fit();
+  };
+
+  // a new choice fades out the old label and fades in its own; one that makes the pill grow waits for it, or the
+  // ellipsis would uncover it word by word
+  let swap = 0;
   const sync = () => {
     const current = select.options[select.selectedIndex];
-    value.textContent = current ? current.textContent : "";
-    value.classList.toggle("is-placeholder", !select.value);
+    const text = current ? current.textContent : "";
     rows.forEach((row, i) => row.setAttribute("aria-selected", String(options[i] === current)));
+    clearTimeout(swap);
+    value.getAnimations().forEach((a) => a.cancel());
+    if (text === value.textContent) return;
+    if (!root.classList.contains("is-fitted") || matchMedia("(prefers-reduced-motion: reduce)").matches) return show(text);
+    value.animate([{ opacity: 1 }, { opacity: 0 }], { duration: LABEL_OUT, easing: "ease-in", fill: "forwards" });
+    swap = setTimeout(() => {
+      value.getAnimations().forEach((a) => a.cancel());
+      show(text);
+      const growing = parseFloat(root.style.getPropertyValue("--select-fit")) > toggle.offsetWidth + 1
+        && root.getAnimations().some((a) => a instanceof CSSTransition && /^(flex|max-width)/.test(a.transitionProperty));
+      value.animate([{ opacity: 0 }, { opacity: 1 }], { duration: LABEL_IN, delay: growing ? LABEL_WAIT : 0, easing: "ease-out", fill: "backwards" });
+    }, LABEL_OUT);
   };
 
   const setActive = (i) => {
@@ -257,6 +287,13 @@ function buildSelect(root, index) {
   select.addEventListener("change", sync);
   select.form?.addEventListener("reset", () => setTimeout(sync));
   sync();
+  window.addEventListener("resize", fit);
+  // measured again in the real font, then eased from there on: a size set at load never animates
+  document.fonts.ready.then(() => {
+    fit();
+    void root.offsetWidth;
+    root.classList.add("is-fitted");
+  });
 }
 
 export function initSelects() {
