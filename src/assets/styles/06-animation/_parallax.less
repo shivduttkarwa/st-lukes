@@ -1,3 +1,5 @@
+@parallax-snap: ~"translate3d(0, round(calc(var(--parallax-from, 0%) + (var(--parallax-to, 0%) - var(--parallax-from, 0%)) * var(--parallax-p)), var(--device-px, 1px)), 0)";
+
 @keyframes parallax-y {
   from { transform: translate3d(0, var(--parallax-from, 0%), 0); }
   to { transform: translate3d(0, var(--parallax-to, 0%), 0); }
@@ -28,19 +30,22 @@
     // a block with text or hairlines moves in whole device pixels: at a fractional offset its layer is resampled and 1px lines blur
     [data-anim="parallax"][data-anim-snap] {
       --parallax-keyframes: parallax-snap;
-      transform: ~"translate3d(0, round(calc(var(--parallax-from, 0%) + (var(--parallax-to, 0%) - var(--parallax-from, 0%)) * var(--parallax-p)), var(--device-px, 1px)), 0)";
+      transform: @parallax-snap;
       will-change: transform;
     }
 
     // at the very top a pinned layer has not moved yet; leaving it unanimated keeps it off the GPU, so text over it stays crisp
     html:not(.is-scrolled) [data-anim="parallax"][data-anim-start="top top"] { animation: none; }
 
+    // unanimated, a snap layer would rest at its start offset, so a layer still on phones drops the transform
     [data-anim="parallax"][data-anim-disable-mobile] {
       animation: none;
+      transform: none;
       @media (min-width: @bp-lg) {
         animation: var(--parallax-keyframes, parallax-y) linear both;
         animation-timeline: --parallax;
         animation-range: cover;
+        &[data-anim-snap] { transform: @parallax-snap; }
       }
     }
   }

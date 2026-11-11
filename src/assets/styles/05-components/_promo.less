@@ -23,6 +23,15 @@
     object-fit: cover;
   }
 
+  // Safari draws a video a device pixel short of a box at a fractional size, so the still showed as a line at its foot
+  &__preview,
+  &__video {
+    top: -1 * @px;
+    left: -1 * @px;
+    width: calc(100% + 2 * @px);
+    height: calc(100% + 2 * @px);
+  }
+
   // the still stays underneath and the looping preview fades in once it plays: iOS blinks as it swaps a poster for the first frame
   &__preview {
     opacity: 0;
