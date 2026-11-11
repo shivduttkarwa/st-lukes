@@ -57,7 +57,7 @@
       background: none;
       color: var(--color-royal);
     }
-    .select__toggle:focus-visible { outline: 2px solid var(--color-royal); }
+    :where(.is-keyboard) & .select__toggle:focus-visible { outline: 2px solid var(--color-royal); }
     .icon {
       position: absolute;
       top: calc(50% - 8 * @px);

@@ -3,9 +3,10 @@ import { initForms, initSelects } from "./forms.js";
 import { initPreloader } from "./preloader.js";
 import { initSliders } from "./slider.js";
 import { initTransitions } from "./transition.js";
-import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initEagerPhotos, initEntryCards, initFilters, initHeroFold, initHoverVideos, initMarquees, initVideoCards, initMenu, initNewsFilter, initPlatform, initPress, initPromos, initScrollState, initStickyHeader } from "./ui.js";
+import { initAccordions, initAmbientVideos, initDevicePixel, initDisclosures, initFocusMode, initEagerPhotos, initEntryCards, initFilters, initHeroFold, initHoverVideos, initMarquees, initVideoCards, initMenu, initNewsFilter, initPlatform, initPress, initPromos, initScrollState, initStickyHeader } from "./ui.js";
 
 document.addEventListener("DOMContentLoaded", () => {
+  initFocusMode();
   initDevicePixel();
   initPlatform();
   const preloaded = initPreloader();

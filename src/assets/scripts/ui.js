@@ -26,6 +26,17 @@ export function initPlatform() {
   if (/Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("has-glass-lens");
 }
 
+// typing in a field is not keyboard navigation, or a phone's own keyboard would bring the rings back
+export function initFocusMode() {
+  const root = document.documentElement;
+  document.addEventListener("keydown", (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key !== "Tab" && e.target.closest?.("input, textarea, select, [contenteditable]")) return;
+    root.classList.toggle("is-keyboard", true);
+  }, true);
+  document.addEventListener("pointerdown", () => root.classList.toggle("is-keyboard", false), true);
+}
+
 export function initDisclosures() {
   document.querySelectorAll("[data-disclosure]").forEach((root) => {
     const toggle = root.querySelector("[aria-expanded]");

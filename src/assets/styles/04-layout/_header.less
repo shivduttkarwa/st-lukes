@@ -86,7 +86,8 @@
   }
 
   // a keyboard user tabbing in, or an open dropdown, keeps the bar on screen
-  &.is-hidden:not(:has(:focus-visible, .is-open)) { translate: 0 -100%; }
+  &.is-hidden:not(:has(.is-open)) { translate: 0 -100%; }
+  :where(.is-keyboard) &.is-hidden:has(:focus-visible) { translate: none; }
 
   &.is-instant,
   &.is-instant::before,
@@ -126,16 +127,17 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 4 * @px;
-    width: 80 * @px;
+    gap: 5 * @px;
+    width: 92 * @px;
     height: @logo-height-sm;
-    padding: 10 * @px;
+    padding: 11 * @px;
     background: var(--color-royal);
     scale: 1;
     transform-origin: top center;
     will-change: transform;
     transition: scale @stuck-morph;
     @media (min-width: @bp-lg) {
+      gap: 4 * @px;
       width: 136 * @px;
       height: var(--header-height);
       padding: 18 * @px;
@@ -143,8 +145,8 @@
   }
 
   &__crest {
-    width: 58 * @px;
-    height: 58 * @px;
+    width: 67 * @px;
+    height: 67 * @px;
     @media (min-width: @bp-lg) {
       width: 100 * @px;
       height: 100 * @px;
@@ -152,8 +154,8 @@
   }
 
   &__wordmark {
-    width: 44 * @px;
-    height: 12 * @px;
+    width: 51 * @px;
+    height: 14 * @px;
     @media (min-width: @bp-lg) {
       width: 75 * @px;
       height: 20 * @px;

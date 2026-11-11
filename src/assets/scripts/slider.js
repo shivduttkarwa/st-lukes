@@ -22,7 +22,7 @@ function autoplay(swiper, scope, delay) {
   scope.addEventListener("pointerenter", () => set("hover", true));
   scope.addEventListener("pointerleave", () => set("hover", false));
   // only keyboard focus holds it: a clicked dot or arrow keeps focus, which stopped autoplay for good after a manual change
-  scope.addEventListener("focusin", (event) => set("focus", event.target.matches(":focus-visible")));
+  scope.addEventListener("focusin", (event) => set("focus", event.target.matches(".is-keyboard :focus-visible")));
   scope.addEventListener("focusout", () => set("focus", false));
   new IntersectionObserver(([entry]) => set("view", !entry.isIntersecting)).observe(swiper.el);
 }
