@@ -11,7 +11,7 @@ settings:
       menu_links: ListBlock(StructBlock(label, url))   # the six small links under the main list
       quick_links: ListBlock(StructBlock(label, url))
       utility_links: ListBlock(StructBlock(label, url))
-      socials: ListBlock(StructBlock(network, label, url))   # network = icon id: facebook, instagram, linkedin
+      socials: ListBlock(StructBlock(network, label, url))   # network = icon id: facebook, instagram, linkedin; always open in a new tab
       popular_searches: ListBlock(StructBlock(label, url))   # direct links to pages, beside the search results
       footer: StructBlock   # figma 20169:5888 (Footer); template partials/footer.njk
         statement: CharBlock   # top right, Heading 2 at 1.05
@@ -24,7 +24,7 @@ settings:
         affiliations: ListBlock(StructBlock(name: CharBlock, image: ImageChooserBlock))   # white logos; width / height are the design size
         copyright: CharBlock
         abn: CharBlock
-        legal_links: ListBlock(StructBlock(label: CharBlock, url: URLBlock))
+        legal_links: ListBlock(StructBlock(label: CharBlock, url: URLBlock, new_window: BooleanBlock(required=False)))   # Design credit opens in a new tab
 
 pages:
   home:

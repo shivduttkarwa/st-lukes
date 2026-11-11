@@ -55,6 +55,8 @@ Links: no `href="#"` anywhere. A link whose `url` is empty renders as an `<a>` w
 - The marquee is the same `initMarquees()` as the pathways logos (`data-marquee="left"`, right to left at 35 design px/s). Odd phrases are a hollow 2px gold outline outside the glyph (`.outline-text-clear()`), even ones solid gold. The lane carries 3px of padding so its overflow doesn't clip the outline. It's `aria-hidden` and stands still under reduced motion. Standing still below 1440, the phrase wraps rather than run off the screen: a phrase per line, and on the narrowest phones a phrase's words too, inside the left offset and the same on the right. From 1440 it stays on one line and bleeds off the right edge, as Figma draws it.
 - Figma sets Dee Why's years line in Semibold 16 / 1.4 and Bayview's in Bold 16 / 1.5. The template uses Dee Why's for both (one field), so Bayview's column sits 2px higher than Figma.
 - Footer links are plain text links in the inherited white. Quick links are 28px rows under a fine pointer and 44px on touch, and the phone numbers carry an invisible 44px hit area.
+- Hover (mouse only, `.footer-link()` in `_footer.less`): the quick links, phone numbers, Directions and the legal links fade to gold over 0.35s. Directions' arrow nudges 3px right; the social buttons only turn gold, as elsewhere on the site. Under reduced motion only the colour changes. An underline that rose in under the text, and a 3px lift on the social buttons, were tried and dropped.
+- The social links (`site.socials`: Facebook and Instagram, as linked from the school's own site) open in a new tab wherever they appear: footer, menu, connect band, News hero, social band and story share links. No official LinkedIn page was found, so its `url` is empty; fill it or drop the entry. A legal link with `new_window: true` (the Design credit, to cimarketing.com.au) opens in a new tab too; in Wagtail that is a boolean on the link.
 
 ## Motion conventions
 
@@ -340,7 +342,7 @@ Every move between pages is a cross-document view transition (CSS `@view-transit
   - Tours goes to the top of Contact. Book a Tour goes to Contact's "Visit St Luke's" (`#campuses`), as do campuses, visits, maps and transport.
   - Enquire and the other enquiry links (How to Apply, Current Families) go to `#contact-form`.
   - Enrol and every Apply button go to Our School, which stands in for an enrolments page. On Our School itself, they go to the top of Contact. Prospectus goes to Our School, and Round Square to Our School Alternative, which has a Round Square row. Links with nothing related have an empty `url`:
-  - **Site chrome:** the portal links, Employment, Alumni, Term Dates, Fees, Giving and Policies, the social links and the footer's Design credit.
+  - **Site chrome:** the portal links, Employment, Alumni, Term Dates, Fees, Giving and Policies, and the LinkedIn social link.
   - **Our School topics outside the menu:** the Our School cards and rows (and the Where to Next cards and menu) for Why Choose St Luke's, Christian Foundation, Strategic Plan, Masterplan, History and Acknowledgement of Country.
   - **Homepage buttons:** pillars, stats, campuses, Explore Learning, pathways, discover and Hear more.
   - **Elsewhere:** the FAQ buttons for those topics and View more FAQs, View Current Opportunities, View our Graduate Profile on Principal's Welcome, the Instagram card in the Our School collage and the Extra Blocks sample buttons.

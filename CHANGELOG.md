@@ -1,6 +1,9 @@
 # Changelog
 
 ## 2026-11-11 — Device audit fixes
+- Promo video on phones: a line still showed down the right edge. The 1px overscan was capped by the base `video { max-width: 100% }`, so the video sat 1px left and stopped 1px short on the right, where the poster showed through. It now reaches 1px past the frame on every side. The video file is the original's own 1344 × 754 picture, uncropped; the dark band at the right of the classroom shots is the noticeboard in the footage.
+- Footer: a subtle hover on its links. Text links fade to gold over 0.35s and the Directions arrow nudges right. Reduced motion keeps only the colour.
+- Social links: Facebook and Instagram now point at the school's accounts, as linked from stlukes.nsw.edu.au. They open in a new tab everywhere they appear. LinkedIn is still empty, as the school links no LinkedIn page. The footer's Design credit links to cimarketing.com.au in a new tab.
 - Audited all nine pages at 37 sizes: phones from 320 to 430, phones held sideways, Galaxy Z Fold, Surface Duo (one screen, spanned and stacked), iPads both ways, and laptops from 1280 × 600 to 1536 × 730. Fixed below. Desktop at 1440 and 1920 is pixel-identical apart from the Bayview address and the collage poster. At 1200–1439 the hero notice narrows and the reduced-motion footer slogan wraps.
 - Our School page links at 320: "CHRISTIAN FOUNDATIO / N" and "CAMPUS MASTERPLA / N" broke mid-word. A word now stays whole and may run into the 16px gap before the arrow (10px of it here). Soft hyphens still break "Acknowl­edge­ment".
 - News List featured story: at 1024 the title ran under the back arrow, as the touch arrows are 44px whatever the root. From 992 the caption stops short of them. The typed line break now applies from 1200; below that the title wraps freely and never leaves a word alone ("ENJOY" sat on its own line at 320, which now reads in 5 lines instead of 7).

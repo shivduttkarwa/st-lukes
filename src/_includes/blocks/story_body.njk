@@ -21,7 +21,7 @@
         <p data-anim-item>{{ value.share_label }}</p>
         <ul>
           {% for item in site.socials %}
-          <li data-anim-item><a class="story-body__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+          <li data-anim-item><a class="story-body__link"{% if item.url %} href="{{ item.url }}" target="_blank" rel="noopener"{% endif %} aria-label="Share on {{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
           {% endfor %}
         </ul>
       </div>

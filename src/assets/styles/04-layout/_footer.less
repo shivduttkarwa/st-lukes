@@ -1,5 +1,13 @@
 @footer-strip: 16 * @px;
 @footer-lane-bleed: 3 * @px;
+@footer-nudge: 3 * @px;
+
+.footer-link() {
+  transition: color var(--duration-base) ease;
+  @media (hover: hover) {
+    &:hover { color: var(--color-gold); }
+  }
+}
 
 .site-footer {
   position: relative;
@@ -185,14 +193,16 @@
     gap: 3 * @px;
     min-height: var(--tap-size);
     font-style: italic;
+    .footer-link();
     @media @fine { min-height: 0; }
     .icon {
       width: 18 * @px;
       height: 18 * @px;
       transform: rotate(45deg);
+      transition: translate var(--duration-base) var(--ease-out);
     }
-    @media (hover: hover) {
-      &:hover { color: var(--color-gold); }
+    @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+      &:hover .icon { translate: @footer-nudge 0; }
     }
   }
 
@@ -207,6 +217,7 @@
     strong { font-weight: 700; }
     a {
       .tap-area();
+      .footer-link();
       align-self: center;
       @media (min-width: @bp-md) { align-self: flex-start; }
     }
@@ -230,13 +241,11 @@
       align-items: center;
       justify-content: center;
       min-height: var(--tap-size);
+      .footer-link();
       @media (min-width: @bp-md) { justify-content: flex-start; }
       @media @fine {
         min-height: 0;
         padding: 2 * @px 0;
-      }
-      @media (hover: hover) {
-        &:hover { color: var(--color-gold); }
       }
     }
   }
@@ -365,9 +374,7 @@
     }
     a {
       .tap-area();
-      @media (hover: hover) {
-        &:hover { color: var(--color-gold); }
-      }
+      .footer-link();
     }
   }
 }

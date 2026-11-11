@@ -128,8 +128,8 @@
     { "label": "Enrol", "url": "/our-school.html" }
   ],
   "socials": [
-    { "network": "facebook", "label": "Facebook", "url": "" },
-    { "network": "instagram", "label": "Instagram", "url": "" },
+    { "network": "facebook", "label": "Facebook", "url": "https://www.facebook.com/St-Lukes-Grammar-School-681445392045384" },
+    { "network": "instagram", "label": "Instagram", "url": "https://www.instagram.com/stlukesgrammarschool/" },
     { "network": "linkedin", "label": "LinkedIn", "url": "" }
   ],
   "popular_searches": [
@@ -166,6 +166,6 @@
     ],
     "copyright": "© 2026 St Luke's Grammar School",
     "abn": "ABN 63 544 529 806",
-    "legal_links": [{"label": "Policies", "url": ""}, {"label": "Design", "url": ""}]
+    "legal_links": [{"label": "Policies", "url": ""}, {"label": "Design", "url": "https://www.cimarketing.com.au/", "new_window": true}]
   }
 }

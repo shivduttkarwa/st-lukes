@@ -38,7 +38,7 @@
     </div>
     <ul class="news-hero__links">
       {% for item in site.socials %}
-      <li><a class="news-hero__link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+      <li><a class="news-hero__link"{% if item.url %} href="{{ item.url }}" target="_blank" rel="noopener"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
       {% endfor %}
     </ul>
   </div>

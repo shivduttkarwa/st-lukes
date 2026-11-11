@@ -50,7 +50,7 @@
     <div class="site-footer__bar">
       <ul class="site-footer__social">
         {% for item in site.socials %}
-        <li><a class="site-footer__social-link"{% if item.url %} href="{{ item.url }}"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
+        <li><a class="site-footer__social-link"{% if item.url %} href="{{ item.url }}" target="_blank" rel="noopener"{% endif %} aria-label="{{ item.label }}"><svg class="icon" aria-hidden="true"><use href="#icon-{{ item.network }}"></use></svg></a></li>
         {% endfor %}
       </ul>
       <ul class="site-footer__affiliations">
@@ -62,7 +62,7 @@
     <div class="site-footer__legal">
       <p><span>{{ f.copyright }}</span><span aria-hidden="true">·</span><span>{{ f.abn }}</span></p>
       <ul>
-        {% for link in f.legal_links %}<li><a{% if link.url %} href="{{ link.url }}"{% endif %}>{{ link.label }}</a></li>{% endfor %}
+        {% for link in f.legal_links %}<li><a{% if link.url %} href="{{ link.url }}"{% endif %}{% if link.new_window %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a></li>{% endfor %}
       </ul>
     </div>
   </div>
