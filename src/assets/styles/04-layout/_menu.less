@@ -321,8 +321,10 @@ html.is-locked {
     transition: background-color var(--duration-base) ease;
   }
 
+  // its row lines' z-index stays inside, under the Quick Links card
   &__body {
     position: relative;
+    isolation: isolate;
     display: flex;
     flex: 1 1 0;
     flex-direction: column;
