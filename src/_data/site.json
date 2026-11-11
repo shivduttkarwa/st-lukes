@@ -7,7 +7,11 @@
   "nav": [
     {
       "label": "Home",
-      "url": "/index.html",
+      "url": "/index.html"
+    },
+    {
+      "label": "Enrolments",
+      "url": "/contact.html",
       "children": [
         { "label": "Home", "url": "/index.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
         { "label": "Our School", "url": "/our-school.html", "image": { "src": "/assets/images/our-school/hero-768.webp", "alt": "", "width": 768, "height": 438 } },
@@ -18,16 +22,6 @@
         { "label": "News List", "url": "/news.html", "image": { "src": "/assets/images/pages/feature-1.webp", "alt": "", "width": 1334, "height": 820 } },
         { "label": "News Story", "url": "/news-story.html", "image": { "src": "/assets/images/pages/article-hero.webp", "alt": "", "width": 1080, "height": 624 } },
         { "label": "Extra Blocks", "url": "/extra-blocks.html", "image": { "src": "/assets/images/pages/hero-extra-768.webp", "alt": "", "width": 768, "height": 412 } }
-      ]
-    },
-    {
-      "label": "Enrolments",
-      "url": "/contact.html",
-      "children": [
-        { "label": "How to Apply", "url": "/contact.html#contact-form", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } },
-        { "label": "Fees & Charges", "url": "/contact.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } },
-        { "label": "Scholarships", "url": "/contact.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Book a Tour", "url": "/contact.html#campuses", "image": { "src": "/assets/images/home/notice.webp", "alt": "", "width": 800, "height": 533 } }
       ]
     },
     {
