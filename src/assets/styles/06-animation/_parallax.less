@@ -3,14 +3,15 @@
   to { transform: translate3d(0, var(--parallax-to, 0%), 0); }
 }
 
-@property --parallax-y {
-  syntax: "<length-percentage>";
+// Firefox steps a registered property whose keyframes hold var(), flipping halfway, so the snap animates a plain 0 to 1
+@property --parallax-p {
+  syntax: "<number>";
   inherits: false;
-  initial-value: 0%;
+  initial-value: 0;
 }
 @keyframes parallax-snap {
-  from { --parallax-y: var(--parallax-from, 0%); }
-  to { --parallax-y: var(--parallax-to, 0%); }
+  from { --parallax-p: 0; }
+  to { --parallax-p: 1; }
 }
 
 @supports (animation-timeline: view()) {
@@ -27,7 +28,7 @@
     // a block with text or hairlines moves in whole device pixels: at a fractional offset its layer is resampled and 1px lines blur
     [data-anim="parallax"][data-anim-snap] {
       --parallax-keyframes: parallax-snap;
-      transform: ~"translate3d(0, round(var(--parallax-y), var(--device-px, 1px)), 0)";
+      transform: ~"translate3d(0, round(calc(var(--parallax-from, 0%) + (var(--parallax-to, 0%) - var(--parallax-from, 0%)) * var(--parallax-p)), var(--device-px, 1px)), 0)";
       will-change: transform;
     }
 

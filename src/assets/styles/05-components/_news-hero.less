@@ -159,7 +159,7 @@
   &__slider.is-back &__title { --story-out: var(--story-back); }
 
   &__tag,
-  &__title { translate: 0 ~"round(var(--story-y), var(--device-px, 1px))"; }
+  &__title { translate: 0 @story-y; }
 
   &__story.swiper-slide-active &__img,
   &__story.is-leaving &__img,

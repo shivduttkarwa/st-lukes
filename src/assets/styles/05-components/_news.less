@@ -28,12 +28,14 @@
     story-text-arrive-fade @news-fade ease-in-out calc(@news-arrive + @news-step + var(--story-in) * @news-step) both;
 }
 
-// the text's offset, eased by its keyframes and drawn in whole device pixels: on a GPU layer small text snapped as it landed
-@property --story-y {
-  syntax: "<length>";
+// the text's offset, eased by its keyframes and drawn in whole device pixels: on a GPU layer small text snapped as it landed;
+// the keyframes move a plain number, as Firefox steps a registered property whose keyframes hold var()
+@property --story-p {
+  syntax: "<number>";
   inherits: false;
-  initial-value: 0px;
+  initial-value: 0;
 }
+@story-y: ~"round(calc(var(--story-dir) * var(--story-shift) * var(--story-p)), var(--device-px, 1px))";
 
 @property --news-dot-fill {
   syntax: "<length-percentage>";
@@ -233,7 +235,7 @@
   &__tags,
   h3,
   p,
-  .btn { translate: 0 ~"round(var(--story-y), var(--device-px, 1px))"; }
+  .btn { translate: 0 @story-y; }
 
   &.swiper-slide-active &__img,
   &.swiper-slide-active &__video,
@@ -270,9 +272,9 @@
 
 @keyframes story-leave { from, to { visibility: visible; } }
 @keyframes story-hold { from, to { z-index: 3; } }
-@keyframes story-text-leave-move { to { --story-y: calc(var(--story-dir) * -1 * var(--story-shift)); } }
+@keyframes story-text-leave-move { to { --story-p: -1; } }
 @keyframes story-text-leave-fade { to { opacity: 0; } }
-@keyframes story-text-arrive-move { from { --story-y: calc(var(--story-dir) * var(--story-shift)); } }
+@keyframes story-text-arrive-move { from { --story-p: 1; } }
 @keyframes story-text-arrive-fade { from { opacity: 0; } }
 @keyframes story-photo-in { from { opacity: 0; } }
 @keyframes story-photo-settle { from { scale: @news-swap-scale; } }
