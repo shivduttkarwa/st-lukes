@@ -34,7 +34,8 @@ const DEFAULTS = {
 // Scroll reveals follow the scroll forwards only: they run from their start line over this share of the
 // viewport, trailing the scroll by `smooth` seconds, and stay revealed once they reach the end.
 // On phones a flick jumps a reveal to its end, so it catches up no faster than `rate` times its own pace instead of popping in.
-const SCRUB = { distance: 0.28, smooth: 0.4, rate: 1 };
+// One on screen at load plays after the entrance if all of it, or `peek` of the viewport's height of it, shows.
+const SCRUB = { distance: 0.28, smooth: 0.4, rate: 1, peek: 0.05 };
 
 // `swing-in` (the Mina Wylie photo) swings down from the top right: start as % of its own width / height, and the turn in degrees
 const SWING = { x: 20, y: -25, rotation: 18, ease: "power3.out" };
@@ -301,7 +302,12 @@ function scrollStep(el, animation, hold, distance = SCRUB.distance) {
     begins.set(el, gsap.ticker.time + at);
     return (tl = gsap.timeline({ paused: true }).add(animation(), at));
   };
-  const onScreen = () => el.getBoundingClientRect().top < window.innerHeight;
+  const onScreen = () => {
+    const { top, height } = el.getBoundingClientRect();
+    return top < window.innerHeight - Math.min(height, window.innerHeight * SCRUB.peek);
+  };
+  // a sliver under the fold (the home intro at 1440 × 1024) would play out of sight, so it follows the first scroll instead
+  const sliver = el.getBoundingClientRect().top < window.innerHeight && !onScreen();
   const playNow = (st) => {
     st.kill();
     triggers.delete(el);
@@ -316,7 +322,7 @@ function scrollStep(el, animation, hold, distance = SCRUB.distance) {
   const range = () => window.innerHeight * number(el, variant(el, "data-anim-distance"), distance);
   const st = ScrollTrigger.create({
     trigger: el,
-    start: `clamp(${startOf(el)})`,
+    start: sliver ? "clamp(top bottom)" : `clamp(${startOf(el)})`,
     end: "max", // the range runs from the clamped start; a relative end would cut it short for a step already on screen
     onUpdate: (self) => {
       const reach = Math.min(self.start + range(), ScrollTrigger.maxScroll(window));
@@ -335,7 +341,7 @@ function scrollStep(el, animation, hold, distance = SCRUB.distance) {
     },
   });
   triggers.set(el, st);
-  if (!(st.scroll() >= st.start || onScreen())) return;
+  if (sliver || !(st.scroll() >= st.start || onScreen())) return;
   if (!follow()) return playNow(st);
   // On screen while the entrance still runs: it plays when that ends. The trigger stays alive throughout, so a
   // reader who scrolls down straight away or just after sees it follow the scroll like any other step, not a blank section.
