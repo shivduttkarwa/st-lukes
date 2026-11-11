@@ -6,7 +6,7 @@
         <div class="news-index__filter select" data-select>
           <select name="{{ filter.name }}" aria-label="{{ filter.label }}" data-news-field="{{ filter.name }}">
             <option value="">{{ filter.label }}</option>
-            {% for option in filter.options %}<option>{{ option }}</option>{% endfor %}
+            {% for option in filter.options %}{% if option.value %}<option value="{{ option.value }}">{{ option.label }}</option>{% else %}<option>{{ option }}</option>{% endif %}{% endfor %}
           </select>
           <svg class="icon" aria-hidden="true"><use href="#icon-chevron-down"></use></svg>
         </div>

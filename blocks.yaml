@@ -245,7 +245,7 @@ blocks:
     figma: "20169:14009"
     template: blocks/news_index.njk   # card markup in snippets/news-card.njk
     fields:
-      filters: ListBlock(StructBlock(name, label, options))   # server-side in Wagtail: age (Early Learning, Junior School, Senior School), category, year (Pre-K & Kindergarten, then pairs of years to Years 11–12); sample values
+      filters: ListBlock(StructBlock(name, label, options))   # server-side in Wagtail: age (Early Learning, Junior School, Senior School), category, year (Pre-K & Kindy, then pairs of years to Years 11–12); sample values. Not in Figma, so every option shows a short label that fits the pill (about 13 characters): an option is a string, or {value, label} where value matches the story tag and label is the short name (Talented Athlete Program → Athletes, Performing Arts → Arts)
       search_label: CharBlock
       no_results: CharBlock   # shown when the filters and search match no story
       stories: the NewsPage queryset   # tag, ages, years, title, url, image fill-818x568; ages and years are lists (a story can belong to several)

@@ -76,11 +76,11 @@
             "options": [
               "Community",
               "Service",
-              "Talented Athlete Program",
+              { "value": "Talented Athlete Program", "label": "Athletes" },
               "Whole School",
               "GlobalCitizen",
               "Junior School",
-              "Performing Arts",
+              { "value": "Performing Arts", "label": "Arts" },
               "HSC Music"
             ]
           },
@@ -88,7 +88,7 @@
             "name": "year",
             "label": "Year group",
             "options": [
-              "Pre-K & Kindergarten",
+              "Pre-K & Kindy",
               "Years 1–2",
               "Years 3–4",
               "Years 5–6",
@@ -109,7 +109,7 @@
               "Senior School"
             ],
             "years": [
-              "Pre-K & Kindergarten",
+              "Pre-K & Kindy",
               "Years 1–2",
               "Years 3–4",
               "Years 5–6",
@@ -169,7 +169,7 @@
               "Senior School"
             ],
             "years": [
-              "Pre-K & Kindergarten",
+              "Pre-K & Kindy",
               "Years 1–2",
               "Years 3–4",
               "Years 5–6",
@@ -193,7 +193,7 @@
               "Senior School"
             ],
             "years": [
-              "Pre-K & Kindergarten",
+              "Pre-K & Kindy",
               "Years 1–2",
               "Years 3–4",
               "Years 5–6",
