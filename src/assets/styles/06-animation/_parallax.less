@@ -24,7 +24,8 @@
       animation: var(--parallax-keyframes, parallax-y) linear both;
       animation-timeline: --parallax;
       animation-range: cover;
-      &[data-anim-start="top top"] { animation-range: exit; }
+      // timed from the top edge only: an iPhone's toolbar moves the bottom edge as it shrinks and grows, and `exit` would jump with it
+      &[data-anim-start="top top"] { animation-range: exit-crossing; }
     }
 
     // a block with text or hairlines moves in whole device pixels: at a fractional offset its layer is resampled and 1px lines blur
@@ -34,8 +35,10 @@
       will-change: transform;
     }
 
-    // at the very top a pinned layer has not moved yet; leaving it unanimated keeps it off the GPU, so text over it stays crisp
-    html:not(.is-scrolled) [data-anim="parallax"][data-anim-start="top top"] { animation: none; }
+    // at the very top a pinned layer rests unanimated so text over it stays crisp; not on touch, where it restarts a beat late and jumps
+    @media @fine {
+      html:not(.is-scrolled) [data-anim="parallax"][data-anim-start="top top"] { animation: none; }
+    }
 
     // unanimated, a snap layer would rest at its start offset, so a layer still on phones drops the transform
     [data-anim="parallax"][data-anim-disable-mobile] {
