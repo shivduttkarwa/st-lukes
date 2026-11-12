@@ -435,6 +435,100 @@ export function initVideoCards() {
   document.addEventListener("keydown", (event) => { if (event.key === "Escape" && open) close(open); });
 }
 
+// data-social: each tile opens its post in the section's dialog; the arrows, arrow keys and a swipe step through the posts
+export function initSocialPopups() {
+  const still = window.matchMedia("(prefers-reduced-motion: reduce)");
+  document.querySelectorAll("[data-social]").forEach((section) => {
+    const dialog = section.querySelector("[data-social-popup]");
+    if (!dialog) return;
+    const tiles = [...section.querySelectorAll("[data-social-open]")];
+    const posts = [...dialog.querySelectorAll(".social__post")];
+    const scrim = dialog.querySelector(".social__scrim");
+    const swiper = () => section.querySelector("[data-slider]")?.swiper;
+    let current = -1;
+    let leaving = 0;
+
+    const show = (index) => {
+      const next = (index + posts.length) % posts.length;
+      if (next === current) return;
+      const old = posts[current];
+      if (old) {
+        old.hidden = true;
+        old.querySelector("video")?.pause();
+      }
+      current = next;
+      posts[next].hidden = false;
+      const video = posts[next].querySelector("video");
+      if (!video) return;
+      if (!video.getAttribute("src")) video.src = video.dataset.src;
+      if (!still.matches) video.play().catch(() => {});
+    };
+
+    // closing hands focus back to the tile, which Swiper would otherwise answer by jumping the slider to it
+    const quietly = (fn) => {
+      const a11y = swiper()?.params.a11y;
+      if (a11y) a11y.scrollOnFocus = false;
+      fn();
+      if (a11y) a11y.scrollOnFocus = true;
+    };
+
+    const open = (index) => {
+      clearTimeout(leaving);
+      show(index);
+      if (!dialog.open) {
+        lockScroll(true);
+        dialog.showModal();
+        swiper()?.keyboard.disable();
+      }
+      void dialog.offsetWidth;
+      dialog.classList.add("is-open");
+    };
+
+    const close = () => {
+      if (!dialog.classList.contains("is-open")) return;
+      dialog.classList.remove("is-open");
+      posts[current]?.querySelector("video")?.pause();
+      leaving = setTimeout(() => quietly(() => dialog.close()), parseFloat(getComputedStyle(scrim).transitionDuration) * 1000);
+    };
+
+    tiles.forEach((tile, index) => tile.addEventListener("click", (event) => {
+      if (!event.defaultPrevented) open(index);
+    }));
+    dialog.querySelectorAll("[data-social-close]").forEach((el) => el.addEventListener("click", close));
+    dialog.querySelector("[data-social-prev]").addEventListener("click", () => show(current - 1));
+    dialog.querySelector("[data-social-next]").addEventListener("click", () => show(current + 1));
+    dialog.addEventListener("cancel", (event) => {
+      event.preventDefault();
+      close();
+    });
+    dialog.addEventListener("close", () => {
+      clearTimeout(leaving);
+      dialog.classList.remove("is-open");
+      posts[current]?.querySelector("video")?.pause();
+      lockScroll(false);
+      swiper()?.keyboard.enable();
+    });
+    dialog.addEventListener("keydown", (event) => {
+      if (event.target.closest("video")) return;
+      if (event.key === "ArrowLeft") show(current - 1);
+      if (event.key === "ArrowRight") show(current + 1);
+    });
+
+    let swipe = null;
+    dialog.addEventListener("pointerdown", (event) => {
+      if (event.pointerType !== "mouse" && event.target.closest(".social__media")) swipe = { x: event.clientX, y: event.clientY };
+    });
+    dialog.addEventListener("pointerup", (event) => {
+      if (!swipe) return;
+      const dx = event.clientX - swipe.x;
+      const dy = event.clientY - swipe.y;
+      swipe = null;
+      if (Math.abs(dx) > 50 && Math.abs(dx) > Math.abs(dy)) show(current + (dx < 0 ? 1 : -1));
+    });
+    dialog.addEventListener("pointercancel", () => { swipe = null; });
+  });
+}
+
 // background videos play muted only while on screen, once their reveal has landed and while their promo isn't
 // playing; under reduced motion they hold on their first frame. is-live marks one that has
 // started, for a fade-in over its still

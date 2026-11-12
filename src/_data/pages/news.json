@@ -288,9 +288,23 @@
         "title_line_1": "Join the",
         "title_line_2": "Conversation",
         "follow_text": "Follow life at St Luke’s on social media",
+        "account": {
+          "handle": "stlukesgrammarschool",
+          "url": "https://www.instagram.com/stlukesgrammarschool/",
+          "avatar": {
+            "src": "/assets/icons/crest.svg",
+            "alt": "",
+            "width": 100,
+            "height": 100
+          }
+        },
+        "popup": false,
+        "view_text": "View on Instagram",
         "posts": [
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "11 November 2026",
+            "caption": "Congratulations to one of our Talented Athlete Program surfers, crowned U18 National Junior Champion at the Hurley Bells Beach Juniors. The whole St Luke’s community is cheering you on!",
             "image": {
               "src": "/assets/images/home/social-1.webp",
               "alt": "Instagram post: Talented Athlete Program, U18 Hurley Bells Beach national junior champion",
@@ -300,7 +314,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "7 November 2026",
+            "caption": "What a week on the snow! Well done to every St Luke’s skier and snowboarder who competed at the Australian Snowsports Championships. We’re so proud of how you represented the school.",
             "image": {
               "src": "/assets/images/home/social-2.webp",
               "alt": "Instagram post: Australian Snowsports Championships",
@@ -310,7 +326,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "4 November 2026",
+            "caption": "Congratulations to one of our teachers, recognised at this year’s NSW Highly Accomplished and Lead Teacher (HALT) ceremony. A well-deserved honour for years of dedication to our students.",
             "image": {
               "src": "/assets/images/home/social-3.webp",
               "alt": "Instagram post: HALT recognition",
@@ -320,7 +338,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "30 October 2026",
+            "caption": "Our new student leadership team spent two days on retreat at North Curl Curl, getting to know one another and planning the year ahead. We can’t wait to see what they achieve together.",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: student leadership retreat",
@@ -330,7 +350,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "30 October 2026",
+            "caption": "Our new student leadership team spent two days on retreat at North Curl Curl, getting to know one another and planning the year ahead. We can’t wait to see what they achieve together.",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: student leadership retreat",
@@ -340,7 +362,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "30 October 2026",
+            "caption": "Our new student leadership team spent two days on retreat at North Curl Curl, getting to know one another and planning the year ahead. We can’t wait to see what they achieve together.",
             "image": {
               "src": "/assets/images/home/social-4.webp",
               "alt": "Instagram post: student leadership retreat",
@@ -350,7 +374,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "24 October 2026",
+            "caption": "Thank you to the amazing volunteers who made An Evening for Our Stars such a special night. Our community shines because of people like you.",
             "image": {
               "src": "/assets/images/home/social-5.webp",
               "alt": "Instagram post from St Luke’s",
@@ -360,7 +386,9 @@
             "video": null
           },
           {
-            "url": "/news-story.html",
+            "url": "https://www.instagram.com/stlukesgrammarschool/",
+            "date": "19 October 2026",
+            "caption": "St Luke’s Grammar School presents Rocktober! Come and see our rockers take to the stage.\n\nFriday 30 October, 6–8pm, John Scott Hall.",
             "image": {
               "src": "/assets/images/home/social-6.webp",
               "alt": "Instagram post from St Luke’s",

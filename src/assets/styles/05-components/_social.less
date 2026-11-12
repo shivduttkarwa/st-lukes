@@ -1,6 +1,26 @@
 @social-tile-sm: 264 * @px;
 @social-tile: 352 * @px;
 
+@social-pop-h-md: 480 * @px;
+@social-pop-h: 560 * @px;
+@social-pop-body: 400 * @px;
+@social-pop-pad-sm: 16 * @px;
+@social-pop-pad-md: 40 * @px;
+@social-pop-pad: 60 * @px;
+@social-pop-room-sm: 2 * @social-pop-pad-sm;
+@social-pop-room-md: 2 * @social-pop-pad-md;
+@social-pop-room: 2 * @social-pop-pad;
+@social-pop-inset: 12 * @px;
+@social-pop-gap: 30 * @px;
+@social-pop-lift: 24 * @px;
+@social-pop-in: 700ms;
+@social-pop-out: 400ms;
+@social-avatar: 44 * @px;
+// a phone held upright gets a full-screen sheet; sideways, a tablet or a desktop gets the card with the photo beside the text
+@social-side: ~"(min-width: @{bp-md}), (min-width: @{bp-sm}) and (orientation: landscape)";
+
+@keyframes social-post-in { from { opacity: 0; } }
+
 .social {
   padding: 56 * @px 0;
   background: var(--color-white);
@@ -53,7 +73,10 @@
     width: @social-tile-sm;
     height: auto;
     aspect-ratio: 352 / 469;
+    padding: 0;
+    border: 0;
     overflow: hidden;
+    background: none;
     @media (min-width: @bp-sm) {
       width: @slide-short;
       max-height: calc(100svh - @slide-room-short);
@@ -107,4 +130,256 @@
   }
 
   &__link { .social-button(); }
+
+  &__popup {
+    --social-pop-h: ~"min(@{social-pop-h-md}, calc(100svh - @{social-pop-room-sm}))";
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    overflow: hidden;
+    background: none;
+    color: var(--color-text);
+    &::backdrop { background: none; }
+    &[open] { display: block; }
+    @media @social-side {
+      padding: @social-pop-pad-sm var(--gutter);
+      &[open] {
+        display: grid;
+        place-items: center;
+      }
+    }
+    @media (min-width: @bp-md) and (min-height: @bp-tall) {
+      --social-pop-h: ~"min(@{social-pop-h-md}, calc(100svh - @{social-pop-room-md}))";
+      padding-block: @social-pop-pad-md;
+    }
+    @media (min-width: @bp-lg) {
+      --social-pop-h: ~"min(@{social-pop-h}, calc(100svh - @{social-pop-room}))";
+      padding-block: @social-pop-pad;
+    }
+  }
+
+  &__scrim {
+    position: absolute;
+    inset: 0;
+    background: var(--color-scrim);
+    opacity: 0;
+  }
+
+  &__close {
+    .circle-button();
+    position: absolute;
+    top: @social-pop-inset;
+    right: @social-pop-inset;
+    z-index: 2;
+    opacity: 0;
+    // from lg it tops the next arrow's column, level with the card, which is always its full width there
+    @media (min-width: @bp-lg) {
+      top: ~"calc(50% - var(--social-pop-h) / 2)";
+      right: auto;
+      left: ~"calc(50% + (var(--social-pop-h) * 3 / 4 + @{social-pop-body}) / 2 + @{social-pop-gap} + (@{slider-arrow-size} - @{circle-size}) / 2)";
+    }
+    .menu-icon::before {
+      translate: 0 var(--menu-icon-shift);
+      rotate: 45deg;
+    }
+    .menu-icon::after {
+      translate: 0 calc(-1 * var(--menu-icon-shift));
+      rotate: -45deg;
+    }
+  }
+
+  &__frame {
+    position: relative;
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    background: var(--color-white);
+    opacity: 0;
+    @media (prefers-reduced-motion: no-preference) { translate: 0 @social-pop-lift; }
+    @media @social-side {
+      height: auto;
+      max-width: 100%;
+      overflow: visible;
+      background: none;
+    }
+    @media (min-width: @bp-lg) {
+      display: grid;
+      grid-template-columns: auto minmax(0, auto) auto;
+      align-items: center;
+      gap: @social-pop-gap;
+    }
+  }
+
+  &__popup.is-open &__scrim,
+  &__popup.is-open &__close,
+  &__popup.is-open &__frame {
+    opacity: 1;
+    translate: none;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &__scrim,
+    &__frame { transition: opacity @social-pop-out ease, translate @social-pop-out ease; }
+    &__close { transition: opacity @social-pop-out ease, background-color var(--duration-base) ease; }
+    &__popup.is-open &__scrim { transition-duration: @social-pop-in; }
+    &__popup.is-open &__frame {
+      transition: opacity @social-pop-in ease, translate @social-pop-in var(--ease-out);
+      transition-delay: 100ms;
+    }
+    &__popup.is-open &__close { transition-duration: @social-pop-in, var(--duration-base); }
+  }
+
+  &__step {
+    .slider-arrow(var(--color-white), var(--color-navy));
+    position: absolute;
+    top: ~"calc(100vw * 2 / 3)";
+    left: @social-pop-inset;
+    z-index: 1;
+    translate: 0 -50%;
+    background: var(--color-scrim);
+    &[data-social-prev] .icon { transform: rotate(-135deg); }
+    &[data-social-next] {
+      left: auto;
+      right: @social-pop-inset;
+    }
+    @media @social-side {
+      top: 50%;
+      &[data-social-next] {
+        right: auto;
+        left: ~"calc(var(--social-pop-h) * 3 / 4 - @{social-pop-inset})";
+        translate: -100% -50%;
+      }
+    }
+    @media (min-width: @bp-lg) {
+      position: static;
+      translate: none;
+      background: none;
+      &[data-social-next] { translate: none; }
+    }
+  }
+
+  &__card {
+    position: relative;
+    background: var(--color-white);
+  }
+
+  &__post {
+    @media (prefers-reduced-motion: no-preference) { animation: social-post-in var(--duration-slow) ease; }
+    @media @social-side {
+      display: grid;
+      grid-template-columns: auto minmax(0, @social-pop-body);
+      height: var(--social-pop-h);
+    }
+  }
+
+  &__media {
+    position: relative;
+    aspect-ratio: 3 / 4;
+    background: var(--color-navy);
+    touch-action: pan-y;
+    @media @social-side {
+      width: ~"calc(var(--social-pop-h) * 3 / 4)";
+      height: var(--social-pop-h);
+    }
+  }
+
+  &__photo {
+    .img-cover();
+    object-fit: contain;
+  }
+
+  &__clip {
+    .cover();
+    object-fit: contain;
+    background: var(--color-navy);
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: 20 * @px var(--gutter) 32 * @px;
+    @media @social-side {
+      min-height: 0;
+      padding: 20 * @px 24 * @px;
+    }
+    @media (min-width: @bp-lg) { padding: 30 * @px; }
+  }
+
+  &__account {
+    display: flex;
+    align-items: center;
+    gap: 12 * @px;
+    margin: 0;
+    padding-bottom: 16 * @px;
+    border-bottom: 1 * @px solid var(--color-line-soft);
+    // keeps the handle clear of the close button, which sits over the card's corner until lg
+    @media @social-side { padding-right: var(--tap-size); }
+    @media (min-width: @bp-lg) { padding: 0 0 20 * @px; }
+  }
+
+  &__avatar {
+    display: grid;
+    flex: none;
+    place-items: center;
+    width: @social-avatar;
+    height: @social-avatar;
+    border-radius: 50%;
+    background: var(--color-navy);
+  }
+
+  &__avatar-img {
+    width: 70%;
+    height: 70%;
+  }
+
+  &__handle {
+    .type-body-2-semibold();
+    .tap-area();
+    min-width: 0;
+    overflow-wrap: anywhere;
+    color: var(--color-navy);
+    @media (hover: hover) {
+      &:hover { color: var(--color-royal); }
+    }
+  }
+
+  &__caption {
+    .type-body-3();
+    flex: 1;
+    min-height: 0;
+    margin: 0;
+    padding: 16 * @px 0;
+    white-space: pre-line;
+    color: var(--color-text);
+    @media @social-side {
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      scrollbar-width: thin;
+      scrollbar-color: var(--color-navy-tint) transparent;
+    }
+    @media (min-width: @bp-lg) { padding: 20 * @px 0; }
+  }
+
+  &__foot {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12 * @px 16 * @px;
+    padding-top: 16 * @px;
+    border-top: 1 * @px solid var(--color-line-soft);
+    @media (min-width: @bp-lg) { padding-top: 20 * @px; }
+  }
+
+  &__date {
+    .type-share-label();
+    margin: 0;
+    color: var(--color-royal);
+  }
 }

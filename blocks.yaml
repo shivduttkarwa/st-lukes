@@ -454,10 +454,19 @@ blocks:
       title_line_1: CharBlock(required)   # navy
       title_line_2: CharBlock(required)   # navy outline, same line
       follow_text: CharBlock   # the gold band; its buttons are site.socials
-      posts: the school's Instagram feed (latest posts via the Instagram API), not editor-entered   # static build: 8 screenshots from Figma, 352 × 469, each linking to its post
-        url: the post's permalink
-        image: the post's media_url, or thumbnail_url for a video post
-        video: media_url when media_type is VIDEO, else none   # plays muted over the image on hover (mouse only, not under reduced motion)
+      account: the Instagram account the feed comes from   # heads the post popup
+        handle: username
+        url: the profile's address   # opens in a new tab
+        avatar: profile_picture_url   # static build: the crest, shown on a navy circle
+      view_text: CharBlock   # the popup's link to the post on Instagram ("View on Instagram")
+      popup: off for now (cutup switch, not a Wagtail field)   # off: the tiles do nothing on click; on: a tile opens its post in the popup
+      posts: the school's Instagram feed (latest posts via the Instagram API), not editor-entered   # static build: 8 screenshots from Figma, 352 × 469
+        url: the post's permalink   # the popup's View on Instagram link, new tab; static build: the school's profile
+        date: timestamp, shown as "11 November 2026"
+        caption: caption   # plain text, its line breaks kept; static build: sample captions written from the screenshots
+        image: the post's media_url, or thumbnail_url for a video post   # the tile and the popup; static images are 352 wide, so they show slightly soft at the popup's 420
+        images: children's media_url when media_type is CAROUSEL_ALBUM, else none   # to come with the API: the popup slides through these, that post's own images only
+        video: media_url when media_type is VIDEO, else none   # plays muted over the tile on hover (mouse only, not under reduced motion); in the popup it plays with controls
 
   cta:
     figma: "20169:5887 (CTA Banner component)"

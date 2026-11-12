@@ -94,7 +94,7 @@
       "children": [
         { "label": "Latest News", "url": "/news.html", "image": { "src": "/assets/images/pages/feature-1.webp", "alt": "", "width": 1334, "height": 820 } },
         { "label": "Newsletters", "url": "/news.html", "image": { "src": "/assets/images/home/hero-768.webp", "alt": "", "width": 768, "height": 512 } },
-        { "label": "Media", "url": "/news-story.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
+        { "label": "Media", "url": "/news.html", "image": { "src": "/assets/images/menu/our-school.webp", "alt": "", "width": 648, "height": 402 } }
       ]
     }
   ],
