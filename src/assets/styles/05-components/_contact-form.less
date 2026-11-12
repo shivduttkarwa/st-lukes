@@ -122,8 +122,7 @@
     transition-delay: 0s;
   }
 
-  // the active line grows out from the middle over the field's own 1px line, in royal, and stays while the field is flagged.
-  // It sits on a wrapper because an input can't carry a pseudo-element, and autofill strips an input's backgrounds
+  // on a wrapper because an input can't carry a pseudo-element and autofill strips its backgrounds
   &__control,
   &__select {
     position: relative;
@@ -134,8 +133,8 @@
       right: 0;
       bottom: -1 * @px;
       left: 0;
-      height: 2 * @px;
-      background: var(--color-royal);
+      height: 1.5 * @px;
+      background: var(--color-navy);
       transform: scaleX(0);
       transition: transform var(--duration-slow) var(--ease-in-out);
       pointer-events: none;
