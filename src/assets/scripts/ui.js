@@ -22,9 +22,7 @@ export function initDevicePixel() {
 }
 
 export function initPlatform() {
-  if (/Windows.*Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("is-windows-chrome");
-  if (/Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("has-glass-lens");
-}
+  if (/Windows.*Chrome\//.test(navigator.userAgent)) document.documentElement.classList.add("is-windows-chrome");}
 
 // typing in a field is not keyboard navigation, or a phone's own keyboard would bring the rings back
 export function initFocusMode() {

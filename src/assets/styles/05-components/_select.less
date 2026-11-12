@@ -1,17 +1,10 @@
-@select-gap: 8 * @px;
-@select-radius: 24 * @px;
-@select-inset: 6 * @px;
-@select-row-radius: 18 * @px;
-@select-row: 36 * @px;
+@select-gap: 2 * @px;
 @select-list-max: 336 * @px;
-@select-bar-gutter: 16 * @px;
 @select-menu-widest: 320 * @px;
-@select-check: 16 * @px;
-@select-blur: 10 * @px;
 
 // the native select stays underneath for the value and the post; forms.js adds the toggle and the menu
 .select {
-  --select-head: @select-row;
+  --select-head: var(--tap-size);
   position: relative;
 
   &.is-ready select {
@@ -44,9 +37,7 @@
     white-space: nowrap;
   }
 
-  // Apple's liquid glass: a clear pane that blurs and saturates the page behind it under a lit rim (glass.js draws
-  // --glass-rim to the pane's size) and, in Chromium, bends it at the bevel through --glass-lens. It unfolds out of a strip
-  // the toggle's height, as Quick Links does (forms.js sets --select-head)
+  // Quick Links' light card, the approved dropdown: its shadow is painted once on its own layer and the open clip reaches past it
   &__menu {
     position: absolute;
     top: calc(100% + @select-gap);
@@ -55,17 +46,15 @@
     width: max-content;
     min-width: 100%;
     max-width: ~"min(@{select-menu-widest}, calc(100vw - 2 * var(--gutter)))";
-    padding: @select-inset;
-    border-radius: @select-radius;
-    background: var(--glass-rim, none) 0 0 / 100% 100% no-repeat, var(--color-glass);
-    box-shadow: inset 0 0 0 1 * @px var(--color-glass-rim-soft), inset 0 0 18 * @px var(--color-glass-glow);
+    padding: @quick-pad-y @quick-pad-x;
+    border-radius: @quick-radius;
+    background: var(--color-white);
+    box-shadow: 0 8 * @px 24 * @px -8 * @px var(--color-popup-shade), 0 1 * @px 4 * @px var(--color-glass-shade-soft);
     color: var(--color-navy);
-    -webkit-backdrop-filter: blur(@select-blur) saturate(1.9) brightness(1.1);
-    // blurred before the bevel bends it: bent first, sharp text just under the rim showed through as ghost letters
-    backdrop-filter: ~"blur(@{select-blur}) var(--glass-lens,) saturate(1.9) brightness(1.1)";
     clip-path: inset(0 0 calc(100% - var(--select-head)) 0 round calc(var(--select-head) / 2));
     opacity: 0;
     visibility: hidden;
+    will-change: transform;
     transition: clip-path var(--duration-slow) var(--ease-settle), opacity var(--duration-base) ease var(--duration-fast), visibility 0s linear var(--duration-slow);
   }
 
@@ -81,63 +70,28 @@
   }
 
   &.is-open &__menu {
-    clip-path: inset(0 round @select-radius);
+    clip-path: inset(-@quick-shadow-room round (@quick-radius + @quick-shadow-room));
     opacity: 1;
     visibility: visible;
     transition-delay: 0s;
   }
 
-  // the drop shadow sits on a sibling, as the pane's clip would cut one of its own; it grows with the unfold, from the
-  // toggle's height to the pane's (--glass-height, from glass.js), on the same curve
-  &__shade {
-    position: absolute;
-    top: calc(100% + @select-gap);
-    left: 0;
-    z-index: 1;
-    height: var(--select-head);
-    border-radius: calc(var(--select-head) / 2);
-    box-shadow: 0 0 0 1 * @px var(--color-glass-edge), 0 20 * @px 50 * @px -12 * @px var(--color-glass-shade), 0 2 * @px 8 * @px var(--color-glass-shade-soft);
-    opacity: 0;
-    pointer-events: none;
-    transition: height var(--duration-slow) var(--ease-settle), border-radius var(--duration-slow) var(--ease-settle), opacity var(--duration-base) ease var(--duration-fast);
-  }
-
-  &.is-end &__shade {
-    right: 0;
-    left: auto;
-  }
-
-  &.is-above &__shade {
-    top: auto;
-    bottom: calc(100% + @select-gap);
-  }
-
-  &.is-open &__shade {
-    height: var(--glass-height);
-    border-radius: @select-radius;
-    opacity: 1;
-    transition-delay: 0s;
-  }
-
-  // the list scrolls inside the pane, so nothing crosses its rounded corners
   &__list {
     .reset-list();
+    position: relative;
     max-height: @select-list-max;
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: none;
-    border-radius: @select-row-radius;
     &::-webkit-scrollbar { display: none; }
   }
 
-  // the bar of a list that scrolls: a slim rounded thumb in a gutter of its own, inset from the corners, firmer on hover
-  &__menu.has-scroll { padding-right: @select-bar-gutter; }
-
+  // the bar of a list that scrolls: a slim rounded thumb in the card's right inset, firmer on hover
   &__bar {
     position: absolute;
-    top: @select-inset + 12 * @px;
+    top: @quick-pad-y;
     right: 4 * @px;
-    bottom: @select-inset + 12 * @px;
+    bottom: @quick-pad-y;
     display: none;
     width: 8 * @px;
     cursor: pointer;
@@ -165,42 +119,27 @@
     .type-body-3();
     display: flex;
     align-items: center;
-    gap: 8 * @px;
     min-height: var(--tap-size);
-    padding: 4 * @px 16 * @px 4 * @px 10 * @px;
-    border-radius: @select-row-radius;
     white-space: nowrap;
     cursor: pointer;
-    transition: background-color 0.12s ease, color 0.12s ease;
-    @media @fine { min-height: @select-row; }
-    &.is-active {
-      background: var(--color-royal);
-      color: var(--color-white);
-    }
+    transition: color var(--duration-base) ease;
+    @media @fine { min-height: @quick-row; }
+    &.is-active { color: var(--color-royal); }
   }
 
-  // the "all" row at the top is set apart from the choices by a hairline, as Apple's menus do
+  // the "all" row at the top is set apart from the choices by a hairline
   &__option--all {
     position: relative;
     margin-bottom: 9 * @px;
     &::after {
       content: "";
       position: absolute;
-      right: 12 * @px;
+      right: 0;
       bottom: -5 * @px;
-      left: 12 * @px;
+      left: 0;
       height: 1 * @px;
       background: var(--color-glass-edge);
     }
-  }
-
-  &__check {
-    order: -1;
-    flex: none;
-    width: @select-check;
-    height: @select-check;
-    visibility: hidden;
-    [aria-selected="true"] > & { visibility: visible; }
   }
 }
 
@@ -208,8 +147,6 @@
   .select__toggle .icon,
   .select__menu,
   .select.is-open .select__menu,
-  .select__shade,
-  .select.is-open .select__shade,
   .select__thumb,
   .select__option { transition: none; }
 }

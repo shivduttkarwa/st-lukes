@@ -1,5 +1,3 @@
-import { liquidGlass } from "./glass.js";
-
 const TYPEAHEAD_RESET = 500;
 const LABEL_OUT = 150;
 const LABEL_IN = 280;
@@ -55,13 +53,6 @@ function buildSelect(root, index) {
     row.setAttribute("role", "option");
     if (!option.value && i === 0) row.classList.add("select__option--all");
     row.textContent = option.textContent;
-    const check = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-    check.setAttribute("class", "select__check");
-    check.setAttribute("aria-hidden", "true");
-    const use = document.createElementNS("http://www.w3.org/2000/svg", "use");
-    use.setAttribute("href", "#icon-check");
-    check.append(use);
-    row.append(check);
     list.append(row);
     return row;
   });
@@ -75,9 +66,7 @@ function buildSelect(root, index) {
   thumb.className = "select__thumb";
   bar.append(thumb);
   menu.append(list, bar);
-  const shade = document.createElement("span");
-  shade.className = "select__shade";
-  root.append(toggle, shade, menu);
+  root.append(toggle, menu);
   root.classList.add("is-ready");
   root.style.setProperty("--select-head", `${toggle.offsetHeight}px`);
 
@@ -85,7 +74,7 @@ function buildSelect(root, index) {
   let typed = "";
   let typedAt = 0;
   const isOpen = () => root.classList.contains("is-open");
-  // a list taller than the menu scrolls under a slim bar of our own, in a gutter inside the glass, clear of its corners
+  // a list taller than the menu scrolls under a slim bar of our own, in the card's right inset, clear of its corners
   const edges = () => {
     const room = list.scrollHeight - list.clientHeight;
     menu.classList.toggle("has-scroll", room > 1);
@@ -157,9 +146,11 @@ function buildSelect(root, index) {
     }, LABEL_OUT);
   };
 
+  const mark = (i) => rows.forEach((row, n) => row.classList.toggle("is-active", n === i));
+
   const setActive = (i) => {
     active = Math.max(0, Math.min(rows.length - 1, i));
-    rows.forEach((row, n) => row.classList.toggle("is-active", n === active));
+    mark(active);
     if (rows[active]) toggle.setAttribute("aria-activedescendant", rows[active].id);
     const row = rows[active];
     if (!row) return;
@@ -172,16 +163,15 @@ function buildSelect(root, index) {
     const box = toggle.getBoundingClientRect();
     const below = window.innerHeight - box.bottom;
     // the menu takes its side while folded, with no transition, so it unfolds from the toggle and not from where it last was
-    menu.style.transition = shade.style.transition = "none";
+    menu.style.transition = "none";
     root.classList.toggle("is-above", below < menu.offsetHeight && box.top > below);
     // a list wider than its toggle lines up with the toggle's right edge where it would cross the page gutter
     const gutter = parseFloat(getComputedStyle(root.closest(".container") || document.body).paddingRight) || 0;
     root.classList.toggle("is-end", box.left + menu.offsetWidth > document.documentElement.clientWidth - gutter);
     edges();
     root.style.setProperty("--select-head", `${toggle.offsetHeight}px`);
-    liquidGlass(menu, shade);
     void menu.offsetWidth;
-    menu.style.transition = shade.style.transition = "";
+    menu.style.transition = "";
     root.classList.add("is-open");
     toggle.setAttribute("aria-expanded", "true");
     setActive(start ?? Math.max(0, options.indexOf(select.options[select.selectedIndex])));
@@ -226,8 +216,8 @@ function buildSelect(root, index) {
   toggle.addEventListener("click", () => {
     if (isOpen()) return close();
     open();
-    // a pointer opens the menu with nothing highlighted, as Apple's do; the arrow keys still start from the chosen row
-    rows.forEach((row) => row.classList.remove("is-active"));
+    // the chosen row opens in the hover colour; with nothing chosen yet (the placeholder) no row is
+    if (!options.includes(select.options[select.selectedIndex])) mark(-1);
   });
   toggle.addEventListener("blur", close);
   toggle.addEventListener("keydown", (e) => {
@@ -270,7 +260,7 @@ function buildSelect(root, index) {
     const i = rows.indexOf(e.target.closest("[role='option']"));
     if (i > -1 && !rows[i].classList.contains("is-active")) {
       active = i;
-      rows.forEach((row, n) => row.classList.toggle("is-active", n === i));
+      mark(i);
     }
   });
   list.addEventListener("click", (e) => {
